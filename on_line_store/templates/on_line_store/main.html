@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'on_line_store/css/main.css' %}">
 
     <title>
         {% block title %}
@@ -25,26 +25,27 @@
                 <div class="nav-item-container">
                     <a class="nav-item" href="{% url 'onLineStore:home' %}">Home</a>
                     <a class="nav-item" href="{% url 'onLineStore:cart' %}">Cart</a>
-                    <a class="nav-item" href="{% url 'onLineStore:check_out' %}">Check OUt</a>
+                    <a class="nav-item" href="{% url 'onLineStore:check_out' %}">Check Out</a>
                 </div>
 
                 <div class="navbar-right">
                     {% if user.is_authenticate %}
                         <a href="#" class="nav-item">Log Out</a>
                         <a href="{% url 'onLineStore:cart' %}">
-                            <img id="cart-icon" src="{% static 'images/cart.png' %}" alt="">
+                            <img id="cart-icon" src="{% static 'on_line_store/images/cart.png' %}" alt="">
                         </a>
                         <p id="cart-total">0</p>
                     {% else %}
                         <a href="#" class="nav-item">Login</a>
                         <a href="{% url 'onLineStore:cart' %}">
-                            <img id="cart-icon" src="{% static 'images/cart.png' %}" alt="">
+                            <img id="cart-icon" src="{% static 'on_line_store/images/cart.png' %}" alt="">
                         </a>
                         <p id="cart-total">0</p>
                     {% endif %}
                 </div>
             </div>
         </nav>
+        <div class="nav-img-slide"></div>
 
     </header>
     <main>
@@ -60,6 +61,6 @@
 
     </footer>
 
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'on_line_store/js/main.js' %}"></script>
 </body>
 </html>
