@@ -28,3 +28,31 @@ const slideImgs = [
 //     }
 // }
 // auto_slide()
+
+
+// cart.html
+const product = document.querySelector("#product")
+const price = document.querySelector("#price")
+const total = document.querySelector("#total")
+const upIcon = document.querySelector("#up-icon")
+const downIcon = document.querySelector("#down-icon")
+const numQuanity = document.querySelector(".num-quanity")
+
+
+let pricePerItem = price.textContent.slice(1, price.textContent.length)
+let numItem = 0
+
+upIcon.addEventListener("click", function(){
+    numItem++
+    numQuanity.textContent = numItem
+    total.textContent =  `$${pricePerItem*numItem}`
+})
+downIcon.addEventListener("click", function(){
+    numItem--
+    if (numItem < 0){
+        numItem = 0
+    }
+    numQuanity.textContent = numItem
+    total.textContent =  `$${pricePerItem*numItem}`
+})
+

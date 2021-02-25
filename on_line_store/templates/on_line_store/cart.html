@@ -3,18 +3,50 @@
 {% load static %}
 
 {% block content %}
+
+
+
     <div class="cart-container">
         <div class="cart-top-col">
             <h2 class="cart-header">My Cart</h2>
-            <div class="cart-col">
-                <a href="#" class="cart-btn btn-1" type="button">Continue Shopping</a>
+            <div class="cart-top">
+                <a href="{% url 'onLineStore:home' %}" class="cart-btn btn-1" type="button"><i class="left-icon fa fa-arrow-left"></i>Continue Shopping</a>
                 <div class="cart-text-contents">
-                    <p class="item">Item: <strong>3</strong></p>
-                    <p class="total">Total: <strong>$200</strong></p>
+                    <p class="item">Total Item: <strong>3</strong></p>
+                    <p class="total">Amount Due: <strong>$200</strong></p>
                     <a class="check-out-btn btn-1" href="{% url 'onLineStore:check_out' %}" >Check Out</a>
                 </div>
             </div>
         </div>
-        <!-- <div class="cart-col"></div> -->
+        <div class="cart-bottom-col">
+            <div class="cart-bottom">
+                <div class="cart-product-img">
+                    <img class="cart-img" src="{% static 'on_line_store/images/shirt.jpg' %}" alt="">
+                </div>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td id="product">Yellow brand name shirt</td>
+                        <td id="price">$20</td>
+                        <td id="quantity">
+                            <small class="num-quanity">0</small>
+                            <div class="chevron-icons">
+                                <i id="up-icon" class="fa fa-chevron-up"></i>
+                                <i id="down-icon" class="fas fa-chevron-down"></i>
+                            </div>
+                        </td>
+                        <td id="total">$0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
+
+
+
 {% endblock content %}
