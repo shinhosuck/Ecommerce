@@ -3,5 +3,18 @@
 {% load static %}
 
 {% block content %}
-    <h1>Cart</h1>
+    <div class="cart-container">
+        <div class="cart-top-col">
+            <h2 class="cart-header">My Cart</h2>
+            <div class="cart-col">
+                <a href="#" class="cart-btn btn-1" type="button">Continue Shopping</a>
+                <div class="cart-text-contents">
+                    <p class="item">Item: <strong>3</strong></p>
+                    <p class="total">Total: <strong>$200</strong></p>
+                    <a class="check-out-btn btn-1" href="{% url 'onLineStore:check_out' %}" >Check Out</a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="cart-col"></div> -->
+    </div>
 {% endblock content %}
