@@ -3,5 +3,67 @@
 {% load static %}
 
 {% block content %}
-    <h1>check Out</h1>
+   <div class="check-out-container">
+
+           <form action="" method="">
+               <div class="input1">
+                    <input id="input"  type="text" placeholder="Name...">
+                    <input id="input"  type="text"placeholder="Email..." >
+               </div>
+               <p>Shipping Information</p>
+               <div class="input2">
+                    <input id="input"  type="text" placeholder="Address...">
+                    <input id="input"  type="text"placeholder="City..." >
+               </div>
+               <div class="input3">
+                    <input id="input" type="text" placeholder="State...">
+                    <input id="input" type="text" placeholder="Zip code...">
+               </div>
+               <button class="check-out-btn2 btn-1">Continue</button>
+           </form>
+           <div class="pay-option">
+               <p>Paypal Options</p>
+           </div>
+           <div class="order-summary">
+                <a href="{% url 'onLineStore:cart' %}" class="back-to-cart-btn btn-1" type="button">
+                    <i class="left-icon fa fa-arrow-left"></i>
+                    Back to Cart
+                </a>
+                <h2 class="title-order-summary">Order Summary</h2>
+                <table>
+                    <tr>
+                        <th>
+                            <img class="cart-img1" src="{% static 'on_line_store/images/shirt.jpg' %}" alt="">
+                        </th>
+                        <th>Product</th>
+                        <th>$20.00</th>
+                        <th>x2</th>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>
+                            <img class="cart-img1" src="{% static 'on_line_store/images/shirt.jpg' %}" alt="">
+                        </th>
+                        <th>Product</th>
+                        <th>$20.00</th>
+                        <th>x2</th>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>
+                            <img class="cart-img1" src="{% static 'on_line_store/images/shirt.jpg' %}" alt="">
+                        </th>
+                        <th>Product</th>
+                        <th>$20.00</th>
+                        <th>x2</th>
+                    </tr>
+                </table>
+                <div class="summary-text-container">
+                    <h3>Items: 0</h3>
+                    <h3>Total: $</h3>
+                </div>
+           </div>
+   </div>
 {% endblock content %}
