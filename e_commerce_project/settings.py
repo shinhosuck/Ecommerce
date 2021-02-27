@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my_apps
-    "on_line_store.apps.OnLineStoreConfig",
+    "onLineStore.apps.OnlinestoreConfig",
     "crispy_forms"
 ]
 
