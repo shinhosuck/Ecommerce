@@ -3,8 +3,6 @@ from django import forms
 
 
 class ShippingAddressForm(forms.ModelForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
 
     class Meta:
         model = ShippingAddress

@@ -23,8 +23,6 @@ def store(request):
     for order in orders:
         total_items += order.quantity
 
-    # customer = Customer.objects.get(name=user)
-    # customer.quantity_ordered = total_items
     current_user.quantity_ordered = total_items
     current_user.save()
 
@@ -136,4 +134,5 @@ def check_out(request):
             "amount_due": amount_due,
         }
         return render(request, "onLineStore/check_out.html", context)
+
 

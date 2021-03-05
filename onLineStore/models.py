@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Customer(models.Model):
@@ -24,7 +25,7 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0)
-    date_ordered = models.DateTimeField(auto_now_add=True)
+    date_ordered = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"NAME: {self.customer.name}, QUANTITY: {self.quantity}"
@@ -33,11 +34,13 @@ class Order(models.Model):
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
     zipcode = models.CharField(max_length=200)
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.customer}"
