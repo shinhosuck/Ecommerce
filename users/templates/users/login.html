@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center;">
+        <div style="flex: 0 0 50%; border: 1px solid gray;">
+            <form action="" method="Post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button>Login</button>
+                <a href="{% url 'onLineStore:home' %}" type="button">Cancel</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

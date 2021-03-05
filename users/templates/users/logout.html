@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center;">
+        <div style="flex: 0 0 50%; border: 1px solid gray;">
+            <h5>You are logged out!</h5>
+            <a href="{% url 'users:login' %}" type="button">Login</a>
+            <a href="{% url 'users:register' %}">Register</a>
+        </div>
+    </div>
+</body>
+</html>

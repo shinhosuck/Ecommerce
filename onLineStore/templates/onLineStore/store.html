@@ -5,16 +5,16 @@
 
 {% block content %}
     <div class="store-row">
-       
+        {% for product in products %}
             <div class="store-col" title="Click to see detail">
-                <img class="store-img" src="#" alt="">
+                <img class="store-img" src="{{ product.image.url }}" alt="">
                 <div class="store-product">
-                    <h5 class="store-product-title"></h5>
-                    <button class="store-btn btn-1">Add to Cart</button>
+                    <h5 class="store-product-title">{{ product.name }}</h5>
+                    <a class="store-btn btn-1" type="button" href="{% url 'onLineStore:add_to_cart' product.id %}">Add to Cart</a>
                     <a class="store-btn-view btn-1" type="button" href="#">View</a>
-                    <h4 class="store-product-price"></h4>
+                    <h4 class="store-product-price">${{ product.price }}</h4>
                 </div>
             </div>
-      
+        {% endfor %}
     </div>
 {% endblock content %}

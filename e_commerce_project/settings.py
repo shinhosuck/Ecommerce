@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my_apps
     "onLineStore.apps.OnlinestoreConfig",
-    "crispy_forms"
+    "users.apps.UsersConfig",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+LOGIN_REDIRECT_URL = 'onLineStore:home'
+LOGIN_URL = 'users:login'

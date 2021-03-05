@@ -1,69 +1,57 @@
- {% extends "onLineStore/main.html" %}
-
-{% load static %}
+{% extends "onLineStore/main.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
    <div class="check-out-container">
-
-           <form action="" method="">
-               <div class="input1">
-                    <input id="input"  type="text" placeholder="Name...">
-                    <input id="input"  type="text"placeholder="Email..." >
-               </div>
-               <p>Shipping Information</p>
-               <div class="input2">
-                    <input id="input"  type="text" placeholder="Address...">
-                    <input id="input"  type="text"placeholder="City..." >
-               </div>
-               <div class="input3">
-                    <input id="input" type="text" placeholder="State...">
-                    <input id="input" type="text" placeholder="Zip code...">
-               </div>
-               <button class="check-out-btn2 btn-1">Continue</button>
-           </form>
-           <div class="pay-option">
-               <p>Paypal Options</p>
-           </div>
-           <div class="order-summary">
-                <a href="{% url 'onLineStore:cart' %}" class="back-to-cart-btn btn-1" type="button">
-                    <i class="left-icon fa fa-arrow-left"></i>
-                    Back to Cart
-                </a>
-                <h2 class="title-order-summary">Order Summary</h2>
-                <table>
-                    <tr>
-                        <th>
-                            <img class="cart-img1" src="{% static 'on_line_store/images/shirt.jpg' %}" alt="">
-                        </th>
-                        <th>Product</th>
-                        <th>$20.00</th>
-                        <th>x2</th>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <th>
-                            <img class="cart-img1" src="{% static 'on_line_store/images/shirt.jpg' %}" alt="">
-                        </th>
-                        <th>Product</th>
-                        <th>$20.00</th>
-                        <th>x2</th>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <th>
-                            <img class="cart-img1" src="{% static 'on_line_store/images/shirt.jpg' %}" alt="">
-                        </th>
-                        <th>Product</th>
-                        <th>$20.00</th>
-                        <th>x2</th>
-                    </tr>
-                </table>
-                <div class="summary-text-container">
-                    <h3>Items: 0</h3>
-                    <h3>Total: $</h3>
-                </div>
-           </div>
+         <form action="" method="POST">
+            {% csrf_token%}
+             <!-- <div class="input1">
+                  <input id="input"  type="text" placeholder="Name...">
+                  <input id="input"  type="text"placeholder="Email..." >
+             </div> -->
+             <p>Shipping Information</p>
+             {{ form|crispy }}
+             <!-- <div class="input2">
+                  <input id="input"  type="text" placeholder="Address...">
+                  <input id="input"  type="text"placeholder="City..." >
+             </div>
+             <div class="input3">
+                  <input id="input" type="text" placeholder="State...">
+                  <input id="input" type="text" placeholder="Zip code...">
+             </div> -->
+             <button class="check-out-btn2 btn-1">Continue</button>
+         </form>
+         <div class="pay-option">
+             <p>Paypal Options</p>
+         </div>
+         <div class="order-summary">
+              <a href="{% url 'onLineStore:cart' %}" class="back-to-cart-btn btn-1" type="button">
+                  <i class="left-icon fa fa-arrow-left"></i>
+                  Back to Cart
+              </a>
+              <h2 class="title-order-summary">Order Summary</h2>
+              {% for order in orders %}
+              <table>
+                  <tr>
+                    <th>
+                        <img class="cart-img1" src="{{ order.product.image.url }}" alt="">
+                    </th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>{{ order.product.name }}</td>
+                    <td>${{ order.product.price }}</td>
+                    <td>{{ order.quantity }}</td>
+                  </tr>
+              </table>
+              {% endfor %}
+              <div class="summary-text-container">
+                  <h3>Total Items: {{ total_items }}</h3>
+                  <h3>Amount Due: ${{ amount_due }}</h3>
+              </div>
+         </div>
    </div>
 {% endblock content %}

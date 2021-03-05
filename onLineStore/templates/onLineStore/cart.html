@@ -10,18 +10,23 @@
         <div class="cart-top-col">
             <h2 class="cart-header">My Cart</h2>
             <div class="cart-top">
-                <a href="{% url 'onLineStore:home' %}" class="cart-btn btn-1" type="button"><i class="left-icon fa fa-arrow-left"></i>Continue Shopping</a>
+                <a href="{% url 'onLineStore:home' %}" class="cart-btn btn-1" type="button">
+                    <i class="left-icon fa fa-arrow-left"></i>
+                    Continue Shopping
+                </a>
                 <div class="cart-text-contents">
-                    <p class="item">Total Item: <strong>3</strong></p>
-                    <p class="total">Amount Due: <strong>$200</strong></p>
+                    <p class="item">Total Item: <strong id="items">{{ total_items }}</strong></p>
+                    <p class="total">Amount Due: <strong>${{ amount_due }}</strong></p>
                     <a class="check-out-btn btn-1" href="{% url 'onLineStore:check_out' %}" >Check Out</a>
                 </div>
             </div>
         </div>
+
         <div class="cart-bottom-col">
+            {% for key, value in total.items %}
             <div class="cart-bottom">
                 <div class="cart-product-img">
-                    <img class="cart-img" src="{% static 'onLineStore/images/shirt.jpg' %}" alt="">
+                    <img class="cart-img" src="{{ key.product.image.url }}" alt="">
                 </div>
                 <table>
                     <tr>
@@ -31,22 +36,26 @@
                         <th>Total</th>
                     </tr>
                     <tr>
-                        <td id="product">Yellow brand name shirt</td>
-                        <td id="price">$20</td>
-                        <td id="quantity">
-                            <small class="num-quanity">0</small>
+                        <td id="product">{{ key.product }}</td>
+                        <td id="price">{{ key.product.price }}</td>
+                        <td id="quantity">{{ key.quantity }}
+                            <small class="num-quanity"></small>
                             <div class="chevron-icons">
-                                <i id="up-icon" class="fa fa-chevron-up"></i>
-                                <i id="down-icon" class="fas fa-chevron-down"></i>
+                                <a href="{% url 'onLineStore:add_item' key.pk %}">
+                                    <i id="up-icon" class="fa fa-chevron-up"></i>
+                                </a>
+                                <a href="{% url 'onLineStore:delete_item' key.pk %}">
+                                    <i id="down-icon" class="fas fa-chevron-down"></i>
+                                </a>
                             </div>
                         </td>
-                        <td id="total">$0</td>
+                        <td id="total">${{ value }}</td>
                     </tr>
                 </table>
             </div>
+            {% endfor %}
         </div>
+
     </div>
-
-
 
 {% endblock content %}
