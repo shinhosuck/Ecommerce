@@ -38,8 +38,16 @@ def add_to_cart(request, id):
     if user.is_authenticated:
         name = Customer.objects.get(name=user)
         product = get_object_or_404(Product, id=id)
-        new_order = Order.objects.create(customer=name, product=product, quantity=1)
+        count = 0
 
+        for order in name.order_set.all():
+            if order.product.id == product.id:
+                order.quantity += 1
+                count +=1
+                order.save()
+
+        if count == 0:
+            Order.objects.create(customer=name, product=product, quantity=1)
         return redirect("onLineStore:home")
     else:
         return redirect("onLineStore:home")
