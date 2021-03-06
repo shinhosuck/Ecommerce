@@ -12,19 +12,15 @@ def store(request):
         products = Product.objects.all()
         return render(request, "onLineStore/store.html", {"products": products})
     try:
-        customer = Customer.objects.get(name=user)
-    except:
-        customer = Customer.objects.create(name=user, email=user.email)
-
-    current_user = Customer.objects.get(name=user)
-    orders = current_user.order_set.all()
-    total_items = 0
-
-    for order in orders:
-        total_items += order.quantity
-
-    current_user.quantity_ordered = total_items
-    current_user.save()
+        current_user = Customer.objects.get(name=user)
+        orders = current_user.order_set.all()
+        total_items = 0
+        for order in orders:
+            total_items += order.quantity
+        current_user.quantity_ordered = total_items
+        current_user.save()
+    except Customer.DoesNotExist:
+        Customer.objects.create(name=user, email=user.email)
 
     products = Product.objects.all()
     context = {
@@ -49,6 +45,7 @@ def add_to_cart(request, id):
         if count == 0:
             Order.objects.create(customer=name, product=product, quantity=1)
         return redirect("onLineStore:home")
+
     else:
         return redirect("onLineStore:home")
 

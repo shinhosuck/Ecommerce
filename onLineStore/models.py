@@ -28,7 +28,7 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"NAME: {self.customer.name}, QUANTITY: {self.quantity}"
+        return f"NAME: {self.customer}, PRODUCT: {self.product}, QUANTITY: {self.quantity}"
 
 
 class ShippingAddress(models.Model):
