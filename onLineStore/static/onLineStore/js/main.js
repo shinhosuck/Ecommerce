@@ -1,36 +1,76 @@
-// Nav background image
+// navbar
+// const navItem = document.querySelector(".nav-item-container")
+// const navRight = document.querySelector(".navbar-right")
+const flexContainer = document.querySelector(".flex-container")
+const toggleBtn = document.querySelector(".toggle-btn")
+const closeBtn = document.querySelector(".close-btn")
 
-const navImgSlide = document.querySelector(".nav-img-slide")
+toggleBtn.addEventListener("click", function(){
+    flexContainer.classList.add("show-flex-container")
+    flexContainer.classList.remove("flex-container")
+    closeBtn.style.display = "block"
+    toggleBtn.style.display = "none"
+})
+closeBtn.addEventListener("click", function(){
+    flexContainer.classList.remove("show-flex-container")
+    flexContainer.classList.add("flex-container")
+    closeBtn.style.display = "none"
+    toggleBtn.style.display = "block"
+})
 
-const slideImgs = [
-    "static/on_line_store/images/img1.jpg",
-    "static/on_line_store/images/img2.jpg",
-    "static/on_line_store/images/img3.jpg",
-]
+window.addEventListener("resize", function(){
+    if(window.innerWidth < 620){
+        flexContainer.classList.remove("show-flex-container")
+        flexContainer.classList.add("flex-container")
+        closeBtn.style.display = "none"
+        toggleBtn.style.display = "block"
+    }else{
+        toggleBtn.style.display = "none"
+    }
+})
 
-// index = 1
-
-// function auto_slide(){
-//     if (index <= slideImgs.length-1) {
-//         setInterval(function(){
-//             navImgSlide.style.transition = "all 5s ease-in-out"
-//             navImgSlide.style.background = `url(${slideImgs[index]})`
-//             navImgSlide.style.minHeight = "70vh"
-//             navImgSlide.style.backgroundPosition = "center"
-//             navImgSlide.style.backgroundSize = "cover"
-//             navImgSlide.style.backgroundRepeat = "no-repeat"
-//             navImgSlide.style.backgroundAttachment = "fixed"
-//             index+=1
-//             if (index > slideImgs.length-1) {
-//                 index = 0
-//             }
-//         }, 4000)
-//     }
-// }
-// auto_slide()
+// slider
+const images = document.querySelectorAll(".img")
+const prevBtn = document.querySelector(".prev-btn")
+const nextBtn = document.querySelector(".next-btn")
 
 
-// main.html
-let cartTotal = document.querySelector("#cart-total")
-let items = document.querySelector("#items")
-cartTotal.textContent = items.textContent
+counter = 0
+
+
+
+nextBtn.addEventListener("click", function(){
+    counter++
+    console.log(counter)
+    slider()
+})
+
+prevBtn.addEventListener("click", function(){
+    counter--
+    console.log(counter)
+    slider()
+})
+
+
+function slider(){
+    if(counter == 2){
+        prevBtn.disabled = false
+        nextBtn.disabled = true
+        counter = 2
+    }
+    else if(counter <= 0){
+            nextBtn.disabled = false
+            prevBtn.disabled = true
+            counter = 0
+        }
+    else{
+        prevBtn.disabled = false
+        nextBtn.disabled = false
+    }
+    images.forEach(function(img){
+        img.style.transform = `translatex(-${counter*100}%)`
+    })
+}
+
+
+

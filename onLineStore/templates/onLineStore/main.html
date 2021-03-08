@@ -10,45 +10,69 @@
 
     <title>
         {% block title %}
-            Ecomm
+            AiAi.com
         {% endblock title %}
     </title>
 
 </head>
 <body>
     <header>
-
+        <!-- navigation -->
         <nav class="nav-bg">
             <div class="nav-container">
                  <div class="brand">
-                    <a class="brand-name" href="{% url 'onLineStore:home' %}">Ecom</a>
+                    <a class="brand-name" href="{% url 'onLineStore:home' %}">AiAi<span>.com</span></a>
+                    <i class="fas fa-bars toggle-btn"></i>
+                    <i class="fas fa-times close-btn"></i>
                 </div>
-                <div class="nav-item-container">
-                    <a class="nav-item" href="{% url 'onLineStore:home' %}">Home</a>
-                    <a class="nav-item" href="{% url 'onLineStore:cart' %}">Cart</a>
-                    <a class="nav-item" href="{% url 'onLineStore:check_out' %}">Check Out</a>
-                </div>
+                <div class="flex-container">
+                    <div class="nav-item-container">
+                        <a class="nav-item" href="{% url 'onLineStore:home' %}">Home</a>
+                        <a class="nav-item" href="{% url 'onLineStore:cart' %}">My Cart</a>
+                        <a class="nav-item" href="{% url 'onLineStore:check_out' %}">Check Out</a>
+                    </div>
 
-                <div class="navbar-right">
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'users:profile'%}" class="nav-item">Profile</a>
-                        <a href="{% url 'users:logout' %}" class="nav-item">Log Out</a>
-                        <a href="{% url 'onLineStore:cart' %}">
-                            <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
-                        </a>
-                        <p id="cart-total">{{ user.customer.quantity_ordered }}</p>
-                    {% else %}
-                        <a href="{% url 'users:register' %}" class="nav-item">Register</a>
-                        <a href="{% url 'users:login' %}" class="nav-item">Login</a>
-                        <a href="{% url 'onLineStore:cart' %}">
-                            <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
-                        </a>
-                        <p id="cart-total">0</p>
-                    {% endif %}
+                    <div class="navbar-right">
+                        {% if user.is_authenticated %}
+                            <a class="nav-item" href="{% url 'users:profile'%}">My Info</a>
+                            <a class="nav-item" href="{% url 'users:logout' %}">Log Out</a>
+                            <a class="cart" href="{% url 'onLineStore:cart' %}">
+                                <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
+                                <div class="cart-count">
+                                    <p id="cart-total">{{ user.customer.quantity_ordered }}</p>
+                                </div>
+                            </a>
+                        {% else %}
+                            <a class="nav-item" href="{% url 'users:register' %}">Register</a>
+                            <a class="nav-item" href="{% url 'users:login' %}">Login</a>
+                            <a class="cart" href="{% url 'onLineStore:cart' %}">
+                                <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
+                                <div class="cart-count">
+                                    <p id="cart-total">0</p>
+                                </div>
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </nav>
-        <!-- <div class="nav-img-slide"></div> -->
+        <!-- slide images -->
+        <div class="slider">
+            <div class="img-container">
+                <img class="img" src="{% static 'onLineStore/images/img1.jpg' %}" alt="">
+                <img class="img" src="{% static 'onLineStore/images/img2.jpg' %}" alt="">
+                <img class="img" src="{% static 'onLineStore/images/img3.jpg' %}" alt="">
+            </div>
+            <div class="img-container">
+                <img class="img" src="{% static 'onLineStore/images/img4.jpg' %}" alt="">
+                <img class="img" src="{% static 'onLineStore/images/img5.jpg' %}" alt="">
+                <img class="img" src="{% static 'onLineStore/images/img6.jpg' %}" alt="">
+            </div>
+             <div class="buttons">
+                <button class="button prev-btn"><</button>
+                <button class="button next-btn">></button>
+            </div>
+        </div>
 
     </header>
     <main>

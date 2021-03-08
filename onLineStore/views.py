@@ -41,7 +41,6 @@ def add_to_cart(request, id):
                 order.quantity += 1
                 count +=1
                 order.save()
-
         if count == 0:
             Order.objects.create(customer=name, product=product, quantity=1)
         return redirect("onLineStore:home")
@@ -92,8 +91,8 @@ def delete_item(request, pk):
 
 
 def add_item(request, pk):
-    user = request.user.customer
-    item = user.order_set.get(pk=pk)
+    customer = request.user.customer
+    item = customer.order_set.get(pk=pk)
     item.quantity = item.quantity + 1
     item.save()
     return redirect("onLineStore:cart")
