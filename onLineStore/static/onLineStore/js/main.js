@@ -19,7 +19,7 @@ closeBtn.addEventListener("click", function(){
 })
 
 window.addEventListener("resize", function(){
-    if(window.innerWidth < 620){
+    if(window.innerWidth < 670){
         flexContainer.classList.remove("show-flex-container")
         flexContainer.classList.add("flex-container")
         closeBtn.style.display = "none"
@@ -36,7 +36,6 @@ const nextBtn = document.querySelector(".next-btn")
 
 
 counter = 0
-
 
 
 nextBtn.addEventListener("click", function(){
