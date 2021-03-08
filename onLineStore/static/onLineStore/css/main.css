@@ -127,7 +127,7 @@ END OF GLOBAL
     flex: 0 0 50%;
     flex-direction: column;
     align-self: flex-start;
-    background: rgba(30, 55, 59, 0.8);
+    background: rgba(112, 50, 15, 0.5);
     height: 100%;
 }
 .nav-item-container {
@@ -230,7 +230,7 @@ END OF GLOBAL
         transition: background 0.2 linear, color 0.2 linear;
     }
     .nav-item:hover {
-        background: rgb(30, 55, 59);
+        background: rgb(112, 50, 15);
         color: var(--text-light)
     }
     .toggle-btn {
@@ -263,10 +263,10 @@ END OF GLOBAL
 .buttons{
     position: absolute;
     width: 100%;
-    bottom: 0;
+    bottom: 38%;
     left: 0;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 .button{
     padding: 0.5rem;
@@ -278,8 +278,24 @@ END OF GLOBAL
     outline: none;
     font-size: 1.5rem;
 }
-
-
+.dots {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+}
+.dot {
+    width: 12px;
+    height: 12px;
+    margin: 0.2rem;
+    border-radius: 50%;
+    background: gray;
+}
+.dot-color {
+    background: rgb(0, 255, 0);
+}
 
 /*
 ================

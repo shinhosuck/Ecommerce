@@ -1,6 +1,4 @@
 // navbar
-// const navItem = document.querySelector(".nav-item-container")
-// const navRight = document.querySelector(".navbar-right")
 const flexContainer = document.querySelector(".flex-container")
 const toggleBtn = document.querySelector(".toggle-btn")
 const closeBtn = document.querySelector(".close-btn")
@@ -33,20 +31,24 @@ window.addEventListener("resize", function(){
 const images = document.querySelectorAll(".img")
 const prevBtn = document.querySelector(".prev-btn")
 const nextBtn = document.querySelector(".next-btn")
-
+const dots = document.querySelectorAll(".dot") 
 
 counter = 0
 
 
+dots[counter].classList.add("dot-color")
+
 nextBtn.addEventListener("click", function(){
+    dots[counter].classList.remove("dot-color")
     counter++
-    console.log(counter)
+    dots[counter].classList.add("dot-color")
     slider()
 })
 
 prevBtn.addEventListener("click", function(){
+    dots[counter].classList.remove("dot-color")
     counter--
-    console.log(counter)
+    dots[counter].classList.add("dot-color")
     slider()
 })
 
