@@ -16,9 +16,45 @@
 
 </head>
 <body>
-    <header>
+    <header class="header-bg">
         <!-- navigation -->
         <nav class="nav-bg">
+            <div class="nav-container">
+                <div class="brand">
+                   <a class="brand-name" href="{% url 'onLineStore:home' %}">AiAi<span>.com</span></a>
+                   <i class="fas fa-bars toggle-btn"></i>
+                   <i class="fas fa-times close-btn"></i>
+               </div>
+               <div class="flex-container">
+                   <div class="nav-item-container">
+                       <a class="nav-item" href="{% url 'onLineStore:home' %}">Home</a>
+                       <a class="nav-item" href="{% url 'onLineStore:cart' %}">My Cart</a>
+                       <a class="nav-item" href="{% url 'onLineStore:check_out' %}">Check Out</a>
+                   </div>
+
+                   <div class="navbar-right">
+                       {% if user.is_authenticated %}
+                           <a class="nav-item" href="{% url 'users:profile'%}">My Info</a>
+                           <a class="nav-item" href="{% url 'users:logout' %}">Log Out</a>
+                           <a class="cart" href="{% url 'onLineStore:cart' %}">
+                               <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
+                               <div class="cart-count">
+                                   <p id="cart-total">{{ user.customer.quantity_ordered }}</p>
+                               </div>
+                           </a>
+                       {% else %}
+                           <a class="nav-item" href="{% url 'users:register' %}">Register</a>
+                           <a class="nav-item" href="{% url 'users:login' %}">Login</a>
+                           <a class="cart" href="{% url 'onLineStore:cart' %}">
+                               <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
+                               <div class="cart-count">
+                                   <p id="cart-total">0</p>
+                               </div>
+                           </a>
+                       {% endif %}
+                   </div>
+               </div>
+           </div>
             <!-- slide banner-->
             <div class="slider">
                 <div class="img-container">
@@ -41,52 +77,72 @@
                     <div class="dot"></div>
                 </div>
             </div>
-            <!-- navigation buttons -->
-            <div class="nav-container">
-                 <div class="brand">
-                    <a class="brand-name" href="{% url 'onLineStore:home' %}">AiAi<span>.com</span></a>
-                    <i class="fas fa-bars toggle-btn"></i>
-                    <i class="fas fa-times close-btn"></i>
-                </div>
-                <div class="flex-container">
-                    <div class="nav-item-container">
-                        <a class="nav-item" href="{% url 'onLineStore:home' %}">Home</a>
-                        <a class="nav-item" href="{% url 'onLineStore:cart' %}">My Cart</a>
-                        <a class="nav-item" href="{% url 'onLineStore:check_out' %}">Check Out</a>
-                    </div>
-
-                    <div class="navbar-right">
-                        {% if user.is_authenticated %}
-                            <a class="nav-item" href="{% url 'users:profile'%}">My Info</a>
-                            <a class="nav-item" href="{% url 'users:logout' %}">Log Out</a>
-                            <a class="cart" href="{% url 'onLineStore:cart' %}">
-                                <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
-                                <div class="cart-count">
-                                    <p id="cart-total">{{ user.customer.quantity_ordered }}</p>
-                                </div>
-                            </a>
-                        {% else %}
-                            <a class="nav-item" href="{% url 'users:register' %}">Register</a>
-                            <a class="nav-item" href="{% url 'users:login' %}">Login</a>
-                            <a class="cart" href="{% url 'onLineStore:cart' %}">
-                                <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
-                                <div class="cart-count">
-                                    <p id="cart-total">0</p>
-                                </div>
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+            <!-- <div class="overlay-color"></div> -->
         </nav>
-
+        <div class="overlay-color"></div>
     </header>
     <main>
+        <div class="sub-nav">
+            <ul class="sub-nav-items">
+                <li class="cat-btn">Category</li>
+                <li><a href="#">Todday's Deals</a></li>
+                <li><a href="#">Customer Service</a></li>
+                <li><a href="#">Gift Cards</a></li>
+                <li><a href="#">Sell</a></li>
+            </ul>
+        </div>
+        <div class="main-content-container">
+            {% block content %}
 
-        {% block content %}
-
-        {% endblock content%}
-
+            {% endblock content%}
+            <div class="category-bg">
+                <div class="close-cat-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                <ul class="category-container">
+                    <li class="category">Electronics
+                        <ul class="sub-categories">
+                            <li>Smart Phone</li>
+                            <li>Television</li>
+                            <li>Desktop Computer</li>
+                            <li>Laptop Computer</li>
+                        </ul>
+                    </li>
+                    <li class="category">Fashion
+                        <ul class="sub-categories">
+                            <li>Smart Phone</li>
+                            <li>Television</li>
+                            <li>Desktop Computer</li>
+                            <li>Laptop Computer</li>
+                        </ul>
+                    </li>
+                    <li class="category">Outdoor
+                        <ul class="sub-categories">
+                            <li>Smart Phone</li>
+                            <li>Television</li>
+                            <li>Desktop Computer</li>
+                            <li>Laptop Computer</li>
+                        </ul>
+                    </li>
+                    <li class="category">Pet Care
+                        <ul class="sub-categories">
+                            <li>Smart Phone</li>
+                            <li>Television</li>
+                            <li>Desktop Computer</li>
+                            <li>Laptop Computer</li>
+                        </ul>
+                    </li>
+                    <li class="category">Kitchen Ware
+                        <ul class="sub-categories">
+                            <li>Smart Phone</li>
+                            <li>Television</li>
+                            <li>Desktop Computer</li>
+                            <li>Laptop Computer</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </main>
     <footer>
 

@@ -73,5 +73,22 @@ function slider(){
     })
 }
 
+// show categories
+const categoryBg = document.querySelector(".category-bg")
+const categoryBtn = document.querySelector(".cat-btn")
+const overLayColor = document.querySelector(".overlay-color")
+const closeCatBtn = document.querySelector(".close-cat-btn")
 
 
+categoryBtn.addEventListener("click", function(){
+    categoryBg.classList.add("show-category-bg")
+    overLayColor.classList.add("show-overlay-color")
+    categoryBg.classList.remove("category-bg")
+    
+})
+
+closeCatBtn.addEventListener("click", function(){
+    categoryBg.classList.remove("show-category-bg")
+    overLayColor.classList.remove("show-overlay-color")
+    categoryBg.classList.add("category-bg")
+})

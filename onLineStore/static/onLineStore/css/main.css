@@ -74,12 +74,14 @@ END OF GLOBAL
 ===========*/
 
 /* navbar */
-.nav-bg {
+.header-bg {
     position: relative;
 }
+.nav-bg {
+    /* position: relative; */
+}
 .nav-container {
-    background: rgba(30, 55, 59, 0.8);
-    position: absolute;
+    background: rgb(31, 31, 31);
     width: 100%;
     top: 0;
     display: flex;
@@ -122,9 +124,9 @@ END OF GLOBAL
 }
 .show-flex-container {
     display: flex;
-    flex: 0 0 30%;
+    flex: 0 0 100%;
     flex-direction: column;
-    background: rgba(112, 50, 15, 0.5);
+    background: rgb(51, 51, 51);
     height: 100%;
 }
 .nav-item-container {
@@ -188,13 +190,14 @@ END OF GLOBAL
 }
 @media screen and (max-width: 670px) {
     .nav-container {
-       justify-content: flex-end;
+       justify-content: flex-start;
        background: transparent;
     }
     .brand {
         flex: 0 0 100%;
         padding: 0.5rem;
-        background: rgba(30, 55, 59, 0.9);
+        background: rgb(31, 31, 31);
+        /* background: purple; */
     }
     .toggle-btn {
        display: block;
@@ -226,7 +229,7 @@ END OF GLOBAL
         transition: background 0.2 linear, color 0.2 linear;
     }
     .nav-item:hover {
-        background: rgb(112, 50, 15);
+        background: rgb(32, 32, 32);
         color: var(--text-light)
     }
     .toggle-btn {
@@ -241,12 +244,10 @@ END OF GLOBAL
 /* slider */
 .slider{
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
     position: relative;
-    overflow: hidden;
 }
 .img-container{
+    overflow: hidden;
     flex: 0 0 50%;
     width: 50%;
     display: flex;
@@ -289,13 +290,108 @@ END OF GLOBAL
     width: 12px;
     height: 12px;
     margin: 0.2rem;
+    margin-bottom: 1rem;
     border-radius: 50%;
     background: gray;
 }
 .dot-color {
     background: rgb(0, 255, 0);
 }
+.overlay-color {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.show-overlay-color {
+    width: 100%;
+    min-height: 85vh;
+    background: rgba(0, 0, 0, 0.5);
+}
+.sub-nav {
+    display: flex;
+    justify-content: center;
+    background: rgb(61, 61, 61);
+    align-items: center;
+}
+.sub-nav-items {
+    display: flex;
+    align-items: center;
+}
+.sub-nav-items li {
+    margin: 0 0.5rem;
+    padding: 0.7rem 0 0.6rem 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+}
+.sub-nav-items li a{
+    color: white;
+}
+.main-content-container {
+    position: relative;
+}
+.category-bg {
+    height: 0;
+    overflow: hidden;
+}
+.close-cat-btn {
+    font-size: 2rem;
+    background: blue;
+    color: white;
+    text-align: end;
+    width: 30%;
+    cursor: pointer;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+}
+.show-category-bg {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left:0;
+    width: 100%;
+    min-height: 100vh;
+}
+.category-container{
+    height:600px;
+    overflow: scroll;
+    font-family: var(--sans-serif-font);
+    background: white;
+    width: 30%;
+    animation-name: move;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+@keyframes move{
+    from{
+        transform: translatex(-200%)
+    }
+    to{
+        transform: translatex(0%);
+    }
+}   
+.category{
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    color: rgb(22, 22, 53);
+    font-weight: bold;
+    border-bottom: 1px solid rgb(190, 190, 190);
+    padding-left: 3rem;
+    width: 100%
+}
+.sub-categories{
+    margin: 0.5rem 0;
+    color: rgb(31, 31, 31);
+    font-weight: normal;
 
+}
+.sub-categories li{
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+}
 /*
 ================
 END OF MAIN.HTML
@@ -309,39 +405,17 @@ END OF MAIN.HTML
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 3rem;
+    flex-wrap: wrap;
+    margin-top: 0;
+    position: relative;
 }
-.category-container{
-    font-family: var(--sans-serif-font);
-    flex: 0 0 20%;
-    border: 1px solid red;
-    overflow-y: scroll
-}
-.category{
-    margin-bottom: 2rem;
-    font-size: 1.3rem;
-    color: rgb(22, 22, 53);
-    font-weight: bold;
-    border-bottom: 1px solid rgb(190, 190, 190)
-}
-.sub-categories{
-    margin: 0.5rem 0;
-    color: rgb(31, 31, 31);
-    font-weight: normal;
 
-}
-.sub-categories li{
-    font-size: 0.9rem;
-    padding: 0.5rem 0;
-    cursor: pointer;
-}
 .right-container {
     flex: 0 0 80%;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
-    border: 1px solid red;
 }
 .store-col {
     flex: 0 0 20%;
