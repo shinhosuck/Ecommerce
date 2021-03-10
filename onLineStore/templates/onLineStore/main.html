@@ -32,6 +32,7 @@
                        <a class="nav-item" href="{% url 'onLineStore:check_out' %}">Check Out</a>
                    </div>
 
+                   <!-- nav right -->
                    <div class="navbar-right">
                        {% if user.is_authenticated %}
                            <a class="nav-item" href="{% url 'users:profile'%}">My Info</a>
@@ -55,6 +56,8 @@
                    </div>
                </div>
            </div>
+           <!-- end of nav right -->
+
             <!-- slide banner-->
             <div class="slider">
                 <div class="img-container">
@@ -77,9 +80,10 @@
                     <div class="dot"></div>
                 </div>
             </div>
-            <!-- <div class="overlay-color"></div> -->
+          <!-- end of slide banner-->
+
         </nav>
-        <div class="overlay-color"></div>
+      <!-- end of nav -->
     </header>
     <main>
         <div class="sub-nav">
@@ -101,23 +105,87 @@
                 </div>
                 <ul class="category-container">
                     <li class="category">Electronics
-                        <ul class="sub-categories">
-                            <li>Smart Phone</li>
-                            <li>Television</li>
-                            <li>Desktop Computer</li>
-                            <li>Laptop Computer</li>
+                        <ul class="sub-category">
+                            <li class="sub-cat-title">Smart Phone
+                              <ul class="sub-sub-category">
+                                <li class="item">Sam Sung</li>
+                                <li class="item">Sonny</li>
+                                <li class="item">LG</li>
+                                <li class="item">Nokia</li>
+                                <li class="item">Iphone</li>
+                              </ul>
+                            </li>
+                            <li class="sub-cat-title">Television
+                              <ul class="sub-sub-category">
+                                <li>Sam Sung</li>
+                                <li>Sonny</li>
+                                <li>LG</li>
+                                <li>Nokia</li>
+                                <li>Apple</li>
+                              </ul>
+                            </li>
+                            <li class="sub-cat-title">Desktop Computer
+                              <ul class="sub-sub-category">
+                                <li>Sam Sung</li>
+                                <li>Sonny</li>
+                                <li>LG</li>
+                                <li>HP</li>
+                                <li>Apple</li>
+                              </ul>
+                            </li>
+                            <li class="sub-cat-title">Laptop Computer
+                              <ul class="sub-sub-category">
+                                <li>Sam Sung</li>
+                                <li>Sonny</li>
+                                <li>LG</li>
+                                <li>HP</li>
+                                <li>Apple</li>
+                              </ul>
+                            </li>
                         </ul>
                     </li>
                     <li class="category">Fashion
-                        <ul class="sub-categories">
-                            <li>Smart Phone</li>
-                            <li>Television</li>
-                            <li>Desktop Computer</li>
-                            <li>Laptop Computer</li>
+                        <ul class="sub-category">
+                            <li class="sub-cat-title">Wonmens' Clothes
+                              <ul class="sub-sub-category">
+                                <li>Spring</li>
+                                <li>Summer</li>
+                                <li>Winter</li>
+                                <li>Casual</li>
+                                <li>Special Event</li>
+                              </ul>
+                            </li>
+                            <li class="sub-cat-title">Mens' Clothes
+                              <ul class="sub-sub-category">
+                                <li>Spring</li>
+                                <li>Summer</li>
+                                <li>Winter</li>
+                                <li>Casual</li>
+                                <li>Special Event</li>
+                              </ul>
+                            </li>
+                            <li class="sub-cat-title">Kids' Clothes
+                               <ul class="sub-sub-category">
+                                <li>Spring</li>
+                                <li>Summer</li>
+                                <li>Winter</li>
+                                <li>Casual</li>
+                                <li>Special Event</li>
+                              </ul>
+                            </li>
+                            <li class="sub-cat-title">Teens' Clothes
+                              <ul class="sub-sub-category">
+                                <li>Spring</li>
+                                <li>Summer</li>
+                                <li>Winter</li>
+                                <li>Casual</li>
+                                <li>Special Event</li>
+                              </ul>
+                            </li>
                         </ul>
                     </li>
                     <li class="category">Outdoor
-                        <ul class="sub-categories">
+                        <ul class="sub-category">
                             <li>Smart Phone</li>
                             <li>Television</li>
                             <li>Desktop Computer</li>
@@ -125,7 +193,7 @@
                         </ul>
                     </li>
                     <li class="category">Pet Care
-                        <ul class="sub-categories">
+                        <ul class="sub-category">
                             <li>Smart Phone</li>
                             <li>Television</li>
                             <li>Desktop Computer</li>
@@ -133,7 +201,7 @@
                         </ul>
                     </li>
                     <li class="category">Kitchen Ware
-                        <ul class="sub-categories">
+                        <ul class="sub-category">
                             <li>Smart Phone</li>
                             <li>Television</li>
                             <li>Desktop Computer</li>

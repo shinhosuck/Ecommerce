@@ -1,3 +1,11 @@
+// a tag disable default
+// const aTags = document.querySelectorAll("a")
+// aTags.forEach(function(element){
+//     element.addEventListener("click", function(event){
+
+//     })
+// })
+
 // navbar
 const flexContainer = document.querySelector(".flex-container")
 const toggleBtn = document.querySelector(".toggle-btn")
@@ -31,7 +39,7 @@ window.addEventListener("resize", function(){
 const images = document.querySelectorAll(".img")
 const prevBtn = document.querySelector(".prev-btn")
 const nextBtn = document.querySelector(".next-btn")
-const dots = document.querySelectorAll(".dot") 
+const dots = document.querySelectorAll(".dot")
 
 counter = 0
 
@@ -76,19 +84,53 @@ function slider(){
 // show categories
 const categoryBg = document.querySelector(".category-bg")
 const categoryBtn = document.querySelector(".cat-btn")
-const overLayColor = document.querySelector(".overlay-color")
 const closeCatBtn = document.querySelector(".close-cat-btn")
-
+const categoryContainer = document.querySelector(".category-container")
+const subCategoryTitle = document.querySelectorAll(".sub-cat-title")
 
 categoryBtn.addEventListener("click", function(){
+    categoryContainer.style.transform = `translatex(${0}%)`
+    closeCatBtn.style.transform = `translatex(${0}%)`
     categoryBg.classList.add("show-category-bg")
-    overLayColor.classList.add("show-overlay-color")
     categoryBg.classList.remove("category-bg")
-    
 })
 
 closeCatBtn.addEventListener("click", function(){
+    categoryContainer.style.transform = `translatex(-${200}%)`
+    closeCatBtn.style.transform = `translatex(-${200}%)`
     categoryBg.classList.remove("show-category-bg")
-    overLayColor.classList.remove("show-overlay-color")
     categoryBg.classList.add("category-bg")
+    subCategoryTitle.forEach(function(item){
+        item.children[0].classList.remove("show-sub-sub-category")
+    })
 })
+
+categoryContainer.addEventListener("mouseleave", function(event){
+    setTimeout(function(){
+        categoryContainer.style.transform = `translatex(-${200}%)`
+        closeCatBtn.style.transform = `translatex(-${200}%)`
+        categoryBg.classList.remove("show-category-bg")
+        categoryBg.classList.add("category-bg")
+        subCategoryTitle.forEach(function(item){
+            item.children[0].classList.remove("show-sub-sub-category")
+        })
+    }, 1500)
+})
+
+// show sub-sub-category
+const subCatTitle = document.querySelectorAll(".sub-cat-title")
+
+subCatTitle.forEach(function(item){
+    item.addEventListener("click", function(event){
+        if(event.currentTarget.children[0].classList.contains("show-sub-sub-category")){
+            event.currentTarget.children[0].classList.remove("show-sub-sub-category")
+        }
+        else{
+            event.currentTarget.children[0].classList.add("show-sub-sub-category")
+        }
+    })
+})
+subCatTitle.forEach(function(item){
+        item.children[0].classList.remove("show-sub-sub-category")
+})
+

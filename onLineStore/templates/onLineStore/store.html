@@ -4,17 +4,8 @@
 {% load static %}
 
 {% block content %}
-    <!-- <div class="sub-nav">
-        <ul class="sub-nav-items">
-            <li class="cat-btn">Category</li>
-            <li><a href="#">Todday's Deals</a></li>
-            <li><a href="#">Customer Service</a></li>
-            <li><a href="#">Gift Cards</a></li>
-            <li><a href="#">Sell</a></li>
-        </ul>
-    </div> -->
+
     <div class="store-row">
-            
         <div class="right-container">
         {% for product in products %}
             <div class="store-col" title="Click to see detail">
@@ -28,52 +19,6 @@
             </div>
         {% endfor %}
         </div>
-        <!-- <div class="category-bg">
-            <div class="close-cat-btn">
-                <i class="fas fa-times"></i>
-            </div>
-            <ul class="category-container">
-                <li class="category">Electronics
-                    <ul class="sub-categories">
-                        <li>Smart Phone</li>
-                        <li>Television</li>
-                        <li>Desktop Computer</li>
-                        <li>Laptop Computer</li>
-                    </ul>
-                </li>
-                <li class="category">Fashion
-                    <ul class="sub-categories">
-                        <li>Smart Phone</li>
-                        <li>Television</li>
-                        <li>Desktop Computer</li>
-                        <li>Laptop Computer</li>
-                    </ul>
-                </li>
-                <li class="category">Outdoor
-                    <ul class="sub-categories">
-                        <li>Smart Phone</li>
-                        <li>Television</li>
-                        <li>Desktop Computer</li>
-                        <li>Laptop Computer</li>
-                    </ul>
-                </li>
-                <li class="category">Pet Care
-                    <ul class="sub-categories">
-                        <li>Smart Phone</li>
-                        <li>Television</li>
-                        <li>Desktop Computer</li>
-                        <li>Laptop Computer</li>
-                    </ul>
-                </li>
-                <li class="category">Kitchen Ware
-                    <ul class="sub-categories">
-                        <li>Smart Phone</li>
-                        <li>Television</li>
-                        <li>Desktop Computer</li>
-                        <li>Laptop Computer</li>
-                    </ul>
-                </li>
-            </ul>
-        </div> -->
     </div>
+
 {% endblock content %}
