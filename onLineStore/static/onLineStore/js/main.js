@@ -130,7 +130,5 @@ subCatTitle.forEach(function(item){
         }
     })
 })
-subCatTitle.forEach(function(item){
-        item.children[0].classList.remove("show-sub-sub-category")
-})
+
 

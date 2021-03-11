@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from onLineStore.models import Product, Order, Customer, ShippingAddress
+from onLineStore.models import Product, Order, Customer, ShippingAddress, Purchase
 from django.contrib.auth.models import User
 from onLineStore.forms import ShippingAddressForm
 
@@ -13,10 +13,10 @@ def store(request):
         return render(request, "onLineStore/store.html", {"products": products})
     try:
         current_user = Customer.objects.get(name=user)
-        orders = current_user.order_set.all()
+        purchases = current_user.purchase_set.all()
         total_items = 0
-        for order in orders:
-            total_items += order.quantity
+        for purchase in purchases:
+            total_items += purchase.quantity
         current_user.quantity_ordered = total_items
         current_user.save()
     except Customer.DoesNotExist:
@@ -36,13 +36,14 @@ def add_to_cart(request, id):
         product = get_object_or_404(Product, id=id)
         count = 0
 
-        for order in name.order_set.all():
-            if order.product.id == product.id:
-                order.quantity += 1
+        for purchase in name.purchase_set.all():
+            if purchase.product.id == product.id:
+                purchase.quantity += 1
+                purchase.price = product.price
                 count +=1
-                order.save()
+                purchase.save()
         if count == 0:
-            Order.objects.create(customer=name, product=product, quantity=1)
+            Purchase.objects.create(customer=name, product=product, quantity=1, price=product.price)
         return redirect("onLineStore:home")
 
     else:
@@ -53,16 +54,16 @@ def cart(request):
     user = request.user
     if user.is_authenticated:
         current_user = Customer.objects.get(name=user)
-        orders = current_user.order_set.all()
+        purchases = current_user.purchase_set.all()
 
         total_items = 0
         amount_due = 0
         total = {}
 
-        for order in orders:
-            total_items += order.quantity
-            amount_due += order.quantity * order.product.price
-            total[order] = order.product.price * order.quantity
+        for purchase in purchases:
+            total_items += purchase.quantity
+            amount_due += purchase.quantity * purchase.product.price
+            total[purchase] = purchase.product.price * purchase.quantity
 
         context = {
             "total": total,
@@ -80,7 +81,7 @@ def cart(request):
 
 def delete_item(request, pk):
     user = request.user.customer
-    item = user.order_set.get(pk=pk)
+    item = user.purchase_set.get(pk=pk)
     item.quantity = item.quantity - 1
 
     if item.quantity <= 0:
@@ -92,7 +93,7 @@ def delete_item(request, pk):
 
 def add_item(request, pk):
     customer = request.user.customer
-    item = customer.order_set.get(pk=pk)
+    item = customer.purchase_set.get(pk=pk)
     item.quantity = item.quantity + 1
     item.save()
     return redirect("onLineStore:cart")
@@ -112,13 +113,13 @@ def check_out(request):
 
         else:
             customer = get_object_or_404(Customer, name=user)
-            orders = customer.order_set.all()
+            orders = customer.purchase_set.all()
             total_items = 0
             amount_due = 0
 
-            for order in orders:
-                total_items += order.quantity
-                amount_due += order.quantity * order.product.price
+            for purchase in purchases:
+                total_items += purchase.quantity
+                amount_due += purchase.quantity * purchase.product.price
 
             form = ShippingAddressForm()
             context = {
