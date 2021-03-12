@@ -80,22 +80,39 @@ def cart(request):
 
 
 def delete_item(request, pk):
-    user = request.user.customer
-    item = user.purchase_set.get(pk=pk)
+    user = request.user
+    item = user.customer.purchase_set.get(pk=pk)
     item.quantity = item.quantity - 1
-
     if item.quantity <= 0:
         item.delete()
     else:
         item.save()
+
+    current_user = Customer.objects.get(name=user)
+    purchases = current_user.purchase_set.all()
+    total_items = 0
+    for purchase in purchases:
+        total_items += purchase.quantity
+    current_user.quantity_ordered = total_items
+    current_user.save()
+
     return redirect("onLineStore:cart")
 
 
 def add_item(request, pk):
-    customer = request.user.customer
-    item = customer.purchase_set.get(pk=pk)
+    user = request.user
+    item = user.customer.purchase_set.get(pk=pk)
     item.quantity = item.quantity + 1
     item.save()
+
+    current_user = Customer.objects.get(name=user)
+    purchases = current_user.purchase_set.all()
+    total_items = 0
+    for purchase in purchases:
+        total_items += purchase.quantity
+    current_user.quantity_ordered = total_items
+    current_user.save()
+
     return redirect("onLineStore:cart")
 
 
@@ -108,7 +125,6 @@ def check_out(request):
                 customer_name = get_object_or_404(Customer, name=user)
                 form.instance.customer = customer_name
                 form.save()
-                print(customer_name.order_set.all())
             return redirect("onLineStore:check_out")
 
         else:
@@ -117,7 +133,7 @@ def check_out(request):
             total_items = 0
             amount_due = 0
 
-            for purchase in purchases:
+            for purchase in orders:
                 total_items += purchase.quantity
                 amount_due += purchase.quantity * purchase.product.price
 

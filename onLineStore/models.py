@@ -21,19 +21,9 @@ class Product(models.Model):
         return self.name
 
 
-# class Order(models.Model):
-#     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-#     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-#     quantity = models.IntegerField(default=0)
-#     date_ordered = models.DateTimeField(default=timezone.now)
-
-#     def __str__(self):
-#         return f"NAME: {self.customer}, PRODUCT: {self.product}, QUANTITY: {self.quantity}"
-
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    # order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
@@ -59,11 +49,12 @@ class Purchase(models.Model):
 
 class Order(models.Model):
     purchase= models.ForeignKey(Purchase, on_delete=models.SET_NULL, null=True)
-    address = models.ForeignKey(ShippingAddress, on_delete=models.SET_NULL, null=True)
+    shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.SET_NULL, null=True)
     total = models.DecimalField(max_digits=100000, decimal_places=2)
 
     def __str__(self):
-        return f"{self.customer}"
+        return f"{self.shipping_address}"
+
 
 
 

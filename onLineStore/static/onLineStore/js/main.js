@@ -82,53 +82,40 @@ function slider(){
 }
 
 // show categories
+const categoryBtn = document.querySelector(".category-btn")
 const categoryBg = document.querySelector(".category-bg")
-const categoryBtn = document.querySelector(".cat-btn")
 const closeCatBtn = document.querySelector(".close-cat-btn")
-const categoryContainer = document.querySelector(".category-container")
 const subCategoryTitle = document.querySelectorAll(".sub-cat-title")
 
 categoryBtn.addEventListener("click", function(){
-    categoryContainer.style.transform = `translatex(${0}%)`
-    closeCatBtn.style.transform = `translatex(${0}%)`
-    categoryBg.classList.add("show-category-bg")
-    categoryBg.classList.remove("category-bg")
+    categoryBg.classList.toggle("show-category-bg")
 })
 
 closeCatBtn.addEventListener("click", function(){
-    categoryContainer.style.transform = `translatex(-${200}%)`
-    closeCatBtn.style.transform = `translatex(-${200}%)`
     categoryBg.classList.remove("show-category-bg")
-    categoryBg.classList.add("category-bg")
     subCategoryTitle.forEach(function(item){
         item.children[0].classList.remove("show-sub-sub-category")
     })
 })
 
-categoryContainer.addEventListener("mouseleave", function(event){
-    setTimeout(function(){
-        categoryContainer.style.transform = `translatex(-${200}%)`
-        closeCatBtn.style.transform = `translatex(-${200}%)`
-        categoryBg.classList.remove("show-category-bg")
-        categoryBg.classList.add("category-bg")
+categoryBg.addEventListener("mouseleave", function(event){
+    categoryBg.classList.remove("show-category-bg")
         subCategoryTitle.forEach(function(item){
             item.children[0].classList.remove("show-sub-sub-category")
         })
-    }, 1500)
 })
 
 // show sub-sub-category
 const subCatTitle = document.querySelectorAll(".sub-cat-title")
+const subSubCategory = document.querySelectorAll(".sub-sub-category")
 
-subCatTitle.forEach(function(item){
-    item.addEventListener("click", function(event){
-        if(event.currentTarget.children[0].classList.contains("show-sub-sub-category")){
-            event.currentTarget.children[0].classList.remove("show-sub-sub-category")
-        }
-        else{
-            event.currentTarget.children[0].classList.add("show-sub-sub-category")
-        }
+subCatTitle.forEach(function(sub_title){
+    sub_title.addEventListener("click", function(){
+        sub_title.children[0].classList.toggle("show-sub-sub-category")
+            subSubCategory.forEach(function(item){
+                if(item.parentElement !== sub_title){
+                    item.classList.remove("show-sub-sub-category")
+                }
+            })
+        })
     })
-})
-
-
