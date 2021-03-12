@@ -4,21 +4,9 @@
 {% block content %}
    <div class="check-out-container">
          <form action="" method="POST">
+          <h4>Shipping Information</h4>
             {% csrf_token%}
-             <!-- <div class="input1">
-                  <input id="input"  type="text" placeholder="Name...">
-                  <input id="input"  type="text"placeholder="Email..." >
-             </div> -->
-             <p>Shipping Information</p>
-             {{ form|crispy }}
-             <!-- <div class="input2">
-                  <input id="input"  type="text" placeholder="Address...">
-                  <input id="input"  type="text"placeholder="City..." >
-             </div>
-             <div class="input3">
-                  <input id="input" type="text" placeholder="State...">
-                  <input id="input" type="text" placeholder="Zip code...">
-             </div> -->
+            {{ form|crispy }}
              <button class="check-out-btn2 btn-1">Continue</button>
          </form>
          <div class="pay-option">

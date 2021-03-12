@@ -17,7 +17,7 @@ def store(request):
         total_items = 0
         for purchase in purchases:
             total_items += purchase.quantity
-        current_user.quantity_ordered = total_items
+        current_user.quantity_ordered = total_items # cart basket on navbar
         current_user.save()
     except Customer.DoesNotExist:
         Customer.objects.create(name=user, email=user.email)
@@ -93,7 +93,7 @@ def delete_item(request, pk):
     total_items = 0
     for purchase in purchases:
         total_items += purchase.quantity
-    current_user.quantity_ordered = total_items
+    current_user.quantity_ordered = total_items  # cart basket on navbar
     current_user.save()
 
     return redirect("onLineStore:cart")
@@ -110,7 +110,7 @@ def add_item(request, pk):
     total_items = 0
     for purchase in purchases:
         total_items += purchase.quantity
-    current_user.quantity_ordered = total_items
+    current_user.quantity_ordered = total_items # cart basket on navbar
     current_user.save()
 
     return redirect("onLineStore:cart")
@@ -125,7 +125,8 @@ def check_out(request):
                 customer_name = get_object_or_404(Customer, name=user)
                 form.instance.customer = customer_name
                 form.save()
-            return redirect("onLineStore:check_out")
+
+            return render(request, "onLineStore/payment.html", {})
 
         else:
             customer = get_object_or_404(Customer, name=user)
@@ -155,5 +156,4 @@ def check_out(request):
             "amount_due": amount_due,
         }
         return render(request, "onLineStore/check_out.html", context)
-
 
