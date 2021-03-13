@@ -40,16 +40,21 @@ class Purchase(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=100000, decimal_places=2, null=True)
+    purchase_id = models.IntegerField(default=0)
     date_ordered = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.customer} {self.product}"
+        return f'''Name:{self.customer},
+                Product:{self.product},
+                Price: {self.product.price},
+                Quantity: {self.quantity}
+            '''
 
 
 class Order(models.Model):
-    purchase= models.ForeignKey(Purchase, on_delete=models.SET_NULL, null=True)
+    purchase= models.ManyToManyField(Purchase, related_name="purchase")
     shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.SET_NULL, null=True)
-    total = models.DecimalField(max_digits=100000, decimal_places=2)
+    total = models.DecimalField(max_digits=100000, decimal_places=2, null=True)
     date_ordered = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
