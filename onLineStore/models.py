@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Customer(models.Model):
-    name = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     email = models.CharField(max_length=200)
     quantity_ordered = models.IntegerField(default=0)
 
@@ -30,7 +30,6 @@ class ShippingAddress(models.Model):
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
     zipcode = models.CharField(max_length=200)
-    date_added = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.customer}"
@@ -51,6 +50,7 @@ class Order(models.Model):
     purchase= models.ForeignKey(Purchase, on_delete=models.SET_NULL, null=True)
     shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.SET_NULL, null=True)
     total = models.DecimalField(max_digits=100000, decimal_places=2)
+    date_ordered = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.shipping_address}"

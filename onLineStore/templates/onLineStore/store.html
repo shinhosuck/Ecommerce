@@ -12,7 +12,7 @@
                 <img class="store-img" src="{{ product.image.url }}" alt="">
                 <div class="store-product">
                     <h5 class="store-product-title">{{ product.name }}</h5>
-                    <a class="store-btn btn-1" type="button" href="{% url 'onLineStore:add_to_cart' product.id %}">Add to Cart</a>
+                    <a class="store-btn btn-1" type="button" href="{% url 'onLineStore:add_to_cart' product.pk %}">Add to Cart</a>
                     <a class="store-btn-view btn-1" type="button" href="#">View</a>
                     <h4 class="store-product-price">${{ product.price }}</h4>
                 </div>

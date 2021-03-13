@@ -40,7 +40,7 @@
                            <a class="cart" href="{% url 'onLineStore:cart' %}">
                                <img id="cart-icon" src="{% static 'onLineStore/images/cart.png' %}" alt="">
                                <div class="cart-count">
-                                   <p id="cart-total">{{ user.customer.quantity_ordered }}</p>
+                                   <p id="cart-total">{{ user.customer.quantity_ordered }}{{ total_items }}</p>
                                </div>
                            </a>
                        {% else %}
