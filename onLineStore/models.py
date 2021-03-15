@@ -16,6 +16,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=100000, decimal_places=2)
     image = models.ImageField(default="product_images/default.jpg", upload_to="product_images")
+    on_stock = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -40,8 +41,8 @@ class Purchase(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=100000, decimal_places=2, null=True)
-    purchase_id = models.IntegerField(default=0)
-    date_ordered = models.DateTimeField(default=timezone.now)
+    date_purchased = models.DateTimeField(default=timezone.now)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return f'''Name:{self.customer},
@@ -56,6 +57,7 @@ class Order(models.Model):
     shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.SET_NULL, null=True)
     total = models.DecimalField(max_digits=100000, decimal_places=2, null=True)
     date_ordered = models.DateTimeField(default=timezone.now)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.shipping_address}"

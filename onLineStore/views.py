@@ -11,7 +11,7 @@ def store(request):
 
     if user.is_authenticated:
         try:
-            customer_name = Customer.objects.get(name=user.customer.name)
+            Customer.objects.get(name=user.customer.name)
         except Customer.DoesNotExist:
             products = Product.objects.all()
             context = {
