@@ -1,0 +1,46 @@
+{% extends "store/base.html" %}
+{% load crispy_forms_tags %}
+
+<title>
+    {% block title %}
+        Profile
+    {% endblock title %}
+</title>
+
+
+{% block content %}
+<style>
+    .profile-row {
+        display: flex;
+        justify-content: center;
+    }
+    .profile-container {
+        flex: 0 0 40%;
+        padding: 1rem;
+        border: 1px solid black;
+    }
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+</style>
+<div class="profile-row">
+    <div class="profile-container">
+        {% for message in messages %}
+            <h5>{{ message }}</h5>
+        {% endfor %}
+        <img src="{{ user.profile.image.url }}" alt="">
+        <p>{{ user.username}}</p>
+        <p>{{ user.first_name}} {{ user.last_name}}</p>
+        <p>{{ user.email}}</p>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form|crispy }}
+        {{ profile_form|crispy }}
+        <button>Update</button>
+        <a href="{% url 'store:home' %}"></a>
+    </form>
+</div>
+{% endblock content %}

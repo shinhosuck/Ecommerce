@@ -1,17 +1,18 @@
 from django.shortcuts import render, redirect
-from store.forms import UserRegisterForm
 from store.models import Customer
+from users.models import Profile
 
 def home(request):
-    return render(request, "store/home.html", {})
-
-
-def register(request):
-    if request.method == "POST":
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect("store:home")
+    user = request.user
+    if user.is_authenticated:
+        new_info = Profile.objects.get(user=user)
+        new_info.first_name = user.first_name
+        new_info.last_name = user.last_name
+        new_info.email = user.email
+        new_info.save()
+        return render(request, "store/home.html", {})
     else:
-        form = UserRegisterForm(request.POST)
-    return render(request, "store/register.html", {"form": form})
+        return render(request, "store/home.html", {})
+
+
+

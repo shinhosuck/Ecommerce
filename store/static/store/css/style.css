@@ -3,3 +3,23 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+/* 
+=============
+register.html 
+=============*/
+ul {
+    margin-left: 1.5rem;
+}
+ul li {
+    font-size: 0.9rem;
+}
+.register-row {
+    display: flex;
+    justify-content: center;
+}
+.register-container {
+    flex: 0 0 40%;
+    padding: 1rem;
+    border: 1px solid black;
+}

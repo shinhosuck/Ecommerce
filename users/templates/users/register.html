@@ -1,0 +1,78 @@
+{% extends "store/base.html" %}
+{% load crispy_forms_tags %}
+
+<title>
+    {% block title %}
+        Register
+    {% endblock title %}
+</title>
+
+
+{% block content %}
+
+<style>
+    .asteriskField{
+        display: none;
+    }
+    #hint_id_username {
+        display: none;
+    }
+    #hint_id_password1 {
+        display: none;
+    }
+    #hint_id_password2 {
+        display: none;
+    }
+    #error_1_id_username strong {
+        font-size: 0.8rem;
+    }
+    #error_1_id_password2 strong {
+        font-size: 0.8rem;
+    }
+    #id_username {
+        outline:none !important;
+        border: 1px solid gray;
+        box-shadow: none;
+    }
+    #id_first_name {
+        outline:none !important;
+        border: 1px solid gray;
+        box-shadow: none;
+    }
+    #id_last_name {
+        outline:none !important;
+        border: 1px solid gray;
+        box-shadow: none;
+    }
+    #id_email {
+        outline:none !important;
+        border: 1px solid gray;
+        box-shadow: none;
+    }
+    #id_password1 {
+        outline:none !important;
+        border: 1px solid gray;
+        box-shadow: none;
+    }
+    #id_password2 {
+        outline:none !important;
+        border: 1px solid gray;
+        box-shadow: none;
+    }
+    div input {
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+
+<div class="register-row">
+    <div class="register-container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button>Submit</button>
+            <a type="button" href="{% url 'store:home' %}">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}

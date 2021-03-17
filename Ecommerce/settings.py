@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # My apps
     "store.apps.StoreConfig",
+    "users.apps.UsersConfig",
     "crispy_forms",
     "django_countries",
 ]
@@ -127,3 +128,8 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
+
+LOGIN_REDIRECT_URL = 'store:home'
+LOGIN_URL = 'users:login'
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
