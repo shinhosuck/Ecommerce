@@ -8,22 +8,11 @@
 
 
 {% block content %}
-<style>
-    .logout-row {
-        display: flex;
-        justify-content: center;
-    }
-    .logout-container {
-        flex: 0 0 40%;
-        padding: 1rem;
-        border: 1px solid black;
-    }
-</style>
 <div class="logout-row">
     <div class="logout-container">
-        <h2>You are signed out</h2>
-        <a type="buttton" href="{% url 'users:login' %}">Login</a>
-        <a type="buttton" href="{% url 'store:home' %}">Cancel</a>
+        <h3>You are signed out!</h3>
+        <a class="logout-login" type="buttton" href="{% url 'users:login' %}">Login</a>
+        <a class="logout-cancel" type="buttton" href="{% url 'store:home' %}">Cancel</a>
     </div>
 </div>
 {% endblock content %}

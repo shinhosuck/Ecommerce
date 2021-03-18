@@ -3,23 +3,343 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    font-family: sans-serif;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+/*
+=========
+base.html
+=========*/
+
+/* navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(78, 78, 78);
+    padding: 1rem 0;
+}
+.navitem-container {
+    display: flex;
+    align-items: center;
+}
+.brand-name {
+    font-size: 1.7rem;
+    padding: 0 0.5rem;
+}
+.brand-name a {
+    color: rgb(0, 173, 0);
+}
+.item {
+    padding: 0 0.5rem;
+}
+.item a {
+    color: white;
+}
+.basket {
+    font-size: 1.2rem;
+    position: relative;
+}
+.basket small {
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: normal;
+    top:-8px;
+    left: 15px
+}
+/*
+================
+end of base.html
+================*/
 
 /* 
 =============
 register.html 
 =============*/
-ul {
-    margin-left: 1.5rem;
+
+.register-row {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-ul li {
+.register-container {
+    flex: 0 0 30%;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 1px solid rgb(185, 185, 185);
+}
+.register-button {
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(0, 128, 0);
+    background: rgb(0, 128, 0);
+    color: rgb(255, 255, 255);
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.register-button:hover {
+    background: rgb(0, 82, 0);
+    border: 1px solid rgb(0, 82, 0);
+}
+.register-cancel {
+    padding: 0.3rem 0.5rem;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(129, 129, 129);
+    background: rgb(129, 129, 129);
+    color: rgb(255, 255, 255);
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.register-cancel:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(92, 92, 92);
+    border: 1px solid rgb(92, 92, 92);
+}
+.register-text {
+    display: inline-block; 
+    margin-top: 1rem;
     font-size: 0.9rem;
 }
-.register-row {
+.register-login-link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: rgb(0, 90, 0);
+}
+.register-login-link:hover {
+    color: rgb(0, 90, 0);
+}
+/* 
+====================
+end of register.html 
+====================*/
+
+/* 
+==========
+login.html
+========== */
+
+.login-row {
     display: flex;
     justify-content: center;
 }
-.register-container {
-    flex: 0 0 40%;
+.login-container {
+    flex: 0 0 30%;
     padding: 1rem;
-    border: 1px solid black;
+    border: 1px solid rgb(185, 185, 185);
+    margin-top: 5rem;
+    border-radius: 20px;
 }
+.message-success {
+    font-size: 0.9rem;
+    color: green;
+}
+.login-title{
+    flex: 0 0 100%;
+    margin-bottom: 1rem;
+}
+.login-button {
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(0, 128, 0);
+    background: rgb(0, 128, 0);
+    color: rgb(255, 255, 255);
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.login-button:hover {
+    background: rgb(0, 82, 0);
+    border: 1px solid rgb(0, 82, 0);
+}
+.login-cancel {
+    padding: 0.3rem 0.5rem;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(129, 129, 129);
+    background: rgb(129, 129, 129);
+    color: rgb(255, 255, 255);
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.login-cancel:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(92, 92, 92);
+    border: 1px solid rgb(92, 92, 92);
+}
+.login-text {
+    display: inline-block; 
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+.login-register-link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: rgb(0, 90, 0);
+}
+.login-register-link:hover {
+    color: rgb(0, 90, 0);
+}
+/* 
+=================
+end of login.html
+================= */
+
+/* 
+===========
+logout.html
+=========== */
+
+.logout-row {
+    display: flex;
+    justify-content: center;
+}
+.logout-container {
+    flex: 0 0 30%;
+    padding: 1rem;
+    margin-top: 5rem;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 20px;
+}
+.logout-login {
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(0, 128, 0);
+    background: rgb(0, 128, 0);
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.logout-login:hover {
+    background: rgb(0, 82, 0);
+    border: 1px solid rgb(0, 82, 0);
+}
+.logout-cancel {
+    padding: 0.3rem 0.5rem;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(129, 129, 129);
+    background: rgb(129, 129, 129);
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.logout-cancel:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(92, 92, 92);
+    border: 1px solid rgb(92, 92, 92);
+}
+/* 
+==================
+end of logout.html
+================== */
+
+/* 
+============
+profile.html 
+============*/
+
+.profile-row {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-container {
+    flex: 0 0 30%;
+    padding: 1rem;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 20px;
+}
+img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.profile-contents {
+    display: flex; 
+    align-items: flex-end; 
+    flex-wrap: wrap;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgb(185, 185, 185);
+}
+.profile-title{
+    flex: 0 0 100%;
+    margin-bottom: 1rem;
+}
+.profile-text {
+    margin-left: 0.5rem;
+}
+.profile-text small {
+    display: block;
+}
+.profile-button {
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(0, 128, 0);
+    background: rgb(0, 128, 0);
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.profile-button:hover {
+    background: rgb(0, 82, 0);
+    border: 1px solid rgb(0, 82, 0);
+}
+.profile-cancel {
+    padding: 0.3rem 0.5rem;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid rgb(129, 129, 129);
+    background: rgb(129, 129, 129);
+    color: rgb(255, 255, 255);
+    margin-top: 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.profile-cancel:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(92, 92, 92);
+    border: 1px solid rgb(92, 92, 92);
+}
+/* 
+===================
+end of profile.html 
+===================*/
