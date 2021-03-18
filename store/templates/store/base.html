@@ -19,7 +19,11 @@
                 <li class="item">
                     <a href="{% url 'store:home' %}">Basket
                         <i class="fa fa-shopping-basket basket">
-                            <small>100</small>
+                            {% if user.is_authenticated %}
+                            <small>{{ user.customer.total_items }}</small>
+                            {% else %}
+                            <small>0</small>
+                            {% endif %}
                         </i>
                     </a>
                 </li>

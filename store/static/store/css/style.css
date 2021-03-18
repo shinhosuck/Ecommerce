@@ -351,15 +351,127 @@ home.html
 
 .products {
     display: flex;
-    align-items: flex-start;
+    align-content: flex-start;
     justify-content: center;
     flex-wrap: wrap;
 }
 .product {
-    flex: 0 0 30%;
-    border: 1px solid blue
+    flex: 0 0 20%;
+    padding: 0.7rem;
+    margin: 1rem;
+    border-radius: 10px;
+    color: black;
+    box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
 }
 .product-img {
     width: 100%;
     height: auto;
+    margin-bottom: 0.3rem;
+    border-radius: 5px;
+    border: 1px solid rgb(230, 230, 230);
+    transition: transform 0.35s linear;
+}
+.product-img:hover {
+    transform: scale(1.2)
+}
+.product-name {
+    color: rgb(31, 31, 31);
+    margin-top: 0.5rem;
+}
+.product-price {
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    float: right;
+    color: rgb(1, 128, 1);
+}
+.product-description{
+    color: rgb(92, 92, 92);
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+/* 
+================
+end of home.html
+================ */
+
+/* 
+===================
+product_detail.html 
+===================*/
+
+.product-detail {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+.product-detail-container {
+    padding: 1rem;
+    margin-top: 2rem;
+    flex: 0 0 30%;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    justify-content: space-between;
+    box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
+}
+.product-detail-img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgb(230, 230, 230);
+}
+.product-detail-name{
+    flex: 0 0 100%;
+    margin-bottom: 0.5rem;
+}
+.product-detail-price {
+    font-size: 0.9rem;
+    color: rgb(1, 128, 1);
+}
+.product-available {
+    font-size: 0.9rem;
+}
+.product-outstock {
+    font-size: 0.9rem;
+}
+.product-detail-description {
+    flex: 0 0 100%;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: rgb(92, 92, 92);
+}
+.add-to-basket {
+    flex: 0 0 100%;
+    font-size: 0.9rem;
+    border: 1px solid rgb(0, 128, 0);
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+    text-align: center;
+    background: rgb(0, 128, 0);
+    color: white;
+    border-radius: 5px;
+    transition: background 0.25s ease-in-out, border 0.25s ease-in-out;
+}
+.add-to-basket:hover {
+    background: rgb(0, 66, 0);
+    border: 1px solid rgb(0, 66, 0);
+}
+.continue-shopping {
+    flex: 0 0 100%;
+    font-size: 0.9rem;
+    border: 1px solid rgb(128, 128, 128);
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+    text-align: center;
+    background: rgb(128, 128, 128);
+    color: white;
+    border-radius: 5px;
+    transition: background 0.25s ease-in-out, border 0.25s ease-in-out;
+}
+.continue-shopping:hover {
+    background: rgb(59, 59, 59);
+    border: 1px solid rgb(59, 59, 59);
 }

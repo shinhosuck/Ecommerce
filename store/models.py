@@ -1,10 +1,24 @@
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.db import models
+from django.utils import timezone
 from PIL import Image 
 
+
+
 class Customer(models.Model):
-    user_name = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name="customer")
+    name = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    total_items = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Address(models.Model):
+    user_name = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name="customer_address")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, blank=True)
@@ -29,7 +43,7 @@ class Category(models.Model):
 
 
 class SubCategory(models.Model):
-    category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
 
     class Meta:
@@ -40,11 +54,12 @@ class SubCategory(models.Model):
 
 
 class Product(models.Model):
-    category = models.OneToOneField(Category, on_delete=models.CASCADE)
-    sub_category = models.OneToOneField(SubCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=200)
     image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="productImages")
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField(blank=True)
     on_stock = models.BooleanField(default=True)
     
     def save(self, *args, **kwargs):
@@ -57,3 +72,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+
+class Basket(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField(default=0)
+    date_purchased = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.customer}"
