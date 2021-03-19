@@ -1,5 +1,13 @@
 from django.contrib import admin
-from store.models import Address, Category, Product, SubCategory, Basket, Customer
+from store.models import (
+        Address, 
+        Category, 
+        Product, 
+        SubCategory, 
+        Basket, 
+        Customer, 
+        Order
+    )
 
 
 admin.site.register(Address)
@@ -8,4 +16,5 @@ admin.site.register(SubCategory)
 admin.site.register(Product)
 admin.site.register(Basket)
 admin.site.register(Customer)
+admin.site.register(Order)
 

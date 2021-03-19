@@ -79,6 +79,16 @@ class Basket(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0)
     date_purchased = models.DateTimeField(default=timezone.now)
+    open_basket = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f"{self.customer}"
+
+
+class Order(models.Model):
+    cutomer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    basket = models.ForeignKey(Basket, on_delete=models.SET_NULL, null=True)
+    date_ordered = models.DateTimeField(default=timezone.now)
+    
     def __str__(self):
         return f"{self.customer}"

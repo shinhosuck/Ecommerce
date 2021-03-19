@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from store.models import Product, Basket, Customer
 from users.models import Profile
-
+from store.forms import OrderAddressForm
 
 
 def home(request):
@@ -66,3 +66,60 @@ def my_basket(request, pk):
         "baskets": baskets
     }
     return render(request, "store/my_basket.html", context)
+
+
+def add_item(request, pk):
+    user = request.user
+    customer = get_object_or_404(Customer, name=user)
+    basket = customer.basket_set.get(pk=pk)
+    basket.quantity +=1
+    basket.save()
+    # update basket
+    baskets = customer.basket_set.all()
+    total_amount_due = 0
+    totalItems = 0
+    for basket in baskets:
+        total_amount_due += basket.quantity * basket.product.price
+        totalItems += basket.quantity
+    user.customer.total_items = totalItems
+    context = {
+        "total_amount_due": total_amount_due,
+        "baskets": baskets
+    }
+    return render(request, "store/my_basket.html", context)
+
+
+def delete_item(request, pk):
+    user = request.user
+    user = request.user
+    customer = get_object_or_404(Customer, name=user)
+    basket = customer.basket_set.get(pk=pk)
+    if basket.quantity == 1:
+        basket.delete()
+    else:
+        basket.quantity -=1
+        basket.save()
+    # update basket
+    baskets = customer.basket_set.all()
+    total_amount_due = 0
+    totalItems = 0
+    for basket in baskets:
+        total_amount_due += basket.quantity * basket.product.price
+        totalItems += basket.quantity
+    user.customer.total_items = totalItems
+    context = {
+        "total_amount_due": total_amount_due,
+        "baskets": baskets
+    }
+    return render(request, "store/my_basket.html", context)
+
+
+def shipping_address(request):
+    if request.method == "POST":
+        form = OrderAddressForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("store:home")
+    else:
+        form = OrderAddressForm(request.POST)
+    return render(request, "store/shipping_address.html", {"form": form})
