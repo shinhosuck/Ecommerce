@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+from users.models import Profile
 
 
 
@@ -14,10 +15,17 @@ def register(request):
             form.save()
             username = form.cleaned_data.get("username")
             messages.success(request, f"{username}, you have successfully registered!")
-            return redirect("users:login")
+            # new user profile
+            new_user = Profile.objects.get(user=form.instance)
+            new_user.first_name = form.instance.first_name
+            new_user.last_name = form.instance.last_name
+            new_user.email = form.instance.email
+            new_user.save()
+        return redirect("users:login")
     else:
          form = UserRegisterForm()
     return render(request, "users/register.html", {"form": form})
+
 
 @login_required
 def profile(request):

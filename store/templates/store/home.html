@@ -10,13 +10,12 @@
 
 {% block content %}
     <div class="products">
-        {% for product in products %}
+        {% for product in  all_products %}
         <div class="product" title="click for detail">
             <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
                 <img class="product-img" src="{{ product.image.url }}" alt="">
                 <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
                 <small class="product-price">${{ product.price }}</small>
-                <br>
                 <small class="product-description">{{ product.description|truncatechars:100 }}</small>
             </a>
         </div>
