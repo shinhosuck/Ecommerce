@@ -54,14 +54,45 @@ base.html
     top:-8px;
     left: 15px
 }
+/* search */
+
+/*.container {
+    display: flex;
+    justify-content: center;
+}*/
+input {
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+}
+.search-container {
+    background: gray;
+    padding: 0.7rem;
+    display: flex;
+    border-radius: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+    color: white;
+}
+i {
+    cursor: pointer;
+}
+::placeholder {
+    color: lightgray;
+}
 /*
 ================
 end of base.html
 ================*/
 
-/* 
+/*
 =============
-register.html 
+register.html
 =============*/
 
 .register-row {
@@ -112,7 +143,7 @@ register.html
     border: 1px solid rgb(92, 92, 92);
 }
 .register-text {
-    display: inline-block; 
+    display: inline-block;
     margin-top: 1rem;
     font-size: 0.9rem;
 }
@@ -125,12 +156,12 @@ register.html
 .register-login-link:hover {
     color: rgb(0, 90, 0);
 }
-/* 
+/*
 ====================
-end of register.html 
+end of register.html
 ====================*/
 
-/* 
+/*
 ==========
 login.html
 ========== */
@@ -190,7 +221,7 @@ login.html
     border: 1px solid rgb(92, 92, 92);
 }
 .login-text {
-    display: inline-block; 
+    display: inline-block;
     margin-top: 1rem;
     font-size: 0.9rem;
 }
@@ -203,12 +234,12 @@ login.html
 .login-register-link:hover {
     color: rgb(0, 90, 0);
 }
-/* 
+/*
 =================
 end of login.html
 ================= */
 
-/* 
+/*
 ===========
 logout.html
 =========== */
@@ -260,14 +291,14 @@ logout.html
     background: rgb(92, 92, 92);
     border: 1px solid rgb(92, 92, 92);
 }
-/* 
+/*
 ==================
 end of logout.html
 ================== */
 
-/* 
+/*
 ============
-profile.html 
+profile.html
 ============*/
 
 .profile-row {
@@ -288,8 +319,8 @@ profile.html
     border-radius: 50%;
 }
 .profile-contents {
-    display: flex; 
-    align-items: flex-end; 
+    display: flex;
+    align-items: flex-end;
     flex-wrap: wrap;
     padding-bottom: 0.3rem;
     border-bottom: 1px solid rgb(185, 185, 185);
@@ -339,12 +370,12 @@ profile.html
     background: rgb(92, 92, 92);
     border: 1px solid rgb(92, 92, 92);
 }
-/* 
+/*
 ===================
-end of profile.html 
+end of profile.html
 ===================*/
 
-/* 
+/*
 =========
 home.html
 ========= */
@@ -392,14 +423,14 @@ home.html
     margin-top: 0.5rem;
     flex: 0 0 100%
 }
-/* 
+/*
 ================
 end of home.html
 ================ */
 
-/* 
+/*
 ===================
-product_detail.html 
+product_detail.html
 ===================*/
 
 .product-detail {
@@ -477,12 +508,12 @@ product_detail.html
     background: rgb(59, 59, 59);
     border: 1px solid rgb(59, 59, 59);
 }
-/* 
+/*
 ==========================
-end of product_detail.html 
+end of product_detail.html
 ==========================*/
 
-/* 
+/*
 ==============
 my_basket.html
 ============== */
@@ -540,7 +571,7 @@ my_basket.html
     display: flex;
 }
 .table-text {
-    text-align: center; 
+    text-align: center;
     flex: 1;
 }
 .basket-total {
@@ -579,7 +610,7 @@ my_basket.html
     bottom: -10px;
     color:rgb(1, 114, 1)
 }
-/* 
+/*
 =====================
 end of my_basket.html
 ===================== */
@@ -632,7 +663,7 @@ end of my_basket.html
     border: 1px solid rgb(92, 92, 92);
 }
 .register-text {
-    display: inline-block; 
+    display: inline-block;
     margin-top: 1rem;
     font-size: 0.9rem;
 }
@@ -645,14 +676,14 @@ end of my_basket.html
 .register-login-link:hover {
     color: rgb(0, 90, 0);
 }
-/* 
+/*
 ====================
-end of register.html 
+end of register.html
 ====================*/
 
-/* 
+/*
 =====================
-shipping_address.html 
+shipping_address.html
 =====================*/
 
 .address-row {
@@ -705,7 +736,7 @@ shipping_address.html
     background: rgb(92, 92, 92);
     border: 1px solid rgb(92, 92, 92);
 }
-/* 
+/*
 =============================
-end of shinpping_address.html 
+end of shinpping_address.html
 =============================*/

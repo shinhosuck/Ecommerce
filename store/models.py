@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.db import models
 from django.utils import timezone
-from PIL import Image 
+from PIL import Image
 
 
 
@@ -18,7 +18,7 @@ class Customer(models.Model):
 
 
 class Address(models.Model):
-    user_name = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name="customer_address")
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, blank=True)
@@ -29,11 +29,11 @@ class Address(models.Model):
     country = CountryField()
 
     def __str__(self):
-        return f"{self.name_name}"
+        return f"{self.customer}"
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -44,7 +44,7 @@ class Category(models.Model):
 
 class SubCategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
 
     class Meta:
             verbose_name_plural = "Sub Categories"
@@ -61,7 +61,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(blank=True)
     on_stock = models.BooleanField(default=True)
-    
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         img = Image.open(self.image.path)
@@ -86,9 +86,11 @@ class Basket(models.Model):
 
 
 class Order(models.Model):
-    cutomer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     basket = models.ForeignKey(Basket, on_delete=models.SET_NULL, null=True)
+    open_order = models.BooleanField(default=True)
+    delivered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(default=timezone.now)
-    
+
     def __str__(self):
         return f"{self.customer}"

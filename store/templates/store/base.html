@@ -32,6 +32,13 @@
                     {% endif %}
                 </li>
             </ul>
+            <div class="container">
+                <div class="search-container">
+                    <i class="fa fa-search"></i>
+                    <input type="text" placeholder="Search"/>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
             <ul class="navitem-container">
                 {% if user.is_authenticated %}
                 <li class="item"><a href="{% url 'users:profile' %}">My Profile</a></li>
