@@ -12,12 +12,6 @@ from users.models import Profile
 def home(request):
     all_products = Product.objects.all()
     user = request.user
-
-    customer = Customer.objects.get(name=user)
-    orders = customer.order_set.all()
-    for order in orders:
-        print(order.basket.product, order.basket.quantity)
-
     if user.is_authenticated:
         try:
             customer = Customer.objects.get(name=user)

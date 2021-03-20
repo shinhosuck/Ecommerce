@@ -14,45 +14,16 @@
     <title>Register</title>
 
     <style>
-        .asteriskField{
+         #hint_id_username, #hint_id_password1,
+         #hint_id_password2, .asteriskField{
             display: none;
-        }
-        #hint_id_username {
-            display: none;
-        }
-        #hint_id_password1 {
-            display: none;
-        }
-        #hint_id_password2 {
-            display: none;
-        }
-        #error_1_id_username strong {
+         }
+        #error_1_id_username strong,
+        #error_1_id_password2 strong{
             font-size: 0.8rem;
         }
-        #error_1_id_password2 strong {
-            font-size: 0.8rem;
-        }
-        #id_username {
-            outline:none !important;
-            border: 1px solid rgb(185, 185, 185);
-            box-shadow: none;
-        }
-        #id_first_name {
-            outline:none !important;
-            border: 1px solid rgb(185, 185, 185);
-            box-shadow: none;
-        }
-        #id_last_name {
-            outline:none !important;
-            border: 1px solid rgb(185, 185, 185);
-            box-shadow: none;
-        }
-        #id_email {
-            outline:none !important;
-            border: 1px solid rgb(185, 185, 185);
-            box-shadow: none;
-        }
-        #id_password1 {
+        #id_username,  #id_first_name,  #id_last_name,
+        #id_email, #id_password1{
             outline:none !important;
             border: 1px solid rgb(185, 185, 185);
             box-shadow: none;
@@ -62,13 +33,14 @@
             border: 1px solid gray;
             box-shadow: none;
         }
-        div input {
+        input {
             margin-bottom: 0.5rem;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    
+
     <div class="register-row">
         <div class="register-container">
             <h4>Register</h4>

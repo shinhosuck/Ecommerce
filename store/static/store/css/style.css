@@ -60,7 +60,7 @@ base.html
     display: flex;
     justify-content: center;
 }*/
-input {
+.search-input {
     font-size: 1rem;
     margin: 0 0.5rem;
     width: 100%;
@@ -79,7 +79,7 @@ input {
     width: 500px;
     color: white;
 }
-i {
+.search-icon, .times-icon{
     cursor: pointer;
 }
 ::placeholder {
@@ -102,7 +102,8 @@ register.html
     align-items: center;
 }
 .register-container {
-    flex: 0 0 30%;
+    /*flex: 0 0 30%;*/
+    width: 400px;
     padding: 1rem;
     border-radius: 20px;
     border: 1px solid rgb(185, 185, 185);
@@ -614,72 +615,6 @@ my_basket.html
 =====================
 end of my_basket.html
 ===================== */
-
-.register-row {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.register-container {
-    flex: 0 0 30%;
-    padding: 1rem;
-    border-radius: 20px;
-    border: 1px solid rgb(185, 185, 185);
-}
-.register-button {
-    padding: 0.3rem 0.5rem;
-    outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(0, 128, 0);
-    background: rgb(0, 128, 0);
-    color: rgb(255, 255, 255);
-    margin-top: 0.5rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
-}
-.register-button:hover {
-    background: rgb(0, 82, 0);
-    border: 1px solid rgb(0, 82, 0);
-}
-.register-cancel {
-    padding: 0.3rem 0.5rem;
-    text-decoration: none;
-    outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(129, 129, 129);
-    background: rgb(129, 129, 129);
-    color: rgb(255, 255, 255);
-    margin-top: 0.5rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    display: inline-block;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
-}
-.register-cancel:hover {
-    color: rgb(255, 255, 255);
-    background: rgb(92, 92, 92);
-    border: 1px solid rgb(92, 92, 92);
-}
-.register-text {
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
-.register-login-link {
-    display: inline-block;
-    text-decoration: none;
-    font-size: 0.9rem;
-    color: rgb(0, 90, 0);
-}
-.register-login-link:hover {
-    color: rgb(0, 90, 0);
-}
-/*
-====================
-end of register.html
-====================*/
 
 /*
 =====================
