@@ -8,9 +8,6 @@ from PIL import Image
 
 class Customer(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
     total_items = models.IntegerField(default=0)
 
     def __str__(self):
@@ -32,35 +29,16 @@ class Address(models.Model):
         return f"{self.customer}"
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-
-    class Meta:
-        verbose_name_plural = "Categories"
-
-    def __str__(self):
-        return self.name
-
-
-class SubCategory(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-
-    class Meta:
-            verbose_name_plural = "Sub Categories"
-
-    def __str__(self):
-        return self.name
-
-
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=200)
     image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="productImages")
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.CharField(max_length=50)
+    sub_category = models.CharField(max_length=50)
+    company = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     on_stock = models.BooleanField(default=True)
+    brand_image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="brandImages")
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -70,8 +48,17 @@ class Product(models.Model):
             img.thumbnail(new_img)
             img.save(self.image.path)
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.brand_image.path)
+        if img.width > 400 or img.height > 400:
+            new_img = (400, 400)
+            img.thumbnail(new_img)
+            img.save(self.brand_image.path)
+
     def __str__(self):
         return self.product_name
+
 
 
 class Basket(models.Model):

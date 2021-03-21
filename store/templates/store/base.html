@@ -32,13 +32,13 @@
                     {% endif %}
                 </li>
             </ul>
-            <div class="container">
-                <div class="search-container">
-                    <i class="fa fa-search search-icon"></i>
-                    <input class="search-input" type="text" placeholder="Search"/>
-                    <i class="fa fa-times times-icon"></i>
-                </div>
+            
+            <div class="search-container">
+                <i class="fa fa-search search-icon"></i>
+                <input class="search-input" type="text" placeholder="Search"/>
+                <i class="fa fa-times times-icon"></i>
             </div>
+           
             <ul class="navitem-container">
                 {% if user.is_authenticated %}
                 <li class="item"><a href="{% url 'users:profile' %}">My Profile</a></li>
@@ -52,11 +52,42 @@
 
     </header>
     <main>
+        <div class="side-categories">
+            <div class="secondary-menu">
+                <ul class="secondary-item-container">
+                    <li class="category" style="cursor: pointer;">Category</li>
+                    <li><a href="{% url 'store:shop_by_brand' %}">Shop by brand name</a></li>
+                    <li><a href="#">Sub category</a></li>
+                    <li><a href="#">Sell here</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">About us</a></li>
+                </ul>
+            </div>
+            {% block content %}
 
-        {% block content %}
-
-        {% endblock content %}
-
+            {% endblock content %}
+            <div class="categories">
+                <div class="close-button">
+                    <i class="fa fa-times times-button"></i></li>
+                </div>
+                <ul class="category-items">
+                    {% for key, value in categories.items %}
+                        <li class="category-item">
+                            <a class="category-link" href="{% url 'store:category' value.id %}">{{ key.upper }}</a>
+                            <ul class="sub-category-items">
+                                {% for product in new_products %}
+                                    {% if product.category == key %}
+                                    <li class="sub-category-item">
+                                        <a class="sub-category-link" href="{% url 'store:sub_category' product.pk%}">{{ product.sub_category.upper }}</a>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </main>
 
 

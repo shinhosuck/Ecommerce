@@ -7,6 +7,60 @@ from users.models import Profile
 
 
 
+def product(request):
+    products = Product.objects.all()
+
+    categories = {}
+    sub_categories = []
+    new_products = []
+
+    for product in products:
+        categories.setdefault(product.category, product)
+        new_products.append(product)
+
+    for new_product in new_products:
+        if new_product.sub_category not in sub_categories:
+            sub_categories.append(new_product.sub_category)
+        elif new_product.sub_category in sub_categories:
+            new_products.remove(new_product)
+
+    context = {
+        "categories": categories,
+        "new_products": new_products
+    }
+    return  context
+
+
+def category(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    category = product.category
+    products = Product.objects.filter(category=category)
+    for product in products:
+        print(product.sub_category)
+    context = {
+        "category": category,
+        "products": products
+    }
+    return  render(request, "store/category.html", context)
+
+
+def sub_category(request, pk):
+    return render(request, "store/sub_category.html", {})
+
+
+def shop_by_brand(request):
+    products = Product.objects.all()
+    brands = {}
+    for product in products:
+        brands.setdefault(product.company, product)
+    return render(request, "store/shop_by_brand.html", {"brands": brands})
+
+
+def brand_name(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    brand_name = product.company
+    products = Product.objects.filter(company=brand_name)
+    return render(request, "store/brand_name.html", {"products": products, "brand_name": brand_name})
 
 
 def home(request):
@@ -16,7 +70,8 @@ def home(request):
         try:
             customer = Customer.objects.get(name=user)
         except Customer.DoesNotExist:
-            Customer.objects.create(name=user, first_name=user.first_name, last_name=user.last_name, email=user.email, total_items=0)
+            Customer.objects.create(name=user, first_name=user.first_name, 
+            last_name=user.last_name, email=user.email, total_items=0)
             return render(request, "store/home.html", {"all_products": all_products})
         else:
             customer = get_object_or_404(Customer, name=user)
@@ -122,10 +177,11 @@ def delete_item(request, pk):
 def shipping_address(request):
     user = request.user
     if request.method == "POST":
-        form = OrderAddressForm(request.POST,)
+        form = OrderAddressForm(request.POST)
         if form.is_valid():
-            form.instance = user
-            form.save()
+            address = form.save()
+            address.customer = Customer.objects.get(name=user)
+            address.save()
         # create order
         customer = get_object_or_404(Customer, name=user)
         baskets = customer.basket_set.filter(open_basket=True)
@@ -135,5 +191,6 @@ def shipping_address(request):
             basket.save()
         return redirect("store:home")
     else:
-        form = OrderAddressForm()
+        address = Address.objects.filter(customer__name=user).first()
+        form = OrderAddressForm(instance=address)
     return render(request, "store/shipping_address.html", {"form": form})
