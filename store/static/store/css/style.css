@@ -107,7 +107,7 @@ base.html
     overflow: hidden;
     height: 100%;
     left: -100%;
-    top: 0;
+    top: 1px;
     transition:left 0.4s ease-in-out, width 0.4s ease-in-out;
 }
 .show-categories {
@@ -116,13 +116,12 @@ base.html
 }
 .category-items {
     width: 22%;
-    height: 100%;
-    overflow-y: auto;
-    background: white;
-    border-right: 1px solid rgb(194, 194, 194);
+    height:100%;
+    /* overflow-y: scroll; */
+    background: rgb(230, 230, 230);
 }
 .close-button {
-    background: gray;
+    background: transparent;
     text-align: end;
     width: 22%;
 }
@@ -149,9 +148,6 @@ base.html
         transform: scale(0.9)
     }
 }
-.category-item {
-    /* padding: 0.6rem 0 0 0; */
-}
 .category-link {
     color: black;
     display: block;
@@ -161,7 +157,7 @@ base.html
 }
 .category-link:hover {
     color: rgb(252, 252, 252);
-    background: black;
+    background: rgb(60, 60, 60);
 }
 /* end of category */
 
@@ -169,13 +165,13 @@ base.html
 .sub-category-link{
     color: black;
     display: block;
-    padding: 0.4rem 4rem;
+    padding: 0.5rem 4rem;
     text-transform: capitalize;
     font-size: 0.9rem;
 }
 .sub-category-link:hover{
     color: rgb(255, 255, 255);
-    background: black;
+    background: rgb(100, 100, 100);
 }
 /*
 ================
@@ -476,15 +472,26 @@ home.html
 .products {
     display: flex;
     align-content: flex-start;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0 2rem;
     flex-wrap: wrap;
+    border: 1px solid black
+}
+.most-popular {
+    flex: 0 0 95%;
+    margin: 1rem;
+    margin-bottom: 0;
+    font-weight: normal;
+    border: 1px solid black
 }
 .product {
-    flex: 0 0 20%;
+    flex: 0 0 17%;
+    width: 17%;
     padding: 0.7rem;
     margin: 1rem;
     border-radius: 10px;
     box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
+    border: 1px solid black
 }
 .product-content {
     display: flex;
@@ -498,10 +505,10 @@ home.html
     border-radius: 5px;
     margin-bottom: 0.5rem;
     border: 1px solid rgb(230, 230, 230);
-    transition: transform 0.35s linear;
+    transition: transform 0.4s linear;
 }
 .product-img:hover {
-    transform: scale(1.2)
+    transform: scale(1.17)
 }
 .product-name {
     font-size: 1rem;

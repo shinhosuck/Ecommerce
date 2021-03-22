@@ -3,13 +3,68 @@ from django.contrib.auth.decorators import login_required
 from store.models import Product, Basket, Customer, Address, Order
 from django.contrib.auth.models import User
 from store.forms import OrderAddressForm
-from users.models import Profile
 
 
 
-def product(request):
+
+def home(request):
+    user = request.user
     products = Product.objects.all()
 
+    latest = []
+    most_popular = []
+    just_for_you = []
+
+    for product in products:
+        latest.append(product)
+        if product.times_ordered > 0:
+            most_popular.append(product)
+    latest.reverse()
+    latest = latest[0:10]
+    most_popular = most_popular[0:5]
+    
+    if user.is_authenticated:
+        try:
+            customer = Customer.objects.get(name=user)
+        except Customer.DoesNotExist:
+            Customer.objects.create(name=user, first_name=user.first_name, 
+            last_name=user.last_name, email=user.email, total_items=0)
+            context = {
+                "most_popluar": most_popular,
+                "latest": latest,
+            }
+            return render(request, "store/home.html", context)
+        else:
+            customer = get_object_or_404(Customer, name=user)
+            basket = customer.basket_set.filter(open_basket=True)
+            totalItems = 0
+        
+            for product in basket:
+                totalItems += product.quantity
+                sub = product.product.sub_category
+                filter_by_sub = Product.objects.filter(sub_category=sub)
+                for item in filter_by_sub:
+                    if item.id != product.product.id:
+                        just_for_you.append(item)
+            customer.total_items = totalItems
+            customer.save()
+            context = {
+                    "most_popluar": most_popular,
+                    "latest": latest,
+                    "just_for_you": just_for_you
+                }
+        return render(request, "store/home.html", context)
+    else:
+        context = {
+                    "most_popluar": most_popular,
+                    "latest": latest,
+                }
+    return render(request, "store/home.html", context)
+
+
+def side_categories(request):
+    # context_processor  for base.html side categories
+    products = Product.objects.all()
     categories = {}
     sub_categories = []
     new_products = []
@@ -35,8 +90,6 @@ def category(request, pk):
     product = get_object_or_404(Product, pk=pk)
     category = product.category
     products = Product.objects.filter(category=category)
-    for product in products:
-        print(product.sub_category)
     context = {
         "category": category,
         "products": products
@@ -45,7 +98,13 @@ def category(request, pk):
 
 
 def sub_category(request, pk):
-    return render(request, "store/sub_category.html", {})
+    sub_category = get_object_or_404(Product, pk=pk).sub_category
+    products = Product.objects.filter(sub_category=sub_category)
+    context = {
+        "sub_category": sub_category,
+        "products": products,
+    }
+    return render(request, "store/sub_category.html", context)
 
 
 def shop_by_brand(request):
@@ -62,29 +121,6 @@ def brand_name(request, pk):
     products = Product.objects.filter(company=brand_name)
     return render(request, "store/brand_name.html", {"products": products, "brand_name": brand_name})
 
-
-def home(request):
-    all_products = Product.objects.all()
-    user = request.user
-    if user.is_authenticated:
-        try:
-            customer = Customer.objects.get(name=user)
-        except Customer.DoesNotExist:
-            Customer.objects.create(name=user, first_name=user.first_name, 
-            last_name=user.last_name, email=user.email, total_items=0)
-            return render(request, "store/home.html", {"all_products": all_products})
-        else:
-            customer = get_object_or_404(Customer, name=user)
-            products = customer.basket_set.filter(open_basket=True)
-            totalItems = 0
-            for product in products:
-                totalItems += product.quantity
-            customer.total_items = totalItems
-            customer.save()
-        return render(request, "store/home.html", {"all_products": all_products})
-    else:
-        pass
-    return render(request, "store/home.html", {"all_products": all_products})
 
 
 def product_detail(request, pk):
@@ -104,10 +140,16 @@ def add_to_basket(request, pk):
             counter += 1
             basket.quantity += 1
             customer.total_items +=1
+            product.times_ordered +=1
             basket.save()
+            product.save()
+            customer.save()
     if counter == 0:
         Basket.objects.create(customer=customer, product=product, quantity=1)
         customer.total_items +=1
+        product.times_ordered +=1
+        product.save()
+        customer.save()
     return redirect("store:home")
 
 
@@ -131,56 +173,39 @@ def add_item(request, pk):
     user = request.user
     customer = get_object_or_404(Customer, name=user)
     basket = customer.basket_set.get(pk=pk)
-    basket.quantity +=1
+    product = Product.objects.get(pk=basket.product.id)
+    product.times_ordered += 1
+    basket.quantity += 1
     basket.save()
-    # update basket
-    baskets = customer.basket_set.filter(open_basket=True)
-    total_amount_due = 0
-    totalItems = 0
-    for basket in baskets:
-        total_amount_due += basket.quantity * basket.product.price
-        totalItems += basket.quantity
-    user.customer.total_items = totalItems
-    context = {
-        "total_amount_due": total_amount_due,
-        "baskets": baskets
-    }
-    return render(request, "store/my_basket.html", context)
+    product.save()
+    return redirect("store:my_basket", pk=user.pk)
 
 
 @login_required
 def delete_item(request, pk):
     user = request.user
-    user = request.user
     customer = get_object_or_404(Customer, name=user)
     basket = customer.basket_set.get(pk=pk)
+    product = Product.objects.get(pk=basket.product.id)
+    product.times_ordered -= 1
+    product.save()
     if basket.quantity == 1:
         basket.delete()
     else:
-        basket.quantity -=1
+        basket.quantity -= 1
         basket.save()
-    # update basket
-    baskets = customer.basket_set.filter(open_basket=True)
-    total_amount_due = 0
-    totalItems = 0
-    for basket in baskets:
-        total_amount_due += basket.quantity * basket.product.price
-        totalItems += basket.quantity
-    user.customer.total_items = totalItems
-    context = {
-        "total_amount_due": total_amount_due,
-        "baskets": baskets
-    }
-    return render(request, "store/my_basket.html", context)
+    return redirect("store:my_basket", pk=user.pk)
 
 
+@login_required
 def shipping_address(request):
     user = request.user
     if request.method == "POST":
         form = OrderAddressForm(request.POST)
         if form.is_valid():
             address = form.save()
-            address.customer = Customer.objects.get(name=user)
+            customer = Customer.objects.get(name=user)
+            address.customer = customer
             address.save()
         # create order
         customer = get_object_or_404(Customer, name=user)
@@ -191,6 +216,34 @@ def shipping_address(request):
             basket.save()
         return redirect("store:home")
     else:
-        address = Address.objects.filter(customer__name=user).first()
-        form = OrderAddressForm(instance=address)
-    return render(request, "store/shipping_address.html", {"form": form})
+        try:
+            address = Address.objects.filter(customer__name=user).first()
+            form = OrderAddressForm(instance=address)
+            customer = get_object_or_404(Customer, name=user)
+            baskets = customer.basket_set.filter(open_basket=True)
+            if not baskets:
+                return redirect("store:home")
+            else:
+                return render(request, "store/shipping_address.html", {"form": form})
+        except:
+            return redirect("store:home")
+
+
+def update_basket(request):
+    user = request.user
+    if user.is_authenticated:
+        customer = get_object_or_404(Customer, name=user)
+        baskets = customer.basket_set.filter(open_basket=True)
+        total_amount_due = 0
+        totalItems = 0
+        for basket in baskets:
+            total_amount_due += basket.quantity * basket.product.price
+            totalItems += basket.quantity
+        user.customer.total_items = totalItems
+        context = {
+            "total_amount_due": total_amount_due,
+            "baskets": baskets
+        }
+        return context
+    else:
+        return {}

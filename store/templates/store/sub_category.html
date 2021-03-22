@@ -3,14 +3,14 @@
 
 <title>
     {% block title %}
-        Sub Category
+        {{ sub_category.capitalize }}
     {% endblock title %}
 </title>
 
 
 {% block content %}
-    <h1>Sub Category</h1>
-    <!-- <div class="category-products">
+    <h1>{{ sub_category.capitalize }}</h1>
+    <div class="category-products">
         {% for product in  products %}
         <div class="category-product" title="click for detail">
             <a class="category-product-content" href="{% url 'store:product_detail' product.pk %}">
@@ -21,5 +21,5 @@
             </a>
         </div>
         {% endfor %}
-    </div> -->
+    </div>
 {% endblock content %}

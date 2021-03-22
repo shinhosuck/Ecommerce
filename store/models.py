@@ -32,13 +32,14 @@ class Address(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=200)
     image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="productImages")
+    brand_image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="brandImages")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50)
     sub_category = models.CharField(max_length=50)
     company = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     on_stock = models.BooleanField(default=True)
-    brand_image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="brandImages")
+    times_ordered = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
