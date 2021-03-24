@@ -80,6 +80,38 @@ base.html
 ::placeholder {
     color: lightgray;
 }
+/* slide banner */
+.slide-container {
+    position: relative;
+}
+.slide-image-container {
+    display: flex;
+    overflow-x: hidden;
+    align-items: flex-start;
+}
+.slide-img {
+    flex: 0 0 50%;
+    background: rgb(173, 255, 47);
+}
+.slide-img img {
+    width: 100%;
+    height: auto;
+}
+.indicator {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.2rem;
+}
+.circle {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: rgb(167, 167, 167);
+    margin: 0 0.2rem;
+}
 /* secondary-menu */
 .secondary-menu {
     background: black;
@@ -101,13 +133,14 @@ base.html
 .side-categories {
     position: relative;
     min-height: 100vh;
+    margin-top: 0;
 }
 .categories {
     position: absolute;
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 100%;
     left: -100%;
-    top: 1px;
+    top: 2px;
     transition:left 0.4s ease-in-out, width 0.4s ease-in-out;
 }
 .show-categories {
@@ -115,15 +148,15 @@ base.html
     left: 0%
 }
 .category-items {
-    width: 22%;
-    height:100%;
-    /* overflow-y: scroll; */
+    width: 20%;
+    height: 100vh;
+    overflow-y: auto;
     background: rgb(230, 230, 230);
 }
 .close-button {
     background: transparent;
     text-align: end;
-    width: 22%;
+    width: 20%;
 }
 .times-button {
     padding: 0.5rem 0.7rem;
@@ -475,14 +508,14 @@ home.html
     justify-content: space-between;
     margin: 0 2rem;
     flex-wrap: wrap;
-    border: 1px solid black
+    /* border: 1px solid black */
 }
 .most-popular {
     flex: 0 0 95%;
     margin: 1rem;
     margin-bottom: 0;
     font-weight: normal;
-    border: 1px solid black
+    /* border: 1px solid black */
 }
 .product {
     flex: 0 0 17%;
@@ -491,7 +524,7 @@ home.html
     margin: 1rem;
     border-radius: 10px;
     box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
-    border: 1px solid black
+    /* border: 1px solid rgb(0, 0, 0) */
 }
 .product-content {
     display: flex;

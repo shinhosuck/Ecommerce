@@ -50,6 +50,32 @@
             </ul>
         </nav>
 
+        <div class="slide-container">
+            <div class="slide-image-container">
+                <div class="slide-img" >
+                    <img src="{% static 'store/slide/img1.jpg' %}" alt="">
+                </div>
+                <div class="slide-img">
+                    <img src="{% static 'store/slide/img2.jpg' %}" alt="">
+                </div>
+                <div class="slide-img">
+                    <img src="{% static 'store/slide/img3.jpg' %}" alt="">
+                </div>
+                <div class="slide-img">
+                    <img src="{% static 'store/slide/img4.jpg' %}" alt="">
+                </div>
+                <div class="slide-img">
+                    <img src="{% static 'store/slide/img5.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="indicator">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+
     </header>
     <main>
         <div class="side-categories">
@@ -72,14 +98,14 @@
                 <ul class="category-items">
                     {% for key, value in categories.items %}
                         <li class="category-item">
-                            <a class="category-link" href="{% url 'store:category' value.id %}">{{ key.upper }}</a>
+                            <a class="category-link" href="{% url 'store:category' value %}">{{ key }}</a>
                             <ul class="sub-category-items">
-                                {% for product in new_products %}
-                                    {% if product.category == key %}
-                                    <li class="sub-category-item">
-                                        <a class="sub-category-link" href="{% url 'store:sub_category' product.pk%}">{{ product.sub_category.upper }}</a>
-                                    </li>
-                                    {% endif %}
+                                {% for k, v in new_products.items %}
+                                <li class="sub-category-item">
+                                {% if v.category == key %}
+                                    <a class="sub-category-link" href="{% url 'store:sub_category' v.pk%}">{{ k }}</a>
+                                {% endif %}
+                                </li>
                                 {% endfor %}
                             </ul>
                         </li>

@@ -27,8 +27,7 @@ def home(request):
         try:
             customer = Customer.objects.get(name=user)
         except Customer.DoesNotExist:
-            Customer.objects.create(name=user, first_name=user.first_name, 
-            last_name=user.last_name, email=user.email, total_items=0)
+            Customer.objects.create(name=user, total_items=0)
             context = {
                 "most_popluar": most_popular,
                 "latest": latest,
@@ -66,19 +65,11 @@ def side_categories(request):
     # context_processor  for base.html side categories
     products = Product.objects.all()
     categories = {}
-    sub_categories = []
-    new_products = []
+    new_products = {}
 
     for product in products:
-        categories.setdefault(product.category, product)
-        new_products.append(product)
-
-    for new_product in new_products:
-        if new_product.sub_category not in sub_categories:
-            sub_categories.append(new_product.sub_category)
-        elif new_product.sub_category in sub_categories:
-            new_products.remove(new_product)
-
+        categories.setdefault(product.category, product.id)
+        new_products.setdefault(product.sub_category, product)
     context = {
         "categories": categories,
         "new_products": new_products

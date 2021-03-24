@@ -32,7 +32,7 @@ class Address(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=200)
     image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="productImages")
-    brand_image = models.ImageField(default="productImages/defaultProductImage.jpg", upload_to="brandImages")
+    brand_image = models.ImageField(default="brandImages/defaultBrandImage.jpg", upload_to="brandImages")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=50)
     sub_category = models.CharField(max_length=50)
@@ -70,7 +70,7 @@ class Basket(models.Model):
     open_basket = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.customer}"
+        return f"Customer: {self.customer}, Product: {self.product}, Quantity: {self.quantity}"
 
 
 class Order(models.Model):
@@ -81,4 +81,4 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.customer}"
+        return f"Customer: {self.customer}, Product: {self.basket.product}, Quantity: {self.basket.quantity}"
