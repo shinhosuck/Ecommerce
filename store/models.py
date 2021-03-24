@@ -70,7 +70,7 @@ class Basket(models.Model):
     open_basket = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"Customer: {self.customer}, Product: {self.product}, Quantity: {self.quantity}"
+        return f"Product: {self.product}, Quantity: {self.quantity}"
 
 
 class Order(models.Model):
@@ -81,4 +81,4 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"Customer: {self.customer}, Product: {self.basket.product}, Quantity: {self.basket.quantity}"
+        return f"Customer: {self.customer}, Open: {self.open_order}, Delivered: {self.delivered}"

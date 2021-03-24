@@ -198,26 +198,52 @@ def shipping_address(request):
             customer = Customer.objects.get(name=user)
             address.customer = customer
             address.save()
-        # create order
+            # create order
+            baskets = customer.basket_set.filter(open_basket=True)
+            for basket in baskets:
+                Order.objects.create(customer=customer, basket=basket)
+                basket.open_basket = False # set open baskets to False
+                basket.save()
+            orders = customer.order_set.filter(open_order=True)
+            total_amount_due = 0
+            total_items = 0
+            for order in orders:
+                total_items += order.basket.quantity
+                total_amount_due += order.basket.quantity * order.basket.product.price
+            context = {
+                "orders": orders,
+                "total_items": total_items,
+                "total_amount_due": total_amount_due
+            }
+            return render(request, "store/payment.html", context)
+    else:
+        address = Address.objects.filter(customer__name=user).first()
+        form = OrderAddressForm(instance=address)
         customer = get_object_or_404(Customer, name=user)
         baskets = customer.basket_set.filter(open_basket=True)
-        for basket in baskets:
-            Order.objects.create(customer=customer, basket=basket)
-            basket.open_basket = False
-            basket.save()
-        return redirect("store:home")
-    else:
-        try:
-            address = Address.objects.filter(customer__name=user).first()
-            form = OrderAddressForm(instance=address)
-            customer = get_object_or_404(Customer, name=user)
-            baskets = customer.basket_set.filter(open_basket=True)
-            if not baskets:
-                return redirect("store:home")
-            else:
-                return render(request, "store/shipping_address.html", {"form": form})
-        except:
+        if not baskets:
             return redirect("store:home")
+        else:
+            return render(request, "store/shipping_address.html", {"form": form})
+
+
+@login_required
+def payment(request):
+    user = request.user
+    customer = get_object_or_404(Customer, name=user)
+    orders = customer.order_set.filter(open_order=True)
+    total_amount_due = 0
+    total_items = 0
+    for order in orders:
+        total_items += order.basket.quantity
+        total_amount_due += order.basket.quantity * order.basket.product.price
+    context = {
+        "orders": orders,
+        "total_items": total_items,
+        "total_amount_due": total_amount_due
+    }
+    return render(request, "store/payment.html", context)
+
 
 
 def update_basket(request):
