@@ -29,6 +29,7 @@
             <div class="basket-total">
                 <h4>Total Items: {{ total_items }}</h4>
                 <h4>Total Amount Due: ${{ total_amount_due }}</h4>
+                <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
             </div>
         </div>
     </div>

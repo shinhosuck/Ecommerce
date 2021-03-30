@@ -1,0 +1,68 @@
+{% extends "store/base.html" %}
+
+
+<title>
+    {% block title %}
+        Make Payment
+    {% endblock title %}
+</title>
+
+
+
+{% block content %}
+<div class="paypal-payment-container">
+    <div class="paypal-button-container">
+        <h3 style="margin-bottom: 2rem; text-align: center;">Payment Options</h3>
+        <div id="paypal-button-container"></div>
+    </div>
+    
+    <div class="paypal-table-contents">
+        <h3 style="margin-bottom: 2rem; text-align: center;">Order Summary</h3>
+        <table class="paypal-table">
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            {% for order in orders %}
+            <tr class="table-data">
+                <td>{{ order.basket.product.product_name }}</td>
+                <td>{{ order.basket.quantity }}</td>
+                <td>${{ order.basket.product.price }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="paypal-contents">
+            <h3>Total Items: {{ total_items }}</h3>
+            <h3>Sub Total: ${{ total_amount_due }}</h3>
+            <a class="pay-later-button" href="{% url 'store:home' %}" type="button">Pay Later</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=AWlUTXJ5Tv8HK1umtqCGzuATd8KK_WknE4mfnJCmSRlXI75do9dbzbnE18fKUW0p5aVHWFK0ps8rVxwh&currency=USD&locale=en_US"></script>
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: "{{ total_amount_due }}"
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Transaction completed by ' + details.payer.name.given_name);
+        let url = "{% url 'store:home' %}"
+        window.location.href = url
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
+{% endblock content %}
+

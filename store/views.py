@@ -17,12 +17,10 @@ def home(request):
 
     for product in products:
         latest.append(product)
-        if product.times_ordered > 0:
+        if product.times_ordered > 4:
             most_popular.append(product)
     latest.reverse()
-    latest = latest[0:10]
-    most_popular = most_popular[0:5]
-    
+
     if user.is_authenticated:
         try:
             customer = Customer.objects.get(name=user)
@@ -35,18 +33,24 @@ def home(request):
             return render(request, "store/home.html", context)
         else:
             customer = get_object_or_404(Customer, name=user)
-            basket = customer.basket_set.filter(open_basket=True)
+            baskets = customer.basket_set.filter(open_basket=True)
             totalItems = 0
-        
-            for product in basket:
-                totalItems += product.quantity
-                sub = product.product.sub_category
-                filter_by_sub = Product.objects.filter(sub_category=sub)
-                for item in filter_by_sub:
-                    if item.id != product.product.id:
-                        just_for_you.append(item)
+            categories = []
+
+            for basket in baskets:
+                totalItems += basket.quantity
+                if basket.product.category not in categories:
+                    categories.append(basket.product.category)
+
+            for category in categories:
+                category_items = Product.objects.filter(category=category)
+                print(category_items)
+                for item in category_items:
+                    just_for_you.append(item)
+
             customer.total_items = totalItems
             customer.save()
+
             context = {
                     "most_popluar": most_popular,
                     "latest": latest,
@@ -215,7 +219,7 @@ def shipping_address(request):
                 "total_items": total_items,
                 "total_amount_due": total_amount_due
             }
-            return render(request, "store/payment.html", context)
+            return render(request, "store/my_orders.html", context)
     else:
         address = Address.objects.filter(customer__name=user).first()
         form = OrderAddressForm(instance=address)
@@ -228,7 +232,7 @@ def shipping_address(request):
 
 
 @login_required
-def payment(request):
+def my_orders(request):
     user = request.user
     customer = get_object_or_404(Customer, name=user)
     orders = customer.order_set.filter(open_order=True)
@@ -242,10 +246,32 @@ def payment(request):
         "total_items": total_items,
         "total_amount_due": total_amount_due
     }
-    return render(request, "store/payment.html", context)
+    return render(request, "store/my_orders.html", context)
 
 
 
+@login_required
+def paypal_payment(request):
+    user = request.user
+    customer = get_object_or_404(Customer, name=user)
+    orders = customer.order_set.filter(open_order=True)
+    if orders:
+        total_amount_due = 0
+        total_items = 0
+        for order in orders:
+            total_items += order.basket.quantity
+            total_amount_due += order.basket.quantity * order.basket.product.price
+        context = {
+            "orders": orders,
+            "total_items": total_items,
+            "total_amount_due": total_amount_due
+        }
+        return render(request, "store/paypal_payment.html", context)
+    else:
+        return redirect("store:home")
+
+# context_processor for my_basket.html
+# redirect from add_item(), delete_item() does not update total_amount_due and baskets
 def update_basket(request):
     user = request.user
     if user.is_authenticated:

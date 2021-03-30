@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "crispy_forms",
     "django_countries",
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [

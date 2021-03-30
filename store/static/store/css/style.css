@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    font-family: sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 ul {
     list-style-type: none;
@@ -37,10 +37,11 @@ base.html
     color: rgb(0, 173, 0);
 }
 .item {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
 }
 .item a {
     color: white;
+    font-size: 0.9rem;
 }
 .basket {
     font-size: 1.2rem;
@@ -137,11 +138,9 @@ base.html
 }
 .categories {
     position: absolute;
-    /* overflow: hidden; */
     height: 100vh;
     left: -100%;
     top: 0;
-    /* background: rgba(0, 0, 0, 0.7); */
     transition:left 0.4s ease-in-out;
 }
 .show-categories {
@@ -158,7 +157,6 @@ base.html
 .close-button {
     background: gray;
     text-align: end;
-    /* padding: 0.5rem 0; */
     width: 20%;
 }
 .times-button {
@@ -509,26 +507,38 @@ home.html
 .products {
     display: flex;
     align-content: flex-start;
-    justify-content: space-between;
-    margin: 0 2rem;
+    justify-content: center;
     flex-wrap: wrap;
-    /* border: 1px solid black */
+    width: 80%;
+    margin: auto;
+    min-height: 100vh;
+    padding: 0 0 2rem 0;
+    
 }
-.most-popular {
-    flex: 0 0 95%;
-    margin: 1rem;
-    margin-bottom: 0;
+.most-popular, .latest, .just_for_you {
+    flex: 0 0 100%;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
     font-weight: normal;
-    /* border: 1px solid black */
+}
+.product-contents-container {
+    width: 100%;
+    flex: 0 0 100%; 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgb(224, 224, 224);
 }
 .product {
-    flex: 0 0 17%;
-    width: 17%;
+    width: 205px;
     padding: 0.7rem;
-    margin: 1rem;
+    margin: 0.5rem 0.33rem;
     border-radius: 10px;
     box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
-    /* border: 1px solid rgb(0, 0, 0) */
+}
+.hide-product {
+    display: none;
 }
 .product-content {
     display: flex;
@@ -559,6 +569,12 @@ home.html
     display: block;
     margin-top: 0.5rem;
     flex: 0 0 100%
+}
+.show-more {
+    flex: 0 0 100%; 
+    cursor: pointer;
+    margin-top: 0.5rem;
+    color: green;
 }
 /*
 ================
@@ -869,9 +885,128 @@ end of category.html
 ====================
 sub_category.html
 ==================== */
-
+.sub-category-products {
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.sub-category-product {
+    flex: 0 0 20%;
+    padding: 0.7rem;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
+}
+.sub-category-product-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.sub-category-product-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.3rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgb(230, 230, 230);
+    transition: transform 0.35s linear;
+}
+.sub-category-product-img:hover {
+    transform: scale(1.2)
+}
+.sub-category-product-name {
+    font-size: 1rem;
+    color: rgb(31, 31, 31);
+}
+.sub-category-product-price {
+    color: rgb(1, 128, 1);
+}
+.sub-category-product-description{
+    color: rgb(92, 92, 92);
+    display: block;
+    margin-top: 0.5rem;
+    flex: 0 0 100%
+}
 
 /* 
 ========================
 end of sub_category.html
 ======================== */
+
+/*
+============
+payment.html
+============ */
+.make-payment-button {
+    padding: 0.5rem 2rem;
+    background: rgb(0, 128, 0);
+    border-radius: 5px;
+    border: 1px solid rgb(0, 128, 0);
+    color: white;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.make-payment-button:hover {
+    background: rgb(0, 82, 0);
+    border: 1px solid rgb(0, 82, 0);
+}
+/* 
+====================
+end of payment.html 
+====================*/
+
+/* 
+===================
+paypal_payment.html
+=================== */
+.paypal-payment-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+.paypal-button-container {
+    flex: 0 0 30%;
+    border: 1px solid rgb(189, 189, 189);
+    order: 2;
+    margin: 1rem;
+    padding: 1rem;
+}
+.paypal-table-contents {
+    flex: 0 0 40%;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid rgb(189, 189, 189);
+}
+.paypal-table {
+    width: 100%;
+}
+.paypal-table tr th {
+    text-align: start;
+}
+.paypal-contents {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(189, 189, 189);
+}
+.pay-later-button {
+    padding: 0.5rem 2rem;
+    background: rgb(0, 128, 0);
+    border-radius: 5px;
+    border: 1px solid rgb(0, 128, 0);
+    color: white;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+.pay-later-button:hover {
+    background: rgb(0, 82, 0);
+    border: 1px solid rgb(0, 82, 0);
+}
+/* 
+==========================
+end of paypal_payment.html
+========================== */

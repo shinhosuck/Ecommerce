@@ -31,7 +31,7 @@
                     </a>
                     {% endif %}
                 </li>
-                <li class="item"><a href="{% url 'store:payment' %}">Payment Center</a></li>
+                <li class="item"><a href="{% url 'store:my_orders' %}">My Orders</a></li>
             </ul>
             
             <div class="search-container">
@@ -42,7 +42,7 @@
            
             <ul class="navitem-container">
                 {% if user.is_authenticated %}
-                <li class="item"><a href="{% url 'users:profile' %}">My Profile</a></li>
+                <li class="item"><a href="{% url 'users:profile' %}">Account</a></li>
                 <li class="item"><a href="{% url 'users:logout' %}">Logout</a></li>
                 {% else %}
                 <li class="item"><a href="{% url 'users:register' %}">Register</a></li>
