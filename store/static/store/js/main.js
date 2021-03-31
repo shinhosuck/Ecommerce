@@ -6,27 +6,48 @@ const circles = document.querySelectorAll(".circle")
 let counter = 0
 circles[counter].style.background = "red"
 
-imgContainer.addEventListener("mouseenter", function(){
-    slide()
-})
-
 function slide(){
-    counter ++
     circles.forEach(function(circle){
          circle.style.background = "rgb(167, 167, 167)"
     })
-
     if (counter == images.length-1){
         counter = 0
     }
     images.forEach(function(img){
         img.style.transform = `translate(-${counter*100}%)`
+        img.style.transition = "all 2s ease-in-out"
         circles[counter].style.background = "red"
-        img.style.transition = "all 3s ease-in-out"
     })
+    counter ++
+    setTimeout(slide, 5000)
 }
+slide()
 
 
+// show search bar
+const searchButton = document.querySelector("#search-button")
+const searchContainer = document.querySelector(".search-container")
+
+searchButton.addEventListener("click", function(){
+    searchContainer.classList.toggle("show-search-container")
+})
+
+
+// show navitem container on max-width: 715px.
+const barsButton = document.querySelector(".bars-button")
+const timesBtn = document.querySelector(".times-btn")
+const navItemContainer = document.querySelector(".navitem-container")
+
+barsButton.addEventListener("click", function(){
+    navItemContainer.classList.toggle("show-navitem-container")
+})
+window.addEventListener("resize", function(){
+    if (window.innerWidth > 715){
+        navItemContainer.classList.remove("show-navitem-container")
+        searchContainer.classList.remove("show-search-container")
+
+    }
+})
 
 
 // base.html side categories
