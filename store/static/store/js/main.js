@@ -59,56 +59,46 @@ const body = document.querySelector("html body")
 category.addEventListener("click", function(){
     scroll_to_top()
 })
-
-timesButton.addEventListener("click", function(){
-    categories.classList.remove("show-categories")
-    body.style.overflow = "scroll"
-})
-
 function scroll_to_top(){
     document.documentElement.scrollTop = 0;
     categories.classList.toggle("show-categories")
     body.style.overflow = "hidden"
 }
-
-
-// home.html 
-const productContentsContainer = document.querySelectorAll(".product-contents-container")
-const showMore = document.querySelectorAll(".show-more")
-
-productContentsContainer.forEach(function(container){
-    let new_container = [...container.children]
-    if (new_container.length > 5){
-        let items = new_container.slice(5, new_container.length-1)
-        let new_items = [...items]
-        new_items.forEach(function(item){
-            item.classList.add("hide-product")
-            
-        })
-    }
+timesButton.addEventListener("click", function(){
+    categories.classList.remove("show-categories")
+    body.style.overflow = "scroll"
+})
+categories.addEventListener("mouseleave", function(){
+    categories.classList.remove("show-categories")
 })
 
-showMore.forEach(function(button){
-    button.addEventListener("click", function(event){
-        if (event.currentTarget.textContent == "Show less"){
-            event.currentTarget.textContent = "Show more"
-        }else{
-            event.currentTarget.textContent = "Show less"
-        }
-        let children = event.currentTarget.parentElement.children
-        let new_children = [...children]
-        let c = new_children.slice(0, new_children.length-1)
-        if (c.length > 5){
-            let new_c = c.slice(5, c.length)
-            new_c.forEach(function(item){
-                if(item.classList.contains("hide-product")){
-                    item.classList.remove("hide-product")
-                }else{
-                    item.classList.add("hide-product")
-                }
-            })
-        }
-    })
-})
+// // scroll products 
+// let counter2 = 0
 
+// const buttonLeft = document.querySelector("#button-left")
+// const buttonRight = document.querySelector("#button-right")
 
+// const childrenProduct = buttonLeft.parentElement.parentElement.children[1].children
+
+// const newChildrenProduct = [...childrenProduct]
+
+// buttonRight.addEventListener("click", function(){
+//     counter2++
+//     scrollProducts()
+// })
+// buttonLeft.addEventListener("click", function(){
+//     counter2--
+//     scrollProducts()
+// })
+// function scrollProducts(){
+//     if (counter2 >= newChildrenProduct.length-1){
+//         counter2 = 0
+//     }
+//     else if (counter2 <= 0 ){
+//         counter2 = newChildrenProduct.length-1
+//     }
+//     newChildrenProduct.forEach(function(item){
+//         item.style.transform = `translatex(-${counter2*244}px)`
+//         item.style.transition = "all 0.3s linear"
+//     })
+// }

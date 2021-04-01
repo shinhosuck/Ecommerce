@@ -12,41 +12,39 @@
 
     <div class="products">
         <h2 class="most-popular">Most Popular</h2>
-        <div class="product-contents-container">
+        <div class="product-container">
             {% for product in most_popluar %}
-            <div class="product" title="click for detail">
-                <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
-                    <img class="product-img" src="{{ product.image.url }}" alt="">
-                    <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
-                    <small class="product-price">${{ product.price }}</small>
-                    <small class="product-description">{{ product.description|truncatechars:100 }}</small>
-                </a>
-            </div>
+                <div class="product" title="Click to see detail">
+                    <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
+                        <img class="product-img" src="{{ product.image.url }}" alt="">
+                        <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
+                        <small class="product-price">${{ product.price }}</small>
+                        <small class="product-description">{{ product.description|truncatechars:100 }}</small>
+                    </a>
+                </div>
             {% endfor %}
-            <small class="show-more">Show more</small>
         </div>
-        
+
         <h2 class="latest">Latest</h2>
-        <div class="product-contents-container">
+        <div class="product-container">
             {% for product in  latest %}
-            <div class="product" title="click for detail">
-                <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
-                    <img class="product-img" src="{{ product.image.url }}" alt="">
-                    <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
-                    <small class="product-price">${{ product.price }}</small>
-                    <small class="product-description">{{ product.description|truncatechars:100 }}</small>
-                </a>
-            </div>
+                <div class="product" title="Click to see detail">
+                    <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
+                        <img class="product-img" src="{{ product.image.url }}" alt="">
+                        <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
+                        <small class="product-price">${{ product.price }}</small>
+                        <small class="product-description">{{ product.description|truncatechars:100 }}</small>
+                    </a>
+                </div>
             {% endfor %}
-            <small class="show-more">Show more</small>
         </div>
         
         {% if just_for_you %}
             {% if user.is_authenticated %}
                 <h2 class="just_for_you">Just For You</h2>
-                <div class="product-contents-container">
+                <div class="product-container">
                     {% for product in  just_for_you %}
-                        <div class="product" title="click for detail">
+                        <div class="product" title="Click to see detail">
                             <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
                                 <img class="product-img" src="{{ product.image.url }}" alt="">
                                 <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
@@ -55,7 +53,6 @@
                             </a>
                         </div>
                     {% endfor %}
-                    <small class="show-more">Show more</small>
                 </div>
             {% endif %}
         {% endif %}

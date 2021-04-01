@@ -194,16 +194,10 @@ base.html
     width: 100%;
     left: 0%
 }
-.category-items {
-    width: 20%;
-    height: 100%;
-    overflow-y: auto;
-    background: rgb(230, 230, 230);
-}
 .close-button {
     background: gray;
     text-align: end;
-    width: 20%;
+    width: 200px;
 }
 .times-button {
     padding: 0.5rem 0.7rem;
@@ -216,7 +210,6 @@ base.html
     animation-fill-mode: both;
     animation-iteration-count: infinite;
     animation-delay: 0.5s;
-
 }
 @keyframes spin {
     0%{
@@ -229,25 +222,53 @@ base.html
         transform: rotate(0deg)
     }
 }
+.category-items {
+    width: 200px;
+    height: 100%;
+    overflow-y: auto;
+    white-space: nowrap;
+    background: rgb(230, 230, 230);
+    padding-bottom: 2rem;
+
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.category-item {
+    flex: 0 0  100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
 .category-link {
     color: black;
     display: block;
-    padding: 0.5rem 4rem;
+    padding: 0.5rem 0;
+    padding-left: 2rem;
     text-transform: capitalize;
     font-size: 1.3rem;
+    flex: 0 0 100%;
 }
 .category-link:hover {
     color: rgb(252, 252, 252);
     background: rgb(60, 60, 60);
 }
-
-
+.sub-category-items {
+    flex: 0 0 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.sub-category-item {
+    flex: 0 0 100%;
+}
 .sub-category-link{
     color: black;
     display: block;
-    padding: 0.5rem 4rem;
     text-transform: capitalize;
     font-size: 0.9rem;
+    padding: 0.4rem 0;
+    padding-left: 2rem;
 }
 .sub-category-link:hover{
     color: rgb(255, 255, 255);
@@ -271,10 +292,12 @@ base.html
     .navbar {
         align-items: flex-start;
         justify-content: flex-start;
-        padding: 0.2rem 0;
+        padding: 0;
     }
     .brand-name {
         flex: 0 0 100%;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
     }
     .bars-button {
         display: flex;
@@ -300,7 +323,7 @@ base.html
         color: white;
         font-size: 0.9rem;
         width: 100%;
-        margin-top: 1rem;
+        /* margin-top: 1rem; */
     }
     .item:hover {
         background: rgb(70, 70, 70);
@@ -615,75 +638,61 @@ home.html
 
 .products {
     display: flex;
-    align-content: flex-start;
-    justify-content: center;
     flex-wrap: wrap;
-    width: 80%;
+    justify-content: center;
     margin: auto;
-    min-height: 100vh;
-    padding: 0 0 2rem 0;
-    
+    padding-bottom: 2rem;
 }
 .most-popular, .latest, .just_for_you {
-    flex: 0 0 100%;
+    flex: 0 0 90%;
+    padding-bottom: 0.5rem;
     margin-top: 2rem;
-    margin-bottom: 0.5rem;
     font-weight: normal;
+    border-bottom: 1px solid rgb(212, 212, 212);
 }
-.product-contents-container {
-    width: 100%;
-    flex: 0 0 100%; 
-    display: flex; 
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgb(224, 224, 224);
+.product-container {
+    flex: 0 0 90%;
+    width: 90%;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 .product {
-    width: 204px;
-    padding: 0.7rem;
-    margin: 0.5rem 0.33rem;
-    border-radius: 10px;
+    min-width: 215px;
+    margin: 1rem 1.2rem 1rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
     box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
-}
-.hide-product {
-    display: none;
+    border: 1px solid rgb(219, 219, 219);
 }
 .product-content {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    flex-wrap: wrap;
+    color: black;
+    overflow: wrap;
+    white-space: normal;
 }
 .product-img {
-    width: 100%;
+    width:100%;
+    flex: 0 0 100%;
     height: auto;
-    margin-bottom: 0.3rem;
-    border-radius: 5px;
     margin-bottom: 0.5rem;
-    border: 1px solid rgb(230, 230, 230);
-    transition: transform 0.4s linear;
+    transition: transform 0.3s linear;
 }
 .product-img:hover {
-    transform: scale(1.17)
+    transform: scale(1.13)
 }
 .product-name {
-    font-size: 1rem;
-    color: rgb(31, 31, 31);
+    font-size: 0.9rem;
 }
 .product-price {
-    color: rgb(1, 128, 1);
-}
-.product-description{
-    color: rgb(92, 92, 92);
-    display: block;
-    margin-top: 0.5rem;
-    flex: 0 0 100%
-}
-.show-more {
-    flex: 0 0 100%; 
-    cursor: pointer;
-    margin-top: 0.5rem;
     color: green;
+}
+.product-description {
+    color: rgb(100, 100, 100);
+    margin-top: 0.5rem;
 }
 /*
 ================
