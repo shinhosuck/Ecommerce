@@ -14,13 +14,14 @@
 
         <nav class="navbar">
             <div class="brand-name">
-                <a href="{% url 'store:home' %}">AiAi.com</a>
+                <a class="brand" href="{% url 'store:home' %}">AiAi<span>.com</span></a>
                 <div class="bars-button">
                     <i class="fas fa-bars"></i>
                 </div>
             </div>
             <ul class="navitem-container">
-                <li class="item"><a href="{% url 'store:home' %}">Home</a></li>
+                <li class="item category">Categories</li>
+                <li class="item"><a href="{% url 'store:shop_by_brand' %}">Brand Name</a></li>
                 {% if user.is_authenticated %}
                 <li class="item">
                     <a href="{% url 'store:my_basket' user.pk %}">Basket
@@ -29,12 +30,16 @@
                         </i>
                     </a>
                 </li>
-                <li class="item"><a href="{% url 'store:my_orders' %}">Orders</a></li>
                 <li class="item" id="search-button">
                     <i class="fa fa-search search-button-icon"></i>
                     Search
                 </li>
-                <li class="item"><a href="{% url 'users:profile' %}">My Profile</a></li>
+                <li class="item" id="accounts">Accounts
+                    <ul class="accounts">
+                        <li class="nav-drop"><a href="{% url 'store:my_orders' %}">Orders</a></li>
+                        <li class="nav-drop"><a href="{% url 'users:profile' %}">Profile</a></li>
+                    </ul>
+                </li>
                 <li class="item"><a href="{% url 'users:logout' %}">Logout</a></li>
                 {% else %}
                 <li class="item" id="search-button">
@@ -52,10 +57,17 @@
                     <input class="search-input" type="text" placeholder="Search"/>
                     <i class="fa fa-times"></i>
                 </div>
+                <div class="search-box-close">
+                    <i class="fa fa-times"></i>
+                </div>
             </div>
+
         </nav>
     
+    </header>
+    <main>
         <div class="slide-container">
+
             <div class="slide-image-container">
                 <div class="slide-img" >
                     <img src="{% static 'store/slide/img1.jpg' %}" alt="">
@@ -73,6 +85,10 @@
                     <img src="{% static 'store/slide/img5.jpg' %}" alt="">
                 </div>
             </div>
+
+            <div class="prev-btn"><i class="fa fa-chevron-left"></i></div>
+            <div class="next-btn"><i class="fa fa-chevron-right"></i></div>
+
             <div class="indicator">
                 <div class="circle"></div>
                 <div class="circle"></div>
@@ -81,23 +97,17 @@
             </div>
         </div>
 
-    </header>
-    <main>
         <div class="side-categories">
-            <div class="secondary-menu">
-                <ul class="secondary-item-container">
-                    <li class="category" style="cursor: pointer;">Shop categories</li>
-                    <li><a href="{% url 'store:shop_by_brand' %}">Shop by brand</a></li>
-                    <li><a href="#">Sell here</a></li>
-                    <li><a href="#">Contact us</a></li>
-                    <li><a href="#">About us</a></li>
-                </ul>
-            </div>
             {% block content %}
 
             {% endblock content %}
             <div class="categories">
                 <div class="close-button">
+                    {% if user.is_authenticated %}
+                    <small style="flex: 1.1; text-align: center; font-size: 1rem; color: white">Hello {{ user.username|truncatechars:10 }}!</small>
+                    {% else %}
+                    <small style="flex: 1.1; text-align: center; font-size: 1rem; color: white">Hello! Sign in please</small>
+                    {% endif %}
                     <i class="fa fa-times times-button"></i></li>
                 </div>
                 <ul class="category-items">
@@ -118,6 +128,7 @@
                 </ul>
             </div>
         </div>
+        
     </main>
 
 

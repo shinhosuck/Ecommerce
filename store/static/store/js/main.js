@@ -42,10 +42,12 @@ barsButton.addEventListener("click", function(){
     navItemContainer.classList.toggle("show-navitem-container")
 })
 window.addEventListener("resize", function(){
-    if (window.innerWidth > 715){
+    if (window.innerWidth > 785){
         navItemContainer.classList.remove("show-navitem-container")
         searchContainer.classList.remove("show-search-container")
 
+    }else if (window.innerWidth < 785) {
+        searchContainer.classList.remove("show-search-container")
     }
 })
 
