@@ -1,6 +1,5 @@
 {% extends "store/base.html" %}
 
-
 <title>
     {% block title %}
         AiAi.com
@@ -10,60 +9,63 @@
 
 {% block content %}
 
+    
     <div class="products">
 
-        <div class="products-container"></div>
+        <div class="products-container">
             <h2 class="most-popular">Most Popular</h2>
-            <div class="product-container">
+            <div class="product-container1">
                 {% for product in most_popluar %}
-                    <div class="product" title="Click to see detail">
-                        <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
+                    <div class="product">
+                        <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                             <img class="product-img" src="{{ product.image.url }}" alt="">
-                            <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
-                            <small class="product-price">${{ product.price }}</small>
-                            <small class="product-description">{{ product.description|truncatechars:100 }}</small>
+                            <p class="product-name">{{ product.product_name|truncatechars:15 }}</p>
+                            <p class="product-price">${{ product.price }}<i class="fa fa-heart heart-icon"><span>{{ product.times_ordered }}</span></i></p>
                         </a>
+                        <a class="product-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
                     </div>
                 {% endfor %}
             </div>
+            <i class="fa fa-chevron-left prev-btn1"></i>
+            <i class="fa fa-chevron-right next-btn1"></i>
         </div>
 
         <div class="products-container">
-            <h2 class="latest">Latest</h2>
-            <div class="product-container">
+            <h2 class="latest">Latest From Favorite Brands</h2>
+            <div class="product-container2">
                 {% for product in  latest %}
-                    <div class="product" title="Click to see detail">
-                        <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
+                    <div class="product">
+                        <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                             <img class="product-img" src="{{ product.image.url }}" alt="">
-                            <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
-                            <small class="product-price">${{ product.price }}</small>
-                            <small class="product-description">{{ product.description|truncatechars:100 }}</small>
+                            <p class="product-name">{{ product.product_name|truncatechars:15 }}</p>
+                            <p class="product-price">${{ product.price }}<i class="fa fa-heart heart-icon"><span>{{ product.times_ordered }}</span></i></p>
                         </a>
+                        <a class="product-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
                     </div>
                 {% endfor %}
             </div>
+            <i class="fa fa-chevron-left prev-btn2"></i>
+            <i class="fa fa-chevron-right next-btn2"></i>
         </div>
 
-        {% if just_for_you %}
-            {% if user.is_authenticated %}
-            <div class="products-container">
-                <h2 class="just_for_you">Just For You</h2>
-                <div class="product-container">
-                    {% for product in  just_for_you %}
-                        <div class="product" title="Click to see detail">
-                            <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
-                                <img class="product-img" src="{{ product.image.url }}" alt="">
-                                <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
-                                <small class="product-price">${{ product.price }}</small>
-                                <small class="product-description">{{ product.description|truncatechars:100 }}</small>
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
+        {% if user.is_authenticated %}
+        <div class="products-container">
+            <h2 class="just_for_you">Just For You</h2>
+            <div class="product-container3">
+                {% for product in  just_for_you %}
+                    <div class="product">
+                        <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
+                            <img class="product-img" src="{{ product.image.url }}" alt="">
+                            <p class="product-name">{{ product.product_name|truncatechars:15 }}</p>
+                            <p class="product-price">${{ product.price }}<i class="fa fa-heart heart-icon"><span>{{ product.times_ordered }}</span></i></p>
+                        </a>
+                        <a class="product-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+                    </div>
+                {% endfor %}
             </div>
-            {% endif %}
-        {% endif %}
-
+            <i class="fa fa-chevron-left prev-btn3"></i>
+            <i class="fa fa-chevron-right next-btn3"></i>
+        </div>
+        {% endif %} 
     </div>
-
 {% endblock content %}
