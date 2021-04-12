@@ -57,9 +57,6 @@
                     <input class="search-input" type="text" placeholder="Search"/>
                     <i class="fa fa-times"></i>
                 </div>
-                <div class="search-box-close">
-                    <i class="fa fa-times"></i>
-                </div>
             </div>
 
         </nav>
@@ -100,12 +97,7 @@
 
             {% endblock content %}
             <div class="categories">
-                <div class="close-button">
-                    {% if user.is_authenticated %}
-                    <small style="flex: 1.1; text-align: center; font-size: 1rem; color: white">Hello {{ user.username|truncatechars:10 }}!</small>
-                    {% else %}
-                    <small style="flex: 1.1; text-align: center; font-size: 1rem; color: white">Hello! Sign in please</small>
-                    {% endif %}
+                <div class="greet-container">
                     <i class="fa fa-times times-button"></i></li>
                 </div>
                 <ul class="category-items">

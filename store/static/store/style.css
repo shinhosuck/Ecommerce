@@ -26,7 +26,7 @@ base.html
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    background: rgb(0, 51, 51);
+    background: rgb(0, 31, 31);
     padding: 0.5rem 0;
 }
 .brand-name {
@@ -136,21 +136,20 @@ base.html
 /* search line 54-60*/
 .search-container {
     top: 65px;
-    position: absolute;
     height: 0;
+    position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex: 0 0 100%;
     width: 100%;
     overflow: hidden;
-    padding: 0 1rem;
-    transition: all 0.15s ease-in-out;
     z-index: 1;
+    transition: height 0.1s linear;
 }
 .show-search-container {
-    height: 100px;
-    transition: all 0.15s ease-in-out;
+    height: 50%;
+    transition: height 0.1s linear;
 }
 /* line 45 */
 #search-button {
@@ -163,6 +162,7 @@ base.html
 .search {
     background: rgb(199, 220, 223);
     padding: 1rem;
+    margin-top: 3rem;
     display: flex;
     border-radius: 0.4rem;
     justify-content: space-between;
@@ -259,79 +259,47 @@ base.html
     margin: 0 0.2rem;
     cursor: pointer;
 }
-@media screen and (max-width: 598px) {
-    .slide-container {
-        display: none;
-    }
-    .bg-image {
-        display: block;
-    }
-}
 /* end of slide banner */
 
 /* side-categories */
-.secondary-menu {
-    background: rgb(0, 70, 41);
-    color: white;
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem 0;
-    width: 100%;
-    white-space: nowrap;
-    overflow-x: auto;
-}
-.secondary-item-container {
-    display: flex;
-}
-.secondary-item-container li {
-    padding: 0 1rem;
-    font-size: 0.95rem;
-}
-.secondary-item-container li a {
-    color: white;
-    font-size: 0.95rem;
-}
 .categories {
     position: absolute;
-    height: 100%;
+    height: 57%;
     left: -100%;
-    top: 0;
+    top: 64px;
+    background: rgba(0, 24, 24, 0.7);
     transition:left 0.4s ease-in-out;
 }
 .show-categories {
-    background: rgba(0, 0, 0, 0.7);
-    width: 100%;
+    width: 15rem;
     left: 0%
 }
-.close-button {
-    background: rgb(100, 100, 100);
+.greet-container {
+    background: transparent;
     text-align: end;
     width: 15rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 .times-button {
-    padding: 0.5rem 0.7rem;
-    font-size: 1.7rem;
+    margin: 0.3rem 0.5rem 0.3rem 0;
+    font-size: 1.5rem;
     cursor: pointer;
-    color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
     animation-name: spin;
     animation-timing-function: linear;
-    animation-duration: 1.5s;
+    animation-duration: 1.3s;
     animation-fill-mode: both;
     animation-iteration-count: infinite;
     animation-delay: 0.5s;
 }
 @keyframes spin {
     0%{
-        transform: rotate(0deg)
-    }
-    50%{
         transform: rotate(360deg)
     }
-    100%{
+    50%{
         transform: rotate(0deg)
+    }
+    100%{
+        transform: rotate(-360deg)
     }
 }
 .category-items {
@@ -340,7 +308,7 @@ base.html
     overflow-y: auto;
     overflow-x: hidden;
     white-space: nowrap;
-    background: rgb(230, 230, 230);
+    background: transparent;
     padding-bottom: 2rem;
     display: flex;
     flex-wrap: wrap;
@@ -353,7 +321,7 @@ base.html
     align-content: flex-start;
 }
 .category-link {
-    color: black;
+    color: rgb(255, 255, 255);
     display: block;
     padding: 0.5rem 0;
     padding-left: 2.5rem;
@@ -363,7 +331,7 @@ base.html
 }
 .category-link:hover {
     color: rgb(252, 252, 252);
-    background: rgb(60, 60, 60);
+    background: rgb(0, 31, 31);
 }
 .sub-category-items {
     flex: 0 0 100%;
@@ -374,7 +342,7 @@ base.html
     flex: 0 0 100%;
 }
 .sub-category-link{
-    color: black;
+    color: rgb(255, 255, 255);
     display: block;
     text-transform: capitalize;
     font-size: 0.9rem;
@@ -383,7 +351,7 @@ base.html
 }
 .sub-category-link:hover{
     color: rgb(255, 255, 255);
-    background: rgb(100, 100, 100);
+    background: rgb(0, 44, 44);
 }
 /* end of side-categories */
 
@@ -443,7 +411,7 @@ base.html
         padding: 0.3rem;
     }
     .item:hover {
-        background: rgb(0, 27, 27);
+        background: rgb(0, 44, 44);
     }
     .accounts {
         left: 90px;
@@ -456,63 +424,49 @@ base.html
     }
     .search-container {
         top: 0;
-        position: absolute;
-        height: 0;
-        display: flex;
-        justify-content: center;
         align-items: center;
-        flex: 0 0 100%;
-        width: 100%;
-        overflow: hidden;
-        padding: 0 1rem;
-        transition: all 0.15s ease-in-out;
-        z-index: 1;
         background: rgba(0, 20, 22, 0.9);
     }
     .search {
-        background: rgb(199, 220, 223);
+        width: 80%;
+        flex: 0 0 80%;
+        margin: 0;
         padding: 0.7rem;
-        display: flex;
-        border-radius: 0.4rem;
-        justify-content: space-between;
-        align-items: center;
-        width: 70%;
-        flex: 0 0 70%;
-        color: rgb(0, 89, 100);
     }
     .show-search-container {
-        height: 65px;
-        transition: all 0.15s ease-in-out;
+        height: 64px;
     }
-    .search-box-close {
-        flex: 0 0 10%;
-        width: 10%;
-        text-align: end;
+    .categories {
+        z-index: 2;
+        width: 10rem;
     }
-    .search-box-close i {
-        font-size: 1.3rem;
-        color: white;
-        cursor: pointer;
-        animation-name: spin;
-        animation-duration: 1.5s;
-        animation-iteration-count: infinite;
-        animation-fill-mode: both;
-        animation-delay: 1.5s;
-        animation-timing-function: linear;
+    .greet-container {
+        width: 10rem;
     }
-    @keyframes spin {
-        0% {
-            transform: rotate(360deg)
-        }
-        50% {
-            transform: rotate(0deg)
-        }
-        100%{
-            transform: rotate(-360deg)
-        }
+    .category-items {
+        width: 10rem;
+    }
+    .category-link {
+        font-size: 1.1rem;
+        padding-left: 1rem;
+
+    }
+    .sub-category-link {
+        font-size: 0.8rem;
+        padding-left: 1rem;
+    }
+    .times-button {
+        font-size: 1.2rem;
     }
 }
-
+@media screen and (max-width: 598px) {
+    .slide-container {
+        display: none;
+    }
+    .bg-image {
+        display: block;
+    }
+}
 /*
 ================
 end of base.html

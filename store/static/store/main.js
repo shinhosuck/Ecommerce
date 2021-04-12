@@ -189,11 +189,17 @@ searchButton.addEventListener("click", function(){
     searchContainer.classList.toggle("show-search-container")
 })
 
+searchContainer.addEventListener("mouseleave", function(){
+  searchContainer.classList.remove("show-search-container")
+})
+
 
 // show navitem container on max-width: 715px.
 const barsButton = document.querySelector(".bars-button")
 const timesBtn = document.querySelector(".times-btn")
 const navItemContainer = document.querySelector(".navitem-container")
+const navbar = document.querySelector(".navbar")
+
 
 barsButton.addEventListener("click", function(){
     navItemContainer.classList.toggle("show-navitem-container")
@@ -213,23 +219,37 @@ window.addEventListener("resize", function(){
 const category = document.querySelector(".category")
 const categories = document.querySelector(".categories")
 const timesButton = document.querySelector(".times-button")
-const body = document.querySelector("html body")
+const accounts = document.querySelector("#accounts")
 
 category.addEventListener("click", function(){
-    scroll_to_top()
+  sideMenu()
 })
 
-function scroll_to_top(){
-    document.documentElement.scrollTop = 0;
+function sideMenu(){
     categories.classList.toggle("show-categories")
-    body.style.overflow = "hidden"
+    searchContainer.classList.remove("show-search-container")
+    navItemContainer.classList.remove("show-navitem-container")
+
+    timesButton.addEventListener("click", function(){
+      categories.classList.remove("show-categories")
+  })
+  
+  categories.addEventListener("mouseleave", function(){
+      categories.classList.remove("show-categories")
+  })
+
 }
 
-timesButton.addEventListener("click", function(){
-    categories.classList.remove("show-categories")
-    body.style.overflow = "scroll"
+// search button from  above comment "show search bar"
+searchButton.addEventListener("click", function(){
+  categories.classList.remove("show-categories")
 })
 
-categories.addEventListener("mouseleave", function(){
-    categories.classList.remove("show-categories")
+navbar.addEventListener("mouseenter", function(){
+  categories.classList.remove("show-categories")
+})
+
+accounts.addEventListener("mouseenter", function(){
+  categories.classList.remove("show-categories")
+  searchContainer.classList.remove("show-search-container")
 })
