@@ -496,13 +496,13 @@ register.html
     border-radius: 10px;
     left: 50%;
     justify-content: space-between;
-    animation-name: show-register-row;
+    animation-name: show-register-col;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-duration: 1s;
 }
-@keyframes show-register-row {
+@keyframes show-register-col {
     from{
         transform: translate(-50%, -150%);
     }
@@ -586,15 +586,47 @@ login.html
 ========== */
 
 .login-row {
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
+}
+.login-col {
+    position: absolute;
+    top: 0;
+    left: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    width: 600px;
+    border-radius: 10px;
+    margin-top: 5rem;
+    background: rgba(0, 51, 44, 0.9);
+    animation-name: show-login-col;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+@keyframes show-login-col {
+    from{
+        transform: translate(-50%, -150%);
+    }
+    to{
+        transform: translate(-50%, 0%);
+    }
+}
+.login-text-container {
+    margin: 1rem;
+    /* margin-right: 0; */
+    width: 35%;
+    flex: 0 0 35%;
+    color: white;
 }
 .login-container {
-    flex: 0 0 30%;
+    width: 400px;
     padding: 1rem;
-    border: 1px solid rgb(185, 185, 185);
-    margin-top: 5rem;
-    border-radius: 20px;
+    font-size: 0.9rem;
+    background: rgb(255, 255, 255);
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .message-success {
     font-size: 0.9rem;
@@ -605,39 +637,35 @@ login.html
     margin-bottom: 1rem;
 }
 .login-button {
-    padding: 0.3rem 0.5rem;
+    padding: 0.4rem 0.8rem;
     outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(0, 128, 0);
-    background: rgb(0, 128, 0);
+    border: none;
+    background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
     border-radius: 5px;
     font-size: 0.9rem;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .login-button:hover {
-    background: rgb(0, 82, 0);
-    border: 1px solid rgb(0, 82, 0);
+    background: rgb(0, 100, 87);
 }
 .login-cancel {
-    padding: 0.3rem 0.5rem;
+    padding: 0.4rem 0.5rem;
     text-decoration: none;
     outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(129, 129, 129);
+    border: none;
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
     border-radius: 5px;
     font-size: 0.9rem;
     display: inline-block;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .login-cancel:hover {
     color: rgb(255, 255, 255);
     background: rgb(92, 92, 92);
-    border: 1px solid rgb(92, 92, 92);
 }
 .login-text {
     display: inline-block;
@@ -648,10 +676,10 @@ login.html
     display: inline-block;
     text-decoration: none;
     font-size: 0.9rem;
-    color: rgb(0, 90, 0);
+    color: rgb(0, 124, 124);
 }
 .login-register-link:hover {
-    color: rgb(0, 90, 0);
+    color: rgb(0, 44, 44);
 }
 /*
 =================
