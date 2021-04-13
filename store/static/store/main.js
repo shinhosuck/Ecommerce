@@ -253,3 +253,8 @@ accounts.addEventListener("mouseenter", function(){
   categories.classList.remove("show-categories")
   searchContainer.classList.remove("show-search-container")
 })
+
+
+// register.html 
+const register = document.querySelector(".register")
+console.log("hello world")

@@ -40,13 +40,13 @@
                         <li class="nav-drop"><a href="{% url 'users:profile' %}">Profile</a></li>
                     </ul>
                 </li>
-                <li class="item"><a href="{% url 'users:logout' %}">Logout</a></li>
+                <li class="item logout"><a href="{% url 'users:logout' %}">Logout</a></li>
                 {% else %}
                 <li class="item" id="search-button">
                     <i class="fa fa-search search-button-icon"></i>
                     Search
                 </li>
-                <li class="item"><a href="{% url 'users:register' %}">Register</a></li>
+                <li class="item register"><a href="{% url 'users:register' %}">Register</a></li>
                 <li class="item"><a href="{% url 'users:login' %}">Login</a></li>
                 {% endif %}
             </ul>
