@@ -475,43 +475,42 @@ end of base.html
 =============
 register.html
 =============*/
-
-.register-row {
-    /* position: relative; */
-    min-height: 100vh;
-    /* background: url("images/bg.jpg"); */
-    /* background-size: cover;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-attachment: fixed; */
+#register-body {
     background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
+    min-height: 100vh;
 }
-.register-col {
+.register-row {
     position: absolute;
-    top: 0;
-    background: rgba(0, 51, 44, 0.9);
-    width: 665px; 
+    height: 100%;
+    width: 100%;
+    top: -100%;
     display: flex;
-    margin-top: 1.7rem;
-    border-radius: 10px;
-    left: 50%;
-    justify-content: space-between;
-    animation-name: show-register-col;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    animation-name: show-register-row;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-duration: 1s;
 }
-@keyframes show-register-col {
-    from{
-        transform: translate(-50%, -150%);
-    }
-    to{
-        transform: translate(-50%, 0%);
+@keyframes show-register-row {
+    0%{opacity: 0;}
+    100%{
+        transform: translateY(100%); opacity: 1;
     }
 }
+.register-col {
+    background: rgba(0, 51, 44, 0.9);
+    width: 665px; 
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
 .register-text-container {
     color: white;
+    width: 40%;
     flex: 0 0 40%;
     margin: 1rem;
 }
@@ -575,6 +574,30 @@ register.html
     color: rgb(0, 44, 44);
 }
 
+@media screen and (max-width: 700px){
+    .register-col {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        background: transparent;
+        padding: 2rem 0;
+    }
+    .register-text-container {
+        width: 90%;
+        flex: 0 0 90%;
+        margin: 0;
+        padding: 1rem;
+        background:rgba(0, 51, 44, 0.9);
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+    .register-container {
+        width: 90%;
+        flex: 0 0 90%;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 0;
+    }
+}
 /*
 ====================
 end of register.html
@@ -584,38 +607,39 @@ end of register.html
 ==========
 login.html
 ========== */
-
-.login-row {
+#login-body {
     min-height: 100vh;
     background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
 }
-.login-col {
+.login-row {
     position: absolute;
-    top: 0;
-    left: 50%;
     display: flex;
-    justify-content: space-between;
-    width: 600px;
-    border-radius: 10px;
-    margin-top: 5rem;
-    background: rgba(0, 51, 44, 0.9);
-    animation-name: show-login-col;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    top: -100%;
+    animation-name: login-row-col;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-duration: 1s;
 }
-@keyframes show-login-col {
-    from{
-        transform: translate(-50%, -150%);
+@keyframes login-row-col {
+    0%{opacity: 0;}
+    100%{
+        transform: translateY(100%); opacity: 1;
     }
-    to{
-        transform: translate(-50%, 0%);
-    }
+}
+.login-col {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    border-radius: 10px;
+    background: rgba(0, 51, 44, 0.9);
 }
 .login-text-container {
     margin: 1rem;
-    /* margin-right: 0; */
     width: 35%;
     flex: 0 0 35%;
     color: white;
@@ -630,7 +654,7 @@ login.html
 }
 .message-success {
     font-size: 0.9rem;
-    color: green;
+    color: rgb(0, 95, 82);
 }
 .login-title{
     flex: 0 0 100%;
@@ -681,6 +705,38 @@ login.html
 .login-register-link:hover {
     color: rgb(0, 44, 44);
 }
+@media screen and (max-width: 700px){
+    .login-col {
+        width: 100%;
+        flex-wrap: wrap;
+        background: transparent;
+    }
+    .login-text-container {
+        width: 80%;
+        flex: 0 0 80%;
+        margin: 0;
+        padding: 1rem;
+        background:rgba(0, 51, 44, 0.9);
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+    .login-container {
+        width: 80%;
+        flex: 0 0 80%;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 0;
+    }
+}
+@media screen and (max-width: 450px){
+    .login-text-container {
+        width: 90%;
+        flex: 0 0 90%;
+    }
+    .login-container {
+        width: 90%;
+        flex: 0 0 90%;
+    }
+}
 /*
 =================
 end of login.html
@@ -690,53 +746,84 @@ end of login.html
 ===========
 logout.html
 =========== */
-
+#logout-body {
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
+}
 .logout-row {
+    position: absolute;
+    top: -100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    animation-name: drop;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
 }
+@keyframes drop {
+    0% {opacity: 0;}
+
+    100% {
+        transform: translateY(100%);opacity: 1
+    }
+}
+
 .logout-container {
-    flex: 0 0 30%;
+    width: 400px;
     padding: 1rem;
-    margin-top: 5rem;
-    border: 1px solid rgb(185, 185, 185);
-    border-radius: 20px;
+    background:rgba(0, 51, 44, 0.9);
+    border-radius: 10px;
+}
+.logout-container h4 {
+    color: white;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 .logout-login {
-    padding: 0.3rem 0.5rem;
+    display: block;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
     outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(0, 128, 0);
-    background: rgb(0, 128, 0);
+    border: none;
+    background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
-    margin-top: 1rem;
     border-radius: 5px;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    text-align: center;
+    transition: background 0.2s ease-in-out;
 }
 .logout-login:hover {
-    background: rgb(0, 82, 0);
-    border: 1px solid rgb(0, 82, 0);
+    color: rgb(255, 255, 255);
+    background: rgb(0, 100, 87);
 }
 .logout-cancel {
-    padding: 0.3rem 0.5rem;
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
     text-decoration: none;
     outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(129, 129, 129);
+    border: none;
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
-    margin-top: 1rem;
     border-radius: 5px;
-    font-size: 0.9rem;
-    display: inline-block;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    text-align: center;
+    transition: background 0.2s ease-in-out;
 }
 .logout-cancel:hover {
     color: rgb(255, 255, 255);
     background: rgb(92, 92, 92);
-    border: 1px solid rgb(92, 92, 92);
+}
+@media screen and (max-width: 440px){
+    .logout-container {
+        flex: 0 0 90%;
+        width: 90%;
+        padding: 1rem;
+        background:rgba(0, 51, 44, 0.9);
+        border-radius: 10px;
+    }
 }
 /*
 ==================
@@ -747,18 +834,53 @@ end of logout.html
 ============
 profile.html
 ============*/
-
-.profile-row {
+#profile-body {
     min-height: 100vh;
+    background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
+}
+.profile-row {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: -100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation-name:profile-row;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+@keyframes profile-row {
+    0%{opacity: 0;}
+    100%{
+        transform: translateY(100%); opacity: 1;
+    }
+}
+.profile-col {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 51, 44, 0.9);
+    width: 700px;
+    border-radius: 10px;
+}
+.profile-text-container {
+    padding: 1rem;
+    padding-right: 0;
+    flex: 0 0 40%;
+    width: 40%;
+    color: white;
 }
 .profile-container {
-    flex: 0 0 30%;
+    width: 400px;
     padding: 1rem;
-    border: 1px solid rgb(185, 185, 185);
-    border-radius: 20px;
+    background: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.profile-container .message {
+    color: rgb(0, 95, 82);
 }
 .profile-img {
     width: 80px;
@@ -769,12 +891,8 @@ profile.html
     display: flex;
     align-items: flex-end;
     flex-wrap: wrap;
-    padding-bottom: 0.3rem;
-    border-bottom: 1px solid rgb(185, 185, 185);
-}
-.profile-title{
-    flex: 0 0 100%;
-    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
 .profile-text {
     margin-left: 0.5rem;
@@ -783,39 +901,79 @@ profile.html
     display: block;
 }
 .profile-button {
-    padding: 0.3rem 0.5rem;
+    padding: 0.4rem 0.5rem;
     outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(0, 128, 0);
-    background: rgb(0, 128, 0);
+    border: none;
+    background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
     margin-top: 1rem;
     border-radius: 5px;
     font-size: 0.9rem;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .profile-button:hover {
-    background: rgb(0, 82, 0);
-    border: 1px solid rgb(0, 82, 0);
+    background: rgb(0, 100, 87);
 }
 .profile-cancel {
-    padding: 0.3rem 0.5rem;
+    padding: 0.4rem 0.5rem;
     text-decoration: none;
     outline: none;
-    box-shadow: none;
-    border: 1px solid rgb(129, 129, 129);
+    border: none;
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
     margin-top: 1rem;
     border-radius: 5px;
     font-size: 0.9rem;
     display: inline-block;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .profile-cancel:hover {
     color: rgb(255, 255, 255);
     background: rgb(92, 92, 92);
-    border: 1px solid rgb(92, 92, 92);
+}
+@media screen and (max-width: 750px) {
+    /* .profile-row {
+        align-items: flex-start;
+    } */
+    .profile-col {
+        flex-wrap: wrap;
+        justify-content: center;
+        background: transparent;
+        /* margin-top: 3rem; */
+    }
+    .profile-text-container {
+        background: rgba(0, 51, 44, 0.9);
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        flex: 0 0 70%;
+        width: 70%;
+    }
+    .profile-container {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+        width: 70%;
+        flex: 0 0 70%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .profile-text-container {
+        flex: 0 0 80%;
+        width: 80%;
+    }
+    .profile-container {
+        width: 80%;
+        flex: 0 0 80%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .profile-text-container {
+        flex: 0 0 90%;
+        width: 90%;
+    }
+    .profile-container {
+        width: 90%;
+        flex: 0 0 90%;
+    }
 }
 /*
 ===================
@@ -861,7 +1019,6 @@ home.html
     border-radius: 5px;
     margin: 0.5rem;
     background: rgb(255, 255, 255);
-    /* border: 1px solid rgb(233, 233, 233); */
     transition: transform 0.3s linear;
 }
 .product:hover {
