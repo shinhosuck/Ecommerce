@@ -11,17 +11,21 @@
 {% block content %}
     <div class="product-detail">
         <div class="product-detail-container">
-            <img class="product-detail-img" src="{{ product.image.url }}" alt="">
-            <p class="product-detail-name">{{ product.product_name}}</p>
-            <p class="product-detail-price">${{ product.price }}</p>
-            {% if product.on_stock %}
-                <p class="product-available">Available</p>
-            {% else %}
-                <p class="product-outstock">Out of stock</p>
-            {% endif %}
-            <p class="product-detail-description">{{ product.description }}</p>
-            <a class="add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
-            <a class="continue-shopping" type="button" href="{% url 'store:home' %}">Continue shopping</a>
+            <img src="{{ product.image.url }}" alt="">
+            <div class="product-detail-text">
+                <small class="product-detail-name">{{ product.product_name}}</small>
+                <small class="product-detail-description">{{ product.description|truncatechars:200 }}</small>
+                <small class="product-detail-price">${{ product.price }}</small>
+                {% if product.on_stock %}
+                    <small class="product-available">Available</small>
+                {% else %}
+                    <small class="product-outstock">Out of stock</small>
+                {% endif %}
+                <div class="product-detail-btns">
+                    <a class="add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+                    <a class="continue-shopping" type="button" href="{% url 'store:home' %}">Continue shopping</a> 
+                </div>
+            </div> 
         </div>
     </div>
 {% endblock content %}

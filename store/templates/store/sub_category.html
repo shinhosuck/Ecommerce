@@ -9,17 +9,19 @@
 
 
 {% block content %}
-    <h1>{{ sub_category.capitalize }}</h1>
-    <div class="sub-category-products">
-        {% for product in  products %}
-        <div class="sub-category-product" title="click for detail">
-            <a class="sub-category-product-content" href="{% url 'store:product_detail' product.pk %}">
-                <img class="sub-category-product-img" src="{{ product.image.url }}" alt="">
-                <small class="sub-category-product-name">{{ product.product_name|truncatechars:15 }}</small>
-                <small class="sub-category-product-price">${{ product.price }}</small>
-                <small class="sub-category-product-description">{{ product.description|truncatechars:100 }}</small>
-            </a>
+    <div class="sub-category-products-row">
+        <h2 class="sub-category-title">{{ sub_category.capitalize }}</h2>
+        <div class="sub-category-products-col">
+            {% for product in  products %}
+            <div class="sub-category-product" title="click for detail">
+                <a class="sub-category-product-content" href="{% url 'store:product_detail' product.pk %}">
+                    <img class="sub-category-product-img" src="{{ product.image.url }}" alt="">
+                    <p class="sub-category-product-name">{{ product.product_name|truncatechars:15 }}</p>
+                    <p class="sub-category-product-price">${{ product.price }}<i class="fa fa-heart sub-category-heart-icon"><span>{{ product.times_ordered }}</span></i></p>
+                </a>
+                <a class="sub-category-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 {% endblock content %}

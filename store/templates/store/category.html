@@ -9,17 +9,19 @@
 
 
 {% block content %}
-    <h1>{{ category.upper }}</h1>
-    <div class="category-products">
-        {% for product in  products %}
-        <div class="category-product" title="click for detail">
-            <a class="category-product-content" href="{% url 'store:product_detail' product.pk %}">
-                <img class="category-product-img" src="{{ product.image.url }}" alt="">
-                <small class="category-product-name">{{ product.product_name|truncatechars:15 }}</small>
-                <small class="category-product-price">${{ product.price }}</small>
-                <small class="category-product-description">{{ product.description|truncatechars:100 }}</small>
-            </a>
+    <div class="category-products-row">
+        <h2 class="category-title">{{ category.capitalize }}</h2>
+        <div class="category-products-col">
+            {% for product in  products %}
+            <div class="category-product" title="click for detail">
+                <a class="category-product-content" href="{% url 'store:product_detail' product.pk %}">
+                    <img class="category-product-img" src="{{ product.image.url }}" alt="">
+                    <p class="category-product-name">{{ product.product_name|truncatechars:18 }}</p>
+                    <p class="category-product-price">${{ product.price }}<i class="fa fa-heart category-heart-icon"><span>{{ product.times_ordered }}</span></i></p>
+                </a>
+                <a class="category-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 {% endblock content %}
