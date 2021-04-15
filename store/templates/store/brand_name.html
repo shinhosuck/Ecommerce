@@ -3,23 +3,25 @@
 
 <title>
     {% block title %}
-        {{ brand_name.upper}}
+        {{ brand_name.capitalize}}
     {% endblock title %}
 </title>
 
 
 {% block content %}
-    <h1>{{ brand_name.upper }}</h1>
-    <div class="products">
-        {% for product in  products %}
-        <div class="product" title="click for detail">
-            <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
-                <img class="product-img" src="{{ product.image.url }}" alt="">
-                <small class="product-name">{{ product.product_name|truncatechars:15 }}</small>
-                <small class="product-price">${{ product.price }}</small>
-                <small class="product-description">{{ product.description|truncatechars:100 }}</small>
-            </a>
+    <div class="brand-name-items-row">
+        <h2 class="brand-name-items-title">{{ brand_name.capitalize }}</h2>
+        <div class="brand-name-items-col">
+            {% for product in  products %}
+            <div class="brand-name-item" title="click for detail">
+                <a class="brand-name-item-content" href="{% url 'store:product_detail' product.pk %}">
+                    <img class="brand-name-item-img" src="{{ product.image.url }}" alt="">
+                    <p class="brand-name-item-name">{{ product.product_name|truncatechars:15 }}</p>
+                    <p class="brand-name-item-price">${{ product.price }}<i class="fa fa-heart brand-name-item-heart-icon"><span>{{ product.times_ordered }}</span></i></p>
+                </a>
+                <a class="brand-name-item-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 {% endblock content %}

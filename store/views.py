@@ -105,9 +105,17 @@ def sub_category(request, pk):
 def shop_by_brand(request):
     products = Product.objects.all()
     brands = {}
+    total_items = {}
     for product in products:
         brands.setdefault(product.company, product)
-    return render(request, "store/shop_by_brand.html", {"brands": brands})
+        total_items.setdefault(product.company, 0)
+        total_items[product.company] =  total_items[product.company]+1
+    context = {
+        "brands": brands,
+        "total_items": total_items
+    }
+    print(total_items)
+    return render(request, "store/shop_by_brand.html", context)
 
 
 def brand_name(request, pk):

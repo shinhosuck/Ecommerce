@@ -2,21 +2,34 @@
 
 <title>
     {% block title %}
-        Brand Name
+        Brand Names
     {% endblock title %}
 </title>
 
 
 {% block content %}
-    <h1>Brand Names</h1>
-    <div class="products">
-        {% for key, value in brands.items %}
-        <div class="product" title="click for detail">
-            <a class="product-content" href="{% url 'store:brand_name' value.pk %}">
-                <img class="product-img" src="{{ value.brand_image.url }}" alt="">
-                <h5 class="product-name">{{ key.upper }}</h5>
-            </a>
+    <div class="shop-by-brands-row">
+        <h2 class="shop-by-brands-title">Brand Names</h2>
+        <div class="shop-by-brands-col">
+            {% for key, value in brands.items %}
+            <div class="shop-by-brand" title="click to see products">
+                <a class="shop-by-brand-content" href="{% url 'store:brand_name' value.pk %}">
+                    <img class="shop-by-brand-img" src="{{ value.brand_image.url }}" alt="">
+                    <div class="shop-by-brand-text">
+                        <p class="shop-by-brand-name">{{ key|truncatechars:15 }}</p>
+                        {% for k, v in total_items.items %}
+                            {% if k == key %}
+                                {% if v > 1 %}
+                                    <small>{{ v }} items found</small>
+                                {% else %}
+                                    <small>{{ v }} item found</small>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 {% endblock content %}

@@ -269,6 +269,7 @@ base.html
     top: 64px;
     background: rgba(0, 24, 24, 0.7);
     transition:left 0.4s ease-in-out;
+    z-index: 1;
 }
 .show-categories {
     width: 15rem;
@@ -505,7 +506,7 @@ register.html
     width: 665px; 
     display: flex;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .register-text-container {
@@ -521,8 +522,8 @@ register.html
     font-size: 0.9rem;
     letter-spacing: 0.06rem;
     background: white;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .register-container h4 {
     letter-spacing: 0.1rem;
@@ -535,7 +536,7 @@ register.html
     background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-size: 0.9rem;
     transition: background 0.2s ease-in-out;
 }
@@ -550,7 +551,7 @@ register.html
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-size: 0.9rem;
     display: inline-block;
     transition: background 0.2s ease-in-out;
@@ -588,8 +589,8 @@ register.html
         margin: 0;
         padding: 1rem;
         background:rgba(0, 51, 44, 0.9);
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
     }
     .register-container {
         width: 90%;
@@ -635,7 +636,7 @@ login.html
     display: flex;
     justify-content: center;
     width: 600px;
-    border-radius: 10px;
+    border-radius: 5px;
     background: rgba(0, 51, 44, 0.9);
 }
 .login-text-container {
@@ -649,8 +650,8 @@ login.html
     padding: 1rem;
     font-size: 0.9rem;
     background: rgb(255, 255, 255);
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .message-success {
     font-size: 0.9rem;
@@ -667,7 +668,7 @@ login.html
     background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-size: 0.9rem;
     transition: background 0.2s ease-in-out;
 }
@@ -682,7 +683,7 @@ login.html
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-size: 0.9rem;
     display: inline-block;
     transition: background 0.2s ease-in-out;
@@ -717,8 +718,8 @@ login.html
         margin: 0;
         padding: 1rem;
         background:rgba(0, 51, 44, 0.9);
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
     }
     .login-container {
         width: 80%;
@@ -776,7 +777,7 @@ logout.html
     width: 400px;
     padding: 1rem;
     background:rgba(0, 51, 44, 0.9);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .logout-container h4 {
     color: white;
@@ -791,7 +792,7 @@ logout.html
     border: none;
     background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
-    border-radius: 5px;
+    /* border-radius: 5px; */
     text-align: center;
     transition: background 0.2s ease-in-out;
 }
@@ -808,7 +809,7 @@ logout.html
     border: none;
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
-    border-radius: 5px;
+    /* border-radius: 5px; */
     text-align: center;
     transition: background 0.2s ease-in-out;
 }
@@ -863,7 +864,7 @@ profile.html
     justify-content: space-between;
     background: rgba(0, 51, 44, 0.9);
     width: 700px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .profile-text-container {
     padding: 1rem;
@@ -876,8 +877,8 @@ profile.html
     width: 400px;
     padding: 1rem;
     background: white;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .profile-container .message {
     color: rgb(0, 95, 82);
@@ -907,7 +908,7 @@ profile.html
     background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
     margin-top: 1rem;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-size: 0.9rem;
     transition: background 0.2s ease-in-out;
 }
@@ -922,7 +923,7 @@ profile.html
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
     margin-top: 1rem;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-size: 0.9rem;
     display: inline-block;
     transition: background 0.2s ease-in-out;
@@ -939,8 +940,8 @@ profile.html
     }
     .profile-text-container {
         background: rgba(0, 51, 44, 0.9);
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
         flex: 0 0 70%;
         width: 70%;
     }
@@ -1147,10 +1148,13 @@ product_detail.html
     width: 70%;
     display: flex;
     flex-wrap: wrap;
+    border-radius: 5px;
 }
 .product-detail-container img {
     width: 30%;
     height: auto;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .product-detail-text {
     margin: 1rem;
@@ -1247,6 +1251,8 @@ product_detail.html
     }
     .product-detail-container img {
         width: 415px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 5px;
     }
     .product-detail-text {
         width: 415px;
@@ -1268,7 +1274,7 @@ product_detail.html
         width: 90%;
     }
     .product-detail-container img {
-        width: 100%
+        width: 100%;
     }
     .product-detail-text {
         width: 100%;
@@ -1453,14 +1459,14 @@ category.html
     align-items: flex-start;
 }
 .category-title {
-    flex: 0 0 40%;
-    width: 40%;
+    flex: 0 0 90%;
+    width: 90%;
     font-weight: normal;
     letter-spacing: 0.1rem;
     color: rgb(34, 34, 34);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
-    text-align: center;
+    /* text-align: center; */
 }
 .category-products-col {
     flex: 0 0 90%;
@@ -1473,7 +1479,7 @@ category.html
 .category-product {
     width: 218px;
     margin: 0.75rem;
-    border-radius: 10px;
+    border-radius: 5px;
     background: white;
     transition: transform 0.3s linear;
 }
@@ -1549,54 +1555,9 @@ end of category.html
 ==================== */
 
 /* 
-====================
+=================
 sub_category.html
-==================== */
-/* .sub-category-products {
-    display: flex;
-    align-content: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.sub-category-product {
-    flex: 0 0 20%;
-    padding: 0.7rem;
-    margin: 1rem;
-    border-radius: 10px;
-    box-shadow: 1px 1px 10px 3px rgb(192, 192, 192);
-}
-.sub-category-product-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.sub-category-product-img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 0.3rem;
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
-    border: 1px solid rgb(230, 230, 230);
-    transition: transform 0.35s linear;
-}
-.sub-category-product-img:hover {
-    transform: scale(1.2)
-}
-.sub-category-product-name {
-    font-size: 1rem;
-    color: rgb(31, 31, 31);
-}
-.sub-category-product-price {
-    color: rgb(1, 128, 1);
-}
-.sub-category-product-description{
-    color: rgb(92, 92, 92);
-    display: block;
-    margin-top: 0.5rem;
-    flex: 0 0 100%
-} */
-
-
+================= */
 .sub-category-products-row {
     padding: 4rem 0;
     display: flex;
@@ -1605,14 +1566,14 @@ sub_category.html
     align-items: flex-start;
 }
 .sub-category-title {
-    flex: 0 0 40%;
-    width: 40%;
+    flex: 0 0 90%;
+    width: 90%;
     font-weight: normal;
     letter-spacing: 0.1rem;
     color: rgb(34, 34, 34);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
-    text-align: center;
+    /* text-align: center; */
 }
 .sub-category-products-col {
     flex: 0 0 90%;
@@ -1625,7 +1586,7 @@ sub_category.html
 .sub-category-product {
     width: 218px;
     margin: 0.75rem;
-    border-radius: 10px;
+    border-radius: 5px;
     background: white;
     transition: transform 0.3s linear;
 }
@@ -1701,27 +1662,78 @@ end of sub_category.html
 ======================== */
 
 /*
-============
-payment.html
-============ */
-.make-payment-button {
-    padding: 0.5rem 2rem;
-    background: rgb(0, 128, 0);
+==============
+my_orders.html
+============== */
+.my-order-main-container {
+    min-height: 100vh;
+}
+.my-orders {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background: rgb(255, 255, 255);
+    padding: 1rem;
+    margin: 3rem auto;
+    width: 70%;
     border-radius: 5px;
-    border: 1px solid rgb(0, 128, 0);
+}
+.my-orders span {
+    color: rgb(221, 88, 0);
+}
+.my-order-content {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(231, 231, 231);
+}
+.my-order-img {
+    flex: 0 0 20%;
+    width: 20%;
+    height: auto;
+}
+.my-order-table {
+    flex: 0 0 80%;
+    width: 80%;
+}
+.my-order-table-row {
+    display: flex;
+    margin-bottom: 1rem;
+}
+.my-order-table-row2 {
+    display: flex;
+}
+.my-order-table-text {
+    text-align: center;
+    flex: 1;
+}
+.my-order-total {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+.my-order-quantity {
+    position: relative;
+}
+.make-payment-button {
+    padding: 0.6rem 2rem;
+    background: rgb(0, 134, 116);
+    /* border-radius: 5px; */
     color: white;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .make-payment-button:hover {
-    background: rgb(0, 82, 0);
-    border: 1px solid rgb(0, 82, 0);
+    background: rgb(0, 88, 77);
 }
 /* 
-====================
-end of payment.html 
-====================*/
+=====================
+end of my_orders.html 
+=====================*/
 
-/* 
+/*
 ===================
 paypal_payment.html
 =================== */
@@ -1776,3 +1788,205 @@ paypal_payment.html
 ==========================
 end of paypal_payment.html
 ========================== */
+
+/* 
+==================
+shop_by_brand.html
+================== */
+.shop-by-brands-row {
+    padding: 4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+.shop-by-brands-title {
+    flex: 0 0 90%;
+    width: 90%;
+    font-weight: normal;
+    letter-spacing: 0.1rem;
+    color: rgb(34, 34, 34);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    /* text-align: center; */
+}
+.shop-by-brands-col {
+    flex: 0 0 90%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.shop-by-brand {
+    width: 150px;
+    margin: 0.5rem;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    transition: transform 0.3s linear;
+}
+.shop-by-brand:hover {
+    transform: scale(1.05)
+}
+.shop-by-brand-content {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    align-items: flex-start;
+}
+.shop-by-brand-img {
+    width: 100%;
+    height: auto;
+}
+.shop-by-brand-text {
+    align-self: flex-end;
+    margin: 0.5rem;
+}
+.shop-by-brand-text p {
+    align-self: flex-end;
+    color: rgb(41, 41, 41);
+    margin-bottom: 0.5rem;
+}
+.shop-by-brand-text small {
+    color: rgb(99, 99, 99);
+}
+@media screen and (max-width: 1110px) {
+    .shop-by-brand {
+        width: 200px;
+    }
+}
+@media screen and (max-width: 964px) {
+    .shop-by-brand {
+        width: 250px;
+    }
+}
+@media screen and (max-width: 890px) {
+    .shop-by-brand {
+        width: 200px;
+    }
+}
+@media screen and (max-width: 724px) {
+    .shop-by-brand {
+        width: 250px;
+    }
+}
+@media screen and (max-width: 594px) {
+    .shop-by-brand {
+        width: 200px;
+    }
+}
+@media screen and (max-width: 594px) {
+    .shop-by-brand {
+        width: 100%;
+    }
+}
+/* 
+=========================
+end of shop_by_brand.html
+========================= */
+
+/* 
+===============
+brand_name.html 
+=============== */
+.brand-name-items-row {
+    padding: 4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+.brand-name-items-title {
+    flex: 0 0 90%;
+    width: 90%;
+    font-weight: normal;
+    letter-spacing: 0.1rem;
+    color: rgb(34, 34, 34);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    /* text-align: center; */
+}
+.brand-name-items-col {
+    flex: 0 0 90%;
+    width: 90%;
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.brand-name-item {
+    width: 218px;
+    margin: 0.75rem;
+    border-radius: 5px;
+    background: white;
+    transition: transform 0.3s linear;
+}
+.brand-name-item:hover {
+    transform: scale(1.05)
+} 
+.brand-name-item-content p {
+    margin:  0.5rem 0.5rem 0 0.5rem;
+}
+.brand-name-item-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.brand-name-item-name {
+    color: rgb(20, 20, 20);
+}
+.brand-name-item-price {
+    color: rgb(221, 88, 0);
+    font-size: 1.2rem;
+}
+.brand-name-item-add-to-basket {
+    display: block;
+    margin: 1rem 0.5rem;
+    padding: 0.5rem 0;
+    background: rgb(0, 134, 116);
+    color: white;
+    text-align: center;
+    transition: background 0.25s linear;
+}
+.brand-name-item-add-to-basket:hover {
+    background: rgb(0, 88, 77);
+}
+.brand-name-item-heart-icon {
+    float: right;
+    font-size: 1rem;
+    margin-top: 0.15rem;
+    color: rgb(221, 80, 80);
+}
+.brand-name-item-heart-icon span {
+    color: rgb(255, 0, 0);
+    font-size: 0.9rem;
+    margin-left: 0.2rem;
+    font-family: sans-serif;
+}
+@media screen and (max-width: 1075px) {
+    .brand-name-item {
+        width: 200px;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+@media screen and (max-width: 960px) {
+    .brand-name-item {
+        width: 300px;
+    }
+}
+@media screen and (max-width: 720px) {
+    .brand-name-item {
+        width: 200px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .brand-name-item {
+        width: 300px;
+    }
+}
+/* 
+======================
+end of brand_name.html 
+====================== */
