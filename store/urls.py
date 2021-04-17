@@ -13,6 +13,7 @@ from store.views import (
         brand_name,
         my_orders,
         paypal_payment,
+        delete_basket,
     )
 
 app_name = "store"
@@ -29,6 +30,7 @@ urlpatterns = [
     path("user/<int:pk>/basket/", my_basket, name="my_basket"),
     path("add/item/<int:pk>/", add_item, name="add_item"),
     path("delete/item/<int:pk>/", delete_item, name="delete_item"),
+    path("delete/basket/<int:pk>/", delete_basket, name="delete_basket"),
     path("shipping_address/",shipping_address, name="shipping_address"),
     path("my_orders/", my_orders, name="my_orders"),
     path("paypal_payment/", paypal_payment, name="paypal_payment"),

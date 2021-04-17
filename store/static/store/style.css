@@ -1296,55 +1296,69 @@ my_basket.html
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    border: 1px solid rgb(201, 201, 201);
+    justify-content: center;
+    background: white;
     padding: 1rem;
-    margin: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
     width: 70%;
-    border-radius: 10px;
-}
-.basket-continue-shopping {
-    flex: 0 0 25%;
-    width: 25%;
-    margin-bottom: 1rem;
-    background: rgb(0, 128, 0);
     border-radius: 5px;
-    padding: 0.5rem 0;
-    border: 1px solid rgb(0, 128, 0);
-    color: white;
-    text-align: center;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
 }
-.basket-continue-shopping:hover {
-    background: rgb(0, 58, 0);
-    border: 1px solid rgb(0, 58, 0);
-}
-.my-basket-content {
+.basket-product-detail {
     flex: 0 0 100%;
+    width: 100%;
     display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgb(201, 201, 201);
+    flex-wrap: wrap;
+    text-align: center;
+    padding-bottom: 1rem;
+    color: rgb(37, 37, 37);
+    border-bottom: 1px solid rgb(226, 226, 226);
 }
-.my-basket-img {
-    flex: 0 0 20%;
-    width: 20%;
-    height: auto;
+.flex-2x {
+    flex: 2 !important;
 }
-.basket-table {
-    flex: 0 0 80%;
-    width: 80%;
+.basket-product-detail li {
+    flex: 1;
 }
 .table-row {
+    flex: 0 0 100%;
+    width: 100%;
     display: flex;
-    margin-bottom: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgb(226, 226, 226);
 }
-.table-row2 {
-    display: flex;
+.my-basket-img {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(236, 236, 236);
 }
-.table-text {
+.table-row li {
     text-align: center;
     flex: 1;
+}
+.quantity {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.quantity small {
+    font-size: 0.8rem;
+    /* margin: 0 0.3rem; */
+    padding: 0.45rem 0.7rem;
+    color: rgb(54, 54, 54);
+    border: 1px solid rgb(223, 223, 223);
+    border-right: none;
+    border-left: none;
+
+}
+.icon-plus, .icon-minus, .icon-x{
+    font-size: 0.7rem;
+    padding: 0.6rem;
+    color: rgb(54, 54, 54);
+    border: 1px solid rgb(223, 223, 223);
+    background: rgb(241, 241, 241);
 }
 .basket-total {
     flex: 0 0 100%;
@@ -1355,32 +1369,35 @@ my_basket.html
 }
 .checkout-button {
     padding: 0.5rem 2rem;
-    background: rgb(0, 128, 0);
-    border-radius: 5px;
-    border: 1px solid rgb(0, 128, 0);
+    background: rgb(0, 128, 117);
     color: white;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .checkout-button:hover {
-    background: rgb(0, 58, 0);
-    border: 1px solid rgb(0, 58, 0);
+    background: rgb(0, 58, 50);
 }
-.quantity {
-    position: relative;
-}
-.icon-plus{
-    position: absolute;
-    display: block;
-    right: 38%;
-    top: -10px;
-    color:rgb(1, 114, 1)
-}
-.icon-minus {
-    position: absolute;
-    display: block;
-    right: 38%;
-    bottom: -10px;
-    color:rgb(1, 114, 1)
+@media screen and (max-width: 830px) {
+    .quantity {
+        flex-direction: column;
+    }
+    .quantity small {
+        border-top: none;
+        border-bottom: none;
+        border-right: 1px solid rgb(223, 223, 223);
+        border-left: 1px solid rgb(223, 223, 223)
+    }
+    .quantity small {
+        padding: 0.35rem 0.55rem;
+        color: rgb(54, 54, 54);
+    
+    }
+    .icon-plus, .icon-minus, .icon-x{
+        font-size: 0.6rem;
+        padding: 0.5rem;
+        color: rgb(54, 54, 54);
+        border: 1px solid rgb(223, 223, 223);
+        background: rgb(241, 241, 241);
+    }
 }
 /*
 =====================

@@ -9,26 +9,26 @@
 {% block content %}
     <div class="basket-main-container">
         <div class="my-basket">
-            <a class="basket-continue-shopping" type="button" href="{% url 'store:home' %}">Contiue Shopping</a>
+            <!-- <a class="basket-continue-shopping" type="button" href="{% url 'store:home' %}">Contiue Shopping</a> -->
+            <ul class="basket-product-detail">
+                <li>Product</li>
+                <li class="flex-2x">Product Name</li>
+                <li>Quantity</li>
+                <li>Price</li>
+                <li>Remove</li>
+            </ul>
             {% for basket in baskets %}
-                <div class="my-basket-content">
-                    <img class="my-basket-img" src="{{ basket.product.image.url}}" alt="">
-                    <table class="basket-table">
-                        <tr class="table-row">
-                            <th class="table-text">Product</th>
-                            <th class="table-text">Quantity</th>
-                            <th class="table-text">Price</th>
-                        </tr>
-                        <tr class="table-row2">
-                            <td class="table-text">{{ basket.product.product_name|truncatechars:15 }}</td>
-                            <td class="table-text quantity"> {{ basket.quantity }}
-                                <a href="{% url 'store:add_item' basket.pk %}"><i class="fas fa-plus icon-plus"></i></a>
-                                <a href="{% url 'store:delete_item' basket.pk %}"><i class="fas fa-minus icon-minus"></i></a>
-                            </td>
-                            <td class="table-text">{{ basket.product.price}}</td>
-                        </tr>
-                    </table>
-                </div>
+            <ul class="table-row">
+                <li><img class="my-basket-img" src="{{ basket.product.image.url}}" alt=""></li>
+                <li class="flex-2x">{{ basket.product.product_name|truncatechars:15 }}</li>
+                <li class="quantity">
+                    <a href="{% url 'store:add_item' basket.pk %}"><i class="fas fa-plus icon icon-plus"></i></a>
+                    <small>{{ basket.quantity }}</small>
+                    <a href="{% url 'store:delete_item' basket.pk %}"><i class="fas fa-minus icon icon-minus"></i></a>
+                </li>
+                <li>{{ basket.product.price}}</li>
+                <li><a href="{% url 'store:delete_basket' basket.pk %}"><i class="fa fa-times icon icon-x"></i></a></li>
+            </ul>
             {% endfor %}
             <div class="basket-total">
                 <h4>Total Items: {{ user.customer.total_items }}</h4>

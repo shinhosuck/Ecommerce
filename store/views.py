@@ -201,6 +201,14 @@ def delete_item(request, pk):
 
 
 @login_required
+def delete_basket(request, pk):
+    user = request.user
+    customer = get_object_or_404(Customer, name=user)
+    basket = customer.basket_set.get(pk=pk)
+    basket.delete()
+    return redirect("store:my_basket", pk=user.pk)
+
+@login_required
 def shipping_address(request):
     user = request.user
     if request.method == "POST":

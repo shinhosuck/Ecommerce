@@ -258,3 +258,19 @@ accounts.addEventListener("mouseenter", function(){
 // register.html 
 const register = document.querySelector(".register")
 console.log("hello world")
+
+// my_basket.html 
+
+const icons = document.querySelectorAll(".icon")
+
+icons.forEach(function(icon){
+  icon.addEventListener("mouseenter", function(event){
+    event.currentTarget.style.background = "rgb(0, 107, 84)"
+    event.currentTarget.style.color = "rgb(225, 255, 255)"
+  })
+  icon.addEventListener("mouseleave", function(event){
+    event.currentTarget.style.background = "rgb(241, 241, 241)"
+    event.currentTarget.style.color = "rgb(54, 54, 54)"
+  })
+})
+
