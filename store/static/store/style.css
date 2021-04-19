@@ -14,7 +14,10 @@ a {
     text-decoration: none;
 }
 h4 {
-    font-size: 1.3rem !important;
+    font-size: 1.2rem !important;
+}
+h3 {
+    font-size: 1.4rem;
 }
 /*
 =========
@@ -208,10 +211,11 @@ base.html
 }
 .slide-img {
     flex: 0 0 100%;
+    width: 100%
 }
 .slide-img img {
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 .prev-img-btn, .next-img-btn{
     position: absolute;
@@ -359,7 +363,13 @@ base.html
 }
 /* end of side-categories */
 
-
+/* @media screen and (min-width: 1921px){
+    .slide-container {
+        position: relative;
+        width: 40%;
+        margin: 0 auto;
+    }
+} */
 @media screen and (max-width: 790px){
     .navbar {
         align-items: flex-start;
@@ -480,7 +490,8 @@ end of base.html
 register.html
 =============*/
 #register-body {
-    background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
+    /* background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122)); */
+    background: rgb(238, 238, 238);
     min-height: 100vh;
 }
 .register-row {
@@ -611,7 +622,8 @@ login.html
 ========== */
 #login-body {
     min-height: 100vh;
-    background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
+    /* background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122)); */
+    background: rgb(238, 238, 238);
 }
 .login-row {
     position: absolute;
@@ -748,7 +760,8 @@ logout.html
 =========== */
 #logout-body {
     min-height: 100vh;
-    background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122));
+    /* background: linear-gradient(90deg, rgb(0, 129, 108),rgb(0, 98, 122)); */
+    background: rgb(238, 238, 238);
 }
 .logout-row {
     position: absolute;
@@ -1082,7 +1095,14 @@ home.html
     right: 8px;
     margin-left: 0.3rem;
 }
-
+/* @media screen and (min-width: 1921px) {
+    .products-container {
+        position: relative;
+        margin: auto;
+        margin-top: 2rem;
+        width: 40%;
+    }
+} */
 @media screen and (max-width: 1180px) {
     .product-name {
         font-size: 0.9rem;
@@ -1284,111 +1304,179 @@ end of product_detail.html
 my_basket.html
 ============== */
 .basket-main-container {
-    min-height: 100vh;
-}
-.my-basket {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: center;
-    background: rgb(255, 255, 255);
-    padding: 1rem;
+    justify-content: space-between;
+    width: 840px;
     margin: 3rem auto;
-    width: 900px;
-    border-radius: 5px;
+    padding: 1rem;
+    background: rgb(255, 255, 255);
 }
-.basket-summary {
-    flex: 0 0 100%;
-    margin-bottom: 0.5rem;
+.my-basket {
+    flex: 0 0 64%;
+    width: 64%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 0.5rem;
+    padding-bottom: 0;
+    border: 1px solid rgb(226, 226, 226);
 }
-.basket-summary h4 {
-    letter-spacing: 0.05rem;
-    color: rgb(54, 54, 54);
+.my-basket-title {
     font-weight: normal;
+    padding-bottom: 0.5rem;
+    color: rgb(54, 54, 54)
 }
 .table-row {
     flex: 0 0 100%;
     width: 100%;
     display: flex;
-    color: rgb(36, 36, 36);
     align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgb(226, 226, 226);
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    color: rgb(36, 36, 36);
+    border-top: 1px solid rgb(226, 226, 226);
 }
-.table-row li {
-    flex: 0 0 16%;
-    text-align: center;
+.my-basket-img {
+    width: 30%;
+    flex: 0 0 30%;
 }
-.my-basket-img a img {
+.my-basket-img a {
     width: 100%;
     height: 100%;
 }
-.table-row .flex-2x {
-    flex: 0 0 35% ;
-    margin-left: 0.5rem;
-    text-align: start;
+.my-basket-img a img {
+    width: 100%;
+    height: auto;
 }
-.flex-2x small {
-    text-align: start;
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: rgb(90, 90, 90)
-}
-.quantity {
+.basket-text-wraper {
+    flex: 0 0 68%;
+    width: 68%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    margin-left: 0.5rem;
+}
+.basket-product-name {
+    flex: 0 0 100%;
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+.price {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+.quantity {
+    flex: 0 0 50%;
+    width: 50%;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 .quantity small {
     font-size: 0.9rem;
-    margin: 0 0.5rem;
-    padding: 0.3rem 0.6rem;
+    margin: 0 0.2rem;
+    padding: 0.29rem 0.6rem;
     color: rgb(34, 34, 34);
     border: 1px solid rgb(201, 201, 201);
 }
 .icon-plus, .icon-minus{
     font-size: 0.8rem;
     padding: 0.4rem 0.6rem;
+    background: rgb(241, 241, 241);
     color: rgb(100, 100, 100);
+}
+.icon-plus:hover, .icon-minus:hover {
+    background: rgb(128, 128, 128);
+    color:white;
+}
+.delete-basket-item {
+    flex: 0 0 50%;
+    width: 50%;
+    margin-top: 1rem;
+    text-align: end;
 }
 .icon-x {
     display: inline-block;
     padding: 0.4rem 0.5rem;
-    background: rgb(134, 134, 134);
+    background: rgb(1, 125, 156);
     transition: background 0.2s ease-in-out;
 }
 .icon-x:hover {
-    background: rgb(99, 99, 99)
+    background: rgb(0, 84, 105)
 }
 .icon-x span {
     font-size: 0.8rem;
     color: rgb(255, 255, 255);
 }
 .price {
-    color: rgb(209, 84, 0);
+    color: rgb(221, 44, 0);
 }
 .basket-total {
+    flex: 0 0 35%;
+    width: 35%;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid rgb(226, 226, 226)
+}
+.basket-summary {
+    flex: 0 0 100%;
+    width: 100%;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+.summary-title {
+    letter-spacing: 0.05rem;
+    color: rgb(54, 54, 54);
+    font-weight: normal;
+}
+.basket-summary-text {
+    margin-top: 0.5rem;
     flex: 0 0 100%;
     display: flex;
-    align-items: flex-end;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 2rem;
+    align-items: flex-start;
 }
-.basket-summary-text p {
-    margin-bottom: 0.2rem;
+.total-items {
+    margin-top: 0.5rem;
+    flex: 0 0 100%;
+    width: 100%;
     color: rgb(92, 92, 92);
+    font-size: 1rem;
+}
+.amount-due {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 0.5rem;
+    color: rgb(92, 92, 92);
+    font-size: 1rem;
 }
 .basket-summary-text p span {
-    color: rgb(221, 88, 0);
+    color: rgb(221, 44, 0);
+    float: right;
+}
+.basket-buttons-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
+    width: 100%;
 }
 .checkout-button {
+    margin-top: 0.5rem;
+    flex: 0 0 100%;
+    width: 100%;
     text-align: center;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem;
     color: white;
     background: rgb(0, 128, 117);
     transition: background 0.2s ease-in-out;
@@ -1397,8 +1485,11 @@ my_basket.html
     background: rgb(0, 80, 69);
 }
 .continue-shopping-button {
-    text-align: center;
+    margin-top: 0.5rem;
+    flex: 0 0 100%;
+    width: 100%;
     padding: 0.5rem;
+    text-align: center;
     color: rgb(54, 54, 54);
     background: rgb(230, 230, 230);
     border: 1px solid rgb(221, 221, 221);
@@ -1406,98 +1497,59 @@ my_basket.html
 .continue-shopping-button i {
     margin-right: 0.5rem;
 }
-@media screen and (max-width: 850px) {
-    .my-basket {
+@media screen and (max-width: 840px) {
+    .basket-main-container {
         width: 80%;
-        justify-content: space-between;
     }
-    .table-row {
-        flex: 0 0 49%;
-        padding: 0.5rem;
-        border: 1px solid rgb(236, 236, 236);
-    }
-    .table-row .my-basket-img {
+    .my-basket {
         flex: 0 0 100%;
-        width: 100%;
+        width: 100%
     }
-    .table-row .flex-2x {
-        text-align: start;
+    .basket-total {
         flex: 0 0 100%;
         width: 100%;
         margin-left: 0;
-    }
-    .table-row .quantity {
-        justify-content: flex-end;
-        text-align: end;
-        order: 1;
-        flex: 0 0 50%;
-        width: 50%;
-    }
-    .quantity small {
-        font-size: 0.8rem;
-        margin: 0.5rem 0;
-        color: rgb(54, 54, 54);
-    }
-    .table-row .price{
-        text-align: start;
-        order: 0;
-        flex: 0 0 50%;
-        width: 50%;
-    }
-    .table-row .delete-basket-item{
-        text-align: center;
-        margin: 0.5rem 0;
-        order: 2;
-        flex: 0 0 100%;
-        width: 100%;
-    }
-    .delete-basket-item .icon-x {
-        display: block;
-        padding: 0.5rem 0;
-    }
-    .icon-x span {
-        font-size: 0.9rem;
-    }
-    .basket-total {
         margin-top: 1rem;
     }
-    .checkout-button {
-        order: 1;
-        flex: 0 0 100%;
-        margin-top: 0.5rem
-    }
-    .checkout-button a {
-        font-size: 0.9rem;
-    }
-    .basket-summary-text {
-        order: 0;
-        flex: 0 0 100%;
-        display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 0.5rem;
-        justify-content: space-between;
-    }
-    .continue-shopping-button {
-        order: 2;
-        margin-top: 0.5rem;
-        flex: 0 0 100%;
-    }
-    .continue-shopping-button i {
-        display: none;
-    }
 }
-@media screen and (max-width: 550px){
-    .my-basket {
+@media screen and (max-width: 564px) {
+    .basket-main-container {
         width: 90%;
     }
 }
-@media screen and (max-width: 490px){
-    .table-row {
-        flex: 0 0 100%;
+@media screen and (max-width: 500px) {
+    .basket-main-container {
         width: 100%;
     }
-    .icon-x span {
-        font-size: 1rem;
+    .my-basket-img {
+        width: 20%;
+        flex: 0 0 20%;
+    }
+    .basket-product-name {
+        font-size: 0.8rem;
+        margin-top: 0.2rem;
+    }
+    .price {
+        margin-top: 0.2rem;
+        font-size: 0.8rem;
+    }
+    .quantity {
+        margin-top: 0.2rem;
+    }
+    .quantity small {
+        font-size: 0.8rem;
+        margin: 0 0.2rem;
+        padding: 0.09rem 0.3rem;
+    }
+    .icon-plus, .icon-minus{
+        font-size: 0.6rem;
+        padding: 0.22rem 0.3rem;
+    }
+    .delete-basket-item {
+        margin-top: 0.2rem;
+    }
+    .icon-x {
+        padding: 0.3rem;
     }
 }
 /*

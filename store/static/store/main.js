@@ -189,10 +189,6 @@ searchButton.addEventListener("click", function(){
     searchContainer.classList.toggle("show-search-container")
 })
 
-searchContainer.addEventListener("mouseleave", function(){
-  searchContainer.classList.remove("show-search-container")
-})
-
 
 // show navitem container on max-width: 715px.
 const barsButton = document.querySelector(".bars-button")
@@ -255,21 +251,7 @@ accounts.addEventListener("mouseenter", function(){
 })
 
 
-// register.html 
-const register = document.querySelector(".register")
 
-// my_basket.html 
 
-const icons = document.querySelectorAll(".icon")
 
-icons.forEach(function(icon){
-  icon.addEventListener("mouseenter", function(event){
-    event.currentTarget.style.background = "rgb(0, 107, 84)"
-    event.currentTarget.style.color = "white"
-  })
-  icon.addEventListener("mouseleave", function(event){
-    event.currentTarget.style.background = "white"
-    event.currentTarget.style.color = "rgb(100, 100, 100)"
-  })
-})
 

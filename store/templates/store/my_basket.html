@@ -9,39 +9,62 @@
 {% block content %}
     <div class="basket-main-container">
         <div class="my-basket">
-            <div class="basket-summary">
-                <h4>Basket summary</h4>
-            </div>
+            <h3 class="my-basket-title">My Basket</h3>
             {% for basket in baskets %}
-            <ul class="table-row" title="click product image for detail">
-                <li class="my-basket-img" ><a href="{% url 'store:product_detail' basket.product.pk %}"><img src="{{ basket.product.image.url}}" alt=""></a></li>
-                <li class="flex-2x">{{ basket.product.product_name|truncatechars:15 }}
-                    <small style="display: block;">{{ basket.product.description|truncatechars:100 }}</small>
-                </li>
-                <li class="quantity">
-                    <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
-                        <i class="fas fa-plus"></i>
+            <div class="table-row" title="click product image for detail">
+                <div class="my-basket-img" >
+                    <a href="{% url 'store:product_detail' basket.product.pk %}">
+                        <img src="{{ basket.product.image.url}}" alt="">
                     </a>
-                    <small>{{ basket.quantity }}</small>
-                    <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
-                        <i class="fas fa-minus"></i>
-                    </a>
-                </li>
-                <li class="price">${{ basket.product.price}}</li>
-                <li class="delete-basket-item">
-                    <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
-                        <span>Delete</span>
-                    </a>
-                </li>
-            </ul>
-            {% endfor %}
-            <div class="basket-total">
-                <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}"><i class="fa fa-chevron-left"></i>Continue shopping</a>
-                <div class="basket-summary-text">
-                    <p>Total items: <span>{{ user.customer.total_items }}</span></p>
-                    <p>Amount due: <span>${{ total_amount_due }}</span></p>
                 </div>
-                <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">Checkout</a>
+                <div class="basket-text-wraper">
+                    <div class="basket-product-name">
+                        {{ basket.product.product_name|truncatechars:100 }}
+                    </div>
+                    <div class="price">
+                        ${{ basket.product.price}}
+                    </div>
+                    <div class="quantity">
+                        <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <small>{{ basket.quantity }}</small>
+                        <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
+                            <i class="fas fa-minus"></i>
+                        </a>
+                    </div>
+                    <div class="delete-basket-item">
+                        <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
+                            <span>Remove</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="basket-total">
+            <div class="basket-summary">
+                <h4 class="summary-title">
+                    Basket summary
+                </h4>
+            </div>
+            <div class="basket-summary-text">
+                <p class="total-items">
+                    Total items: 
+                    <span>{{ user.customer.total_items }}</span>
+                </p>
+                <p class="amount-due">
+                    Amount due: 
+                    <span>${{ total_amount_due }}</span>
+                </p>
+            </div>
+            <div class="basket-buttons-container">
+                <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
+                    Checkout
+                </a>
+                <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
+                    Continue shopping
+                </a>
             </div>
         </div>
     </div>
