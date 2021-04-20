@@ -19,52 +19,54 @@
                 </div>
                 <div class="basket-text-wraper">
                     <div class="basket-product-name">
-                        {{ basket.product.product_name|truncatechars:100 }}
+                        <p>{{ basket.product.product_name|truncatechars:20 }}</p>
                     </div>
                     <div class="price">
-                        ${{ basket.product.price}}
+                        <p>${{ basket.product.price }}</p>
                     </div>
                     <div class="quantity">
+                        <small class="basket-quantity">Qty:</small>
                         <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
                             <i class="fas fa-plus"></i>
                         </a>
-                        <small>{{ basket.quantity }}</small>
+                        <small class="qty">{{ basket.quantity }}</small>
                         <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
                             <i class="fas fa-minus"></i>
                         </a>
                     </div>
                     <div class="delete-basket-item">
                         <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
-                            <span>Remove</span>
+                            <i class="fa fa-trash-alt"></i>
+                            <small class="basket-item-delete">Delete</small>
                         </a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <div class="basket-total">
-            <div class="basket-summary">
-                <h4 class="summary-title">
+        <div class="basket-total-wraper">
+            <div class="basket-total">
+                <h3 class="summary-title">
                     Basket summary
-                </h4>
-            </div>
-            <div class="basket-summary-text">
-                <p class="total-items">
-                    Total items: 
-                    <span>{{ user.customer.total_items }}</span>
-                </p>
-                <p class="amount-due">
-                    Amount due: 
-                    <span>${{ total_amount_due }}</span>
-                </p>
-            </div>
-            <div class="basket-buttons-container">
-                <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
-                    Checkout
-                </a>
-                <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
-                    Continue shopping
-                </a>
+                </h3>
+                <div class="basket-summary-text">
+                    <p class="total-items">
+                        Total items:
+                        <span>{{ user.customer.total_items }}</span>
+                    </p>
+                    <p class="amount-due">
+                        Amount due:
+                        <span>${{ total_amount_due }}</span>
+                    </p>
+                </div>
+                <div class="basket-buttons-container">
+                    <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
+                        Checkout
+                    </a>
+                    <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
+                        Continue shopping
+                    </a>
+                </div>
             </div>
         </div>
     </div>

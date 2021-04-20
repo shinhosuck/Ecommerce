@@ -9,28 +9,41 @@
 {% block content %}
     <div class="my-order-main-container">
         <div class="my-orders">
+            <h3 class="my-order-title">My Orders</h3>
             {% for order in orders %}
-                <div class="my-order-content">
-                    <img class="my-order-img" src="{{ order.basket.product.image.url}}" alt="">
-                    
-                    <table class="my-order-table">
-                        <tr class="my-order-table-row">
-                            <th class="my-order-table-text">Product</th>
-                            <th class="my-order-table-text">Quantity</th>
-                            <th class="my-order-table-text">Price</th>
-                        </tr>
-                        <tr class="my-order-table-row2">
-                            <td class="my-order-table-text">{{ order.basket.product|truncatechars:15 }}</td>
-                            <td class="my-order-table-text my-order-quantity"> {{ order.basket.quantity }}</td>
-                            <td class="my-order-table-text">{{ order.basket.product.price}}</td>
-                        </tr>
-                    </table>
+            <div class="order-row">
+                <div class="order-img" >
+                    <img src="{{ order.basket.product.image.url}}" alt="">
                 </div>
+                <div class="order-text-wraper">
+                    <div class="order-product-name">
+                        {{ order.basket.product|truncatechars:20 }}
+                    </div>
+                    <div class="order-price">
+                        ${{ order.basket.product.price}}
+                    </div>
+                    <div class="order-quantity">
+                        Qty
+                        <small>{{ order.basket.quantity }}</small>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
             <div class="my-order-total">
-                <h4>Total Items: <span>{{ total_items }}</span></h4>
-                <h4>Total Amount Due: <span>${{ total_amount_due }}</span></h4>
-                <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
+                <div class="order-total-wraper">
+                    <p class="order-total-items">
+                        Total Item: 
+                        <span>{{ total_items }}</span>
+                    </p>
+                    <p class="order-amount-due">
+                        Total Amount Due: 
+                        <span>${{ total_amount_due }}</span>
+                    </p>
+                </div>
+                <div class="order-payment-button">
+                    <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
+                </div>
+                
             </div>
         </div>
     </div>

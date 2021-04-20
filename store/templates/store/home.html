@@ -47,23 +47,25 @@
         </div>
 
         {% if user.is_authenticated %}
-        <div class="products-container">
-            <h2 class="just_for_you">Just For You</h2>
-            <div class="product-container3">
-                {% for product in  just_for_you %}
-                    <div class="product">
-                        <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
-                            <img class="product-img" src="{{ product.image.url }}" alt="">
-                            <p class="product-name">{{ product.product_name|truncatechars:15 }}</p>
-                            <p class="product-price">${{ product.price }}<i class="fa fa-heart heart-icon"><span>{{ product.times_ordered }}</span></i></p>
-                        </a>
-                        <a class="product-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+            {% if just_for_you %}
+                <div class="products-container">
+                    <h2 class="just_for_you">Just For You</h2>
+                    <div class="product-container3">
+                        {% for product in  just_for_you %}
+                            <div class="product">
+                                <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
+                                    <img class="product-img" src="{{ product.image.url }}" alt="">
+                                    <p class="product-name">{{ product.product_name|truncatechars:15 }}</p>
+                                    <p class="product-price">${{ product.price }}<i class="fa fa-heart heart-icon"><span>{{ product.times_ordered }}</span></i></p>
+                                </a>
+                                <a class="product-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
-            <i class="fa fa-chevron-left prev-btn3"></i>
-            <i class="fa fa-chevron-right next-btn3"></i>
-        </div>
+                    <i class="fa fa-chevron-left prev-btn3"></i>
+                    <i class="fa fa-chevron-right next-btn3"></i>
+                </div>
+            {% endif %}
         {% endif %} 
         
     </div>
