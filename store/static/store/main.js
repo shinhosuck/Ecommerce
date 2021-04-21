@@ -250,8 +250,35 @@ accounts.addEventListener("mouseenter", function(){
   searchContainer.classList.remove("show-search-container")
 })
 
+// show/hide basket edit
+const editIcon = document.querySelectorAll(".edit-icon")
+const editCloseBtn = document.querySelectorAll(".edit-close-btn")
+const tableRows = document.querySelectorAll(".table-row")
 
+editIcon.forEach(function(icon){
+  icon.nextElementSibling.classList.remove("show-edit")
+  icon.addEventListener("click", function(){
+    icon.nextElementSibling.classList.toggle("show-edit")
+    tableRows.forEach(function(row){
+      row.addEventListener("mouseleave", function(event){
+        const children = event.currentTarget.children[1]
+        const grandKids = children.children[3]
+        const grandGrandKids = grandKids.children
+        const newGrandGrandKids = [...grandGrandKids]
+        newGrandGrandKids.forEach(function(kid){
+          if(kid.classList.contains("show-edit")){
+            kid.classList.remove("show-edit")
+          }
+        })
+      })
+    })
+  })
+})
 
-
+editCloseBtn.forEach(function(icon){
+  icon.addEventListener("click", function(){
+    icon.parentElement.classList.remove("show-edit")
+  })
+})
 
 

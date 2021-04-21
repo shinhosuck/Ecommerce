@@ -8,8 +8,11 @@
 
 {% block content %}
     <div class="basket-main-container">
+        
         <div class="my-basket">
-            <h3 class="my-basket-title">My Basket</h3>
+            <div class="my-basket-title">
+                <h3>{{ user.username }}'s Basket</h3>
+            </div>
             {% for basket in baskets %}
             <div class="table-row" title="click product image for detail">
                 <div class="my-basket-img" >
@@ -24,20 +27,55 @@
                     <div class="price">
                         <p>${{ basket.product.price }}</p>
                     </div>
+                    <div class="basket-product-description">
+                        <small>{{ basket.product.description|truncatechars:50}}</small>
+                    </div>
+                    <div class="basket-product-stock">
+                        {% if basket.product.on_stock %}
+                            <small class="in-stock">In stock</small>
+                        {% else %}
+                            <small class="in-stock">Out of stock</small>
+                        {% endif %}
+                        <!-- for mobile -->
+                        <div class="edit-icon">
+                            <i class="fa fa-edit"></i>
+                        </div>
+                        <!-- for mobile -->
+                        <div class="edit">
+                            <div class="edit-close-btn">
+                                <i class="fa fa-times"></i>
+                            </div>
+                            <small class="edit-quantity">Qty:</small>
+                            <div class="edit-quantity-buttons">
+                                <a class="edit-icon-plus" href="{% url 'store:add_item' basket.pk %}">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                                <small class="edit-qty">{{ basket.quantity }}</small>
+                                <a class="edit-icon-minus " href="{% url 'store:delete_item' basket.pk %}">
+                                    <i class="fas fa-minus"></i>
+                                </a>
+                            </div>
+                            <a class="edit-trash" href="{% url 'store:delete_basket' basket.pk %}">
+                                <i class="fa fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
                     <div class="quantity">
                         <small class="basket-quantity">Qty:</small>
-                        <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                        <small class="qty">{{ basket.quantity }}</small>
-                        <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
-                            <i class="fas fa-minus"></i>
-                        </a>
+                        <div class="basket-quantity-buttons">
+                            <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                            <small class="qty">{{ basket.quantity }}</small>
+                            <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
+                                <i class="fas fa-minus"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="delete-basket-item">
                         <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
                             <i class="fa fa-trash-alt"></i>
-                            <small class="basket-item-delete">Delete</small>
+                            <small class="basket-item-delete">Del</small>
                         </a>
                     </div>
                 </div>
@@ -47,15 +85,15 @@
         <div class="basket-total-wraper">
             <div class="basket-total">
                 <h3 class="summary-title">
-                    Basket summary
+                    Order Summary
                 </h3>
                 <div class="basket-summary-text">
                     <p class="total-items">
-                        Total items:
+                        Total Items:
                         <span>{{ user.customer.total_items }}</span>
                     </p>
                     <p class="amount-due">
-                        Amount due:
+                        Amount Due:
                         <span>${{ total_amount_due }}</span>
                     </p>
                 </div>
