@@ -44,7 +44,6 @@ def home(request):
 
             for category in categories:
                 category_items = Product.objects.filter(category=category)
-                print(category_items)
                 for item in category_items:
                     just_for_you.append(item)
 
@@ -114,7 +113,6 @@ def shop_by_brand(request):
         "brands": brands,
         "total_items": total_items
     }
-    print(total_items)
     return render(request, "store/shop_by_brand.html", context)
 
 
@@ -161,12 +159,36 @@ def my_basket(request, pk):
     user = request.user
     customer = get_object_or_404(Customer, name=user)
     baskets = customer.basket_set.filter(open_basket=True)
+    products = []
+    you_may_also_like = []
+    new_products = []
     total_amount_due = 0
     for basket in baskets:
         total_amount_due += basket.quantity * basket.product.price
+        products.append(basket.product.product_name)
+        item_category = basket.product.category
+        new_products += Product.objects.filter(category=item_category)
+    
+    for product in new_products:
+        name = product.product_name 
+        if name not in products:
+            you_may_also_like.append(product)
+
+    products.clear()
+    new_products.clear()
+
+    for product in you_may_also_like:
+        if product.product_name not in products:
+            products.append(product.product_name)
+    
+    for product in products:
+        product_instance = Product.objects.get(product_name=product)
+        new_products.append(product_instance)
+
     context = {
         "total_amount_due": total_amount_due,
-        "baskets": baskets
+        "baskets": baskets,
+        "new_products": new_products
     }
     return render(request, "store/my_basket.html", context)
 
