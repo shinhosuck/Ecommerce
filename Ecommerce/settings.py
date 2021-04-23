@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     "crispy_forms",
     "django_countries",
     'paypal.standard.ipn',
-    # "djangocms-slick-slider"
 ]
 
 MIDDLEWARE = [
@@ -70,8 +69,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "store.views.update_basket",
-                "store.views.side_categories",
+                "store.context_processors.update_basket",
+                "store.context_processors.side_categories",
+                # "store.views.update_basket",
+                # "store.views.side_categories",
             ],
         },
     },

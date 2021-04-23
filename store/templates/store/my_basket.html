@@ -1,4 +1,5 @@
-{% extends "store/base.html" %}
+{% extends "store/base.html" %} 
+{% load static %}
 
 <title>
     {% block title %}
@@ -11,8 +12,9 @@
         
         <div class="my-basket">
             <div class="my-basket-title">
-                <h3>{{ user.username }}'s Basket</h3>
+                <h3>{{ user.first_name }}'s Basket</h3>
             </div>
+            <!-- coming from update_basket function 'context_processors' -->
             {% for basket in baskets %}
             <div class="table-row" title="click product image for detail">
                 <div class="my-basket-img" >
@@ -94,37 +96,47 @@
 
         <div class="basket-total-wraper">
             <div class="basket-total">
-                <h3 class="summary-title">
-                    Order Summary
-                </h3>
-                <div class="basket-summary-text">
-                    <p class="total-items">
-                        Total Items:
-                        <span>{{ user.customer.total_items }}</span>
-                    </p>
-                    <p class="amount-due">
-                        Amount Due:
-                        <span>${{ total_amount_due }}</span>
-                    </p>
+                <div class="basket-summary-text-container">
+                    <h3 class="summary-title">
+                        Order Summary
+                    </h3>
+                    <div class="basket-summary-text">
+                        <p class="total-items">
+                            Total Items:
+                            <span>{{ user.customer.total_items }}</span>
+                        </p>
+                        <p class="amount-due">
+                            Amount Due:
+                            <span>${{ total_amount_due }}</span>
+                        </p>
+                    </div>
+                    <div class="basket-buttons-container">
+                        <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
+                            Checkout
+                        </a>
+                        <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
+                            Continue shopping
+                        </a>
+                    </div>
                 </div>
-                <div class="basket-buttons-container">
-                    <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
-                        Checkout
-                    </a>
-                    <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
-                        Continue shopping
+                <div class='pay-pal-img' title='click for more info about "no paypal account needed" '>
+                    <a href="https://www.paypal.com/us/webapps/mpp/account-optional">
+                        <img src="{% static 'store/images/paypal_button.png' %}" alt="">
                     </a>
                 </div>
             </div>
             <div class="you-may-also-like">
-                <h4 class="also-like-title">You may also like</h4>
+                <div class="also-like-title">
+                    <h3>You may also like</h3>
+                </div>
+                <!-- coming from my_basket function -->
                 {% for product in new_products %}
                 <div class="also-like-item-container">
                     <a class="also-like-item" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
                         <img src="{{ product.image.url }}" alt="">
                         <div class="also-like-text-container">
-                            <p class="also-like-product-name">{{ product.product_name|truncatechars:12 }}</p>
-                            <p class="also-like-product-price">{{ product.price }}</p>
+                            <p class="also-like-product-name">{{ product.product_name }}</p>
+                            <p class="also-like-product-price">${{ product.price }}</p>
                         </div>
                     </a>
                     <a class="also-like-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>

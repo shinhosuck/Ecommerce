@@ -64,22 +64,6 @@ def home(request):
     return render(request, "store/home.html", context)
 
 
-def side_categories(request):
-    # context_processor  for base.html side categories
-    products = Product.objects.all()
-    categories = {}
-    new_products = {}
-
-    for product in products:
-        categories.setdefault(product.category, product.id)
-        new_products.setdefault(product.sub_category, product)
-    context = {
-        "categories": categories,
-        "new_products": new_products
-    }
-    return  context
-
-
 def category(request, pk):
     product = get_object_or_404(Product, pk=pk)
     category = product.category
@@ -155,16 +139,15 @@ def add_to_basket(request, pk):
 
 
 @login_required
-def my_basket(request, pk):
+def my_basket(request):
     user = request.user
     customer = get_object_or_404(Customer, name=user)
     baskets = customer.basket_set.filter(open_basket=True)
     products = []
     you_may_also_like = []
     new_products = []
-    total_amount_due = 0
+
     for basket in baskets:
-        total_amount_due += basket.quantity * basket.product.price
         products.append(basket.product.product_name)
         item_category = basket.product.category
         new_products += Product.objects.filter(category=item_category)
@@ -186,9 +169,8 @@ def my_basket(request, pk):
         new_products.append(product_instance)
 
     context = {
-        "total_amount_due": total_amount_due,
-        "baskets": baskets,
-        "new_products": new_products
+        "new_products": new_products,
+        "baskets": baskets
     }
     return render(request, "store/my_basket.html", context)
 
@@ -308,23 +290,42 @@ def paypal_payment(request):
     else:
         return redirect("store:home")
 
+
+#<--------------------for setting -> templates -> 'context_processor'------------------->
+
 # context_processor for my_basket.html
 # redirect from add_item(), delete_item() does not update total_amount_due and baskets
-def update_basket(request):
-    user = request.user
-    if user.is_authenticated:
-        customer = get_object_or_404(Customer, name=user)
-        baskets = customer.basket_set.filter(open_basket=True)
-        total_amount_due = 0
-        totalItems = 0
-        for basket in baskets:
-            total_amount_due += basket.quantity * basket.product.price
-            totalItems += basket.quantity
-        user.customer.total_items = totalItems
-        context = {
-            "total_amount_due": total_amount_due,
-            "baskets": baskets
-        }
-        return context
-    else:
-        return {}
+
+# def update_basket(request):
+#     user = request.user
+#     if user.is_authenticated:
+#         customer = get_object_or_404(Customer, name=user)
+#         baskets = customer.basket_set.filter(open_basket=True)
+#         total_amount_due = 0
+#         totalItems = 0
+#         for basket in baskets:
+#             total_amount_due += basket.quantity * basket.product.price
+#             totalItems += basket.quantity
+#         user.customer.total_items = totalItems
+#         context = {
+#             "total_amount_due": total_amount_due,
+#         }
+#         return context
+#     else:
+#         return {}
+
+
+# def side_categories(request):
+#     # context_processor  for base.html side categories
+#     products = Product.objects.all()
+#     categories = {}
+#     new_products = {}
+
+#     for product in products:
+#         categories.setdefault(product.category, product.id)
+#         new_products.setdefault(product.sub_category, product)
+#     context = {
+#         "categories": categories,
+#         "new_products": new_products
+#     }
+#     return  context

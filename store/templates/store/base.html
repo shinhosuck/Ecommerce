@@ -25,7 +25,7 @@
                 <li class="item"><a href="{% url 'store:shop_by_brand' %}">Brand Names</a></li>
                 {% if user.is_authenticated %}
                 <li class="item">
-                    <a href="{% url 'store:my_basket' user.pk %}">Basket
+                    <a href="{% url 'store:my_basket' %}">Basket
                         <i class="fa fa-shopping-basket basket">
                             <small>{{ user.customer.total_items }}</small>
                         </i>
@@ -86,7 +86,10 @@
 
     </header>
     <main>
+        
+        <!-- for mobile devices -->
         <div class="bg-image"></div>
+        <!-- end of mobile devices -->
         
         <div class="slide-container">
             <div class="slide-image-container">
