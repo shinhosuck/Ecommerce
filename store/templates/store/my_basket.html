@@ -15,136 +15,143 @@
                 <h3>{{ user.first_name }}'s Basket</h3>
             </div>
             <!-- coming from update_basket function 'context_processors' -->
-            {% for basket in baskets %}
-            <div class="table-row" title="click product image for detail">
-                <div class="my-basket-img" >
-                    <a href="{% url 'store:product_detail' basket.product.pk %}">
-                        <img src="{{ basket.product.image.url}}" alt="">
-                    </a>
+            {% if not baskets %}
+                <div class="basket-is-empty">
+                    <p>You do not have any items in the basket.</p>
+                    <p>Your order history is located under Accounts.</p>
                 </div>
-                <div class="basket-text-wraper">
-                    <div class="basket-product-name">
-                        <p>{{ basket.product.product_name|truncatechars:20 }}</p>
-                    </div>
-                    <div class="price">
-                        <p>${{ basket.product.price }}</p>
-                    </div>
-                    <div class="basket-product-description">
-                        <small>{{ basket.product.description|truncatechars:50}}</small>
-                    </div>
-                    <div class="basket-product-stock">
-                        {% if basket.product.on_stock %}
-                            <p class="in-stock">In stock</p>
-                        {% else %}
-                            <p class="in-stock">Out of stock</p>
-                        {% endif %}
-                        <!-- mobile edit icon-->
-                        <div class="edit-icon">
-                            <p><small>Edit</small><i class="fa fa-edit"></i></p>
+            {% else %}
+                {% for basket in baskets %}
+                    <div class="table-row" title="click product image for detail">
+                        <div class="my-basket-img" >
+                            <a href="{% url 'store:product_detail' basket.product.pk %}">
+                                <img src="{{ basket.product.image.url}}" alt="">
+                            </a>
                         </div>
-                        <!-- end of  mobile edit icon-->
-
-                        <!-- mobile quantity add remove icons -->
-                        <div class="edit">
-                            <div class="edit-quantity-buttons">
-                                <div class="del-product-name">
-                                    <p>Edit Qty/Del item</p>
+                        <div class="basket-text-wraper">
+                            <div class="basket-product-name">
+                                <p>{{ basket.product.product_name|truncatechars:20 }}</p>
+                            </div>
+                            <div class="price">
+                                <p>${{ basket.product.price }}</p>
+                            </div>
+                            <div class="basket-product-description">
+                                <small>{{ basket.product.description|truncatechars:50}}</small>
+                            </div>
+                            <div class="basket-product-stock">
+                                {% if basket.product.on_stock %}
+                                    <p class="in-stock">In stock</p>
+                                {% else %}
+                                    <p class="in-stock">Out of stock</p>
+                                {% endif %}
+                                <!-- mobile edit icon-->
+                                <div class="edit-icon">
+                                    <p><small>Edit</small><i class="fa fa-edit"></i></p>
                                 </div>
-                                <div class="edit-basket-quantity">
-                                    <p class="edit-quantity">Qty:</p>
-                                    <p class="edit-qty">{{ basket.quantity }}</p>
-                                    <a class="edit-icon-plus" href="{% url 'store:add_item' basket.pk %}">
+                                <!-- end of  mobile edit icon-->
+
+                                <!-- mobile quantity add remove icons -->
+                                <div class="edit">
+                                    <div class="edit-quantity-buttons">
+                                        <div class="del-product-name">
+                                            <p>Edit Qty/Del item</p>
+                                        </div>
+                                        <div class="edit-basket-quantity">
+                                            <p class="edit-quantity">Qty:</p>
+                                            <p class="edit-qty">{{ basket.quantity }}</p>
+                                            <a class="edit-icon-plus" href="{% url 'store:add_item' basket.pk %}">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
+                                            <a class="edit-icon-minus " href="{% url 'store:delete_item' basket.pk %}">
+                                                <i class="fas fa-minus"></i>
+                                            </a>
+                                        </div>
+                                        <a class="edit-trash" href="{% url 'store:delete_basket' basket.pk %}">
+                                            Del
+                                            <i class="fa fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- end of mobile quantity add remove icons -->
+
+                            </div>
+                            <div class="quantity">
+                                <div class="basket-quantity">
+                                    <div class="num-of-item-txt"><p>Qty:</p></div>
+                                    <div class="num-of-item"><p>{{ basket.quantity }}</p></div>
+                                </div>
+                                <div class="basket-quantity-buttons">
+                                    <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
                                         <i class="fas fa-plus"></i>
                                     </a>
-                                    <a class="edit-icon-minus " href="{% url 'store:delete_item' basket.pk %}">
+                                    <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
                                         <i class="fas fa-minus"></i>
                                     </a>
                                 </div>
-                                <a class="edit-trash" href="{% url 'store:delete_basket' basket.pk %}">
-                                    Del
+                            </div>
+                            <div class="delete-basket-item">
+                                <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
                                     <i class="fa fa-trash-alt"></i>
+                                    <small class="basket-item-delete">Del</small>
                                 </a>
                             </div>
                         </div>
-                         <!-- end of mobile quantity add remove icons -->
-
                     </div>
-                    <div class="quantity">
-                        <div class="basket-quantity">
-                            <div class="num-of-item-txt"><p>Qty:</p></div>
-                            <div class="num-of-item"><p>{{ basket.quantity }}</p></div>
-                        </div>
-                        <div class="basket-quantity-buttons">
-                            <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                            <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
-                                <i class="fas fa-minus"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="delete-basket-item">
-                        <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
-                            <i class="fa fa-trash-alt"></i>
-                            <small class="basket-item-delete">Del</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="basket-total-wraper">
-            <div class="basket-total">
-                <div class="basket-summary-text-container">
-                    <h3 class="summary-title">
-                        Order Summary
-                    </h3>
-                    <div class="basket-summary-text">
-                        <p class="total-items">
-                            Total Items:
-                            <span>{{ user.customer.total_items }}</span>
-                        </p>
-                        <p class="amount-due">
-                            Amount Due:
-                            <span>${{ total_amount_due }}</span>
-                        </p>
-                    </div>
-                    <div class="basket-buttons-container">
-                        <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
-                            Checkout
-                        </a>
-                        <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
-                            Continue shopping
-                        </a>
-                    </div>
-                </div>
-                <div class='pay-pal-img' title='click for more info about "no paypal account needed" '>
-                    <a href="https://www.paypal.com/us/webapps/mpp/account-optional">
-                        <img src="{% static 'store/images/paypal_button.png' %}" alt="">
-                    </a>
-                </div>
-            </div>
-            <div class="you-may-also-like">
-                <div class="also-like-title">
-                    <h3>You may also like</h3>
-                </div>
-                <!-- coming from my_basket function -->
-                {% for product in new_products %}
-                <div class="also-like-item-container">
-                    <a class="also-like-item" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
-                        <img src="{{ product.image.url }}" alt="">
-                        <div class="also-like-text-container">
-                            <p class="also-like-product-name">{{ product.product_name }}</p>
-                            <p class="also-like-product-price">${{ product.price }}</p>
-                        </div>
-                    </a>
-                    <a class="also-like-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
-                </div>
                 {% endfor %}
-            </div>
+            {% endif %}
         </div>
-
+        {% if baskets %}
+            <div class="basket-total-wraper">
+                <div class="basket-total">
+                    <div class="basket-summary-text-container">
+                        <h3 class="summary-title">
+                            Order Summary
+                        </h3>
+                        <div class="basket-summary-text">
+                            <p class="total-items">
+                                Total Items:
+                                <span>{{ user.customer.total_items }}</span>
+                            </p>
+                            <p class="amount-due">
+                                Amount Due:
+                                <span>${{ total_amount_due }}</span>
+                            </p>
+                        </div>
+                        <div class="basket-buttons-container">
+                            <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
+                                Checkout
+                            </a>
+                            <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
+                                Continue shopping
+                            </a>
+                        </div>
+                    </div>
+                    <div class='pay-pal-img' title='click for more info about "no paypal account needed" '>
+                        <a href="https://www.paypal.com/us/webapps/mpp/account-optional">
+                            <img src="{% static 'store/images/paypal_button.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="you-may-also-like">
+                    <div class="also-like-title">
+                        <h3>You may also like</h3>
+                    </div>
+                    <!-- coming from my_basket function -->
+                    {% for product in new_products %}
+                        <div class="also-like-item-container">
+                            <a class="also-like-item" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
+                                <img src="{{ product.image.url }}" alt="">
+                                <div class="also-like-text-container">
+                                    <p class="also-like-product-name">{{ product.product_name }}</p>
+                                    <p class="also-like-product-price">${{ product.price }}</p>
+                                </div>
+                            </a>
+                            <a class="also-like-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
 
 {% endblock content %}

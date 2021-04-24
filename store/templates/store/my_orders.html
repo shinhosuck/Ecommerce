@@ -9,25 +9,44 @@
 {% block content %}
     <div class="my-order-main-container">
         <div class="my-orders">
-            <h3 class="my-order-title">My Orders</h3>
+            <h3 class="my-order-title">My Order History</h3>
             {% for order in orders %}
-            <div class="order-row">
-                <div class="order-img" >
-                    <img src="{{ order.basket.product.image.url}}" alt="">
+                <div class="order-row">
+                    <div class="order-img" >
+                        <img src="{{ order.basket.product.image.url}}" alt="">
+                    </div>
+                    <div class="order-text-wraper">
+                        <div class="order-product-name">
+                            {{ order.basket.product|truncatechars:20 }}
+                        </div>
+                        <div class="order-price">
+                            ${{ order.basket.product.price}} / transaction not complete
+                        </div>
+                        <div class="order-quantity">
+                            Qty
+                            <small>{{ order.basket.quantity }}</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="order-text-wraper">
-                    <div class="order-product-name">
-                        {{ order.basket.product|truncatechars:20 }}
+            {% endfor %}
+            {% for order in closed_orders %}
+                <div class="order-row">
+                    <div class="order-img" >
+                        <img src="{{ order.basket.product.image.url}}" alt="">
                     </div>
-                    <div class="order-price">
-                        ${{ order.basket.product.price}}
-                    </div>
-                    <div class="order-quantity">
-                        Qty
-                        <small>{{ order.basket.quantity }}</small>
+                    <div class="order-text-wraper">
+                        <div class="order-product-name">
+                            {{ order.basket.product|truncatechars:20 }}
+                        </div>
+                        <div class="order-price">
+                            ${{ order.basket.product.price }} / transaction completed on {{ order.date_ordered|date:"N, d, Y" }}
+                        </div>
+                        <div class="order-quantity">
+                            Qty
+                            <small>{{ order.basket.quantity }}</small>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
             <div class="my-order-total">
                 <div class="order-total-wraper">
@@ -43,7 +62,6 @@
                 <div class="order-payment-button">
                     <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
                 </div>
-                
             </div>
         </div>
     </div>

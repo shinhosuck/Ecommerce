@@ -24,17 +24,17 @@ def update_basket(request):
         return {}
 
 
+# for base.html side categories
 def side_categories(request):
-    # for base.html side categories
     products = Product.objects.all()
     categories = {}
-    new_products = {}
+    sub_cat = {}
 
     for product in products:
         categories.setdefault(product.category, product.id)
-        new_products.setdefault(product.sub_category, product)
+        sub_cat.setdefault(product.sub_category, product)
     context = {
         "categories": categories,
-        "new_products": new_products
+        "sub_cat": sub_cat
     }
     return  context

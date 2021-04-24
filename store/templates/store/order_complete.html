@@ -1,0 +1,66 @@
+{% extends "store/base.html" %}
+
+
+<title>
+    {% block title %}
+        {{ user.username }}'s order complete
+    {% endblock title %}
+</title>
+
+{% block content %}
+<style>
+    .order-complete-row {
+        width: 50%;
+        margin: 1rem auto;
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        background: rgb(255, 255, 255);
+    }
+    .order-complete-col {
+        width: 100%;
+        margin: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .order-complete-text {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .order-complete-text p {
+        color: rgb(31, 31, 31);
+        margin-bottom: 0.2rem;
+    }
+    .order-complete-buttons {
+        padding: 1.5rem 0 0.5rem 0;
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .order-complete-buttons a{
+        padding: 0.5rem;
+        border: none;
+        outline: none;
+        color: white;
+    }
+    .order-complete-continue {
+        background: rgb(0, 124, 128);
+    }
+    .order-complete-logout {
+        background: rgb(99, 99, 99);
+    }
+</style>
+<div class="order-complete-row">
+    <div class="order-complete-col">
+        <div class="order-complete-text">
+            <p>Transaction has been completed successfully</p>
+            <p class="second-p">Thank you for shopping at AiAi.com</p>
+        </div>
+        <div class="order-complete-buttons">
+            <a class="order-complete-continue" href="{% url 'store:home' %}">Continue shopping</a>
+            <a class="order-complete-logout"href="{% url 'users:logout' %}">Log me out</a>
+        </div>
+    </div>
+</div>
+    
+    
+{% endblock content %}

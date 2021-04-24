@@ -71,7 +71,7 @@
                     <li class="category-item">
                         <a class="category-link" href="{% url 'store:category' value %}">{{ key }}</a>
                         <ul class="sub-category-items">
-                            {% for k, v in new_products.items %}
+                            {% for k, v in sub_cat.items %}
                             <li class="sub-category-item">
                             {% if v.category == key %}
                                 <a class="sub-category-link" href="{% url 'store:sub_category' v.pk%}">{{ k }}</a>
@@ -124,6 +124,9 @@
            
     </main>
 
+    <footer>
+
+    </footer>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
     <script type="text/javascript" src="{% static 'store/jquery-3.6.0.min.js' %}"></script>

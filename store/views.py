@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from store.forms import OrderAddressForm
 
 
-
-
 def home(request):
     user = request.user
     products = Product.objects.all()
@@ -185,7 +183,7 @@ def add_item(request, pk):
     basket.quantity += 1
     basket.save()
     product.save()
-    return redirect("store:my_basket", pk=user.pk)
+    return redirect("store:my_basket")
 
 
 @login_required
@@ -201,7 +199,7 @@ def delete_item(request, pk):
     else:
         basket.quantity -= 1
         basket.save()
-    return redirect("store:my_basket", pk=user.pk)
+    return redirect("store:my_basket")
 
 
 @login_required
@@ -210,7 +208,7 @@ def delete_basket(request, pk):
     customer = get_object_or_404(Customer, name=user)
     basket = customer.basket_set.get(pk=pk)
     basket.delete()
-    return redirect("store:my_basket", pk=user.pk)
+    return redirect("store:my_basket")
 
 @login_required
 def shipping_address(request):
@@ -239,7 +237,7 @@ def shipping_address(request):
                 "total_items": total_items,
                 "total_amount_due": total_amount_due
             }
-            return render(request, "store/my_orders.html", context)
+            return render(request, "store/paypal_payment.html", context)
     else:
         address = Address.objects.filter(customer__name=user).first()
         form = OrderAddressForm(instance=address)
@@ -255,6 +253,7 @@ def shipping_address(request):
 def my_orders(request):
     user = request.user
     customer = get_object_or_404(Customer, name=user)
+    closed_orders = customer.order_set.filter(open_order=False)
     orders = customer.order_set.filter(open_order=True)
     total_amount_due = 0
     total_items = 0
@@ -263,6 +262,7 @@ def my_orders(request):
         total_amount_due += order.basket.quantity * order.basket.product.price
     context = {
         "orders": orders,
+        "closed_orders": closed_orders,
         "total_items": total_items,
         "total_amount_due": total_amount_due
     }
@@ -291,41 +291,12 @@ def paypal_payment(request):
         return redirect("store:home")
 
 
-#<--------------------for setting -> templates -> 'context_processor'------------------->
-
-# context_processor for my_basket.html
-# redirect from add_item(), delete_item() does not update total_amount_due and baskets
-
-# def update_basket(request):
-#     user = request.user
-#     if user.is_authenticated:
-#         customer = get_object_or_404(Customer, name=user)
-#         baskets = customer.basket_set.filter(open_basket=True)
-#         total_amount_due = 0
-#         totalItems = 0
-#         for basket in baskets:
-#             total_amount_due += basket.quantity * basket.product.price
-#             totalItems += basket.quantity
-#         user.customer.total_items = totalItems
-#         context = {
-#             "total_amount_due": total_amount_due,
-#         }
-#         return context
-#     else:
-#         return {}
-
-
-# def side_categories(request):
-#     # context_processor  for base.html side categories
-#     products = Product.objects.all()
-#     categories = {}
-#     new_products = {}
-
-#     for product in products:
-#         categories.setdefault(product.category, product.id)
-#         new_products.setdefault(product.sub_category, product)
-#     context = {
-#         "categories": categories,
-#         "new_products": new_products
-#     }
-#     return  context
+@login_required
+def order_complete(request):
+    user = request.user
+    customer = get_object_or_404(Customer, name=user)
+    orders = customer.order_set.filter(open_order=True)
+    for order in orders:
+        order.open_order = False
+        order.save()
+    return render(request, "store/order_complete.html", {})
