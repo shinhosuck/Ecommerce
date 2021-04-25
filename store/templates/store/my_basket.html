@@ -22,7 +22,7 @@
                 </div>
             {% else %}
                 {% for basket in baskets %}
-                    <div class="table-row" title="click product image for detail">
+                    <div class="table-row" title="click image for detail">
                         <div class="my-basket-img" >
                             <a href="{% url 'store:product_detail' basket.product.pk %}">
                                 <img src="{{ basket.product.image.url}}" alt="">

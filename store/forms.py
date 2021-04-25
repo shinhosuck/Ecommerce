@@ -1,4 +1,4 @@
-from store.models import Address
+from store.models import Address, ProductReview
 from django import forms 
 
 
@@ -16,4 +16,14 @@ class OrderAddressForm(forms.ModelForm):
             "state",
             "postal_code",
             "country" 
+        ]
+
+class ProductReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = ProductReview
+        fields = [
+            "review_title",
+            "content",
+            "number_of_stars"
         ]

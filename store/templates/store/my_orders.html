@@ -1,4 +1,5 @@
 {% extends "store/base.html" %}
+{% load static %}
 
 <title>
     {% block title %}
@@ -10,58 +11,123 @@
     <div class="my-order-main-container">
         <div class="my-orders">
             <h3 class="my-order-title">My Order History</h3>
-            {% for order in orders %}
-                <div class="order-row">
-                    <div class="order-img" >
-                        <img src="{{ order.basket.product.image.url}}" alt="">
+            {% if orders %}
+                <p class="open-orders-title">Ongoing</p>
+                {% for order in orders %}
+                    <div class="order-row" title="Click image for detail">
+                        <a href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
+                            <img src="{{ order.basket.product.image.url}}" alt="">
+                        </a>
+                        <div class="order-text-wraper">
+                            <div class="order-product-name">
+                                <p>{{ order.basket.product|truncatechars:20 }}</p>
+                            </div>
+                            <div class="order-price">
+                                <p>${{ order.basket.product.price}}</p>
+                            </div>
+                            <div class="my-order-detail">
+                                <p>
+                                    <small>Status: open</small>
+                                    <small> Ordered date: {{ order.date_ordered|date:"N, d, Y" }}</small>
+                                </p>
+                            </div>
+                            <!-- for small screen -->
+                            <div class="my-order-detail-text">
+                                <p>See order detail</p>
+                                <div class="order-price-mobile">
+                                    <p class="small-text">
+                                        <small class="small1">Status: open</small>
+                                        <small class="small2">Ordered date:<span>{{ order.date_ordered|date:"N, d, Y" }}</span></small>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- end of small screen -->
+                            <div class="order-quantity">
+                                <p>Qty:<small>{{ order.basket.quantity }}</small></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="order-text-wraper">
-                        <div class="order-product-name">
-                            {{ order.basket.product|truncatechars:20 }}
-                        </div>
-                        <div class="order-price">
-                            ${{ order.basket.product.price}} / transaction not complete
-                        </div>
-                        <div class="order-quantity">
-                            Qty
-                            <small>{{ order.basket.quantity }}</small>
+                {% endfor %}
+            {% endif %}
+
+            {% if closed_orders %}
+                <p class="closed-orders-title">Closed</p>
+                {% for order in closed_orders %}
+                    <div class="order-row" title="Click image for detail">
+                        <a href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
+                            <img src="{{ order.basket.product.image.url}}" alt="">
+                        </a>
+                        <div class="order-text-wraper">
+                            <div class="order-product-name">
+                                <p>{{ order.basket.product|truncatechars:20 }}</p>
+                            </div>
+                            <div class="order-price">
+                                <p>${{ order.basket.product.price }}</p>
+                            </div>
+                            <div class="my-order-detail">
+                                <p>
+                                    <small>Staus: closed</small>
+                                    <small>Payment received date: {{ order.date_ordered|date:"N, d, Y" }}</small>
+                                </p>
+                            </div>
+                            <!-- for small screen -->
+                            <div class="my-order-detail-text">
+                                <p>See order detail</p>
+                                <div class="order-price-mobile">
+                                    <p class="small-text">
+                                        <small class="small1">Staus: closed</small>
+                                        <small class="small2">Payment received date:<span>{{ order.date_ordered|date:"N, d, Y" }}</span></small>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- end of small screen -->
+                            <div class="order-quantity">
+                                <p>Qty:<small>{{ order.basket.quantity }}</small></p>
+                            </div>
+                            <a style="flex: 0 0 100%; width: 100%; margin-top: 0.5rem;" href="{% url 'store:product_review'  order.basket.product.pk %}">Review this product</a>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-            {% for order in closed_orders %}
-                <div class="order-row">
-                    <div class="order-img" >
-                        <img src="{{ order.basket.product.image.url}}" alt="">
-                    </div>
-                    <div class="order-text-wraper">
-                        <div class="order-product-name">
-                            {{ order.basket.product|truncatechars:20 }}
-                        </div>
-                        <div class="order-price">
-                            ${{ order.basket.product.price }} / transaction completed on {{ order.date_ordered|date:"N, d, Y" }}
-                        </div>
-                        <div class="order-quantity">
-                            Qty
-                            <small>{{ order.basket.quantity }}</small>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
+            </div>
             <div class="my-order-total">
+            {% if orders %}
                 <div class="order-total-wraper">
-                    <p class="order-total-items">
-                        Total Item: 
-                        <span>{{ total_items }}</span>
-                    </p>
-                    <p class="order-amount-due">
-                        Total Amount Due: 
-                        <span>${{ total_amount_due }}</span>
-                    </p>
+                    <div class="order-total-text-container">
+                        <h3 class="order-total">Total</h3>
+                        <p class="order-total-items">
+                            Total Item:<span>{{ total_items }}</span>
+                        </p>
+                        <p class="order-amount-due">
+                            Amount Due:<span>${{ total_amount_due }}</span>
+                        </p>
+                        <div class="order-payment-button">
+                            <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
+                        </div>
+                    </div>
+                    <div class='order-pay-pal-img' title='click for more info about "no paypal account needed" '>
+                        <a href="https://www.paypal.com/us/webapps/mpp/account-optional">
+                            <img src="{% static 'store/images/paypal_button.png' %}" alt="">
+                        </a>
+                    </div>
                 </div>
-                <div class="order-payment-button">
-                    <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
+            {% endif %}
+            <div class="most-ordered-row">
+                <div class="most-ordered-title">
+                    <h3>Most Ordered</h3>
                 </div>
+                {% for product in popular %}
+                    <div class="most-ordered-container">
+                        <a class="most-ordered" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
+                            <img src="{{ product.image.url }}" alt="">
+                            <div class="most-ordered-text-container">
+                                <p class="most-ordered-product-name">{{ product.product_name }}</p>
+                                <p class="most-ordered-product-price">${{ product.price }}</p>
+                            </div>
+                        </a>
+                        <a class="most-ordered-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

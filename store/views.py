@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from store.models import Product, Basket, Customer, Address, Order
+from store.models import Product, Basket, Customer, Address, Order, ProductReview
 from django.contrib.auth.models import User
-from store.forms import OrderAddressForm
+from store.forms import OrderAddressForm, ProductReviewForm
 
 
 def home(request):
@@ -207,6 +207,10 @@ def delete_basket(request, pk):
     user = request.user
     customer = get_object_or_404(Customer, name=user)
     basket = customer.basket_set.get(pk=pk)
+    product_in_basket = basket.product.product_name
+    product = Product.objects.filter(product_name=product_in_basket).first()
+    product.times_ordered -= basket.quantity
+    product.save()
     basket.delete()
     return redirect("store:my_basket")
 
@@ -252,15 +256,24 @@ def shipping_address(request):
 @login_required
 def my_orders(request):
     user = request.user
+    products = Product.objects.all()
     customer = get_object_or_404(Customer, name=user)
     closed_orders = customer.order_set.filter(open_order=False)
     orders = customer.order_set.filter(open_order=True)
     total_amount_due = 0
     total_items = 0
+    popular = []
+
+    for product in products:
+        if product.times_ordered >= 10:
+           popular.append(product)
+
     for order in orders:
         total_items += order.basket.quantity
         total_amount_due += order.basket.quantity * order.basket.product.price
+    
     context = {
+        "popular": popular,
         "orders": orders,
         "closed_orders": closed_orders,
         "total_items": total_items,
@@ -300,3 +313,19 @@ def order_complete(request):
         order.open_order = False
         order.save()
     return render(request, "store/order_complete.html", {})
+
+
+@login_required
+def product_review(request, pk):
+    user = request.user
+    if request.method == "POST":
+        form = ProductReviewForm(request.POST)
+        if form.is_valid():
+            review_form = form.save()
+            customer = Customer.objects.filter(name=user).first()
+            product = Product.objects.filter(pk=pk).first()
+            return redirect("store:home")
+    else:
+        # review = ProductReview.objects.filter(author__name=user)
+        form = ProductReviewForm()
+    return render(request, "store/product_review.html", {"form": form})

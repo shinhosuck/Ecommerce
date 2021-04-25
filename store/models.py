@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.db import models
@@ -61,6 +62,17 @@ class Product(models.Model):
         return self.product_name
 
 
+class ProductReview(models.Model):
+    product = models.ManyToManyField(Product, related_name="product_review")
+    author = models.OneToOneField(Customer, on_delete=models.SET_NULL, null=True)
+    review_title = models.CharField(max_length=100)
+    content = models.TextField()
+    date = models.DateTimeField(default=timezone.now)
+    number_of_stars = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)])
+    
+    def __str__(self):
+        return f"{self.author}: {self.review_title}"
+
 
 class Basket(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
@@ -82,3 +94,5 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Customer: {self.customer}, Open: {self.open_order}, Delivered: {self.delivered}"
+
+

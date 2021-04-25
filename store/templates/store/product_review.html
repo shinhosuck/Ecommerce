@@ -1,0 +1,26 @@
+{% extends "store/base.html" %}
+{% load crispy_forms_tags %}
+
+<title>
+    {% block title %}
+        Product Review
+    {% endblock title %}
+</title>
+
+{% block content %}
+    <div style="width: 60%; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center;
+        border: 1px solid red;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center;border: 1px solid purple;
+            margin: 3rem 0; flex: 0 0 100%; width: 100%;">
+            <h2 style="flex: 0 0 100%; width: 100%;">Product Reivew</h2>
+            <div style="flex: 0 0 100%; width: 100%;">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button>Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

@@ -250,7 +250,7 @@ accounts.addEventListener("mouseenter", function(){
   searchContainer.classList.remove("show-search-container")
 })
 
-// show/hide basket edit
+// my_basket.html show/hide basket edit
 const editIcon = document.querySelectorAll(".edit-icon")
 const editCloseBtn = document.querySelectorAll(".edit-close-btn")
 const tableRows = document.querySelectorAll(".table-row")
@@ -281,4 +281,17 @@ editCloseBtn.forEach(function(icon){
   })
 })
 
+// my_orders.html show-order-detail-text
+const myOrderDetailText = document.querySelectorAll(".my-order-detail-text")
+const orderPriceMobile = document.querySelectorAll(".order-price-mobile")
 
+myOrderDetailText.forEach(function(orderDetail){
+  orderDetail.addEventListener("click", function(){
+    const secondChildren = orderDetail.children[1]
+    secondChildren.classList.toggle("show-order-price-mobile")
+
+    orderDetail.addEventListener("mouseleave", function(){
+      secondChildren.classList.remove("show-order-price-mobile")
+    })
+  })
+})
