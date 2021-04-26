@@ -7,6 +7,12 @@ from store.forms import OrderAddressForm, ProductReviewForm
 
 def home(request):
     user = request.user
+
+    # customer = Customer.objects.get(name=user)
+    # reviews = customer.productreview_set.all()
+    # for review in reviews:
+    #     print(review.product)
+
     products = Product.objects.all()
 
     latest = []
@@ -133,7 +139,7 @@ def add_to_basket(request, pk):
         product.times_ordered +=1
         product.save()
         customer.save()
-    return redirect("store:home")
+    return redirect("store:my_basket")
 
 
 @login_required
@@ -149,9 +155,9 @@ def my_basket(request):
         products.append(basket.product.product_name)
         item_category = basket.product.category
         new_products += Product.objects.filter(category=item_category)
-    
+
     for product in new_products:
-        name = product.product_name 
+        name = product.product_name
         if name not in products:
             you_may_also_like.append(product)
 
@@ -161,7 +167,7 @@ def my_basket(request):
     for product in you_may_also_like:
         if product.product_name not in products:
             products.append(product.product_name)
-    
+
     for product in products:
         product_instance = Product.objects.get(product_name=product)
         new_products.append(product_instance)
@@ -271,7 +277,7 @@ def my_orders(request):
     for order in orders:
         total_items += order.basket.quantity
         total_amount_due += order.basket.quantity * order.basket.product.price
-    
+
     context = {
         "popular": popular,
         "orders": orders,
@@ -318,14 +324,21 @@ def order_complete(request):
 @login_required
 def product_review(request, pk):
     user = request.user
+    customer = Customer.objects.filter(name=user).first()
+    product = Product.objects.filter(pk=pk).first()
     if request.method == "POST":
         form = ProductReviewForm(request.POST)
         if form.is_valid():
             review_form = form.save()
-            customer = Customer.objects.filter(name=user).first()
-            product = Product.objects.filter(pk=pk).first()
-            return redirect("store:home")
+            review = ProductReview.objects.get(pk=review_form.pk)
+            review.author= customer
+            review.product.add(product)
+            review.save()
+        return redirect("store:my_orders")
     else:
-        # review = ProductReview.objects.filter(author__name=user)
         form = ProductReviewForm()
-    return render(request, "store/product_review.html", {"form": form})
+        context = {
+            "form": form,
+            "product": product
+        }
+    return render(request, "store/product_review.html", context)

@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    background: rgb(238, 238, 238);
+    background: rgb(231, 231, 231);
     font-family: sans-serif;
 }
 ul {
@@ -1922,7 +1922,7 @@ my_basket.html
     .basket-product-stock, .quantity {
         margin-top: 0.1rem;
     }
-    .basket-product-name, .price, 
+    .basket-product-name, .price,
     .basket-product-description,
     .basket-product-stock{
         font-size: 0.9rem;
@@ -2662,7 +2662,7 @@ my_orders.html
     flex: 0 0 100%;
     width: 100%;
 }
-.order-total, .order-total-items, 
+.order-total, .order-total-items,
 .order-amount-due {
     flex: 0 0 100%;
     width: 100%;
@@ -3272,6 +3272,7 @@ brand_name.html
         width: 24.1%;
         flex: 0 0 24.1%;
     }
+}
 @media screen and (max-width: 950px) {
     .brand-name-items-row {
         /* width: 80%; */
@@ -3398,3 +3399,142 @@ brand_name.html
 ======================
 end of brand_name.html
 ====================== */
+
+/* 
+===================
+product_review.html
+=================== */
+.product-review-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 50%;
+    margin: 3rem auto;
+}
+
+.product-review-img {
+    flex: 0 0 35%;
+    width: 35%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    background: rgba(0, 51, 44, 0.9);
+    padding: 1rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.product-review-img img {
+    width: 100%;
+    height: auto;
+}
+.product-review-text {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.product-review-text .product-review-name {
+    flex: 0 0 50%;
+    width: 50%;
+    margin: 0;
+    margin-top: 0.5rem;
+    color: white;
+}
+.product-review-text .product-review-price {
+    text-align: end;
+    flex: 0 0 50%;
+    width: 50%;
+    margin: 0;
+    color: white;
+    margin-top: 0.5rem;
+}
+.product-review-text .product-review-description {
+    flex: 0 0 100%;
+    width: 100%;
+    margin: 0;
+    color: rgb(214, 214, 214);
+    margin-top: 0.5rem;
+}
+.product-review-container {
+    flex: 0 0 60%;
+    width: 60%;
+    padding: 1rem;
+    background: rgb(255, 255, 255);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.product-review-title {
+    font-size: 1.17rem;
+    letter-spacing: 0.05rem;
+    flex: 0 0 100%;
+    width: 100%;
+    font-weight: normal;
+    color: rgb(51, 51, 51);
+}
+.product-review-form {
+    flex: 0 0 100%;
+    width: 100%;
+}
+.star-rating {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.product-rating p {
+    display: inline;
+    font-size: 0.95rem;
+}
+.product-stars {
+    margin-left: 0.3rem;
+}
+.product-stars i {
+    color: rgb(170, 170, 170);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.product-review-buttons {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+.product-review-button {
+    margin-top: 0.5rem;
+    padding: 0.35rem 0.8rem ;
+    color: white;
+    text-align: center;
+    font-size: 0.95rem;
+    background: rgb(0, 150, 142);
+    border: none;
+    outline: none;
+    box-shadow: none;
+    transition: background 0.2s linear;
+}
+.product-review-button:hover{
+    background: rgb(0, 90, 86);
+}
+.product-review-cancel {
+    margin-top: 0.5rem;
+    margin-left: 0.3rem;
+    padding: 0.35rem 0.8rem ;
+    color: white;
+    text-align: center;
+    font-size: 0.95rem;
+    background: rgb(129, 129, 129);
+    border: none;
+    outline: none;
+    transition: background 0.2s linear;
+}
+.product-review-cancel:hover {
+    color: white;
+    background: rgb(78, 78, 78);
+}
+/* 
+==========================
+end of product_review.html
+========================== */

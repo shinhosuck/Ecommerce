@@ -1,26 +1,99 @@
-{% extends "store/base.html" %}
+
+{% load static %}
 {% load crispy_forms_tags %}
 
-<title>
-    {% block title %}
-        Product Review
-    {% endblock title %}
-</title>
-
-{% block content %}
-    <div style="width: 60%; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center;
-        border: 1px solid red;">
-        <div style="display: flex; flex-wrap: wrap; justify-content: center;border: 1px solid purple;
-            margin: 3rem 0; flex: 0 0 100%; width: 100%;">
-            <h2 style="flex: 0 0 100%; width: 100%;">Product Reivew</h2>
-            <div style="flex: 0 0 100%; width: 100%;">
-                <form action="" method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="{% static 'store/css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'store/style.css' %}">
+    <title>Product Review</title>
+    <style>
+        input, textarea {
+            box-shadow: none !important;
+            outline: none !important;
+            border: 1px solid rgb(221, 221, 221) !important;
+            border-color: rgb(221, 221, 221) !important;
+            font-size: 0.9rem !important;
+        }
+        .asteriskField {
+            display: none;
+        }
+        div label {
+            margin-bottom: 0.3rem;
+            margin-top: 0.3rem;
+            font-size: 0.95rem;
+            color: rgb(71, 71, 71)
+        }
+    </style>
+</head>
+<body>
+    <div class="product-review-row">
+        <div class="product-review-img">
+            <img src="{{ product.image.url}}" alt="">
+            <div class="product-review-text">
+                <p class="product-review-name">{{ product.product_name|truncatechars:22}}</p>
+                <p class="product-review-price">${{ product.price}}</p>
+                <p class="product-review-description"><small>{{ product.description|truncatechars:150}}</small></p>
+            </div>
+        </div>
+        <div class="product-review-container">
+            <h3 class="product-review-title">{{ product.product_name|truncatechars:20 }} Reivew</h3>
+            <div class="product-review-form">
+                <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button>Submit</button>
+                    <div class="star-rating">
+                        <div class="product-rating">
+                            <p>Rating:</p>
+                        </div>
+                        <div class="product-stars">
+                            <i class="fa fa-star star"></i>
+                            <i class="fa fa-star star"></i>
+                            <i class="fa fa-star star"></i>
+                            <i class="fa fa-star star"></i>
+                            <i class="fa fa-star star"></i>
+                        </div>
+                        <div class="product-review-buttons">
+                            <button class="product-review-button">Submit</button>
+                            <a class="product-review-cancel" href="{% url 'store:my_orders' %}">Cancel</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    
-{% endblock content %}
+    <script type="text/javascript">
+        const productStars = document.querySelector(".product-stars")
+        const children = productStars.children
+        const newChildren = [...children]
+
+        newChildren.forEach(function(item){
+            item.addEventListener("click", function(){
+                newChildren.forEach(function(star){
+                    star.style.color = "rgb(170, 170, 170)"
+                })
+                const listIndex = newChildren.indexOf(item)  + 1
+                // listIndex to html
+                item.style.color = "red"
+                
+            })
+        })
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

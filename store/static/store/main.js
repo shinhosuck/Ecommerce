@@ -295,3 +295,4 @@ myOrderDetailText.forEach(function(orderDetail){
     })
   })
 })
+

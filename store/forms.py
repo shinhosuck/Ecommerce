@@ -19,11 +19,9 @@ class OrderAddressForm(forms.ModelForm):
         ]
 
 class ProductReviewForm(forms.ModelForm):
-
     class Meta:
         model = ProductReview
         fields = [
             "review_title",
             "content",
-            "number_of_stars"
         ]

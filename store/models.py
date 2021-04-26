@@ -64,11 +64,10 @@ class Product(models.Model):
 
 class ProductReview(models.Model):
     product = models.ManyToManyField(Product, related_name="product_review")
-    author = models.OneToOneField(Customer, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     review_title = models.CharField(max_length=100)
     content = models.TextField()
     date = models.DateTimeField(default=timezone.now)
-    number_of_stars = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(5)])
     
     def __str__(self):
         return f"{self.author}: {self.review_title}"
