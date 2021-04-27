@@ -7,14 +7,7 @@ from store.forms import OrderAddressForm, ProductReviewForm
 
 def home(request):
     user = request.user
-
-    # customer = Customer.objects.get(name=user)
-    # reviews = customer.productreview_set.all()
-    # for review in reviews:
-    #     print(review.product)
-
     products = Product.objects.all()
-
     latest = []
     most_popular = []
     just_for_you = []
@@ -223,8 +216,11 @@ def delete_basket(request, pk):
 @login_required
 def shipping_address(request):
     user = request.user
+    customer = Customer.objects.get(name=user)
+    addresses = Address.objects.filter(customer=customer)
     if request.method == "POST":
         form = OrderAddressForm(request.POST)
+        addresses.delete()
         if form.is_valid():
             address = form.save()
             customer = Customer.objects.get(name=user)
@@ -249,14 +245,23 @@ def shipping_address(request):
             }
             return render(request, "store/paypal_payment.html", context)
     else:
-        address = Address.objects.filter(customer__name=user).first()
-        form = OrderAddressForm(instance=address)
-        customer = get_object_or_404(Customer, name=user)
-        baskets = customer.basket_set.filter(open_basket=True)
-        if not baskets:
-            return redirect("store:home")
+        # customer = Customer.objects.get(name=user)
+        # addresses = Address.objects.filter(customer=customer)
+        customer_address = []
+        if addresses.count() > 0:
+            for address in addresses:
+                customer_address.append(address)
+            form = OrderAddressForm(instance=customer_address[-1])
+            # addresses.delete()
+            customer = get_object_or_404(Customer, name=user)
+            baskets = customer.basket_set.filter(open_basket=True)
+            if not baskets:
+                return redirect("store:home")
+            else:
+                return render(request, "store/shipping_address.html", {"form": form})
         else:
-            return render(request, "store/shipping_address.html", {"form": form})
+            form = OrderAddressForm()
+        return render(request, "store/shipping_address.html", {"form": form})
 
 
 @login_required
@@ -326,19 +331,39 @@ def product_review(request, pk):
     user = request.user
     customer = Customer.objects.filter(name=user).first()
     product = Product.objects.filter(pk=pk).first()
+    reviews =  ProductReview.objects.filter(author=customer)
+    reviewed_products = reviews.filter(product=product)
     if request.method == "POST":
         form = ProductReviewForm(request.POST)
+        reviewed_products.delete()
         if form.is_valid():
             review_form = form.save()
             review = ProductReview.objects.get(pk=review_form.pk)
             review.author= customer
-            review.product.add(product)
+            review.product = product
+            product_rating = request.POST["rate"]
+            if product_rating == int(0):
+                pass
+            else:
+                review.rating = int(product_rating)
+                product.rating = product_rating
             review.save()
         return redirect("store:my_orders")
     else:
-        form = ProductReviewForm()
-        context = {
-            "form": form,
-            "product": product
-        }
-    return render(request, "store/product_review.html", context)
+        review_instance = []
+        if reviewed_products.count() > 0:
+            for reviewed_product in reviewed_products:
+                review_instance.append(reviewed_product)
+            form = ProductReviewForm(instance=review_instance[-1])
+            context = {
+                "form": form,
+                "product": product
+            }
+            return render(request, "store/product_review.html", context)
+        else:
+            form = ProductReviewForm()
+            context = {
+                "form": form,
+                "product": product
+            }
+        return render(request, "store/product_review.html", context)

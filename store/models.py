@@ -41,6 +41,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     on_stock = models.BooleanField(default=True)
     times_ordered = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -63,11 +64,13 @@ class Product(models.Model):
 
 
 class ProductReview(models.Model):
-    product = models.ManyToManyField(Product, related_name="product_review")
+    # product = models.ManyToManyField(Product, related_name="product_review")
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     review_title = models.CharField(max_length=100)
     content = models.TextField()
     date = models.DateTimeField(default=timezone.now)
+    rating = models.IntegerField(default=0)
     
     def __str__(self):
         return f"{self.author}: {self.review_title}"

@@ -38,3 +38,4 @@ def side_categories(request):
         "sub_cat": sub_cat
     }
     return  context
+

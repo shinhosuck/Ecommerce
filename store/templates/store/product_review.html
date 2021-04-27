@@ -59,7 +59,7 @@
                             <i class="fa fa-star star"></i>
                         </div>
                         <div class="product-review-buttons">
-                            <button class="product-review-button">Submit</button>
+                            <button class="product-review-button" type="submit" name="rate" value="0">Submit</button>
                             <a class="product-review-cancel" href="{% url 'store:my_orders' %}">Cancel</a>
                         </div>
                     </div>
@@ -69,6 +69,7 @@
     </div>
     <script type="text/javascript">
         const productStars = document.querySelector(".product-stars")
+        const button = document.querySelector("button")
         const children = productStars.children
         const newChildren = [...children]
 
@@ -78,7 +79,7 @@
                     star.style.color = "rgb(170, 170, 170)"
                 })
                 const listIndex = newChildren.indexOf(item)  + 1
-                // listIndex to html
+                button.value = listIndex
                 item.style.color = "red"
                 
             })
