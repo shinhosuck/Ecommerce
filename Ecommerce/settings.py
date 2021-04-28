@@ -26,7 +26,7 @@ SECRET_KEY = 'ce88@)k%s=s1-h=)^wn_)6a7m16t(f6gz8w2vm)vps==w_l$&@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.43.107"]
+ALLOWED_HOSTS = ["192.168.43.107", "127.0.0.1", "192.168.43.163"]
 
 
 # Application definition
@@ -71,8 +71,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 "store.context_processors.update_basket",
                 "store.context_processors.side_categories",
-                # "store.views.update_basket",
-                # "store.views.side_categories",
             ],
         },
     },
@@ -80,6 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Ecommerce.wsgi.application'
 
+# DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
