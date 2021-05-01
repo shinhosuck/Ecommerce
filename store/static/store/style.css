@@ -1990,24 +1990,34 @@ shipping_address.html
     justify-content: center;
     align-items: center;
 }
-.address-title {
-    margin-bottom: 1rem;
-}
 .address-container {
-    flex: 0 0 30%;
-    padding: 0.7rem 1rem;
-    border-radius: 20px;
-    border: 1px solid rgb(185, 185, 185);
+    flex: 0 0 50%;
+    width: 50%;
+    padding: 1rem;
+    border-radius: 5px;
+    background: white;
+}
+.address-title {
+    flex: 0 0 100%;
+    width: 100%;
+}
+.buttons {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 .address-button {
-    padding: 0.3rem 0.5rem;
+    flex: 0 0 49%;
+    padding: 0.4rem 0.5rem;
     outline: none;
     box-shadow: none;
     border: 1px solid rgb(0, 128, 0);
     background: rgb(0, 128, 0);
     color: rgb(255, 255, 255);
-    margin-top: 0.7rem;
-    border-radius: 5px;
     font-size: 0.9rem;
     transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
 }
@@ -2016,15 +2026,15 @@ shipping_address.html
     border: 1px solid rgb(0, 82, 0);
 }
 .address-cancel {
-    padding: 0.3rem 0.5rem;
+    flex: 0 0 49%;
+    text-align: center;
+    padding: 0.4rem 0.5rem;
     text-decoration: none;
     outline: none;
     box-shadow: none;
     border: 1px solid rgb(129, 129, 129);
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
-    margin-top: 0.7rem;
-    border-radius: 5px;
     font-size: 0.9rem;
     display: inline-block;
     transition: background 0.2s ease-in-out, border 0.2s ease-in-out;

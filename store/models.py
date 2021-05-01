@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django.db import models
@@ -64,13 +63,12 @@ class Product(models.Model):
 
 
 class ProductReview(models.Model):
-    # product = models.ManyToManyField(Product, related_name="product_review")
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     author = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     review_title = models.CharField(max_length=100)
     content = models.TextField()
     date = models.DateTimeField(default=timezone.now)
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0, blank=True, null=True)
     
     def __str__(self):
         return f"{self.author}: {self.review_title}"
