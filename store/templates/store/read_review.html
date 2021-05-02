@@ -1,0 +1,83 @@
+{% extends "store/base.html" %}
+
+<title>
+    {% block title %} 
+    {{ product.product_name }} Review 
+    {% endblock title %} 
+</title>
+
+
+{% block content %}
+
+    <style>
+        .read-review-row{
+            width: 60%;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        .read-review-col {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        .review-img {
+            flex: 0 0 30%;
+            width: 30%;
+        }
+        .review-img img {
+            width: 100%;
+            height: auto;
+        }
+        .review-text {
+            flex: 0 0 68%;
+            width: 68%;
+            margin-left: 0.5rem;
+        }
+
+    </style>
+    <div class="read-review-row">
+        {% for review in reviews %}
+            <div class="read-review-col">
+                <div class="review-img">
+                    <img src="{{ review.product.image.url }}" alt="">
+                </div>
+                <div class="review-text">
+                    <p>{{ review.product.product_name }}</p>
+                    <p><small>{{ review.content }}</small></p>
+                    {% if product.rating == 1 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                        </div>
+                    {% elif product.rating == 2 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    {% elif product.rating == 3 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    {% elif product.rating == 4 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    {% elif product.rating == 5 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -164,23 +164,25 @@ base.html
     font-size: 1rem;
 }
 .search {
-    background: rgb(255, 255, 255);
-    padding: 1rem;
+    background: rgb(235, 255, 252);
+    /* padding: 1rem;
+    padding-right: 0; */
     margin-top: 1rem;
     display: flex;
     border-radius: 5px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     width: 50%;
     flex: 0 0 50%;
 }
 .search-icon {
-    color: rgb(0, 134, 116);
+    color: rgb(255, 255, 255);
 }
 .search-input {
     font-size: 1rem;
-    margin: 0 0.5rem;
-    width: 100%;
+    margin: 0 1rem;
+    width: 90%;
+    flex: 0 0 90%;
     border: none;
     outline: none;
     background: transparent;
@@ -190,14 +192,15 @@ base.html
     color: rgb(102, 102, 102);
 }
 .search-submit-btn {
+    width: 10%;
+    flex: 0 0 10%;
     border: none;
     outline: none;
     box-shadow: none;
-    padding: 0.5rem;
     background: rgb(0, 134, 116);
-    color: white;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
+    height: 55px;
 }
 /* end of search */
 
@@ -445,10 +448,13 @@ base.html
         width: 80%;
         flex: 0 0 80%;
         margin: 0;
-        padding: 0.7rem;
+        /* padding: 0.7rem; */
     }
     .show-search-container {
         height: 64px;
+    }
+    .search-submit-btn {
+        height: 40px;
     }
     .categories {
         z-index: 2;
@@ -1041,9 +1047,10 @@ home.html
 .product-content {
     white-space: normal;
     outline: none;
-}
-.product-content p {
-    margin:  0.5rem 0.5rem 0 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
 }
 .product-img {
     width:100%;
@@ -1051,14 +1058,43 @@ home.html
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+.product-text-container {
+   flex: 0 0 90%;
+   width: 90%;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: flex-start;
+}
 .product-name {
-    color: rgb(20, 20, 20);
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 0.5rem;
+    color: rgb(51, 51, 51);
+    border: 1px solid green;
 }
 .product-price {
-    color: rgb(221, 88, 0);
-    font-size: 1.2rem;
+    flex: 0 0 100%;
+    width: 100%;
+    color: rgb(22, 22, 22);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid green;
 }
-.heart-icon {
+.rating-i-icon {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 0.5rem;
+    border: 1px solid green;
+}
+.rating-i-icon i {
+    font-size: 0.8rem;
+    color: rgb(221, 52, 0);
+}
+.rating-i-icon p small {
+    color: gray;
+    
+}
+/* .heart-icon {
     float: right;
     font-size: 1rem;
     margin-top: 0.15rem;
@@ -1069,7 +1105,7 @@ home.html
     font-size: 0.9rem;
     margin-left: 0.2rem;
     font-family: sans-serif;
-}
+} */
 .product-add-to-basket {
     display: block;
     margin: 1rem 0.5rem;
@@ -3005,48 +3041,104 @@ paypal_payment.html
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+    align-items: stretch;
+    width: 80%;
+    margin: 3rem auto;
+    /* min-height: 100vh; */
 }
 .paypal-button-container {
-    flex: 0 0 30%;
-    border: 1px solid rgb(189, 189, 189);
+    flex: 0 0 39%;
+    width: 39%;
+    background: rgb(255, 255, 255);
     order: 2;
-    margin: 1rem;
+    margin-left: 0.5rem;
     padding: 1rem;
+    border-radius: 5px;
+}
+.payment-options {
+    margin-bottom: 2rem; 
+    font-weight: normal;
+    letter-spacing: 0.05rem;
 }
 .paypal-table-contents {
-    flex: 0 0 40%;
-    margin: 1rem;
+    flex: 0 0 59%;
+    width: 59%;
     padding: 1rem;
-    border: 1px solid rgb(189, 189, 189);
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+}
+.payment-detail {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-bottom: 2rem; 
+    font-weight: normal;
+    color: rgb(20, 20, 20);
+    letter-spacing: 0.05rem;
 }
 .paypal-table {
+    flex: 0 0 100%;
     width: 100%;
 }
-.paypal-table tr th {
-    text-align: start;
+.table-header {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.table-header li {
+    flex: 0 0 25%;
+    width: 25%;
+    color: rgb(104, 104, 104)
+}
+.table-header :nth-child(1) {
+    flex: 0 0 50% !important;
+    width: 50% !important;
+}
+.table-data {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+.table-data li {
+    flex: 0 0 25%;
+    width: 25%;
+    color: rgb(31, 31, 31)
+}
+.table-data :nth-child(1) {
+    flex: 0 0 50% !important;
+    width: 50% !important;
 }
 .paypal-contents {
     flex: 0 0 100%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     padding-top: 1rem;
-    border-top: 1px solid rgb(189, 189, 189);
+    border-top: 1px solid rgb(223, 223, 223);
+}
+.paypal-contents h4 {
+    color: rgb(20, 20, 20);
+    /* font-weight: normal; */
+}
+.paypal-contents h4 span {
+    color: orangered
 }
 .pay-later-button {
     padding: 0.5rem 2rem;
-    background: rgb(0, 128, 0);
-    border-radius: 5px;
-    border: 1px solid rgb(0, 128, 0);
+    background: rgb(0, 124, 128);
     color: white;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .pay-later-button:hover {
-    background: rgb(0, 82, 0);
-    border: 1px solid rgb(0, 82, 0);
+    background: rgb(0, 81, 83);
 }
 /*
 ==========================

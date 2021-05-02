@@ -1,4 +1,4 @@
-from store.models import Product, Customer
+from store.models import Product, Customer, ProductReview
 from django.shortcuts import get_object_or_404
 
 
@@ -39,3 +39,9 @@ def side_categories(request):
     }
     return  context
 
+
+# def product_rating(request):
+#     product_reviews = ProductReview.objects.all()
+#     for review in product_reviews:
+#         review.product
+#         review.rating

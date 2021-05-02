@@ -11,6 +11,11 @@
     <div class="my-order-main-container">
         <div class="my-orders">
             <h3 class="my-order-title">{{ user.first_name }}'s Order History</h3>
+            {% if not orders and not closed_orders %}
+                <p style=" margin-top: 0.5rem; color: rgb(41, 41, 41)">
+                    You do not have any orders.
+                </p>
+            {% endif %}
             {% if orders %}
                 <p class="open-orders-title">Ongoing</p>
                 {% for order in orders %}

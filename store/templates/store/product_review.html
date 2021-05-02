@@ -73,15 +73,35 @@
         const children = productStars.children
         const newChildren = [...children]
 
+        const rating = parseInt("{{ product.rating }}")
+        
+        newChildren.forEach(function(i){
+            const position = newChildren.indexOf(i)
+            if(position + 1 == rating){
+                i.style.color = "red"
+            } 
+        })
+
+        
         newChildren.forEach(function(item){
             item.addEventListener("click", function(){
                 newChildren.forEach(function(star){
                     star.style.color = "rgb(170, 170, 170)"
                 })
-                const listIndex = newChildren.indexOf(item)  + 1
-                button.value = listIndex
+                // const listIndex = newChildren.indexOf(item)  + 1
+                // console.log(listIndex)
+                // button.value = listIndex
                 item.style.color = "red"
-                
+            })
+        })
+
+        button.addEventListener("mouseenter", function(){
+            newChildren.forEach(function(i){
+                if(i.style.color == "red"){
+                    const listIndex = newChildren.indexOf(i)  + 1
+                    button.value = listIndex
+                    console.log(button.value)
+                }
             })
         })
     </script>

@@ -346,8 +346,17 @@ def product_review(request, pk):
                 pass
             else:
                 review.rating = int(product_rating)
-                product.rating = product_rating
-            review.save()
+                review.save()
+                total_reviewed_products = ProductReview.objects.filter(product=product)
+                num_of_items = 0
+                stars = 0
+                for total_product in total_reviewed_products:
+                    stars += total_product.rating
+                    num_of_items += 1
+                rating_percent = stars / (num_of_items * 5)
+                average = rating_percent * 5
+                product.rating = round(average)
+                product.save()
         return redirect("store:my_orders")
     else:
         review_instance = []
@@ -367,3 +376,14 @@ def product_review(request, pk):
                 "product": product
             }
         return render(request, "store/product_review.html", context)
+
+
+def read_review(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    reviews = product.productreview_set.all()
+    
+    context = {
+        "product": product,
+        "reviews": reviews
+    }
+    return render(request, "store/read_review.html", context)

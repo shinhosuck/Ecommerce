@@ -68,7 +68,7 @@ class ProductReview(models.Model):
     review_title = models.CharField(max_length=100)
     content = models.TextField()
     date = models.DateTimeField(default=timezone.now)
-    rating = models.IntegerField(default=0, blank=True, null=True)
+    rating = models.IntegerField(default=0)
     
     def __str__(self):
         return f"{self.author}: {self.review_title}"

@@ -12,29 +12,30 @@
 {% block content %}
 <div class="paypal-payment-container">
     <div class="paypal-button-container">
-        <h3 style="margin-bottom: 2rem; text-align: center;">Payment Options</h3>
+        <h3 class="payment-options">Payment Options</h3>
         <div id="paypal-button-container"></div>
+        <!-- div id  container from paypal -->
     </div>
     
     <div class="paypal-table-contents">
-        <h3 style="margin-bottom: 2rem; text-align: center;">Order Summary</h3>
-        <table class="paypal-table">
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>
-            {% for order in orders %}
-            <tr class="table-data">
-                <td>{{ order.basket.product.product_name }}</td>
-                <td>{{ order.basket.quantity }}</td>
-                <td>${{ order.basket.product.price }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <h3 class="payment-detail">Payment Detail</h3>
+        <div class="paypal-table">
+          <ul class="table-header">
+              <li>Product</li>
+              <li>Quantity</li>
+              <li>Price</li>
+          </ul>
+          {% for order in orders %}
+          <ul class="table-data">
+              <li>{{ order.basket.product.product_name|truncatechars:40 }}</li>
+              <li>{{ order.basket.quantity }}</li>
+              <li>${{ order.basket.product.price }}</li>
+          </ul>
+          {% endfor %}
+        </div>
         <div class="paypal-contents">
-            <h3>Total Items: {{ total_items }}</h3>
-            <h3>Sub Total: ${{ total_amount_due }}</h3>
+            <h4>Total Items: <span>{{ total_items }}</span></h4>
+            <h4>Sub Total: <span>${{ total_amount_due }}</span></h4>
             <a class="pay-later-button" href="{% url 'store:home' %}" type="button">Pay Later</a>
         </div>
     </div>
