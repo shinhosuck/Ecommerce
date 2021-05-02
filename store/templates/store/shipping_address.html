@@ -57,6 +57,15 @@
         select {
             font-size: 0.9rem !important;
         }
+        @media screen and (max-width: 450px) {
+            #div_id_first_name, #div_id_last_name,
+            #div_id_email, #div_id_address, 
+            #div_id_city, #div_id_state,
+            #div_id_postal_code, #div_id_country {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>

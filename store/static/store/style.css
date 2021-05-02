@@ -148,12 +148,13 @@ base.html
     width: 100%;
     overflow: hidden;
     z-index: 1;
-    transition: height 0.3s linear;
+    transition: height 0.1s linear;
 }
 .show-search-container {
     height: 80px;
-    transition: height 0.3s linear;
+    transition: height 0.1s linear;
 }
+
 /* line 45 */
 #search-button {
     cursor: pointer;
@@ -163,16 +164,18 @@ base.html
     font-size: 1rem;
 }
 .search {
-    background: rgb(199, 220, 223);
+    background: rgb(255, 255, 255);
     padding: 1rem;
     margin-top: 1rem;
     display: flex;
-    border-radius: 0.4rem;
+    border-radius: 5px;
     justify-content: space-between;
     align-items: center;
-    width: 70%;
-    flex: 0 0 70%;
-    color: rgb(0, 89, 100);
+    width: 50%;
+    flex: 0 0 50%;
+}
+.search-icon {
+    color: rgb(0, 134, 116);
 }
 .search-input {
     font-size: 1rem;
@@ -184,7 +187,17 @@ base.html
     color: rgb(34, 34, 34);
 }
 ::placeholder {
-    color: rgb(34, 34, 34);
+    color: rgb(102, 102, 102);
+}
+.search-submit-btn {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0.5rem;
+    background: rgb(0, 134, 116);
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 /* end of search */
 
@@ -530,7 +543,7 @@ register.html
     border-top-right-radius: 5px;
 }
 .register-container h4 {
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
     color: rgb(26, 26, 26)
 }
 .register-button {
@@ -1985,21 +1998,20 @@ shipping_address.html
 =====================*/
 
 .address-row {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 667px;
+    margin: 3rem auto;
 }
 .address-container {
-    flex: 0 0 50%;
-    width: 50%;
-    padding: 1rem;
+    flex: 0 0 100%;
+    width: 100%;
     border-radius: 5px;
+    padding: 1rem;
     background: white;
 }
 .address-title {
     flex: 0 0 100%;
     width: 100%;
+    letter-spacing: 0.05rem;
 }
 .buttons {
     flex: 0 0 100%;
@@ -2012,37 +2024,56 @@ shipping_address.html
 }
 .address-button {
     flex: 0 0 49%;
-    padding: 0.4rem 0.5rem;
+    padding: 0.5rem 0;
     outline: none;
+    border: none;
     box-shadow: none;
-    border: 1px solid rgb(0, 128, 0);
-    background: rgb(0, 128, 0);
+    background: rgb(0, 134, 116);
     color: rgb(255, 255, 255);
-    font-size: 0.9rem;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    font-size: 1rem;
+    transition: background 0.2s ease-in-out;
 }
 .address-button:hover {
-    background: rgb(0, 82, 0);
-    border: 1px solid rgb(0, 82, 0);
+    background: rgb(0, 88, 77);
 }
 .address-cancel {
     flex: 0 0 49%;
     text-align: center;
-    padding: 0.4rem 0.5rem;
+    padding: 0.5rem 0;
     text-decoration: none;
     outline: none;
     box-shadow: none;
-    border: 1px solid rgb(129, 129, 129);
     background: rgb(129, 129, 129);
     color: rgb(255, 255, 255);
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: inline-block;
-    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out;
 }
 .address-cancel:hover {
     color: rgb(255, 255, 255);
     background: rgb(92, 92, 92);
-    border: 1px solid rgb(92, 92, 92);
+}
+@media screen and (max-width: 680px) {
+    .address-row {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 450px) {
+    .address-row {
+        width: 100%;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-start;
+        background: white;
+    }
+    .address-container {
+        margin-top: 1rem;
+    }
+    .buttons {
+        margin-top: 1rem;
+    }
 }
 /*
 =============================
