@@ -17,7 +17,95 @@
                 <a class="category-product-content" href="{% url 'store:product_detail' product.pk %}">
                     <img class="category-product-img" src="{{ product.image.url }}" alt="">
                     <p class="category-product-name">{{ product.product_name|truncatechars:18 }}</p>
-                    <p class="category-product-price">${{ product.price }}<i class="fa fa-heart category-heart-icon"><span>{{ product.times_ordered }}</span></i></p>
+                    <p class="category-product-price">${{ product.price }}</p>
+                    {% if product.rating == 1 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                {% if product.productreview_set.count == 1 %}
+                                    1 review
+                                {% elif product.productreview_set.count > 1 %}
+                                    {{ product.productreview_set.count }} reviews
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% elif product.rating == 2 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                {% if product.productreview_set.count == 1 %}
+                                    1 review
+                                {% elif product.productreview_set.count > 1 %}
+                                    {{ product.productreview_set.count }} reviews
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% elif product.rating == 3 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                {% if product.productreview_set.count == 1 %}
+                                    1 review
+                                {% elif product.productreview_set.count > 1 %}
+                                    {{ product.productreview_set.count }} reviews
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% elif product.rating == 4 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                {% if product.productreview_set.count == 1 %}
+                                    1 review
+                                {% elif product.productreview_set.count > 1 %}
+                                    {{ product.productreview_set.count }} reviews
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% elif product.rating == 5 %}
+                        <div class="rating-i-icon">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                {% if product.productreview_set.count == 1 %}
+                                    1 review
+                                {% elif product.productreview_set.count > 1 %}
+                                    {{ product.productreview_set.count }} reviews
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% elif product.rating == 0 %}
+                        <div class="zero-rating-icon">
+                            <p>
+                                <small>No rating</small>
+                            </p>
+                            <p class="number-reviews">
+                                {% if product.productreview_set.count == 0 %}
+                                    0 review
+                                {% elif product.productreview_set.count == 1 %}
+                                    <a href="{% url 'store:read_review' product.pk %}">1 review</a>
+                                {% elif product.productreview_set.count > 1 %}
+                                    <a href="{% url 'store:read_review' product.pk %}">
+                                        {{ product.productreview_set.count }} reviews
+                                    </a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    {% endif %}
                 </a>
                 <a class="category-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
             </div>

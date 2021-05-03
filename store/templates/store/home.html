@@ -11,29 +11,54 @@
     <div class="products">
 
         <div class="products-container">
-            <h2 class="most-popular">Most Popular</h2>
+            <h3 class="most-popular">Most Popular <small>{{ most_popular_len }} items found.</small></h3>
             <div class="product-container1">
-                {% for product in most_popluar %}
+                {% for product in most_popular %}
                     <div class="product">
                         <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                             <img class="product-img" src="{{ product.image.url }}" alt="">
                             <div class="product-text-container">
                                 <p class="product-name">{{ product.product_name|truncatechars:20 }}</p>
                                 <p class="product-price">${{ product.price }}</p>
+                                
                                 {% if product.rating == 1 %}
                                     <div class="rating-i-icon">
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 2 %}
                                     <div class="rating-i-icon">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 3 %}
                                     <div class="rating-i-icon">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 4 %}
                                     <div class="rating-i-icon">
@@ -41,6 +66,14 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 5 %}
                                     <div class="rating-i-icon">
@@ -49,16 +82,34 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
-                                {% else %}
-                                    <div class="rating-i-icon">
-                                        <p><small>Not yet been rated</small></p>
+                                {% elif product.rating == 0 %}
+                                    <div class="zero-rating-icon">
+                                        <p>
+                                            <small>No rating</small>
+                                        </p>
+                                        <p class="number-reviews">
+                                            {% if product.productreview_set.count == 0 %}
+                                                0 review
+                                            {% elif product.productreview_set.count == 1 %}
+                                                <a href="{% url 'store:read_review' product.pk %}">1 review</a>
+                                            {% elif product.productreview_set.count > 1 %}
+                                                <a href="{% url 'store:read_review' product.pk %}">
+                                                    {{ product.productreview_set.count }} reviews
+                                                </a>
+                                            {% endif %}
+                                        </p>
                                     </div>
                                 {% endif %}
                             </div>
-                            {% if product.rating > 0 %}
-                            <a style="margin: 0.5rem 0.5rem 0 0.5rem; border: 1px solid red; display: block;" href="{% url 'store:read_review' product.pk %}"><small>Read review</small> </a>
-                            {% endif %}
                         </a>
                         <a class="product-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
                     </div>
@@ -69,7 +120,7 @@
         </div>
 
         <div class="products-container">
-            <h2 class="latest">Latest From Favorite Brands</h2>
+            <h3 class="latest">Latest From Favorite Brands <small>{{latest_len }} items found.</small></h3>
             <div class="product-container2">
                 {% for product in  latest %}
                     <div class="product">
@@ -81,17 +132,41 @@
                                 {% if product.rating == 1 %}
                                     <div class="rating-i-icon">
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 2 %}
                                     <div class="rating-i-icon">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 3 %}
                                     <div class="rating-i-icon">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 4 %}
                                     <div class="rating-i-icon">
@@ -99,6 +174,14 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
                                 {% elif product.rating == 5 %}
                                     <div class="rating-i-icon">
@@ -107,10 +190,31 @@
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
+                                        <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                        <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                            {% if product.productreview_set.count == 1 %}
+                                                1 review
+                                            {% elif product.productreview_set.count > 1 %}
+                                                {{ product.productreview_set.count }} reviews
+                                            {% endif %}
+                                        </a>
                                     </div>
-                                {% else %}
-                                    <div class="rating-i-icon">
-                                        <p><small>Not yet been rated</small></p>
+                                {% elif product.rating == 0 %}
+                                    <div class="zero-rating-icon">
+                                        <p>
+                                            <small>No rating</small>
+                                        </p>
+                                        <p class="number-reviews">
+                                            {% if product.productreview_set.count == 0 %}
+                                                0 review
+                                            {% elif product.productreview_set.count == 1 %}
+                                                <a href="{% url 'store:read_review' product.pk %}">1 review</a>
+                                            {% elif product.productreview_set.count > 1 %}
+                                                <a href="{% url 'store:read_review' product.pk %}">
+                                                    {{ product.productreview_set.count }} reviews
+                                                </a>
+                                            {% endif %}
+                                        </p>
                                     </div>
                                 {% endif %}
                             </div>
@@ -126,7 +230,7 @@
         {% if user.is_authenticated %}
             {% if just_for_you %}
                 <div class="products-container">
-                    <h2 class="just_for_you">Just For You</h2>
+                    <h3 class="just_for_you">Just For You <small>{{ just_for_you_len }} items found.</small></h3>
                     <div class="product-container3">
                         {% for product in  just_for_you %}
                             <div class="product">
@@ -136,38 +240,92 @@
                                         <p class="product-name">{{ product.product_name|truncatechars:20 }}</p>
                                         <p class="product-price">${{ product.price }}</p>
                                         {% if product.rating == 1 %}
-                                            <div class="rating-i-icon">
-                                                <i class="fa fa-star"></i>
-                                            </div>
+                                        <div class="rating-i-icon">
+                                            <i class="fa fa-star"></i>
+                                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                                {% if product.productreview_set.count == 1 %}
+                                                    1 review
+                                                {% elif product.productreview_set.count > 1 %}
+                                                    {{ product.productreview_set.count }} reviews
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                         {% elif product.rating == 2 %}
-                                            <div class="rating-i-icon">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
+                                        <div class="rating-i-icon">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                                {% if product.productreview_set.count == 1 %}
+                                                    1 review
+                                                {% elif product.productreview_set.count > 1 %}
+                                                    {{ product.productreview_set.count }} reviews
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                         {% elif product.rating == 3 %}
-                                            <div class="rating-i-icon">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
+                                        <div class="rating-i-icon">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                            <p>({{ product.productreview_set.count }})</p>
+                                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                                {% if product.productreview_set.count == 1 %}
+                                                    1 review
+                                                {% elif product.productreview_set.count > 1 %}
+                                                    {{ product.productreview_set.count }} reviews
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                         {% elif product.rating == 4 %}
-                                            <div class="rating-i-icon">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
+                                        <div class="rating-i-icon">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                                {% if product.productreview_set.count == 1 %}
+                                                    1 review
+                                                {% elif product.productreview_set.count > 1 %}
+                                                    {{ product.productreview_set.count }} reviews
+                                                {% endif %}
+                                            </a>
+                                        </div>
                                         {% elif product.rating == 5 %}
-                                            <div class="rating-i-icon">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        {% else %}
-                                            <div class="rating-i-icon">
-                                                <p><small>Not yet been rated</small></p>
+                                        <div class="rating-i-icon">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <small>{{ product.productreview_set.count }} <i class="fa fa-user"></i></small>
+                                            <a class="number-reviews" href="{% url 'store:read_review' product.pk %}">
+                                                {% if product.productreview_set.count == 1 %}
+                                                    1 review
+                                                {% elif product.productreview_set.count > 1 %}
+                                                    {{ product.productreview_set.count }} reviews
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                        {% elif product.rating == 0 %}
+                                            <div class="zero-rating-icon">
+                                                <p>
+                                                    <small>No rating</small>
+                                                </p>
+                                                <p class="number-reviews">
+                                                    {% if product.productreview_set.count == 0 %}
+                                                        0 review
+                                                    {% elif product.productreview_set.count == 1 %}
+                                                        <a href="{% url 'store:read_review' product.pk %}">1 review</a>
+                                                    {% elif product.productreview_set.count > 1 %}
+                                                        <a href="{% url 'store:read_review' product.pk %}">
+                                                            {{ product.productreview_set.count }} reviews
+                                                        </a>
+                                                    {% endif %}
+                                                </p>
                                             </div>
                                         {% endif %}
                                     </div>

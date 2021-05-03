@@ -24,7 +24,8 @@ def home(request):
         except Customer.DoesNotExist:
             Customer.objects.create(name=user, total_items=0)
             context = {
-                "most_popluar": most_popular,
+                "most_popular": most_popular,
+                "most_popular_len": len(most_popular),
                 "latest": latest,
             }
             return render(request, "store/home.html", context)
@@ -48,14 +49,20 @@ def home(request):
             customer.save()
 
             context = {
-                    "most_popluar": most_popular,
+                    "most_popular_len": len(most_popular),
+                    "latest_len": len(latest),
+                    "just_for_you_len": len(just_for_you),
+                    "most_popular": most_popular,
                     "latest": latest,
                     "just_for_you": just_for_you
                 }
+        print(len(most_popular))
         return render(request, "store/home.html", context)
     else:
         context = {
-                    "most_popluar": most_popular,
+                    "most_popular": most_popular,
+                    "most_popular_len": len(most_popular),
+                    "latest_len": len(latest),
                     "latest": latest,
                 }
     return render(request, "store/home.html", context)
