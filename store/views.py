@@ -56,7 +56,6 @@ def home(request):
                     "latest": latest,
                     "just_for_you": just_for_you
                 }
-        print(len(most_popular))
         return render(request, "store/home.html", context)
     else:
         context = {
@@ -74,7 +73,8 @@ def category(request, pk):
     products = Product.objects.filter(category=category)
     context = {
         "category": category,
-        "products": products
+        "products": products,
+        "products_len": len(products)
     }
     return  render(request, "store/category.html", context)
 
@@ -85,6 +85,7 @@ def sub_category(request, pk):
     context = {
         "sub_category": sub_category,
         "products": products,
+        "products_len": len(products)
     }
     return render(request, "store/sub_category.html", context)
 
@@ -99,8 +100,10 @@ def shop_by_brand(request):
         total_items[product.company] =  total_items[product.company]+1
     context = {
         "brands": brands,
-        "total_items": total_items
+        "total_items": total_items,
+        "brands_len": len(brands.keys()),
     }
+    
     return render(request, "store/shop_by_brand.html", context)
 
 
@@ -108,7 +111,12 @@ def brand_name(request, pk):
     product = get_object_or_404(Product, pk=pk)
     brand_name = product.company
     products = Product.objects.filter(company=brand_name)
-    return render(request, "store/brand_name.html", {"products": products, "brand_name": brand_name})
+    context = {
+        "products": products, 
+        "brand_name": brand_name,
+        "products_len": len(products),
+    }
+    return render(request, "store/brand_name.html", context)
 
 
 
@@ -394,3 +402,11 @@ def read_review(request, pk):
         "reviews": reviews
     }
     return render(request, "store/read_review.html", context)
+
+
+def search(request):
+    if "q" in request.GET:
+        if request.GET["que"]:
+            search = request.GET["q"]
+            print(search)
+    return redirect("store:home")

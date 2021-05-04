@@ -10,16 +10,124 @@
 
 {% block content %}
     <div class="sub-category-products-row">
-        <h2 class="sub-category-title">{{ sub_category }}</h2>
+        <h3 class="sub-category-title">{{ sub_category }} <small>{{ products_len }} items found</small></h3>
         <div class="sub-category-products-col">
             {% for product in  products %}
-            <div class="sub-category-product" title="click for detail">
-                <a class="sub-category-product-content" href="{% url 'store:product_detail' product.pk %}">
+            <div class="sub-category-product">
+                <a class="sub-category-product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                     <img class="sub-category-product-img" src="{{ product.image.url }}" alt="">
-                    <p class="sub-category-product-name">{{ product.product_name|truncatechars:15 }}</p>
-                    <p class="sub-category-product-price">${{ product.price }}<i class="fa fa-heart sub-category-heart-icon"><span>{{ product.times_ordered }}</span></i></p>
+                    <div class="sub-category-product-text-container">
+                        <p class="sub-category-product-name">{{ product.product_name|truncatechars:17 }}</p>
+                        <div class="sub-category-reviews-price">
+                            <p class="sub-category-product-price">${{ product.price }}</p>
+                            {% if product.productreview_set.all %}
+                                <a class="sub-category-read-review" href="{% url 'store:read_review' product.pk %}">
+                                    Read review
+                                </a>
+                            {% else %}
+                                <p class="sub-category-no-review">
+                                    (0 review)
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
                 </a>
-                <a class="sub-category-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+                <div class="sub-category-rating-button-container">
+                    <div class="sub-category-ratings">
+                        {% if product.rating == 1 %}
+                            <div class="sub-category-rating-i-icon">
+                                <i class="fa fa-star"></i>
+                            </div>
+                            {% if product.productreview_set.count > 1 %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} reviews)</small>
+                                </p>
+                            {% else %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} review)</small>
+                                </p>
+                            {% endif %}
+                        {% elif product.rating == 2 %}
+                            <div class="sub-category-rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            {% if product.productreview_set.count > 1 %}
+                                <p class="sub-category-ratings-count">
+                                    ({{ product.productreview_set.count }} reviews)
+                                </p>
+                            {% else %}
+                                <p class="sub-category-ratings-count">
+                                    ({{ product.productreview_set.count }} review)
+                                </p>
+                            {% endif %}
+                        {% elif product.rating == 3 %}
+                            <div class="sub-category-rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            {% if product.productreview_set.count > 1 %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} reviews)</small>
+                                </p>
+                            {% else %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} review)</small>
+                                </p>
+                            {% endif %}
+                        {% elif product.rating == 4 %}
+                            <div class="sub-category-rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            {% if product.productreview_set.count > 1 %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} reviews)</small>
+                                </p>
+                            {% else %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} review)</small>
+                                </p>
+                            {% endif %}
+                        {% elif product.rating == 5 %}
+                            <div class="sub-category-rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            {% if product.productreview_set.count > 1 %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} reviews)</small>
+                                </p>
+                            {% else %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} review)</small>
+                                </p>
+                            {% endif %}
+                        {% elif product.rating == 0 %}
+                            <div class="sub-category-no-rating">
+                                <p>
+                                    Not rated
+                                </p>
+                            {% if product.productreview_set.count > 1 %}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} reviews)</small>
+                                </p>
+                            {% elif product.productreview_set.count == 1%}
+                                <p class="sub-category-ratings-count">
+                                    <small>({{ product.productreview_set.count }} review)</small>
+                                </p>
+                            {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <a class="sub-category-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+                </div>
             </div>
             {% endfor %}
         </div>

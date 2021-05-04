@@ -17,6 +17,7 @@ from store.views import (
         order_complete,
         product_review,
         read_review,
+        search,
     )
 
 app_name = "store"
@@ -40,4 +41,5 @@ urlpatterns = [
     path("order_complete/", order_complete, name="order_complete"),
     path("product_review/<int:pk>/", product_review, name="product_review"),
     path("read/<int:pk>/review", read_review, name="read_review"),
+    path("search/", search, name="search")
 ]
