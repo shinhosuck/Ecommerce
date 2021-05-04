@@ -396,7 +396,6 @@ def product_review(request, pk):
 def read_review(request, pk):
     product = get_object_or_404(Product, pk=pk)
     reviews = product.productreview_set.all()
-    
     context = {
         "product": product,
         "reviews": reviews
@@ -406,7 +405,8 @@ def read_review(request, pk):
 
 def search(request):
     if "q" in request.GET:
-        if request.GET["que"]:
+        if request.GET["q"]:
             search = request.GET["q"]
-            print(search)
+            products = Product.objects.filter(product_name__contains=search)
+            print(products)
     return redirect("store:home")
