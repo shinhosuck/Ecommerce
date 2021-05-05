@@ -1,0 +1,33 @@
+{% extends "store/base.html" %}
+
+
+<title>
+    {% block title %}
+        Search {{ search }}
+    {% endblock title %}
+</title>
+
+
+{% block content %}
+    <div style="margin: 0 auto; width: 85%;">
+        <div style="display: flex; align-items: flex-start; flex-wrap: wrap;">
+            <h3 style="flex: 0 0 100%; width: 100%;">{{ search.capitalize }} 
+                <small>{{ found_product_len }} items found</small>
+            </h3>
+            {% for product in found_product %}
+            <div style="flex: 0 0 19.3%; width: 19.3%; margin: 0.5rem; margin-left: 0;">
+                <img style="width: 100%; height: auto;" src="{{ product.image.url }}" alt="">
+                <p>{{ product.product_name }}</p>
+                <p>{{ product.price }}
+                    {% if product.rating %}
+                    <small>{{ product.rating }}</small>
+                    {% else %}
+                    <small>No rating</small>
+                    {% endif %}
+                </p>
+                <a class="product-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+{% endblock content %}

@@ -407,6 +407,19 @@ def search(request):
     if "q" in request.GET:
         if request.GET["q"]:
             search = request.GET["q"]
-            products = Product.objects.filter(product_name__contains=search)
-            print(products)
-    return redirect("store:home")
+            products = Product.objects.filter(product_name__icontains=search)
+            categories = Product.objects.filter(category__icontains=search)
+            sub_categories = Product.objects.filter(sub_category__icontains=search)
+            found_products = {}
+            for product in products:
+                found_products.setdefault(product, product.id)
+            for category in categories:
+                found_products.setdefault(category, category.id)
+            for sub_category in sub_categories:
+                found_products.setdefault(sub_category, sub_category.id)
+            context = {
+                "found_product": found_products,
+                "found_product_len": len(found_products),
+                "search": search
+            }
+    return render(request, "store/search_result.html", context)
