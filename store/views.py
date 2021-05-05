@@ -398,7 +398,8 @@ def read_review(request, pk):
     reviews = product.productreview_set.all()
     context = {
         "product": product,
-        "reviews": reviews
+        "reviews": reviews,
+        "reviews_len": len(reviews)
     }
     return render(request, "store/read_review.html", context)
 

@@ -8,76 +8,58 @@
 
 
 {% block content %}
-
-    <style>
-        .read-review-row{
-            width: 60%;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
-        .read-review-col {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            margin: 3rem 0;
-        }
-        .review-img {
-            flex: 0 0 30%;
-            width: 30%;
-        }
-        .review-img img {
-            width: 100%;
-            height: auto;
-        }
-        .review-text {
-            flex: 0 0 68%;
-            width: 68%;
-            margin-left: 0.5rem;
-        }
-
-    </style>
     <div class="read-review-row">
-        {% for review in reviews %}
-            <div class="read-review-col">
+        <div class="read-review-col">
+            <div class="img-title-container">
                 <div class="review-img">
-                    <img src="{{ review.product.image.url }}" alt="">
+                    <img src="{{ product.image.url }}" alt="product image">
                 </div>
-                <div class="review-text">
-                    <p>{{ review.product.product_name }}</p>
-                    <p><small>{{ review.content }}</small></p>
-                    {% if product.rating == 1 %}
-                        <div class="rating-i-icon">
-                            <i class="fa fa-star"></i>
-                        </div>
-                    {% elif product.rating == 2 %}
-                        <div class="rating-i-icon">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    {% elif product.rating == 3 %}
-                        <div class="rating-i-icon">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    {% elif product.rating == 4 %}
-                        <div class="rating-i-icon">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    {% elif product.rating == 5 %}
-                        <div class="rating-i-icon">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    {% endif %}
-                </div>
+                <h3 class="read-review-title">{{ product.product_name }}</h3>
             </div>
-        {% endfor %}
+            {% for review in reviews %}
+                <div class="read-review-content-container">
+                    <div class="read-review-user-img">
+                        <img src="{{ review.author.name.profile.image.url }}" alt="">
+                    </div>
+                    <div class="review-text">
+                        <p class="review-author">{{ review.author.name.username }}</p>
+                        {% if product.rating == 1 %}
+                            <div class="rating-i-icon">
+                                <i class="fa fa-star"></i>
+                            </div>
+                        {% elif product.rating == 2 %}
+                            <div class="rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        {% elif product.rating == 3 %}
+                            <div class="rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        {% elif product.rating == 4 %}
+                            <div class="rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        {% elif product.rating == 5 %}
+                            <div class="rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        {% endif %}
+                        <p class="review-date">{{ review.date }}</p>
+                        <p class="review-title">{{ review.review_title }}</p>
+                        <p class="review-content"><small>{{ review.content }}</small></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}
