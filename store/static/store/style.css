@@ -3989,7 +3989,8 @@ end of search_result.html
 read_review.html
 ================ */
 .read-review-row {
-    width: 80%;
+    /* width: 80%; */
+    width: 1104px;
     margin: 3rem auto;
 }
 .read-review-col {
@@ -4038,9 +4039,15 @@ read_review.html
     border-radius: 5px;
     background: rgb(255, 255, 255);
 }
+.review-mobile-img, 
+.review-mobile-text,
+.review-title-mobile,
+.review-content-mobile {
+    display: none;
+}
 .read-review-user-img {
-    flex: 0 0 10%;
-    width: 10%;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4051,8 +4058,8 @@ read_review.html
     border-radius: 50%;
 }
 .review-text {
-    width: 89%;
-    flex: 0 0 89%;
+    width: 89.9%;
+    flex: 0 0 89.9%;
     margin-left: 0.5rem;
     display: flex;
     flex-wrap: wrap;
@@ -4087,12 +4094,148 @@ read_review.html
     margin-top: 1rem;
     letter-spacing: 0.05rem;
     color: rgb(34, 34, 34);
+    text-transform: capitalize;
 }
 .review-content {
     flex: 0 0 100%;
     width: 100%;
     margin-top: 0.5rem;
+    letter-spacing: 0.05rem;
+    font-size: 1.1rem;
     color: rgb(100, 100, 100);
+}
+@media screen and (max-width: 1120px) {
+    .read-review-row {
+        width: 896px;
+    }
+    .review-text {
+        width: 87.4%;
+        flex: 0 0 87.4%;
+    }
+}
+@media screen and (max-width: 920px) {
+    .read-review-row {
+        width: 736px;
+    }
+    .review-text {
+        width: 84.5%;
+        flex: 0 0 84.5%;
+    }
+}
+@media screen and (max-width: 755px) {
+    .read-review-row {
+        width: 678.6px;
+    }
+    .review-text {
+        width: 83.2%;
+        flex: 0 0 83.2%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .read-review-row {
+        width: 630px;
+    }
+    .read-review-user-img {
+        width: 80px;
+        height: 80px;
+    }
+    .read-review-user-img img{
+        width: 80px;
+        height: 80px;
+    }
+    .review-text {
+        width: 85.2%;
+        flex: 0 0 85.2%;
+    }
+}
+@media screen and (max-width: 650px) {
+    .read-review-row {
+        width: 520px;
+    }
+    .read-review-user-img, .review-author,
+    .review-rating-i-icon, .review-date,
+    .review-title, .review-content{
+        display: none;
+    }
+    .review-text {
+        width: 100%;
+        flex: 0 0 100%;
+        margin-left: 0;
+        align-items: flex-start;
+    }
+    .review-mobile-img, 
+    .review-title-mobile,
+    .review-content-mobile {
+        display: block;
+    }
+    .review-mobile-img {
+        width: 80px
+    }
+    .review-mobile-img img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    .review-mobile-text {
+        align-self: center;
+        margin-left: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .review-author-mobile {
+        color: rgb(34, 34, 34);
+        margin-bottom: 0.3rem;
+    }
+    .review-rating-mobile {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-left: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+    .review-rating-mobile i {
+        font-size: 0.8rem;
+        color: rgb(255, 69, 0)
+    }
+    .review-date-mobile {
+        font-size: 0.9rem;
+        flex: 0 0 100%;
+        width: 100%;
+        margin-bottom: 0.3rem;
+        color: rgb(100, 100, 100);
+    }
+    .review-title-mobile {
+        flex: 0 0 100%;
+        width: 100%;
+        margin-top: 0.5rem;
+        letter-spacing: 0.05rem;
+        color: rgb(34, 34, 34);
+        text-transform: capitalize;
+    }
+    .review-content-mobile {
+        flex: 0 0 100%;
+        width: 100%;
+        margin-top: 0.5rem;
+        letter-spacing: 0.05rem;
+        font-size: 1.1rem;
+        color: rgb(100, 100, 100);
+    }
+}
+@media screen and (max-width: 540px) {
+    .read-review-row {
+        width: 90%;
+    }
+    .review-mobile-text {
+        flex: 0 0 60%;
+        width: 60%;
+    }
+    @media screen and (max-width: 370px) {
+        .review-date-mobile {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 }
 /* 
 =======================
