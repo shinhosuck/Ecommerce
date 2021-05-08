@@ -10,6 +10,7 @@
 
 {% block content %}
     <div class="search-result-products-row">
+        {% if found_product %}
         <h3 class="search-result-title">{{ search.capitalize }} 
             <small>{{ found_product_len }} items found</small>
         </h3>
@@ -133,5 +134,24 @@
             </div>
             {% endfor%}
         </div>
+        {% else %}
+            {% if error %}
+                <div class="search-result-zero-items">
+                    <div class="search-result-zero">
+                        <p class="search-result-zero-message">{{ error }}</p>
+                    </div>
+                </div>
+            {% else %}
+                <div class="search-result-zero-items">
+                    <div class="search-result-zero">
+                        <h3 class="search-result-title-zero-item">{{ search.capitalize }} 
+                            <small>{{ found_product_len }} item found</small>
+                        </h3>
+                        <p class="search-result-zero-message">Sorry, your search returned 0 items.</p>
+                        <p class="search-result-zero-message">Please try your search again.</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
     </div>
 {% endblock content %}

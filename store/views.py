@@ -423,4 +423,9 @@ def search(request):
                 "found_product_len": len(found_products),
                 "search": search
             }
-    return render(request, "store/search_result.html", context)
+            return render(request, "store/search_result.html", context)
+        else:
+            context = {
+                "error": "Your search did not contain any data. Please try your search again."
+            }
+            return render(request, "store/search_result.html", context)

@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    background: rgb(245, 245, 245);
+    background: rgb(240, 240, 240);
     font-family: sans-serif;
 }
 ul {
@@ -266,11 +266,12 @@ base.html
 }
 .indicator {
     position: absolute;
-    bottom: -20px;
+    bottom: -25px;
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 0.5rem;
+    /* border: 1px solid red; */
 }
 .circle {
     padding: 0.4rem;
@@ -3978,7 +3979,36 @@ search_result.html
 .search-result-add-to-basket:hover {
     background: rgb(0, 88, 77);
 }
-
+.search-result-zero {
+    padding: 1rem;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+}
+.search-result-zero-items {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.search-result-title-zero-item {
+    font-weight: normal;
+    letter-spacing: 0.05rem;
+    color: rgb(34, 34, 34);
+    margin-bottom: 1rem;
+    font-size: 1.35rem;
+}
+.search-result-title-zero-item small {
+    font-weight: normal;
+    font-size: 0.9rem;
+    color: rgb(128, 128, 128);
+}
+.search-result-zero-message {
+    color: rgb(56, 56, 56);
+    letter-spacing: 0.05rem;
+    margin-top: 0.3rem;
+}
 /* 
 =========================
 end of search_result.html
