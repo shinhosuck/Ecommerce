@@ -17,7 +17,7 @@
                     <a class="category-product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                         <img class="category-product-img" src="{{ product.image.url }}" alt="">
                         <div class="category-product-text-container">
-                            <p class="category-product-name">{{ product.product_name|truncatechars:17 }}</p>
+                            <p class="category-product-name">{{ product.product_name|truncatechars:20 }}</p>
                             <div class="category-reviews-price">
                                 <p class="category-product-price">${{ product.price }}</p>
                                 {% if product.productreview_set.all %}
