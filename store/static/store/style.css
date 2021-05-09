@@ -37,7 +37,7 @@ base.html
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    background: rgb(0, 31, 31);
+    background: rgb(0, 41, 41);
     padding: 0.5rem 0;
 }
 .brand-name {
@@ -52,6 +52,7 @@ base.html
     font-size: 1.7rem;
     border-radius: 40px;
     background: rgb(0, 89, 100);
+    letter-spacing: 0.05rem;
 }
 .brand span {
     color: white;
@@ -1017,14 +1018,13 @@ home.html
 .products {
     /* margin: auto; */
     /* margin: 1rem 0; */
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .products-container {
     position: relative;
     margin: auto;
     margin-top: 3rem;
     width: 85%;
-    border: 1px solid green;
 }
 .slick-arrow {
     visibility: hidden;
@@ -1081,16 +1081,9 @@ home.html
     flex-wrap: wrap;
 }
 .product-name {
-    /* flex: 0 0 100%; */
-    /* width: 100%; */
     margin-top: 0.5rem;
     font-size: 1rem;
     color: rgb(22, 22, 22);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 200px;
-    /* border: 1px solid red; */
 }
 .reviews-price {
     flex: 0 0 100%;
@@ -1155,15 +1148,16 @@ home.html
     flex: 0 0 100%;
     width: 100%;
     margin-top: 0.7rem;
+    margin-bottom: 0.2rem;
     padding: 0.4rem 0;
-    background: rgb(0, 134, 116);
+    background: rgb(0, 100, 100);
     color: rgb(255, 255, 255);
     text-align: center;
     font-size: 0.9rem;
     transition: background 0.25s linear;
 }
 .product-add-to-basket:hover {
-    background: rgb(0, 88, 77);
+    background: rgb(0, 61, 61);
 }
 .prev-btn1, .next-btn1, .prev-btn2, .next-btn2, .prev-btn3, .next-btn3 {
     position: absolute;
@@ -1188,39 +1182,119 @@ home.html
     right: 8px;
     margin-left: 0.3rem;
 }
-@media screen and (max-width: 1180px) {
+@media screen and (max-width: 1280px) {
+    .product-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 0.9rem;
+    }
+    .product-price {
+        font-size: 0.9rem;
+    }
+}
+@media screen and (max-width: 1142px) {
+    .product-name, .product-price{
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .product-name {
+        font-size: 1.1rem;
+    }
+    .product-price {
+        font-size: 1.1rem;
+    }
+}
+@media screen and (max-width: 830px) {
     .product-name {
         font-size: 0.9rem;
     }
     .product-price {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
-@media screen and (max-width: 1022px) {
+@media screen and (max-width: 680px) {
+    .product-name {
+        font-size: 0.8rem;
+    }
+    .product-price {
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width: 600px) {
     .product-name {
         font-size: 1rem;
     }
     .product-price {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 500px) {
     .product-name {
         font-size: 0.9rem;
     }
     .product-price {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
-@media screen and (max-width: 598px) {
-    .products {
-        padding: 0 0 1rem 0;
+@media screen and (max-width: 480px) {
+    .products-container{
+        width: 70%;
+        margin-top: 2rem;
     }
     .product-name {
         font-size: 1rem;
     }
     .product-price {
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+    .product-add-to-basket {
+        padding: 0.6rem 0;
+        font-size: 1rem;
+    }
+    .rating-i-icon, .ratings-count small, 
+    .no-rating, .no-review, .read-review{
+        font-size: 0.9rem
+    }
+}
+@media screen and (max-width: 420px) {
+    .products-container{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 350px) {
+    .products-container{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 350px) {
+    .products-container{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 300px) {
+    .products-container{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 300px) {
+    .product-name {
+        font-size: 0.9rem;
+    }
+    .product-price {
+        font-size: 0.9rem;
+    }
+    .product-add-to-basket {
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+    }
+    .ratings-count small, 
+    .no-rating, .no-review, .read-review{
+        font-size: 0.8rem
+    }
+    .rating-i-icon {
+        font-size: 0.7rem;
     }
 }
 /*

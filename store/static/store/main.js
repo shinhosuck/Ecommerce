@@ -24,7 +24,7 @@ $('.product-container1').slick({
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2
-        }
+        },
       },
       {
         breakpoint: 480,
