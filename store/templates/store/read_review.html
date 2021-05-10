@@ -28,29 +28,29 @@
                         </div>
                         <div class="review-mobile-text">
                             <p class="review-author-mobile">{{ review.author.name.username }}</p>
-                            {% if product.rating == 1 %}
+                            {% if review.review_rating == 1 %}
                                 <div class="review-rating-mobile">
                                     <i class="fa fa-star"></i>
                                 </div>
-                            {% elif product.rating == 2 %}
+                            {% elif review.review_rating == 2 %}
                                 <div class="review-rating-mobile">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                            {% elif product.rating == 3 %}
-                                <div class="review-rating-mobile">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            {% elif product.rating == 4 %}
+                            {% elif review.review_rating == 3 %}
                                 <div class="review-rating-mobile">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
+                                </div>
+                            {% elif review.review_rating == 4 %}
+                                <div class="review-rating-mobile">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                            {% elif product.rating == 5 %}
+                            {% elif review.review_rating == 5 %}
                                 <div class="review-rating-mobile">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -65,29 +65,29 @@
                         <p class="review-content-mobile"><small>{{ review.content }}</small></p>
                         <!-- end of on mobile -->
                         <p class="review-author">{{ review.author.name.username }}</p>
-                        {% if product.rating == 1 %}
+                        {% if review.review_rating == 1 %}
                             <div class="review-rating-i-icon">
                                 <i class="fa fa-star"></i>
                             </div>
-                        {% elif product.rating == 2 %}
+                        {% elif review.review_rating == 2 %}
                             <div class="review-rating-i-icon">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                        {% elif product.rating == 3 %}
-                            <div class="review-rating-i-icon">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        {% elif product.rating == 4 %}
+                        {% elif review.review_rating == 3 %}
                             <div class="review-rating-i-icon">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
+                            </div>
+                        {% elif review.review_rating == 4 %}
+                            <div class="review-rating-i-icon">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                        {% elif product.rating == 5 %}
+                        {% elif review.review_rating == 5 %}
                             <div class="review-rating-i-icon">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>

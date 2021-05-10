@@ -345,7 +345,7 @@ def order_complete(request):
 def product_review(request, pk):
     user = request.user
     customer = Customer.objects.filter(name=user).first()
-    product = Product.objects.filter(pk=pk).first()
+    product = Product.objects.get(pk=pk)
     reviews =  ProductReview.objects.filter(author=customer)
     reviewed_products = reviews.filter(product=product)
     if request.method == "POST":
@@ -360,28 +360,29 @@ def product_review(request, pk):
             if product_rating == int(0):
                 pass
             else:
-                review.rating = int(product_rating)
+                review.review_rating = int(product_rating)
                 review.save()
                 total_reviewed_products = ProductReview.objects.filter(product=product)
                 num_of_items = 0
                 stars = 0
                 for total_product in total_reviewed_products:
-                    stars += total_product.rating
+                    stars += total_product.review_rating
                     num_of_items += 1
                 rating_percent = stars / (num_of_items * 5)
                 average = rating_percent * 5
-                product.rating = round(average)
+                product.product_rating = round(average)
                 product.save()
         return redirect("store:my_orders")
     else:
         review_instance = []
-        if reviewed_products.count() > 0:
+        if reviewed_products:
             for reviewed_product in reviewed_products:
                 review_instance.append(reviewed_product)
             form = ProductReviewForm(instance=review_instance[-1])
             context = {
                 "form": form,
-                "product": product
+                "product": product,
+                "review_instance": review_instance[-1]
             }
             return render(request, "store/product_review.html", context)
         else:

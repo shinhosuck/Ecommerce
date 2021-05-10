@@ -40,7 +40,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     on_stock = models.BooleanField(default=True)
     times_ordered = models.IntegerField(default=0)
-    rating = models.IntegerField(default=0)
+    product_rating = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -68,7 +68,7 @@ class ProductReview(models.Model):
     review_title = models.CharField(max_length=100)
     content = models.TextField()
     date = models.DateTimeField(default=timezone.now)
-    rating = models.IntegerField(default=0)
+    review_rating = models.IntegerField(default=0)
     
     def __str__(self):
         return f"{self.author}: {self.review_title}"

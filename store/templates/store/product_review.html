@@ -73,7 +73,7 @@
         const children = productStars.children
         const newChildren = [...children]
 
-        const rating = parseInt("{{ product.rating }}")
+        const rating = parseInt("{{ review_instance.review_rating }}")
         
         newChildren.forEach(function(i){
             const position = newChildren.indexOf(i)
