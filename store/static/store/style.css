@@ -4521,8 +4521,8 @@ end of search_result.html
 read_review.html
 ================ */
 .read-review-row {
-    /* width: 80%; */
-    width: 1104px;
+    width: 80%;
+    /* width: 1104px; */
     margin: 3rem auto;
 }
 .read-review-col {
@@ -4636,16 +4636,21 @@ read_review.html
     font-size: 1.1rem;
     color: rgb(100, 100, 100);
 }
-@media screen and (max-width: 1120px) {
+@media screen and (min-width: 1600px) {
     .read-review-row {
-        width: 896px;
-    }
-    .review-text {
-        width: 87.4%;
-        flex: 0 0 87.4%;
+        width: 1105px;
     }
 }
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 1380px) {
+    .read-review-row {
+        width: 1102.4px;
+    }
+    .review-text {
+        width: 89.9%;
+        flex: 0 0 89.9%;
+    }
+}
+@media screen and (max-width: 1130px) {
     .read-review-row {
         width: 736px;
     }
@@ -4654,7 +4659,7 @@ read_review.html
         flex: 0 0 84.5%;
     }
 }
-@media screen and (max-width: 755px) {
+@media screen and (max-width: 765px) {
     .read-review-row {
         width: 678.6px;
     }
@@ -4768,6 +4773,13 @@ read_review.html
             overflow: hidden;
             text-overflow: ellipsis;
         }
+}
+@media screen and (max-width: 342px) {
+    .review-rating-mobile {
+        flex: 0 0 100%;
+        width: 100%;
+        margin-left: 0;
+    }
 }
 /* 
 =======================
