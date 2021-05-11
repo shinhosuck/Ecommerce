@@ -11,7 +11,13 @@
     <div class="products">
 
         <div class="products-container">
-            <h3 class="most-popular">Most Popular <small>{{ most_popular_len }} items found</small></h3>
+            <h3 class="most-popular">Most Popular 
+                <small>{{ most_popular_len }} items found</small>
+                <small class="product-sort-by">Sort by: 
+                    <a class="product-price-high" href="#">Price low to high</a>
+                    <a class="product-price-low" href="#">Price high to low</a>
+                </small>
+            </h3>
             <div class="product-container1">
                 {% for product in most_popular %}
                     <div class="product">
@@ -137,7 +143,10 @@
         </div>
 
         <div class="products-container">
-            <h3 class="latest">Latest From Favorite Brands <small>{{latest_len }} items found</small></h3>
+            <h3 class="latest">Favorite Brands 
+                <small>{{latest_len }} items found </small>
+                <a href="{% url 'store:shop_by_brand' %}">See all brands</a>
+            </h3>
             <div class="product-container2">
                 {% for product in  latest %}
                 <div class="product">
@@ -161,7 +170,7 @@
                     </a>
                     <div class="rating-button-container">
                         <div class="ratings">
-                            {% if product.rating == 1 %}
+                            {% if product.product_rating == 1 %}
                                 <div class="rating-i-icon">
                                     <i class="fa fa-star"></i>
                                 </div>
@@ -174,7 +183,7 @@
                                         <small>({{ product.productreview_set.count }} review)</small>
                                     </p>
                                 {% endif %}
-                            {% elif product.rating == 2 %}
+                            {% elif product.product_rating == 2 %}
                                 <div class="rating-i-icon">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -188,7 +197,7 @@
                                         ({{ product.productreview_set.count }} review)
                                     </p>
                                 {% endif %}
-                            {% elif product.rating == 3 %}
+                            {% elif product.product_rating == 3 %}
                                 <div class="rating-i-icon">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -203,7 +212,7 @@
                                         <small>({{ product.productreview_set.count }} review)</small>
                                     </p>
                                 {% endif %}
-                            {% elif product.rating == 4 %}
+                            {% elif product.product_rating == 4 %}
                                 <div class="rating-i-icon">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -219,7 +228,7 @@
                                         <small>({{ product.productreview_set.count }} review)</small>
                                     </p>
                                 {% endif %}
-                            {% elif product.rating == 5 %}
+                            {% elif product.product_rating == 5 %}
                                 <div class="rating-i-icon">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -236,7 +245,7 @@
                                         <small>({{ product.productreview_set.count }} review)</small>
                                     </p>
                                 {% endif %}
-                            {% elif product.rating == 0 %}
+                            {% elif product.product_rating == 0 %}
                                 <div class="no-rating">
                                     <p>
                                         Not rated
@@ -289,7 +298,7 @@
                             </a>
                             <div class="rating-button-container">
                                 <div class="ratings">
-                                    {% if product.rating == 1 %}
+                                    {% if product.product_rating == 1 %}
                                         <div class="rating-i-icon">
                                             <i class="fa fa-star"></i>
                                         </div>
@@ -302,7 +311,7 @@
                                                 <small>({{ product.productreview_set.count }} review)</small>
                                             </p>
                                         {% endif %}
-                                    {% elif product.rating == 2 %}
+                                    {% elif product.product_rating == 2 %}
                                         <div class="rating-i-icon">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -316,7 +325,7 @@
                                                 ({{ product.productreview_set.count }} review)
                                             </p>
                                         {% endif %}
-                                    {% elif product.rating == 3 %}
+                                    {% elif product.product_rating == 3 %}
                                         <div class="rating-i-icon">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -331,7 +340,7 @@
                                                 <small>({{ product.productreview_set.count }} review)</small>
                                             </p>
                                         {% endif %}
-                                    {% elif product.rating == 4 %}
+                                    {% elif product.product_rating == 4 %}
                                         <div class="rating-i-icon">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -347,7 +356,7 @@
                                                 <small>({{ product.productreview_set.count }} review)</small>
                                             </p>
                                         {% endif %}
-                                    {% elif product.rating == 5 %}
+                                    {% elif product.product_rating == 5 %}
                                         <div class="rating-i-icon">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -364,7 +373,7 @@
                                                 <small>({{ product.productreview_set.count }} review)</small>
                                             </p>
                                         {% endif %}
-                                    {% elif product.rating == 0 %}
+                                    {% elif product.product_rating == 0 %}
                                         <div class="no-rating">
                                             <p>
                                                 Not rated

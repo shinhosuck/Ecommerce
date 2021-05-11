@@ -106,7 +106,22 @@ $('.product-container3').slick({
     ]
 });
 
+// show price low to hign, price high to low
+const productPriceHigh = document.querySelectorAll(".product-price-high")
+const productPriceLow = document.querySelectorAll(".product-price-low")
 
+productPriceHigh.forEach(function(item){
+  item.addEventListener("click", function(){
+    item.style.display = "none"
+    item.nextElementSibling.style.display = "inline-block"
+  })
+})
+productPriceLow.forEach(function(item){
+  item.addEventListener("click", function(){
+    item.style.display = "none"
+    item.previousElementSibling.style.display = "inline-block"
+  })
+})
 // slide banner images
 const images = document.querySelectorAll(".slide-img")
 const imgContainer = document.querySelector(".slide-image-container")
@@ -159,22 +174,22 @@ circles.forEach(function(circle){
 
     })
 })
-// function autoSlide(){
-//     circles.forEach(function(circle){
-//          circle.style.background = "rgb(167, 167, 167)"
-//     })
-//     if (counter > images.length-1){
-//         counter = 0
-//     }
-//     images.forEach(function(img){
-//         img.style.transform = `translate(-${counter*100}%)`
-//         img.style.transition = "all 1s ease-in-out"
-//         circles[counter].style.background = "rgb(0, 134, 116)"
-//     })
-//     counter ++
-//     setTimeout(autoSlide, 10000)
-// }
-// autoSlide()
+function autoSlide(){
+    circles.forEach(function(circle){
+         circle.style.background = "rgb(167, 167, 167)"
+    })
+    if (counter > images.length-1){
+        counter = 0
+    }
+    images.forEach(function(img){
+        img.style.transform = `translate(-${counter*100}%)`
+        img.style.transition = "all 1s ease-in-out"
+        circles[counter].style.background = "rgb(0, 134, 116)"
+    })
+    counter ++
+    setTimeout(autoSlide, 10000)
+}
+autoSlide()
 
 
 

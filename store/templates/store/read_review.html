@@ -14,7 +14,24 @@
                 <div class="review-img">
                     <img src="{{ product.image.url }}" alt="product image">
                 </div>
-                <h3 class="read-review-title">{{ product.product_name }}</h3>
+                <div class="review-img-text-content">
+                    <h3 class="read-review-product-name">{{ product.product_name }}</h3>
+                    <div class="read-review-rating-stars">
+                        <!-- font-awesome icons from JS. See JS at the bottom. -->
+                    </div>
+                    <p class="read-review-product-price">${{ product.price }}
+                        {% if product.on_stock %}
+                            <small class="product-available">In stock</small>
+                        {% else %}
+                            <small class="product-outofstock">Out of stock</small>
+                        {% endif %}
+                        <!-- <small class="product-times_ordered">{{ product.times_ordered }}x ordered</small> -->
+                    </p>
+                    <p class="read-review-product-description">
+                        <small>{{ product.description }}</small>
+                    </p>
+                    <a class="read-review-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+                </div>
             </div>
             {% for review in reviews %}
                 <div class="read-review-content-container">
@@ -104,4 +121,26 @@
             {% endfor %}
         </div>
     </div>
+
+
+
+
+    <script>
+        
+        const readReviewRatingStars = document.querySelector(".read-review-rating-stars")
+        let numOfStars = "{{ product.product_rating }}"
+
+        function addFontAwesomeStars(){
+            for(i=0; i < numOfStars; i++){
+                const fontAwesomeStar = document.createElement("i")
+                fontAwesomeStar.className = "fa fa-star"
+                readReviewRatingStars.appendChild(fontAwesomeStar) 
+            }
+        }
+        addFontAwesomeStars()
+
+
+
+
+    </script>
 {% endblock content %}
