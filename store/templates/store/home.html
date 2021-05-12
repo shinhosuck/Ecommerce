@@ -11,16 +11,24 @@
     <div class="products">
 
         <div class="products-container">
-            <h3 class="most-popular">Most Popular 
-                <small>{{ most_popular_len }} items found</small>
-                <small class="product-sort-by">Sort by: 
-                    <a class="product-price-high" href="#">Price low to high</a>
-                    <a class="product-price-low" href="#">Price high to low</a>
-                </small>
-            </h3>
+            <div class="product-header-text-container">
+                <h3 class="most-popular">Most Popular</h3>
+                <p class="product-number-of-items-found">{{ most_popular_len }} items found</p>
+                <p class="products-sort-by">Sort by:</p>
+                <div class="best-match-and-icons">
+                    <p class="product-price-match">Best match</p>
+                    <i class="fa fa-chevron-down show-product-price-match"></i>
+                    <i class="fa fa-chevron-up hide-product-price-match"></i>
+                </div>
+                <div class="product-low-and-high">
+                    <a class="product-best-match" href="{% url 'store:home' %}">Best match</a>
+                    <a class="product-price-high" href="{% url 'store:price_low_to_high' %}">Price low to high</a>
+                    <a class="product-price-low" href="{% url 'store:price_high_to_low' %}">Price high to low</a>
+                </div>
+            </div>
             <div class="product-container1">
                 {% for product in most_popular %}
-                    <div class="product">
+                    <div class="product"> <!-- slick carousel container and class name "product" -->
                         <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                             <img class="product-img" src="{{ product.image.url }}" alt="">
                             <div class="product-text-container">
@@ -143,13 +151,24 @@
         </div>
 
         <div class="products-container">
-            <h3 class="latest">Favorite Brands 
-                <small>{{latest_len }} items found </small>
-                <a href="{% url 'store:shop_by_brand' %}">See all brands</a>
-            </h3>
+            <div class="product-header-text-container">
+                <h3 class="most-popular">Favorite Brands</h3>
+                <p class="product-number-of-items-found">{{ most_popular_len }} items found</p>
+                <p class="products-sort-by">Sort by:</p>
+                <div class="best-match-and-icons">
+                    <p class="product-price-match">Best match</p>
+                    <i class="fa fa-chevron-down show-product-price-match"></i>
+                    <i class="fa fa-chevron-up hide-product-price-match"></i>
+                </div>
+                <div class="product-low-and-high">
+                    <a class="product-best-match" href="{% url 'store:home' %}">Best match</a>
+                    <a class="product-price-high" href="{% url 'store:price_low_to_high' %}">Price low to high</a>
+                    <a class="product-price-low" href="{% url 'store:price_high_to_low' %}">Price high to low</a>
+                </div>
+            </div>
             <div class="product-container2">
                 {% for product in  latest %}
-                <div class="product">
+                <div class="product"> <!-- slick carousel container and class name "product" -->
                     <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                         <img class="product-img" src="{{ product.image.url }}" alt="">
                         <div class="product-text-container">
@@ -274,10 +293,24 @@
         {% if user.is_authenticated %}
             {% if just_for_you %}
                 <div class="products-container">
-                    <h3 class="just_for_you">Just For You <small>{{ just_for_you_len }} items found</small></h3>
+                    <div class="product-header-text-container">
+                        <h3 class="most-popular">Just For You</h3>
+                        <p class="product-number-of-items-found">{{ most_popular_len }} items found</p>
+                        <p class="products-sort-by">Sort by:</p>
+                        <div class="best-match-and-icons">
+                            <p class="product-price-match">Best match</p>
+                            <i class="fa fa-chevron-down show-product-price-match"></i>
+                            <i class="fa fa-chevron-up hide-product-price-match"></i>
+                        </div>
+                        <div class="product-low-and-high">
+                            <a class="product-best-match" href="{% url 'store:home' %}">Best match</a>
+                            <a class="product-price-high" href="{% url 'store:price_low_to_high' %}">Price low to high</a>
+                            <a class="product-price-low" href="{% url 'store:price_high_to_low' %}">Price high to low</a>
+                        </div>
+                    </div>
                     <div class="product-container3">
                         {% for product in  just_for_you %}
-                        <div class="product">
+                        <div class="product"> <!-- slick carousel container and class name "product" -->
                             <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                                 <img class="product-img" src="{{ product.image.url }}" alt="">
                                 <div class="product-text-container">

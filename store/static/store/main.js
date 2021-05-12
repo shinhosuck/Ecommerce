@@ -106,22 +106,35 @@ $('.product-container3').slick({
     ]
 });
 
-// show price low to hign, price high to low
-const productPriceHigh = document.querySelectorAll(".product-price-high")
-const productPriceLow = document.querySelectorAll(".product-price-low")
+/*
+=========
+HOME.HTML
+=========*/
+const showProductPriceMatch = document.querySelectorAll(".show-product-price-match")
+const hideProductPriceMatch = document.querySelectorAll(".hide-product-price-match")
 
-productPriceHigh.forEach(function(item){
-  item.addEventListener("click", function(){
-    item.style.display = "none"
-    item.nextElementSibling.style.display = "inline-block"
+
+showProductPriceMatch.forEach(function(i){
+  i.addEventListener("click", function(){
+   i.parentElement.nextElementSibling.classList.add("show-low-and-high")
+   i.style.display = "none"
+   i.nextElementSibling.style.display = "block"
   })
 })
-productPriceLow.forEach(function(item){
-  item.addEventListener("click", function(){
-    item.style.display = "none"
-    item.previousElementSibling.style.display = "inline-block"
+
+hideProductPriceMatch.forEach(function(i){
+  i.addEventListener("click", function(){
+    i.parentElement.nextElementSibling.classList.remove("show-low-and-high")
+    i.style.display = "none"
+    i.previousElementSibling.style.display = "block"
   })
 })
+/*
+================
+END OF HOME.HTML
+================*/
+
+
 // slide banner images
 const images = document.querySelectorAll(".slide-img")
 const imgContainer = document.querySelector(".slide-image-container")

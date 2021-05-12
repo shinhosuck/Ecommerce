@@ -430,3 +430,25 @@ def search(request):
                 "error": "Your search did not contain any data. Please try your search again."
             }
             return render(request, "store/search_result.html", context)
+
+
+def price_low_to_high(request):
+    order_by_price = Product.objects.all().order_by("-price")
+    products = Product.objects.all()
+    latest = []
+    just_for_you = []
+    most_popular = []
+
+    for product in order_by_price:
+        if product.times_ordered > 4:
+            most_popular.append(product)
+        context = {
+            "most_popular": most_popular,
+            "most_popular_len": len(most_popular)
+        }
+    most_popular.reverse()
+
+    return render(request, "store/home.html", context)
+
+def price_high_to_low(request):
+    return redirect("store:home")
