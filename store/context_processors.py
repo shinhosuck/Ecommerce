@@ -40,8 +40,3 @@ def side_categories(request):
     return  context
 
 
-# def product_rating(request):
-#     product_reviews = ProductReview.objects.all()
-#     for review in product_reviews:
-#         review.product
-#         review.rating
