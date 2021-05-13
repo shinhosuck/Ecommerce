@@ -8,7 +8,7 @@ from store.forms import OrderAddressForm, ProductReviewForm
 def home(request):
     user = request.user
     products = Product.objects.all()
-    latest = []
+    latest = [] # aka favorite brands
     most_popular = []
     just_for_you = []
 
@@ -54,7 +54,7 @@ def home(request):
                     "just_for_you_len": len(just_for_you),
                     "most_popular": most_popular,
                     "latest": latest,
-                    "just_for_you": just_for_you
+                    "just_for_you": just_for_you,
                 }
         return render(request, "store/home.html", context)
     else:
@@ -64,7 +64,7 @@ def home(request):
                     "latest_len": len(latest),
                     "latest": latest,
                 }
-    return render(request, "store/home.html", context)
+        return render(request, "store/home.html", context)
 
 
 def category(request, pk):
@@ -432,8 +432,244 @@ def search(request):
             return render(request, "store/search_result.html", context)
 
 
-def price_low_to_high(request):
-    return redirect("store:home")
+def sort_products(request):
+    user = request.user
+    sort_products = Product.objects.all().order_by("price")
+    products = Product.objects.all()
+    latest = [] # aka favorite brands
+    most_popular = []
+    just_for_you = []
+    sorted_most_popular = [] # for most popular at line 521 
+    for product in products:
+        latest.append(product)
+        if product.times_ordered > 4:
+            most_popular.append(product)
+    latest.reverse()
 
-def price_high_to_low(request):
-    return redirect("store:home")
+    # sorted products for best_match, price_low_to_high, and price_high_to_low.
+    for item in sort_products:
+        if item.times_ordered > 4:
+            sorted_most_popular.append(item)
+    # sorted_most_popular.reverse()
+    
+    # if user is authenticated/logged in/ registered.
+    if user.is_authenticated:
+        try:
+            customer = Customer.objects.get(name=user)
+            # try to get user from customer class
+        except Customer.DoesNotExist:
+            # if user does not exist in customer class.
+            Customer.objects.create(name=user, total_items=0)
+
+            if request.GET.get("string"):
+                string_parameter = request.GET.get("string")
+                if string_parameter == "most_popular_price_low_to_high":
+                    context = {
+                        "most_popular": sorted_most_popular,
+                        "most_popular_len": len(sorted_most_popular),
+                        "latest": latest,
+                        "latest_len": len(latest),
+                    }
+                    return render(request, "store/home.html", context)
+                elif string_parameter == "most_popular_price_high_to_low":
+                    sorted_most_popular.reverse()
+                    context = {
+                        "most_popular": sorted_most_popular,
+                        "most_popular_len": len(sorted_most_popular),
+                        "latest": latest,
+                        "latest_len": len(latest),
+                    }
+                    return render(request, "store/home.html", context)
+            else:
+                context = {
+                    "most_popular": most_popular,
+                    "most_popular_len": len(most_popular),
+                    "latest": latest,
+                    "latest_len": len(latest),
+                }
+                return render(request, "store/home.html", context)
+            # after creating customer account, send the user to home page.
+        else:
+            # if user exist in customer class.
+            customer = get_object_or_404(Customer, name=user)
+            baskets = customer.basket_set.filter(open_basket=True)
+            totalItems = 0
+            categories = []
+            sorted_just_for_you = [] # for just for you at line 572.
+
+            for basket in baskets:
+                totalItems += basket.quantity
+                if basket.product.category not in categories:
+                    categories.append(basket.product.category)
+
+            for category in categories:
+                category_items = Product.objects.filter(category=category)
+                sorted_items = category_items.order_by("-price") # for just for you at line 572.
+                for item in category_items:
+                    just_for_you.append(item)
+
+                for item in sorted_items:
+                    sorted_just_for_you.append(item)
+
+            customer.total_items = totalItems
+            customer.save()
+
+            # get optional string dat from the browser
+            if request.GET.get("string"):
+                string_parameter = request.GET.get("string")
+
+                # sorted most popular
+                if string_parameter == "most_popular_price_low_to_high":
+                    context = {
+                        "most_popular": sorted_most_popular,
+                        "most_popular_len": len(sorted_most_popular),
+                        "latest": latest,
+                        "latest_len": len(latest),
+                        "just_for_you": just_for_you,
+                        "just_for_you_len": len(just_for_you),
+                        "text_content": "most_popular_price_low_to_high"
+                    }
+                    return render(request, "store/home.html", context)
+                elif string_parameter == "most_popular_price_high_to_low":
+                    sorted_most_popular.reverse()
+                    context = {
+                        "most_popular": sorted_most_popular,
+                        "most_popular_len": len(sorted_most_popular),
+                        "latest": latest,
+                        "latest_len": len(latest),
+                        "just_for_you": just_for_you,
+                        "just_for_you_len": len(just_for_you),
+                        "text_content": "most_popular_price_high_to_low"
+                    }
+                    return render(request, "store/home.html", context)
+                # end of sorted most popular
+
+                # favorite brands/latest 
+                elif string_parameter == "favorite_brand_price_low_to_high":
+                    context = {
+                        "most_popular": most_popular,
+                        "most_popular_len": len(most_popular),
+                        "latest": sort_products,
+                        "latest_len": len(sort_products),
+                        "just_for_you": just_for_you,
+                        "just_for_you_len": len(just_for_you),
+                        "text_content": "favorite_brand_price_low_to_high"
+                    }
+                    return render(request, "store/home.html", context)
+                elif string_parameter == "favorite_brand_price_high_to_low":
+                    sort_products = Product.objects.all().order_by("-price")
+                    context = {
+                        "most_popular": most_popular,
+                        "most_popular_len": len(most_popular),
+                        "latest": sort_products,
+                        "latest_len": len(sort_products),
+                        "just_for_you": just_for_you,
+                        "just_for_you_len": len(just_for_you),
+                        "text_content": "favorite_brand_price_high_to_low" 
+                    }
+                    return render(request, "store/home.html", context)
+                # end of favorite brands/lates 
+
+                 # just for you 
+                elif string_parameter == "just_for_you_price_low_to_high":
+                    sorted_just_for_you.reverse()
+                    context = {
+                        "most_popular": most_popular,
+                        "most_popular_len": len(most_popular),
+                        "latest": sort_products,
+                        "latest_len": len(sort_products),
+                        "just_for_you": sorted_just_for_you,
+                        "just_for_you_len": len(sorted_just_for_you),
+                        "text_content": "just_for_you_price_low_to_high"
+                    }
+                    return render(request, "store/home.html", context)
+                elif string_parameter == "just_for_you_price_high_to_low":
+                    
+                    context = {
+                        "most_popular": most_popular,
+                        "most_popular_len": len(most_popular),
+                        "latest": latest,
+                        "latest_len": len(latest),
+                        "just_for_you": sorted_just_for_you,
+                        "just_for_you_len": len(sorted_just_for_you),
+                        "text_content": "just_for_you_price_high_to_low" 
+                    }
+                    return render(request, "store/home.html", context)
+                # end of just for you
+            else:
+                context = {
+                        "most_popular_len": len(most_popular),
+                        "latest_len": len(latest),
+                        "just_for_you_len": len(just_for_you),
+                        "most_popular": most_popular,
+                        "latest": latest,
+                        "just_for_you": just_for_you
+                    }
+                return render(request, "store/home.html", context)
+
+    # if customer is not authenticated/logged in/registered.
+    else:
+        # get optional string dat from the browser
+        if request.GET.get("string"):
+            string_parameter = request.GET.get("string")
+            
+            # sorted most popular
+            if string_parameter == "most_popular_price_low_to_high":
+                context = {
+                    "most_popular": sorted_most_popular,
+                    "most_popular_len": len(sorted_most_popular),
+                    "latest": latest,
+                    "latest_len": len(latest),
+                    "just_for_you": just_for_you,
+                    "just_for_you_len": len(just_for_you),
+                    "text_content": "most_popular_price_low_to_high"
+                }
+                return render(request, "store/home.html", context)
+            elif string_parameter == "most_popular_price_high_to_low":
+                sorted_most_popular.reverse()
+                context = {
+                    "most_popular": sorted_most_popular,
+                    "most_popular_len": len(sorted_most_popular),
+                    "latest": latest,
+                    "latest_len": len(latest),
+                    "just_for_you": just_for_you,
+                    "just_for_you_len": len(just_for_you),
+                    "text_content": "most_popular_price_high_to_low"
+                }
+                return render(request, "store/home.html", context)
+            # end of sorted most popular
+
+            # favorite brands/latest 
+            elif string_parameter == "favorite_brand_price_low_to_high":
+                context = {
+                    "most_popular": most_popular,
+                    "most_popular_len": len(most_popular),
+                    "latest": sort_products,
+                    "latest_len": len(sort_products),
+                    "just_for_you": just_for_you,
+                    "just_for_you_len": len(just_for_you),
+                    "text_content": "favorite_brand_price_low_to_high"
+                }
+                return render(request, "store/home.html", context)
+            elif string_parameter == "favorite_brand_price_high_to_low":
+                sort_products = Product.objects.all().order_by("-price")
+                context = {
+                    "most_popular": most_popular,
+                    "most_popular_len": len(most_popular),
+                    "latest": sort_products,
+                    "latest_len": len(sort_products),
+                    "just_for_you": just_for_you,
+                    "just_for_you_len": len(just_for_you),
+                    "text_content": "favorite_brand_price_high_to_low" 
+                }
+                return render(request, "store/home.html", context)
+            # end of favorite brands/lates
+        else:
+            context = {
+                        "most_popular": most_popular,
+                        "most_popular_len": len(most_popular),
+                        "latest_len": len(latest),
+                        "latest": latest,
+                    }
+            return render(request, "store/home.html", context)
+

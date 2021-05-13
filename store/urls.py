@@ -18,8 +18,7 @@ from store.views import (
         product_review,
         read_review,
         search,
-        price_low_to_high,
-        price_high_to_low,
+        sort_products,
     )
 
 app_name = "store"
@@ -44,6 +43,5 @@ urlpatterns = [
     path("product_review/<int:pk>/", product_review, name="product_review"),
     path("read/<int:pk>/review", read_review, name="read_review"),
     path("search/", search, name="search"),
-    path("price_low_to_high/", price_low_to_high, name="price_low_to_high"),
-    path("price_high_to_low/", price_high_to_low, name="price_high_to_low"),
+    path("sort_products/", sort_products, name="sort_products"),
 ]
