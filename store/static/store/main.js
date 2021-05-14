@@ -1,4 +1,24 @@
 
+// prevent windows scrolling to top on reload
+function storePagePosition() {
+  var page_y = window.pageYOffset;
+  localStorage.setItem("page_y", page_y);
+}
+
+window.addEventListener("scroll", storePagePosition);
+var currentPageY;
+
+try {
+  currentPageY = localStorage.getItem("page_y");
+
+if (currentPageY === undefined) {
+  localStorage.setItem("page_y") = 0;
+}
+
+  window.scrollTo( 0, currentPageY );
+} catch (e) {
+  // no localStorage available
+}
 
 // slick carousel 
 $('.product-container1').slick({
@@ -112,6 +132,16 @@ HOME.HTML
 =========*/
 const showProductPriceMatch = document.querySelectorAll(".show-product-price-match")
 const hideProductPriceMatch = document.querySelectorAll(".hide-product-price-match")
+const productBestMatch = document.querySelectorAll(".product-best-match")
+const productPriceHigh = document.querySelectorAll(".product-price-high")
+const productPriceLow = document.querySelectorAll(".product-price-low")
+
+// productBestMatch.forEach(function(item){
+//   item.addEventListener("click", function(){
+//     console.log("hello world")
+//     alert("you clicked a link")
+//   })
+// })
 
 
 showProductPriceMatch.forEach(function(i){

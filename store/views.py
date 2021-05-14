@@ -460,34 +460,13 @@ def sort_products(request):
         except Customer.DoesNotExist:
             # if user does not exist in customer class.
             Customer.objects.create(name=user, total_items=0)
-
-            if request.GET.get("string"):
-                string_parameter = request.GET.get("string")
-                if string_parameter == "most_popular_price_low_to_high":
-                    context = {
-                        "most_popular": sorted_most_popular,
-                        "most_popular_len": len(sorted_most_popular),
-                        "latest": latest,
-                        "latest_len": len(latest),
-                    }
-                    return render(request, "store/home.html", context)
-                elif string_parameter == "most_popular_price_high_to_low":
-                    sorted_most_popular.reverse()
-                    context = {
-                        "most_popular": sorted_most_popular,
-                        "most_popular_len": len(sorted_most_popular),
-                        "latest": latest,
-                        "latest_len": len(latest),
-                    }
-                    return render(request, "store/home.html", context)
-            else:
-                context = {
-                    "most_popular": most_popular,
-                    "most_popular_len": len(most_popular),
-                    "latest": latest,
-                    "latest_len": len(latest),
-                }
-                return render(request, "store/home.html", context)
+            context = {
+                "most_popular": most_popular,
+                "most_popular_len": len(most_popular),
+                "latest": latest,
+                "latest_len": len(latest),
+            }
+            return render(request, "store/home.html", context)
             # after creating customer account, send the user to home page.
         else:
             # if user exist in customer class.
@@ -573,6 +552,7 @@ def sort_products(request):
                  # just for you 
                 elif string_parameter == "just_for_you_price_low_to_high":
                     sorted_just_for_you.reverse()
+
                     context = {
                         "most_popular": most_popular,
                         "most_popular_len": len(most_popular),
