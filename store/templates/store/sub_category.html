@@ -8,9 +8,25 @@
 </title>
 
 
+
 {% block content %}
     <div class="sub-category-products-row">
-        <h3 class="sub-category-title">{{ sub_category }} <small>{{ products_len }} items found</small></h3>
+        <div class="sub-category-header-text-container">
+            <h3 class="sub-category-title">{{ sub_category.capitalize }}</h3>
+            <p class="sub-category-number-of-items-found">{{ products_len }} items found</p>
+            <p class="sub-category-sort-by">Sort by:</p>
+            <div class="sub-category-best-match-and-icons">
+                <p class="sub-category-price-match">{{ choice }}</p>
+                <i class="fa fa-chevron-down show-sub-category-price-match"></i>
+                <i class="fa fa-chevron-up hide-sub-category-price-match"></i>
+            </div>
+            <!-- see js at the bottom -->
+            <div class="sub-category-low-and-high">
+                <a class="sub-category-best-match" href="{% url 'store:sub_category' product.pk %}?string=best_match">Best match</a>
+                <a class="sub-category-price-high" href="{% url 'store:sub_category' product.pk %}?string=low_to_high">Price low to high</a>
+                <a class="sub-category-price-low" href="{% url 'store:sub_category' product.pk %}?string=high_to_low">Price high to low</a>
+            </div>
+        </div>
         <div class="sub-category-products-col">
             {% for product in  products %}
             <div class="sub-category-product">
@@ -132,4 +148,25 @@
             {% endfor %}
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        const showSubCategoryPriceMatch = document.querySelector(".show-sub-category-price-match")
+        const hideSubCategoryPriceMatch = document.querySelector(".hide-sub-category-price-match")
+
+        showSubCategoryPriceMatch.addEventListener("click", function(){
+        showSubCategoryPriceMatch.parentElement.nextElementSibling.classList.add("show-sub-category-low-and-high")
+        showSubCategoryPriceMatch.style.display = "none"
+        showSubCategoryPriceMatch.nextElementSibling.style.display = "block"
+        })
+
+        hideSubCategoryPriceMatch.addEventListener("click", function(){
+        hideSubCategoryPriceMatch.parentElement.nextElementSibling.classList.remove("show-sub-category-low-and-high")
+        hideSubCategoryPriceMatch.style.display = "none"
+        hideSubCategoryPriceMatch.previousElementSibling.style.display = "block"
+        })
+
+    </script>
+
+
 {% endblock content %}

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from store.models import Product, Basket, Customer, Address, Order, ProductReview
 from django.contrib.auth.models import User
 from store.forms import OrderAddressForm, ProductReviewForm
+from django.http import JsonResponse
 
 
 def home(request):
@@ -71,23 +72,94 @@ def category(request, pk):
     product = get_object_or_404(Product, pk=pk)
     category = product.category
     products = Product.objects.filter(category=category)
-    context = {
-        "category": category,
-        "products": products,
-        "products_len": len(products)
-    }
-    return  render(request, "store/category.html", context)
+
+    if request.GET.get("string"):
+        string_data = request.GET.get("string")
+        string_list = string_data.split("_")
+        sort_price_by = "_".join(string_list[1: ])
+        
+        if sort_price_by == "price_low_to_high":
+            sorted_items = Product.objects.filter(category=category).order_by("price")
+            context = {
+                "category": category,
+                "products": sorted_items,
+                "product": product,
+                "products_len": len(sorted_items),
+                "price_low_to_high": "Price low to high"
+            }
+            return  render(request, "store/category.html", context)
+
+        elif sort_price_by == "price_high_to_low":
+            sorted_items = Product.objects.filter(category=category).order_by("-price")
+            context = {
+                "category": category,
+                "products": sorted_items,
+                "products_len": len(sorted_items),
+                "product": product,
+                "price_high_to_low": "Price high to low"
+            }
+            return  render(request, "store/category.html", context)
+
+        else:
+            context = {
+                "category": category,
+                "products": products,
+                "product": product,
+                "products_len": len(products),
+                "best_match": "Best match"
+            }
+            return  render(request, "store/category.html", context)
+    else:
+        context = {
+            "category": category,
+            "products": products,
+            "product": product,
+            "products_len": len(products),
+            "best_match": "Best match"
+        }
+        return  render(request, "store/category.html", context)
 
 
 def sub_category(request, pk):
-    sub_category = get_object_or_404(Product, pk=pk).sub_category
+    product = get_object_or_404(Product, pk=pk)
+    sub_category = product.sub_category
     products = Product.objects.filter(sub_category=sub_category)
-    context = {
-        "sub_category": sub_category,
-        "products": products,
-        "products_len": len(products)
-    }
-    return render(request, "store/sub_category.html", context)
+    
+    if request.GET.get("string"):
+        string = request.GET.get("string")
+        choice = ""
+        items = ""
+        products_len = ""
+
+        if string == "high_to_low":
+            choice = "Price high to low"
+            items = products.order_by("-price")
+            products_len = len(items)
+        elif string == "low_to_high":
+            choice = "Price low to high"
+            items = products.order_by("price")
+            products_len = len(items)
+        elif string == "best_match":
+            choice = "Best match"
+            items = products
+            products_len = len(items) 
+        context = {
+            "choice": choice,
+            "products": items,
+            "products_len": products_len,
+            "sub_category": sub_category,
+            "product": product,
+        }
+        return render(request, "store/sub_category.html", context)
+    else:
+        context = {
+            "sub_category": sub_category,
+            "products": products,
+            "product": product,
+            "products_len": len(products),
+            "choice": "Best match",
+        }
+        return render(request, "store/sub_category.html", context)
 
 
 def shop_by_brand(request):
@@ -111,12 +183,43 @@ def brand_name(request, pk):
     product = get_object_or_404(Product, pk=pk)
     brand_name = product.company
     products = Product.objects.filter(company=brand_name)
-    context = {
-        "products": products, 
-        "brand_name": brand_name,
-        "products_len": len(products),
-    }
-    return render(request, "store/brand_name.html", context)
+
+    if request.GET.get("string"):
+        string = request.GET.get("string")
+        choice = ""
+        items = ""
+        products_len = ""
+
+        if string == "high_to_low":
+            choice = "Price high to low"
+            items = products.order_by("-price")
+            products_len = len(items)
+        elif string == "low_to_high":
+            choice = "Price low to high"
+            items = products.order_by("price")
+            products_len = len(items)
+        elif string == "best_match":
+            choice = "Best match"
+            items = products
+            products_len = len(items) 
+        context = {
+            "choice": choice,
+            "products": items,
+            "products_len": products_len,
+            "brand_name": brand_name,
+            "product": product,
+        }
+        return render(request, "store/brand_name.html", context)
+
+    else:
+        context = {
+            "products": products, 
+            "brand_name": brand_name,
+            "products_len": len(products),
+            "product": product,
+            "choice": "Best match"
+        }
+        return render(request, "store/brand_name.html", context)
 
 
 

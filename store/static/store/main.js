@@ -132,16 +132,6 @@ HOME.HTML
 =========*/
 const showProductPriceMatch = document.querySelectorAll(".show-product-price-match")
 const hideProductPriceMatch = document.querySelectorAll(".hide-product-price-match")
-const productBestMatch = document.querySelectorAll(".product-best-match")
-const productPriceHigh = document.querySelectorAll(".product-price-high")
-const productPriceLow = document.querySelectorAll(".product-price-low")
-
-// productBestMatch.forEach(function(item){
-//   item.addEventListener("click", function(){
-//     console.log("hello world")
-//     alert("you clicked a link")
-//   })
-// })
 
 
 showProductPriceMatch.forEach(function(i){
@@ -159,6 +149,7 @@ hideProductPriceMatch.forEach(function(i){
     i.previousElementSibling.style.display = "block"
   })
 })
+
 /*
 ================
 END OF HOME.HTML
