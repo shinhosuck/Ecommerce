@@ -523,9 +523,10 @@ def search(request):
             for sub_category in sub_categories:
                 found_products.setdefault(sub_category, sub_category.id)
             context = {
-                "found_product": found_products,
+                "found_products": found_products,
                 "found_product_len": len(found_products),
-                "search": search
+                "search": search,
+                "choice": "Best match",
             }
             return render(request, "store/search_result.html", context)
         else:
@@ -533,6 +534,51 @@ def search(request):
                 "error": "Your search did not contain any data. Please try your search again."
             }
             return render(request, "store/search_result.html", context)
+
+    elif request.GET.get("string"):
+        string = request.GET.get("string").split(",")
+        search = "".join(string[-1])
+        product_sorted = "".join(string[0])
+        products = Product.objects.filter(product_name__icontains=search)
+        categories = Product.objects.filter(category__icontains=search)
+        sub_categories = Product.objects.filter(sub_category__icontains=search)
+        dict_products = {}
+        sort_price = []
+        found_products = {}
+        choice = ''
+
+        for product in products:
+            dict_products.setdefault(product, product.id)
+        for category in categories:
+            dict_products.setdefault(category, category.id)
+        for sub_category in sub_categories:
+            dict_products.setdefault(sub_category, sub_category.id)
+        
+        for key in dict_products:
+            sort_price.append(key.price)
+
+        if product_sorted == "low_to_high":
+            sort_price.sort() # price low to high 
+            choice = "Price low to high"
+        elif product_sorted == "high_to_low":
+            sort_price.sort()
+            sort_price.reverse() # price high to low
+            choice = "Price high to low"
+        else:
+            choice = "Best match"
+       
+        for item in sort_price:
+            for key, value in dict_products.items():
+                if key.price == item:
+                    found_products.setdefault(key, value)
+        
+        context = {
+            "found_products": found_products,
+            "found_product_len": len(found_products),
+            "search": search,
+            "choice": choice,
+        }
+        return render(request, "store/search_result.html", context)
 
 
 def sort_products(request):

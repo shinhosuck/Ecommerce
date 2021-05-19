@@ -2,7 +2,7 @@
 
 <title>
     {% block title %} 
-    {{ product.product_name }} Review 
+    {{ product.product_name|truncatechars:17 }} Review 
     {% endblock title %} 
 </title>
 

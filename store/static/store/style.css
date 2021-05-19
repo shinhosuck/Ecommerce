@@ -4497,7 +4497,88 @@ search_result.html
     margin: 0 auto;
     margin-top: 3rem;
 }
+.search-result-header-text-container {
+    position: relative;
+    flex: 0 0 99.7%;
+    width: 99.7%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
 .search-result-title {
+    font-weight: normal;
+    letter-spacing: 0.05rem;
+    color: rgb(34, 34, 34);
+    margin-left: .25rem;
+    font-size: 1.35rem;
+}
+.search-result-number-of-items-found {
+    font-weight: normal;
+    font-size: 0.9rem;
+    color: rgb(128, 128, 128);
+    margin-left: 0.5rem;
+}
+.search-result-sort-by {
+    margin-left: auto;
+    cursor: pointer;
+    color: rgb(128, 128, 128);
+    font-size: 0.9rem;
+    margin-right: 0.3rem;
+}
+.search-result-best-match-and-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid rgb(202, 202, 202);
+}
+.search-result-price-match {
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    color: rgb(31, 31, 31);
+}
+.hide-search-result-price-match {
+    display: none;
+}
+.search-result-best-match-and-icons i {
+    font-size: 0.9rem;
+    color: rgb(31, 31, 31);
+    cursor: pointer;
+    margin-right: 0;
+}
+.search-result-low-and-high {
+    position: absolute;
+    overflow: hidden;
+    top: 40px;
+    right: 0;
+    width: 138px;
+    height: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background: rgb(235, 235, 235);
+    transition: height 0.15s linear;
+}
+.show-search-result-low-and-high {
+    height: 85px;
+    transition: height 0.15s linear;
+}
+.search-result-best-match, 
+.search-result-price-high, 
+.search-result-price-low{
+    color: rgb(22, 22, 22);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+
+
+/* .search-result-title {
     flex: 0 0 100%;
     width: 100%;
     font-weight: normal;
@@ -4511,7 +4592,7 @@ search_result.html
     font-weight: normal;
     font-size: 0.9rem;
     color: rgb(128, 128, 128);
-}
+} */
 .search-result-products-col {
     flex: 0 0 100%;
     width: 100%;
@@ -4888,7 +4969,6 @@ read_review.html
     margin-bottom: 1rem;
     letter-spacing: 0.05rem;
     color: rgb(100, 100, 100);
-    border: 1px solid red;
 }
 .read-review-add-to-basket {
     padding: 0.5rem;
