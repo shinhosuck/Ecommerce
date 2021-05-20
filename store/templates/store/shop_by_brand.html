@@ -9,7 +9,11 @@
 
 {% block content %}
     <div class="shop-by-brands-row">
-        <h3 class="shop-by-brands-title">Brand Names <small>{{ brands_len }} companies found</small></h3>
+        <div class="shop-by-brands-header-text-container">
+            <h3 class="shop-by-brands-title">Brand Names</h3> 
+            <p class="shop-by-brands-number-of-items-found">{{ brands_len }} companies found</p>
+        </div>
+        
         <div class="shop-by-brands-col">
             {% for key, value in brands.items %}
             <div class="shop-by-brand" title="click to see products">

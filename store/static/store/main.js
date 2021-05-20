@@ -1,4 +1,6 @@
 
+document.addEventListener("touchstart", function() {}, true);
+
 // prevent windows scrolling to top on reload
 function storePagePosition() {
   var page_y = window.pageYOffset;
@@ -126,6 +128,13 @@ $('.product-container3').slick({
     ]
 });
 
+// card slides prev and next buttons
+
+const nextAndPrevButtons = document.querySelectorAll(".slick-arrow") 
+const productsContainer = document.querySelectorAll(".products-container")
+
+
+
 /*
 =========
 HOME.HTML
@@ -224,10 +233,6 @@ function autoSlide(){
     setTimeout(autoSlide, 10000)
 }
 autoSlide()
-
-
-
-
 
 
 // show search bar
@@ -344,4 +349,3 @@ myOrderDetailText.forEach(function(orderDetail){
     })
   })
 })
-
