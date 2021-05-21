@@ -22,6 +22,18 @@
                 </div>
             </div>
             <ul class="navitem-container">
+
+                 <!-- mobile search -->
+                 <li class="item mobile-search-container">
+                    <form class="mobile-search" action="{% url 'store:search' %}" method="GET">
+                        <input class="mobile-search-input" type="text" placeholder="Search by product" name="q"/>
+                        <button class="mobile-search-submit-btn" type="submit" value="search">
+                            <i class="fa fa-search mobile-search-icon"></i>
+                        </button>
+                    </form>
+                </li>
+                <!-- end mobile search -->
+
                 <li class="item category">Categories</li>
                 <li class="item"><a href="{% url 'store:shop_by_brand' %}">Brand Names</a></li>
                 {% if user.is_authenticated %}
@@ -55,15 +67,13 @@
 
             <div class="search-container">
                 <form class="search" action="{% url 'store:search' %}" method="GET">
-                    <input class="search-input" type="text" placeholder="Search by product name" name="q"/>
+                    <input class="search-input" type="text" placeholder="Search by product" name="q"/>
                     <button class="search-submit-btn" type="submit" value="search">
                         <i class="fa fa-search search-icon"></i>
                     </button>
-                </from>
+                </form>
             </div>
-
         </nav>
-        
         <div class="categories">
             <div class="greet-container">
                 <i class="fa fa-times times-button"></i></li>
