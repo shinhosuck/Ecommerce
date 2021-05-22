@@ -110,32 +110,25 @@ base.html
 }
 .accounts {
     position: absolute;
-    top: 35px;
-    height: 0;
-    overflow: hidden;
-    background: white;
     z-index: 1;
-    transition: height 0.15s linear;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    width: 100px;
+    top: 30px;
+    background: rgb(255, 255, 255);
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.accounts a {
+    display: block;
+    padding: 0.5rem;
+    color: rgb(32, 32, 32);
+    text-decoration: none;
 }
 #accounts:hover .accounts {
-    height: 67px;
-    transition: height 0.15s linear
-}
-.nav-drop {
-    width: 100%;
-    flex: 0 0 100%;
-}
-.nav-drop a {
-    flex: 0 0 100%;
-    color: rgb(29, 29, 29);
-    padding: 0.5rem;
     display: block;
+    height: auto;
 }
-.nav-drop a:hover {
-    background: rgb(1, 75, 75);
+.accounts a:hover {
+    background: rgb(0, 121, 121);
     color: rgb(255, 255, 255);
 }
 /* end of nav items  */
@@ -161,11 +154,9 @@ base.html
 }
 .mobile-search {
     background: rgb(255, 255, 255);
-    /* margin-top: 1rem; */
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
     flex: 0 0 100%;
     width: 100%;
 }
@@ -228,7 +219,6 @@ base.html
     flex: 0 0 50%;
     width: 50%;
     border-radius: 5px;
-    /* border: 1px solid red; */
 }
 .search-icon {
     color: rgb(255, 255, 255);
@@ -254,11 +244,11 @@ base.html
     background: rgb(0, 134, 116);
     font-size: 1rem;
     cursor: pointer;
-    width: 66px;
-    height: 66px;
+    width: 60px;
+    height: 60px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
-    border: 1px solid rgb(0, 134, 116);
+    /* border: 1px solid rgb(0, 134, 116); */
 }
 /* end of search */
 
@@ -329,7 +319,6 @@ base.html
     display: flex;
     justify-content: center;
     padding: 0.5rem;
-    /* border: 1px solid red; */
 }
 .circle {
     padding: 0.4rem;
@@ -341,97 +330,93 @@ base.html
 /* end of slide banner */
 
 /* side-categories */
-.categories {
+.categories-and-sub-category-row{
     position: absolute;
-    height: 100%;
-    left: -100%;
+    height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    left: 0;
     top: 64px;
-    background: rgba(0, 24, 24, 0.7);
-    transition:left 0.4s ease-in-out;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    transition: height 0.25s ease-in-out;
     z-index: 1;
 }
-.show-categories {
-    width: 15rem;
-    left: 0%
-}
-.greet-container {
-    background: transparent;
-    text-align: end;
-    width: 15rem;
+.show-categories-and-sub-category-row {
+    height: 100vh;
+    transition: height 0.25s ease-in-out;
 }
 .times-button {
-    margin: 0.3rem 0.5rem 0.3rem 0;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     cursor: pointer;
     color: rgb(255, 255, 255);
-    animation-name: spin;
-    animation-timing-function: linear;
-    animation-duration: 1.3s;
-    animation-fill-mode: both;
-    animation-iteration-count: infinite;
-    animation-delay: 0.5s;
+    padding: 0.3rem 0.5rem;
+    margin: 0.5rem 0.5rem 0.5rem auto;
+    border-radius: 50%;
+    background: rgb(0, 121, 121);
 }
-@keyframes spin {
-    0%{
-        transform: rotate(360deg)
-    }
-    50%{
-        transform: rotate(0deg)
-    }
-    100%{
-        transform: rotate(-360deg)
-    }
-}
-.category-items {
+.categories-and-sub-category-col {
     width: 15rem;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    white-space: nowrap;
-    background: transparent;
-    padding-bottom: 2rem;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    background: rgba(0, 51, 51, 0.7);
 }
-.category-item {
+.categories-and-sub-category-container {
     flex: 0 0  100%;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
 }
-.category-link {
-    color: rgb(255, 255, 255);
-    display: block;
-    padding: 0.5rem 0;
-    padding-left: 2.5rem;
-    text-transform: capitalize;
-    font-size: 1.3rem;
+.category-container {
     flex: 0 0 100%;
-}
-.category-link:hover {
-    color: rgb(252, 252, 252);
-    background: rgb(0, 31, 31);
-}
-.sub-category-items {
-    flex: 0 0 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
+.category-link {
+    color: rgb(252, 252, 252);
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0.5rem 0;
+    padding-left: 2.5rem;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+}
+.category-container:hover {
+    background: rgb(0, 80, 80);
+}
+.sub-category-container {
+    flex: 0 0 100%;
+    width: 100%;
+    /* display: flex; */
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+}
 .sub-category-item {
     flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 .sub-category-link{
-    color: rgb(255, 255, 255);
-    display: block;
+    color: rgb(252, 252, 252);
+    flex: 0 0 100%;
+    width: 100%;
     text-transform: capitalize;
     font-size: 0.9rem;
-    padding: 0.4rem 0;
+    padding: 0.5rem 0;
     padding-left: 2.5rem;
 }
-.sub-category-link:hover{
-    color: rgb(255, 255, 255);
-    background: rgb(0, 44, 44);
+.sub-category-item:hover {
+    background: rgb(0, 80, 80);
+}
+.show-sub-category-container {
+    display: flex;
 }
 /* end of side-categories */
 @media screen and (max-width: 790px){
@@ -467,7 +452,8 @@ base.html
         transition: height 0.25s linear
     }
     .show-navitem-container {
-        height: 300px;
+        /* height: 330px; */
+        height: auto;
         transition: height 0.25s linear;
     }
     .item {
@@ -480,22 +466,18 @@ base.html
     .item a {
         color: rgb(255, 255, 255);
     }
-    .nav-drop a {
-        color: rgb(36, 36, 36);
-        font-size: 0.9rem;
-        padding: 0.3rem;
-    }
-    .item:hover, .item a:hover {
-        color: rgb(122, 122, 122);
+    .item:hover{
+        background: rgb(0, 80, 80);
     }
     .accounts {
         left: 90px;
         top: 20px;
-        width: 100px;
     }
-    #accounts:hover .accounts {
-        height: 52px;
-        transition: height 0.15s linear
+    .accounts a {
+        color: rgb(32, 32, 32);
+    }
+    .accounts a:hover {
+        color: rgb(255, 255, 255);
     }
     .search-container {
         top: 0;

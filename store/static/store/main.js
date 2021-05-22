@@ -217,6 +217,7 @@ circles.forEach(function (circle) {
 
   })
 })
+
 function autoSlide() {
   circles.forEach(function (circle) {
     circle.style.background = "rgb(167, 167, 167)"
@@ -245,7 +246,7 @@ searchButton.addEventListener("click", function () {
 })
 
 
-// show navitem container on max-width: 715px.
+// show navitem container on max-width: 790px.
 const barsButton = document.querySelector(".bars-button")
 const timesBtn = document.querySelector(".times-btn")
 const navItemContainer = document.querySelector(".navitem-container")
@@ -268,41 +269,71 @@ window.addEventListener("resize", function () {
 
 // base.html side categories
 const category = document.querySelector(".category")
-const categories = document.querySelector(".categories")
+const categories = document.querySelector(".categories-and-sub-category-row")
 const timesButton = document.querySelector(".times-button")
 const accounts = document.querySelector("#accounts")
 
 category.addEventListener("click", function () {
+  // document.body.style.overflowY = "hidden"
   sideMenu()
 })
 
 function sideMenu() {
-  categories.classList.toggle("show-categories")
+  categories.classList.toggle("show-categories-and-sub-category-row")
   searchContainer.classList.remove("show-search-container")
   navItemContainer.classList.remove("show-navitem-container")
 
   timesButton.addEventListener("click", function () {
-    categories.classList.remove("show-categories")
+    categories.classList.remove("show-categories-and-sub-category-row")
+    // document.body.style.overflowY = "auto"
   })
 
   categories.addEventListener("mouseleave", function () {
-    categories.classList.remove("show-categories")
+    categories.classList.remove("show-categories-and-sub-category-row")
+    // document.body.style.overflowY = "auto"
   })
 
 }
 
+const categoryContainer = document.querySelectorAll(".category-container")
+const subCategoryContainer = document.querySelectorAll(".sub-category-container")
+const categoriesAndSubCategoryCol = document.querySelector(".categories-and-sub-category-col")
+
+categoryContainer.forEach(function(category){
+  category.addEventListener("mouseenter", function(event){
+    const target = event.currentTarget
+    remove_container(target)
+  })
+})
+
+function remove_container(item){
+  subCategoryContainer.forEach(function(sub_category){
+    sub_category.classList.remove("show-sub-category-container")
+    item.nextElementSibling.classList.add("show-sub-category-container")
+  })
+}
+
+categoriesAndSubCategoryCol.addEventListener("mouseleave", function(){
+  subCategoryContainer.forEach(function(sub_category){
+    sub_category.classList.remove("show-sub-category-container")
+  })
+})
+
 // search button from  above comment "show search bar"
 searchButton.addEventListener("click", function () {
-  categories.classList.remove("show-categories")
+  categories.classList.remove("show-categories-and-sub-category-row")
+  // document.body.style.overflowY = "auto"
 })
 
 navbar.addEventListener("mouseenter", function () {
-  categories.classList.remove("show-categories")
+  categories.classList.remove("show-categories-and-sub-category-row")
+  // document.body.style.overflowY = "auto"
 })
 
 accounts.addEventListener("mouseenter", function () {
-  categories.classList.remove("show-categories")
+  categories.classList.remove("show-categories-and-sub-category-row")
   searchContainer.classList.remove("show-search-container")
+  // document.body.style.overflowY = "auto"
 })
 
 // my_basket.html show/hide basket edit

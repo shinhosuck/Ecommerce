@@ -49,10 +49,10 @@
                     Search
                 </li>
                 <li class="item" id="accounts">Accounts
-                    <ul class="accounts">
-                        <li class="nav-drop"><a href="{% url 'store:my_orders' %}">Orders</a></li>
-                        <li class="nav-drop"><a href="{% url 'users:profile' %}">Profile</a></li>
-                    </ul>
+                    <div class="accounts">
+                        <a href="{% url 'store:my_orders' %}">Orders</a>
+                        <a href="{% url 'users:profile' %}">Profile</a>
+                    </div>
                 </li>
                 <li class="item logout"><a href="{% url 'users:logout' %}">Logout</a></li>
                 {% else %}
@@ -74,28 +74,27 @@
                 </form>
             </div>
         </nav>
-        <div class="categories">
-            <div class="greet-container">
+        <div class="categories-and-sub-category-row">
+            <div class="categories-and-sub-category-col">
                 <i class="fa fa-times times-button"></i></li>
-            </div>
-            <ul class="category-items">
                 {% for key, value in categories.items %}
-                    <li class="category-item">
-                        <a class="category-link" href="{% url 'store:category' value %}">{{ key }}</a>
-                        <ul class="sub-category-items">
+                    <div class="categories-and-sub-category-container">
+                        <div class="category-container">
+                            <a class="category-link" href="{% url 'store:category' value %}">{{ key }}</a>
+                        </div>
+                        <div class="sub-category-container">
                             {% for k, v in sub_cat.items %}
-                            <li class="sub-category-item">
+                            <div class="sub-category-item">
                             {% if v.category == key %}
                                 <a class="sub-category-link" href="{% url 'store:sub_category' v.pk%}">{{ k }}</a>
                             {% endif %}
-                            </li>
+                            </div>
                             {% endfor %}
-                        </ul>
-                    </li>
+                        </div>
+                    </div>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
-
     </header>
     <main>
         
