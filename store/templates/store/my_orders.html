@@ -9,23 +9,29 @@
 
 {% block content %}
     <div class="my-order-main-container">
+        <h3 class="my-order-header">My Order History</h3>
         <div class="my-orders">
-            <h3 class="my-order-title">{{ user.first_name }}'s Order History</h3>
             {% if not orders and not closed_orders %}
                 <p style=" margin-top: 0.5rem; color: rgb(41, 41, 41)">
                     You do not have any orders.
                 </p>
             {% endif %}
             {% if orders %}
-                <p class="open-orders-title">Ongoing</p>
+                <h4 class="open-orders-title">Open Order
+                    {% if orders.count > 1 %}
+                    <small>{{ orders.count }} items found</small>
+                    {% elif orders.count == 1 %}
+                    <small>{{ orders.count }} item found</small>
+                    {% endif %}
+                </h4>
                 {% for order in orders %}
                     <div class="order-row" title="Click image for detail">
-                        <a href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
+                        <a  class="order-img" href="{% url 'store:product_detail' order.basket.product.pk %}">
                             <img src="{{ order.basket.product.image.url}}" alt="">
                         </a>
                         <div class="order-text-wraper">
                             <div class="order-product-name">
-                                <p>{{ order.basket.product|truncatechars:20 }}</p>
+                                <p>{{ order.basket.product.product_name|truncatechars:20 }}</p>
                             </div>
                             <div class="order-price">
                                 <p>${{ order.basket.product.price}}</p>
@@ -56,7 +62,13 @@
             {% endif %}
 
             {% if closed_orders %}
-                <p class="closed-orders-title">Closed</p>
+                <h4 class="closed-orders-title">Fulfilled Order 
+                    {% if closed_orders.count > 1 %}
+                    <small>{{ closed_orders.count }} items found</small>
+                    {% elif closed_orders.count == 1 %}
+                    <small>{{ closed_orders.count }} item found</small>
+                    {% endif %}
+                </h4>
                 {% for order in closed_orders %}
                     <div class="order-row" title="Click image for detail">
                         <a href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
@@ -72,7 +84,7 @@
                             <div class="my-order-detail">
                                 <p>
                                     <small>Staus: closed</small>
-                                    <small>Payment received date: {{ order.date_ordered|date:"N, d, Y" }}</small>
+                                    <small>Payment received: {{ order.date_ordered|date:"N, d, Y" }}</small>
                                 </p>
                             </div>
                             <!-- for small screen -->
@@ -81,7 +93,7 @@
                                 <div class="order-price-mobile">
                                     <p class="small-text">
                                         <small class="small1">Staus: closed</small>
-                                        <small class="small2">Payment received date:<span>{{ order.date_ordered|date:"N, d, Y" }}</span></small>
+                                        <small class="small2">Payment received:<span>{{ order.date_ordered|date:"N, d, Y" }}</span></small>
                                     </p>
                                 </div>
                             </div>
@@ -89,13 +101,13 @@
                             <div class="order-quantity">
                                 <p>Qty:<small>{{ order.basket.quantity }}</small></p>
                             </div>
-                            <a style="flex: 0 0 100%; width: 100%; margin-top: 0.5rem;" href="{% url 'store:product_review'  order.basket.product.pk %}">Review this product</a>
+                            <a class="my-order-review-this-product" href="{% url 'store:product_review'  order.basket.product.pk %}">Review this product</a>
                         </div>
                     </div>
                 {% endfor %}
             {% endif %}
-            </div>
-            <div class="my-order-total">
+        </div>
+        <div class="my-order-total">
             {% if orders %}
                 <div class="order-total-wraper">
                     <div class="order-total-text-container">
@@ -136,5 +148,4 @@
             </div>
         </div>
     </div>
-
 {% endblock content %}

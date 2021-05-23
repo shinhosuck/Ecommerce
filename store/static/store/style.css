@@ -32,14 +32,15 @@ base.html
     justify-content: space-around;
     flex-wrap: wrap;
     background: rgb(0, 41, 41);
-    padding: 0.5rem 0;
+    /* padding: 0.5rem 0; */
     position: relative;
 }
 .brand-name {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
+    padding: 0.5rem 1rem;
 }
 .brand {
     color: rgb(0, 201, 141);
@@ -84,9 +85,17 @@ base.html
     cursor: pointer;
 }
 .item {
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
     color: white;
     font-size: 0.9rem;
+    /* border: 1px solid white; */
+
+    /* edit */
+    padding: 0 1rem;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 .item a {
     color: white;
@@ -112,7 +121,8 @@ base.html
     position: absolute;
     z-index: 1;
     width: 100px;
-    top: 30px;
+    /* top: 30px; */
+    top: 65px;
     background: rgb(255, 255, 255);
     display: none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -341,31 +351,34 @@ base.html
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    transition: height 0.25s ease-in-out;
+    transition: height 0.5s ease-in-out;
     z-index: 1;
 }
 .show-categories-and-sub-category-row {
     height: 100vh;
-    transition: height 0.25s ease-in-out;
-}
-.times-button {
-    font-size: 1.1rem;
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    padding: 0.3rem 0.5rem;
-    margin: 0.5rem 0.5rem 0.5rem auto;
-    border-radius: 50%;
-    background: rgb(0, 121, 121);
+    transition: height 0.5s ease-in-out;
 }
 .categories-and-sub-category-col {
-    width: 15rem;
+    width: 13rem;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    background: rgba(0, 51, 51, 0.7);
+    /* background: rgba(0, 51, 51, 0.7); */
+    background: rgba(0, 51, 36, 0.7);
+    /* padding-bottom: 1rem; */
+}
+.times-button {
+    font-size: 1rem;
+    cursor: pointer;
+    color: rgb(32, 32, 32);
+    padding: 0.3rem 0.45rem;
+    margin: 0.5rem 0.5rem 0.5rem auto;
+    border-radius: 50%;
+    background: rgb(255, 255, 255);
 }
 .categories-and-sub-category-container {
     flex: 0 0  100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -380,21 +393,24 @@ base.html
     color: rgb(252, 252, 252);
     flex: 0 0 100%;
     width: 100%;
-    padding: 0.5rem 0;
-    padding-left: 2.5rem;
+    padding: 0.7rem 0;
+    padding-left: 2rem;
     text-transform: capitalize;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 .category-container:hover {
     background: rgb(0, 80, 80);
 }
 .sub-category-container {
+    /* max-height: 0;
+    overflow: hidden;
+    white-space: nowrap; */
     flex: 0 0 100%;
     width: 100%;
-    /* display: flex; */
-    display: none;
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
+    /* transition: max-height .5s ease-in-out */
 }
 .sub-category-item {
     flex: 0 0 100%;
@@ -410,14 +426,16 @@ base.html
     text-transform: capitalize;
     font-size: 0.9rem;
     padding: 0.5rem 0;
-    padding-left: 2.5rem;
+    padding-left: 2rem;
 }
 .sub-category-item:hover {
     background: rgb(0, 80, 80);
 }
-.show-sub-category-container {
-    display: flex;
-}
+/* .show-sub-category-container {
+    height: auto;
+    max-height: 1000px;
+    transition: max-height .5s ease-in-out
+} */
 /* end of side-categories */
 @media screen and (max-width: 790px){
     .navbar {
@@ -458,6 +476,7 @@ base.html
     }
     .item {
         padding: 1rem;
+        height: auto !important;
         color: rgb(255, 255, 255);
         font-size: 0.9rem;
         flex: 0 0 100%;
@@ -470,8 +489,8 @@ base.html
         background: rgb(0, 80, 80);
     }
     .accounts {
-        left: 90px;
-        top: 20px;
+        right: 0;
+        top: 0;
     }
     .accounts a {
         color: rgb(32, 32, 32);
@@ -508,13 +527,13 @@ base.html
         width: 200px;
     }
     .category-link {
-        font-size: 1.1rem;
-        padding-left: 1.5rem;
+        font-size: 1rem;
+        padding-left: 1rem;
 
     }
     .sub-category-link {
         font-size: 0.8rem;
-        padding-left: 1.5rem;
+        padding-left: 1rem;
     }
     .times-button {
         font-size: 1.2rem;
@@ -1088,6 +1107,7 @@ home.html
     font-weight: normal;
     font-size: 1.35rem;
     letter-spacing: 0.05rem;
+    color: rgb(30, 30, 30)
 }
 .product-number-of-items-found {
     font-weight: normal;
@@ -1112,14 +1132,15 @@ home.html
 .product-price-match {
     font-size: 0.9rem;
     margin-right: 1rem;
-    color: rgb(22, 22, 22);
+    color: rgb(30, 30, 30)
 }
 .hide-product-price-match {
     display: none;
 }
 .best-match-and-icons i {
     font-size: 0.9rem;
-    cursor: pointer
+    cursor: pointer;
+    color: rgb(30, 30, 30);
 }
 .product-low-and-high {
     position: absolute;
@@ -1143,23 +1164,22 @@ home.html
 .product-best-match,
 .product-price-high,
 .product-price-low{
-    color: rgb(22, 22, 22);
+    color: rgb(30, 30, 30);
     font-size: 0.9rem;
     margin-top: 0.5rem;
     margin-left: 0.5rem;
 }
-.see-all-brands {
+/* .see-all-brands {
     font-weight: normal;
     font-size: 0.95rem;
     margin-left: 0.5rem;
     color: rgb(0, 118, 133);
-}
+} */
 .product-container1, .product-container2, .product-container3{
     overflow: hidden;
     white-space: nowrap;
-    padding-right: 0rem;
+    /* padding-right: 0rem; */
     margin: auto;
-
 }
 .product {
     display: inline-block;
@@ -1193,7 +1213,7 @@ home.html
 .product-name {
     margin-top: 0.5rem;
     font-size: 1rem;
-    color: rgb(22, 22, 22);
+    color: rgb(30, 30, 30);
 }
 .reviews-price {
     flex: 0 0 100%;
@@ -1224,8 +1244,6 @@ home.html
     align-items: center;
 }
 .ratings {
-    /* width: 100%;
-    flex: 0 0 100%; */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -1255,13 +1273,14 @@ home.html
 .product-add-to-basket {
     flex: 0 0 100%;
     width: 100%;
-    margin-top: 0.7rem;
+    margin-top: 0.6rem;
     margin-bottom: 0.2rem;
-    padding: 0.5rem 0;
+    padding: 0.7rem 0;
     background: rgb(0, 100, 100);
     color: rgb(255, 255, 255);
     text-align: center;
     font-size: 0.9rem;
+    border-radius: 5px;
     transition: background 0.25s linear;
 }
 .product-add-to-basket:hover {
@@ -1274,7 +1293,7 @@ home.html
     margin: auto;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: rgb(255, 255, 255);
     cursor: pointer;
     outline: none;
 }
@@ -2581,6 +2600,9 @@ category.html
     flex: 0 0 100%;
     width: 100%;
     margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 .category-read-review {
     margin-left: auto;
@@ -3273,9 +3295,19 @@ my_orders.html
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    margin: 2rem auto;
+    margin: 0 auto;
+    margin-top: 3rem;
     width: 85%;
     max-width: 1920px;
+}
+.my-order-header {
+    flex: 0 0 100;
+    width: 100%;
+    font-weight: normal;
+    font-size: 1.35rem;
+    letter-spacing: 0.05rem;
+    color: rgb(30, 30, 30);
+    margin-bottom: 1rem;
 }
 .my-orders {
     flex: 0 0 64%;
@@ -3284,23 +3316,42 @@ my_orders.html
     flex-wrap: wrap;
     align-items: flex-start;
     padding: 1rem;
+    border-radius: 5px;
     background: rgb(255, 255, 255);
 }
-.my-order-title {
+.open-orders-title {
     font-weight: normal;
-    color: rgb(54, 54, 54);
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    color: rgb(30, 30, 30);
+    margin-bottom: 1rem;
     flex: 0 0 100%;
     width: 100%;
 }
-.open-orders-title {
-    color: rgb(63, 63, 63);
-    margin: 1.5rem 0 0.5rem 0;
+.closed-orders-title {
+    font-weight: normal;
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    color: rgb(30, 30, 30);
+    margin: 1.5rem 0 1rem 0;
+    padding-top: 1.5rem;
+    flex: 0 0 100%;
+    width: 100%;
+    border-top: 1px solid rgb(220, 220, 220);
+}
+.closed-orders-title small {
+    color: rgb(128, 128, 128);
+    font-size: 0.9rem;
+}
+.open-orders-title small {
+    color: rgb(128, 128, 128);
+    font-size: 0.9rem;
 }
 .order-row {
     flex: 0 0 100%;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     margin-top: 0.5rem;
     color: rgb(36, 36, 36);
@@ -3308,7 +3359,6 @@ my_orders.html
 .order-img {
     width: 20%;
     flex: 0 0 20%;
-    border: 0.5px solid rgb(236, 236, 236);
 }
 .order-img img {
     width: 100%;
@@ -3319,28 +3369,24 @@ my_orders.html
     width: 78%;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     margin-left: 0.5rem;
-    color: rgb(80, 80, 80);
 }
 .order-product-name {
     flex: 0 0 50%;
     width: 50%;
-    /* margin-top: 0.5rem; */
-}
-.order-product-name p {
+    color: rgb(30, 30, 30);
     font-size: 1rem;
-    color: rgb(51, 51, 51);
 }
 .order-price {
     flex: 0 0 50%;
     width: 50%;
-    /* margin-top: 0.5rem; */
 }
 .order-price p {
     font-size: 1rem;
     text-align: end;
-    color: rgb(255, 69, 0)
+    color: rgb(0, 134, 78);
+    font-weight: bold;
 }
 .my-order-detail {
     flex: 0 0 100%;
@@ -3353,7 +3399,7 @@ my_orders.html
     justify-content: space-between;
 }
 .my-order-detail p small {
-    color: rgb(121, 121, 121);
+    color: rgb(128, 128, 128);
 }
 /* for small screen */
 .my-order-detail-text {
@@ -3397,27 +3443,29 @@ my_orders.html
 }
 /* end small screen */
 .order-quantity {
-    flex: 0 0 50%;
-    width: 50%;
+    /* flex: 0 0 50%;
+    width: 50%; */
     margin-top: 0.5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 .order-quantity p {
-    color: rgb(56, 56, 56);
+    color: rgb(30, 30, 30);
     font-size: 0.9rem;
 }
 .order-quantity p small{
     font-size: 0.8rem;
     margin: 0 0.2rem;
     padding: 0.1rem 0.4rem;
-    color: rgb(56, 56, 56);
+    color: rgb(30, 30, 30);
     border: 1px solid rgb(201, 201, 201);
 }
-.closed-orders-title {
-    color: rgb(63, 63, 63);
-    margin: 1.5rem 0 0.5rem 0;
+.my-order-review-this-product {
+    margin-left: auto;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: rgb(0, 118, 133); 
 }
 .my-order-total {
     width: 35%;
@@ -3429,7 +3477,7 @@ my_orders.html
     background: rgb(255, 255, 255);
 }
 .order-total-wraper {
-    color: rgb(54, 54, 54);
+    /* color: rgb(54, 54, 54); */
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -3445,18 +3493,24 @@ my_orders.html
 .order-amount-due {
     flex: 0 0 100%;
     width: 100%;
-    color: rgb(99, 99, 99);
+    color: rgb(128, 128, 128);
     margin-bottom: 0.2rem;
 }
 .order-total {
-    color: rgb(54, 54, 54);
     margin-bottom: 0.5rem;
-    letter-spacing: 0.05rem;
     font-weight: normal;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+    color: rgb(30, 30, 30)
 }
-.order-total-items span, .order-amount-due span {
-    color: rgb(255, 69, 0);
+.order-total-items span {
+    color: rgb(30, 30, 30);
     float: right;
+}
+.order-amount-due span {
+    color: rgb(0, 134, 78);
+    float: right;
+    font-weight: bold;
 }
 .order-payment-button {
     margin-top: 1rem;
@@ -3469,13 +3523,14 @@ my_orders.html
     flex: 0 0 100%;
     width: 100%;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.7rem;
+    border-radius: 5px;
     color: rgb(255, 255, 255);
-    background: rgb(0, 128, 117);
+    background: rgb(0, 100, 100);
     transition: background 0.2s ease-in-out;
 }
 .make-payment-button:hover {
-    background: rgb(0, 88, 77);
+    background: rgb(0, 61, 61);
 }
 .order-pay-pal-img {
     width: 100;
@@ -3498,13 +3553,15 @@ my_orders.html
 .most-ordered-title {
     flex: 0 0 100%;
     width: 100%;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgb(220, 220, 220);
 }
 .most-ordered-title h3 {
-    color: rgb(31, 31, 31);
-    letter-spacing: 0.05rem;
     font-weight: normal;
-    text-transform: capitalize;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+    color: rgb(30, 30, 30)
 }
 .most-ordered-container {
     flex: 0 0 47.7%;
@@ -3539,7 +3596,6 @@ my_orders.html
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-
 }
 .most-ordered-text-container p {
     flex: 0 0 100%;
@@ -3547,27 +3603,36 @@ my_orders.html
 }
 .most-ordered-product-name {
     font-size: 0.85rem;
-    margin-bottom: 0.3rem;
-    color: rgb(31, 31, 31);
+    margin-bottom: 0.5rem;
+    color: rgb(30, 30, 30);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .most-ordered-product-price {
     font-size: 0.85rem;
-    margin-bottom: 0.3rem;
-    color: rgb(221, 44, 0);
+    margin-bottom: 0.5rem;
+    color: rgb(0, 134, 78);
+    font-weight: bold;
 }
 .most-ordered-product-btn {
     width: 100%;
     flex: 0 0 100%;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     border: none;
     outline: none;
     color: white;
-    padding: 0.3rem 0;
+    padding: 0.5rem 0;
+    border-radius: 5px;
     text-align: center;
-    background:rgb(0, 124, 124)
+    /* margin-top: 0.5rem; */
+    margin-bottom: 0.2rem;
+    background: rgb(0, 100, 100);
+}
+@media screen and (min-width: 1600px) {
+    .my-order-main-container {
+        width: 1360px;
+    }
 }
 @media screen and (max-width: 1280px) {
     .my-order-main-container {
@@ -3582,11 +3647,14 @@ my_orders.html
     .my-orders {
         flex: 0 0 100%;
         width: 100%;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
     .my-order-total {
         flex: 0 0 100%;
         width: 100%;
         margin-left: 0;
+        margin-top: 0.5rem;
     }
     .order-total-wraper {
         width: 100%;
@@ -3704,8 +3772,8 @@ my_orders.html
 @media screen and (max-width: 336px) {
     .my-order-main-container {
         /* width: 267.2px; */
-        width: 100%;
-        margin-top: 0;
+        width: 90%;
+        margin-top: 2rem;
     }
     .most-ordered-row {
         justify-content: center;
@@ -3725,9 +3793,8 @@ my_orders.html
         text-overflow: ellipsis;
     }
     .most-ordered-product-btn {
-        padding: 0.5rem 0;
-        font-size: 0.9rem;
-        margin: 0.5rem 0;
+        margin-top: 0.6rem;
+        padding: 0.7rem 0;
     }
 }
 /*
@@ -5299,6 +5366,7 @@ read_review.html
         flex: 0 0 60%;
         width: 60%;
     }
+}
     @media screen and (max-width: 370px) {
         .review-date-mobile {
             white-space: nowrap;

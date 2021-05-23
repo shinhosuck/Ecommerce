@@ -295,29 +295,32 @@ function sideMenu() {
 
 }
 
-const categoryContainer = document.querySelectorAll(".category-container")
-const subCategoryContainer = document.querySelectorAll(".sub-category-container")
+// expand sub-categories and hide sub-categories
+
+// const categoryContainer = document.querySelectorAll(".category-container")
+// const subCategoryContainer = document.querySelectorAll(".sub-category-container")
 const categoriesAndSubCategoryCol = document.querySelector(".categories-and-sub-category-col")
 
-categoryContainer.forEach(function(category){
-  category.addEventListener("mouseenter", function(event){
-    const target = event.currentTarget
-    remove_container(target)
-  })
-})
-
-function remove_container(item){
-  subCategoryContainer.forEach(function(sub_category){
-    sub_category.classList.remove("show-sub-category-container")
-    item.nextElementSibling.classList.add("show-sub-category-container")
-  })
-}
-
 categoriesAndSubCategoryCol.addEventListener("mouseleave", function(){
-  subCategoryContainer.forEach(function(sub_category){
-    sub_category.classList.remove("show-sub-category-container")
-  })
+  categories.classList.remove("show-categories-and-sub-category-row")
 })
+
+// categoryContainer.forEach(function(category){
+//   category.addEventListener("mouseenter", function(event){
+//     const target = event.currentTarget
+//     remove_container(target)
+//   })
+// })
+
+// function remove_container(item){
+//   item.nextElementSibling.classList.add("show-sub-category-container")
+// }
+
+// categoriesAndSubCategoryCol.addEventListener("mouseleave", function(){
+//   subCategoryContainer.forEach(function(sub_category){
+//     sub_category.classList.remove("show-sub-category-container")
+//   })
+// })
 
 // search button from  above comment "show search bar"
 searchButton.addEventListener("click", function () {
