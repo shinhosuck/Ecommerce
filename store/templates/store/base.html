@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" /> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
     <link type="text/css" rel="stylesheet" href="{% static 'store/css/all.min.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'store/style.css' %}">
     <link type="image/png" rel="icon" href="{% static 'store/favicon.ico' %}">
@@ -33,12 +35,14 @@
                     </form>
                 </li>
                 <!-- end mobile search -->
-
+                <li class="item" id="nav-mobile-close-button">
+                    <i class="fa fa-times nav-times-button"></i>
+                </li>
                 <li class="item category">Categories</li>
                 <li class="item"><a href="{% url 'store:shop_by_brand' %}">Brand Names</a></li>
                 {% if user.is_authenticated %}
                 <li class="item">
-                    <a href="{% url 'store:my_basket' %}">Basket
+                    <a href="{% url 'store:my_basket' %}">My Basket
                         <i class="fa fa-shopping-basket basket">
                             <small>{{ user.customer.total_items }}</small>
                         </i>
@@ -48,10 +52,14 @@
                     <i class="fa fa-search search-button-icon"></i>
                     Search
                 </li>
-                <li class="item" id="accounts">Accounts
+                <li class="item" id="accounts">My Accounts
                     <div class="accounts">
-                        <a href="{% url 'store:my_orders' %}">Orders</a>
-                        <a href="{% url 'users:profile' %}">Profile</a>
+                        <a href="{% url 'store:my_orders' %}">Order history</a>
+                        <a href="{% url 'users:profile' %}">Profile Info</a>
+                    </div>
+                    <div class="mobile-accounts">
+                        <a href="{% url 'store:my_orders' %}">Order history</a>
+                        <a href="{% url 'users:profile' %}">Profile Info</a>
                     </div>
                 </li>
                 <li class="item logout"><a href="{% url 'users:logout' %}">Logout</a></li>

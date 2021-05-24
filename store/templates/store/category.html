@@ -39,11 +39,13 @@
                     <a class="category-product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                         <img class="category-product-img" src="{{ product.image.url }}" alt="">
                         <div class="category-product-text-container">
-                            <p class="category-product-name">{{ product.product_name|truncatechars:20 }}</p>
+                            <div class="category-product-name">
+                                <p>{{ product.product_name|truncatechars:20 }}</p>
+                            </div>
                             <div class="category-reviews-price">
                                 <p class="category-product-price">${{ product.price }}</p>
                                 {% if product.productreview_set.all %}
-                                    <a class="category-read-review" href="{% url 'store:read_review' product.pk %}">
+                                    <a  class="category-read-review" href="{% url 'store:read_review' product.pk %}">
                                         Read review
                                     </a>
                                 {% else %}
@@ -157,21 +159,22 @@
 
     <script type="text/javascript">
 
-        const showCategoryPriceMatch = document.querySelector(".show-category-price-match")
-        const hideCategoryPriceMatch = document.querySelector(".hide-category-price-match")
+        const categoryMatchAndIcons = document.querySelectorAll(".category-best-match-and-icons")
 
-        showCategoryPriceMatch.addEventListener("click", function(){
-        showCategoryPriceMatch.parentElement.nextElementSibling.classList.add("show-category-low-and-high")
-        showCategoryPriceMatch.style.display = "none"
-        showCategoryPriceMatch.nextElementSibling.style.display = "block"
+        categoryMatchAndIcons.forEach(function(container){
+            container.addEventListener("click", function(event){
+                event.currentTarget.nextElementSibling.classList.toggle("show-category-low-and-high")
+                const sibling = event.currentTarget.nextElementSibling
+                if(sibling.classList.contains("show-category-low-and-high")){
+                    event.currentTarget.children[1].style.display = "none"
+                    event.currentTarget.children[2].style.display = "block"
+                }
+                else{
+                    event.currentTarget.children[1].style.display = "block"
+                    event.currentTarget.children[2].style.display = "none"
+                }
+            })
         })
-
-        hideCategoryPriceMatch.addEventListener("click", function(){
-        hideCategoryPriceMatch.parentElement.nextElementSibling.classList.remove("show-category-low-and-high")
-        hideCategoryPriceMatch.style.display = "none"
-        hideCategoryPriceMatch.previousElementSibling.style.display = "block"
-        })
-
     </script>
 
 

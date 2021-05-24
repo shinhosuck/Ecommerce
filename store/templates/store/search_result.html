@@ -11,8 +11,6 @@
 {% block content %}
     <div class="search-result-products-row">
         {% if found_products %}
-        {# <h3 class="search-result-title">{{ search.capitalize }} <small>{{ found_product_len }} items found</small></h3> #}
-
         <div class="search-result-header-text-container">
             <h3 class="search-result-title">{{ search.capitalize }}</h3>
             <p class="search-result-number-of-items-found">{{ found_product_len }} items found</p>
@@ -38,7 +36,7 @@
                 <a class="search-result-product-content" href="{% url 'store:product_detail' product.pk %}">
                     <img class="search-result-product-img" src="{{ product.image.url }}" alt="product image">
                     <div class="search-result-product-text-container">
-                        <p class="search-result-product-name">{{ product.product_name|truncatechars:17 }}</p>
+                        <p class="search-result-product-name">{{ product.product_name|truncatechars:20 }}</p>
                         <div class="search-result-reviews-price">
                             <p class="search-result-product-price">${{ product.price }}</p>
                                 {% if product.productreview_set.all %}

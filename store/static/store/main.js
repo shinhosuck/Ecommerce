@@ -139,23 +139,21 @@ const productsContainer = document.querySelectorAll(".products-container")
 =========
 HOME.HTML
 =========*/
-const showProductPriceMatch = document.querySelectorAll(".show-product-price-match")
-const hideProductPriceMatch = document.querySelectorAll(".hide-product-price-match")
 
+const bestMatchAndIcons = document.querySelectorAll(".best-match-and-icons")
 
-showProductPriceMatch.forEach(function (i) {
-  i.addEventListener("click", function () {
-    i.parentElement.nextElementSibling.classList.add("show-low-and-high")
-    i.style.display = "none"
-    i.nextElementSibling.style.display = "block"
-  })
-})
-
-hideProductPriceMatch.forEach(function (i) {
-  i.addEventListener("click", function () {
-    i.parentElement.nextElementSibling.classList.remove("show-low-and-high")
-    i.style.display = "none"
-    i.previousElementSibling.style.display = "block"
+bestMatchAndIcons.forEach(function(container){
+  container.addEventListener("click", function(event){
+    event.currentTarget.nextElementSibling.classList.toggle("show-low-and-high")
+    const sibling = event.currentTarget.nextElementSibling
+    if(sibling.classList.contains("show-low-and-high")){
+      event.currentTarget.children[1].style.display = "none"
+      event.currentTarget.children[2].style.display = "block"
+    }
+    else{
+      event.currentTarget.children[1].style.display = "block"
+      event.currentTarget.children[2].style.display = "none"
+    }
   })
 })
 
@@ -251,30 +249,33 @@ const barsButton = document.querySelector(".bars-button")
 const timesBtn = document.querySelector(".times-btn")
 const navItemContainer = document.querySelector(".navitem-container")
 const navbar = document.querySelector(".navbar")
+const navTimesButton = document.querySelector(".nav-times-button")
 
 
 barsButton.addEventListener("click", function () {
   navItemContainer.classList.toggle("show-navitem-container")
 })
 window.addEventListener("resize", function () {
-  if (window.innerWidth > 785) {
+  if (window.innerWidth > 835 || window.innerWidth < 835) {
     navItemContainer.classList.remove("show-navitem-container")
     searchContainer.classList.remove("show-search-container")
 
-  } else if (window.innerWidth < 785) {
-    searchContainer.classList.remove("show-search-container")
-  }
+  } 
 })
 
+navTimesButton.addEventListener("click", function(){
+  navItemContainer.classList.remove("show-navitem-container")
+})
 
-// base.html side categories
+// base.html show side categories and nav menu
+// close nav menu
 const category = document.querySelector(".category")
 const categories = document.querySelector(".categories-and-sub-category-row")
 const timesButton = document.querySelector(".times-button")
 const accounts = document.querySelector("#accounts")
 
+
 category.addEventListener("click", function () {
-  // document.body.style.overflowY = "hidden"
   sideMenu()
 })
 
@@ -285,58 +286,29 @@ function sideMenu() {
 
   timesButton.addEventListener("click", function () {
     categories.classList.remove("show-categories-and-sub-category-row")
-    // document.body.style.overflowY = "auto"
   })
 
   categories.addEventListener("mouseleave", function () {
     categories.classList.remove("show-categories-and-sub-category-row")
-    // document.body.style.overflowY = "auto"
   })
 
 }
 
-// expand sub-categories and hide sub-categories
-
-// const categoryContainer = document.querySelectorAll(".category-container")
-// const subCategoryContainer = document.querySelectorAll(".sub-category-container")
-const categoriesAndSubCategoryCol = document.querySelector(".categories-and-sub-category-col")
-
-categoriesAndSubCategoryCol.addEventListener("mouseleave", function(){
-  categories.classList.remove("show-categories-and-sub-category-row")
-})
-
-// categoryContainer.forEach(function(category){
-//   category.addEventListener("mouseenter", function(event){
-//     const target = event.currentTarget
-//     remove_container(target)
-//   })
-// })
-
-// function remove_container(item){
-//   item.nextElementSibling.classList.add("show-sub-category-container")
-// }
-
-// categoriesAndSubCategoryCol.addEventListener("mouseleave", function(){
-//   subCategoryContainer.forEach(function(sub_category){
-//     sub_category.classList.remove("show-sub-category-container")
-//   })
-// })
-
 // search button from  above comment "show search bar"
 searchButton.addEventListener("click", function () {
   categories.classList.remove("show-categories-and-sub-category-row")
-  // document.body.style.overflowY = "auto"
+ 
 })
 
 navbar.addEventListener("mouseenter", function () {
   categories.classList.remove("show-categories-and-sub-category-row")
-  // document.body.style.overflowY = "auto"
+ 
 })
 
 accounts.addEventListener("mouseenter", function () {
   categories.classList.remove("show-categories-and-sub-category-row")
   searchContainer.classList.remove("show-search-container")
-  // document.body.style.overflowY = "auto"
+  
 })
 
 // my_basket.html show/hide basket edit

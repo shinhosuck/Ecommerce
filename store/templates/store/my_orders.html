@@ -17,7 +17,7 @@
                 </p>
             {% endif %}
             {% if orders %}
-                <h4 class="open-orders-title">Open Order
+                <h4 class="open-orders-title">Pending Order
                     {% if orders.count > 1 %}
                     <small>{{ orders.count }} items found</small>
                     {% elif orders.count == 1 %}
@@ -31,16 +31,14 @@
                         </a>
                         <div class="order-text-wraper">
                             <div class="order-product-name">
-                                <p>{{ order.basket.product.product_name|truncatechars:20 }}</p>
+                                <p>{{ order.basket.product.product_name }}</p>
                             </div>
                             <div class="order-price">
                                 <p>${{ order.basket.product.price}}</p>
                             </div>
                             <div class="my-order-detail">
-                                <p>
-                                    <small>Status: open</small>
-                                    <small> Ordered date: {{ order.date_ordered|date:"N, d, Y" }}</small>
-                                </p>
+                                <p>Status: open</p>
+                                <p> Ordered date: {{ order.date_ordered|date:"N, d, Y" }}</p>
                             </div>
                             <!-- for small screen -->
                             <div class="my-order-detail-text">
@@ -54,7 +52,9 @@
                             </div>
                             <!-- end of small screen -->
                             <div class="order-quantity">
-                                <p>Qty:<small>{{ order.basket.quantity }}</small></p>
+                                <p>Quantity:
+                                    <span>{{ order.basket.quantity }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
             {% endif %}
 
             {% if closed_orders %}
-                <h4 class="closed-orders-title">Fulfilled Order 
+                <h4 class="closed-orders-title">Complete Order 
                     {% if closed_orders.count > 1 %}
                     <small>{{ closed_orders.count }} items found</small>
                     {% elif closed_orders.count == 1 %}
@@ -76,7 +76,7 @@
                         </a>
                         <div class="order-text-wraper">
                             <div class="order-product-name">
-                                <p>{{ order.basket.product|truncatechars:20 }}</p>
+                                <p>{{ order.basket.product.product_name }}</p>
                             </div>
                             <div class="order-price">
                                 <p>${{ order.basket.product.price }}</p>
@@ -99,7 +99,7 @@
                             </div>
                             <!-- end of small screen -->
                             <div class="order-quantity">
-                                <p>Qty:<small>{{ order.basket.quantity }}</small></p>
+                                <p>Quantity:<small>{{ order.basket.quantity }}</small></p>
                             </div>
                             <a class="my-order-review-this-product" href="{% url 'store:product_review'  order.basket.product.pk %}">Review this product</a>
                         </div>
@@ -131,19 +131,45 @@
             {% endif %}
             <div class="most-ordered-row">
                 <div class="most-ordered-title">
-                    <h3>Most Ordered</h3>
+                    <h3>Most Ordered Items</h3>
                 </div>
                 {% for product in popular %}
                     <div class="most-ordered-container">
                         <a class="most-ordered" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
                             <img src="{{ product.image.url }}" alt="">
                             <div class="most-ordered-text-container">
+                                <div class="star-ratings-icons">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <p>(
+                                        <small>{{ product.productreview_set.count }}</small>
+                                        )</p>
+                                </div>
                                 <p class="most-ordered-product-name">{{ product.product_name }}</p>
                                 <p class="most-ordered-product-price">${{ product.price }}</p>
                             </div>
                         </a>
                         <a class="most-ordered-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
                     </div>
+                    <script type="text/javascript">
+                        ratings()
+                        function ratings(){
+                            let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")
+                            let ratings = parseInt("{{ product.product_rating }}")
+                            if(ratings > 0){
+                                starRatingsIcons.forEach(function(container){
+                                    let children = [...container.children]
+                                    let new_children = children.slice(0, ratings)
+                                    new_children.forEach(function(star){
+                                        star.style.color = "rgb(253, 122, 0)"
+                                    })
+                                })
+                            }
+                        }
+                    </script>
                 {% endfor %}
             </div>
         </div>

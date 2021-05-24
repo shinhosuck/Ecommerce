@@ -33,7 +33,7 @@
                 <a class="sub-category-product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                     <img class="sub-category-product-img" src="{{ product.image.url }}" alt="">
                     <div class="sub-category-product-text-container">
-                        <p class="sub-category-product-name">{{ product.product_name|truncatechars:17 }}</p>
+                        <p class="sub-category-product-name">{{ product.product_name|truncatechars:20 }}</p>
                         <div class="sub-category-reviews-price">
                             <p class="sub-category-product-price">${{ product.price }}</p>
                             {% if product.productreview_set.all %}
@@ -151,20 +151,23 @@
 
     <script type="text/javascript">
 
-        const showSubCategoryPriceMatch = document.querySelector(".show-sub-category-price-match")
-        const hideSubCategoryPriceMatch = document.querySelector(".hide-sub-category-price-match")
+        const subCategoryMatchAndIcons = document.querySelectorAll(".sub-category-best-match-and-icons")
 
-        showSubCategoryPriceMatch.addEventListener("click", function(){
-        showSubCategoryPriceMatch.parentElement.nextElementSibling.classList.add("show-sub-category-low-and-high")
-        showSubCategoryPriceMatch.style.display = "none"
-        showSubCategoryPriceMatch.nextElementSibling.style.display = "block"
+        subCategoryMatchAndIcons.forEach(function(container){
+            container.addEventListener("click", function(event){
+                event.currentTarget.nextElementSibling.classList.toggle("show-sub-category-low-and-high")
+                const sibling = event.currentTarget.nextElementSibling
+                if(sibling.classList.contains("show-sub-category-low-and-high")){
+                    event.currentTarget.children[1].style.display = "none"
+                    event.currentTarget.children[2].style.display = "block"
+                }
+                else{
+                    event.currentTarget.children[1].style.display = "block"
+                    event.currentTarget.children[2].style.display = "none"
+                }
+            })
         })
-
-        hideSubCategoryPriceMatch.addEventListener("click", function(){
-        hideSubCategoryPriceMatch.parentElement.nextElementSibling.classList.remove("show-sub-category-low-and-high")
-        hideSubCategoryPriceMatch.style.display = "none"
-        hideSubCategoryPriceMatch.previousElementSibling.style.display = "block"
-        })
+    
 
     </script>
 
