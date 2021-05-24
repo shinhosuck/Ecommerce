@@ -79,13 +79,11 @@
                                 <p>{{ order.basket.product.product_name }}</p>
                             </div>
                             <div class="order-price">
-                                <p>${{ order.basket.product.price }}</p>
+                                <p>${{ order.basket.product.price}}</p>
                             </div>
                             <div class="my-order-detail">
-                                <p>
-                                    <small>Staus: closed</small>
-                                    <small>Payment received: {{ order.date_ordered|date:"N, d, Y" }}</small>
-                                </p>
+                                <p>Status: closed</p>
+                                <p>Payment received: {{ order.date_ordered|date:"N, d, Y" }}</p>
                             </div>
                             <!-- for small screen -->
                             <div class="my-order-detail-text">
@@ -99,7 +97,9 @@
                             </div>
                             <!-- end of small screen -->
                             <div class="order-quantity">
-                                <p>Quantity:<small>{{ order.basket.quantity }}</small></p>
+                                <p>Quantity:
+                                    <span>{{ order.basket.quantity }}</span>
+                                </p>
                             </div>
                             <a class="my-order-review-this-product" href="{% url 'store:product_review'  order.basket.product.pk %}">Review this product</a>
                         </div>
@@ -111,7 +111,7 @@
             {% if orders %}
                 <div class="order-total-wraper">
                     <div class="order-total-text-container">
-                        <h3 class="order-total">Total</h3>
+                        <h3 class="order-total">Pending Payment</h3>
                         <p class="order-total-items">
                             Total Item:<span>{{ total_items }}</span>
                         </p>
@@ -134,24 +134,31 @@
                     <h3>Most Ordered Items</h3>
                 </div>
                 {% for product in popular %}
-                    <div class="most-ordered-container">
-                        <a class="most-ordered" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
-                            <img src="{{ product.image.url }}" alt="">
+                    <div class="most-ordered-container" title="click image for detail">
+                        <div class="most-ordered">
+                            <a  class="most-ordered-product-detail" href="{% url 'store:product_detail' product.pk %}">
+                                <img src="{{ product.image.url }}" alt="">
+                            </a>
+                            <div class="star-ratings-icons">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <p>
+                                    <small>( {{ product.productreview_set.count }} )</small>
+                                </p>
+                            </div>
                             <div class="most-ordered-text-container">
-                                <div class="star-ratings-icons">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <p>(
-                                        <small>{{ product.productreview_set.count }}</small>
-                                        )</p>
-                                </div>
                                 <p class="most-ordered-product-name">{{ product.product_name }}</p>
                                 <p class="most-ordered-product-price">${{ product.price }}</p>
+                                {% if product.productreview_set.count %}
+                                    <a  class="my-orders-read-review" href="{% url 'store:read_review' product.pk %}">Read review</a>
+                                {% else %}
+                                    <p class="my-orders-no-review">No review</p>
+                                {% endif %}
                             </div>
-                        </a>
+                        </div>
                         <a class="most-ordered-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
                     </div>
                     <script type="text/javascript">

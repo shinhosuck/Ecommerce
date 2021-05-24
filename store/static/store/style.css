@@ -3576,6 +3576,9 @@ my_orders.html
 .order-total-text-container {
     flex: 0 0 100%;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 .order-total, .order-total-items,
 .order-amount-due {
@@ -3589,16 +3592,17 @@ my_orders.html
     font-weight: normal;
     font-size: 1.2rem;
     letter-spacing: 0.05rem;
-    color: rgb(30, 30, 30)
+    color: rgb(30, 30, 30);
 }
 .order-total-items span {
-    color: rgb(30, 30, 30);
+    color: rgb(0, 134, 78);
+    font-weight: 700;
     float: right;
 }
 .order-amount-due span {
     color: rgb(0, 134, 78);
     float: right;
-    font-weight: bold;
+    font-weight: 700;
 }
 .order-payment-button {
     margin-top: 1rem;
@@ -3660,11 +3664,11 @@ my_orders.html
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    background: rgb(238, 238, 238);
+    border: 1px solid transparent;
     transition: transform 0.3s linear;
 }
 .most-ordered-container:hover {
-    transform: scale(1.1);
+    border: 1px solid rgb(220, 220, 220)
 }
 .most-ordered {
     flex: 0 0 100%;
@@ -3672,19 +3676,18 @@ my_orders.html
     display: flex;
     flex-wrap: wrap;
 }
-.most-ordered img {
+.most-ordered-product-detail {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+.most-ordered-product-detail img {
     width: 100%;
     height: auto;
 }
-.most-ordered-text-container {
-    margin-top: 0.5rem;
+.star-ratings-icons {
     flex: 0 0 100%;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-.star-ratings-icons {
     margin-bottom: 0.5rem;
     display: flex;
     flex-wrap: wrap;
@@ -3692,22 +3695,26 @@ my_orders.html
 }
 .star-ratings-icons i{
     color: rgb(201, 201, 201);
-    margin-right: 0.1rem;
     font-size: 0.9rem;
 }
 .star-ratings-icons p {
     color: rgb(128, 128, 128);
-    font-size: 0.9rem;
     margin-left: 0.3rem;
 }
-.star-ratings-icons p small {
-    font-size: 0.9rem;
-    padding-top: 0.2rem;
+.most-ordered-text-container {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .most-ordered-product-name {
     flex: 0 0 100%;
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: rgb(30, 30, 30);
     letter-spacing: 0.05rem;
@@ -3716,11 +3723,22 @@ my_orders.html
     text-overflow: ellipsis;
 }
 .most-ordered-product-price {
-    flex: 0 0 100%;
-    width: 100%;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: rgb(0, 134, 78);
+    font-weight: bold;
+}
+.my-orders-read-review, 
+.my-orders-no-review{
+    color: rgb(0, 118, 133);
+    margin-left: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.5rem;
+}
+.my-orders-no-review {
+    color: rgb(128, 128, 128);
 }
 .most-ordered-product-btn {
     width: 100%;
@@ -3744,6 +3762,19 @@ my_orders.html
     .my-order-main-container {
         width: 907.9px;
     }
+    .most-ordered-product-name {
+        font-size: 1rem;
+    }
+    .most-ordered-product-price {
+        font-size: 1rem;
+    }
+    .star-ratings-icons i{
+        font-size: 0.7rem;
+    }
+    .my-orders-read-review, 
+    .my-orders-no-review{
+        font-size: 0.9rem;
+    }
 }
 @media screen and (max-width: 930px) {
     .my-order-main-container {
@@ -3765,19 +3796,24 @@ my_orders.html
     .order-total-wraper {
         width: 100%;
         flex: 0 0 100%;
-        align-items: flex-end;
-        padding-bottom: 0;
+        align-items: stretch;
     }
     .order-total-text-container {
-        flex: 0 0 65%;
-        width: 65%;
+        flex: 0 0 50%;
+        width: 50%;
+        padding-right: 1rem;
+        border-right: 1px solid rgb(220, 220, 220)
+    }
+    .order-total, .order-total-items,
+    .order-amount-due {
+        margin-bottom: 0;
     }
     .order-payment-button {
         align-self: flex-end;
     }
     .order-pay-pal-img {
-        width: 35%;
-        flex: 0 0 35%;
+        width: 50%;
+        flex: 0 0 50%;
         margin-top: 0;
     }
     .most-ordered-row {
@@ -3785,8 +3821,8 @@ my_orders.html
         flex: 0 0 100%;
     }
     .most-ordered-container {
-        flex: 0 0 24.09%;
-        width: 24.09%;
+        flex: 0 0 33.3%;
+        width: 33.3%;
     }
 }
 @media screen and (max-width: 750px) {
@@ -3794,24 +3830,11 @@ my_orders.html
         width: 600px;
         /* width: 80%; */
     }
-    .most-ordered-container {
-        flex: 0 0 23.87%;
-        width: 23.87%;
-    }
     .my-order-detail {
         display: none;
     }
     .my-order-detail-text {
         display: block;
-    }
-    .order-total-text-container {
-        flex: 0 0 57%;
-        width: 57%;
-    }
-    .order-pay-pal-img {
-        width: 43%;
-        flex: 0 0 43%;
-        margin-top: 0;
     }
 }
 @media screen and (max-width: 610px) {
@@ -3820,17 +3843,8 @@ my_orders.html
         /* width: 80%; */
     }
     .most-ordered-container {
-        flex: 0 0 31.92%;
-        width: 31.92%;
-    }
-    .order-total-text-container {
-        flex: 0 0 46%;
-        width: 46%;
-    }
-    .order-pay-pal-img {
-        width: 54%;
-        flex: 0 0 54%;
-        margin-top: 0;
+        flex: 0 0 50%;
+        width: 50%;
     }
 }
 @media screen and (max-width: 496px) {
@@ -3852,12 +3866,14 @@ my_orders.html
         margin-top: 1rem;
     }
     .most-ordered-container {
-        flex: 0 0 48.23%;
-        width: 48.23%;
+        flex: 0 0 100%;
+        width: 100%;
     }
     .order-total-text-container {
         flex: 0 0 100%;
         width: 100%;
+        padding-right: 0;
+        border-right: none;
     }
     .order-pay-pal-img {
         width: 100%;
@@ -3870,10 +3886,6 @@ my_orders.html
         width: 326.4px;
         /* width: 80%; */
     }
-    .most-ordered-container {
-        flex: 0 0 47.81%;
-        width: 47.81%;
-    }
 }
 @media screen and (max-width: 336px) {
     .my-order-main-container {
@@ -3883,10 +3895,6 @@ my_orders.html
     }
     .most-ordered-row {
         justify-content: center;
-    }
-    .most-ordered-container {
-        flex: 0 0 100%;
-        width: 100%;
     }
     .most-ordered-text-container {
         margin-top: 1rem;
