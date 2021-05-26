@@ -393,22 +393,25 @@ def my_orders(request):
     total_items = 0
     popular = []
 
-    for product in products:
-        if product.times_ordered >= 10:
-           popular.append(product)
+    if not closed_orders and not orders:
+        return redirect("store:home")
+    else:
+        for product in products:
+            if product.times_ordered >= 10:
+                popular.append(product)
 
-    for order in orders:
-        total_items += order.basket.quantity
-        total_amount_due += order.basket.quantity * order.basket.product.price
+        for order in orders:
+            total_items += order.basket.quantity
+            total_amount_due += order.basket.quantity * order.basket.product.price
 
-    context = {
-        "popular": popular,
-        "orders": orders,
-        "closed_orders": closed_orders,
-        "total_items": total_items,
-        "total_amount_due": total_amount_due
-    }
-    return render(request, "store/my_orders.html", context)
+        context = {
+            "popular": popular,
+            "orders": orders,
+            "closed_orders": closed_orders,
+            "total_items": total_items,
+            "total_amount_due": total_amount_due
+        }
+        return render(request, "store/my_orders.html", context)
 
 
 

@@ -11,11 +11,6 @@
     <div class="my-order-main-container">
         <h3 class="my-order-header">My Order History</h3>
         <div class="my-orders">
-            {% if not orders and not closed_orders %}
-                <p style=" margin-top: 0.5rem; color: rgb(41, 41, 41)">
-                    You do not have any orders.
-                </p>
-            {% endif %}
             {% if orders %}
                 <h4 class="open-orders-title">Pending Order
                     {% if orders.count > 1 %}
@@ -30,35 +25,25 @@
                             <img src="{{ order.basket.product.image.url}}" alt="">
                         </a>
                         <div class="order-text-wraper">
-                            <div class="order-product-name">
-                                <p>{{ order.basket.product.product_name }}</p>
-                            </div>
-                            <div class="order-price">
-                                <p>${{ order.basket.product.price}}</p>
-                            </div>
-                            <div class="my-order-detail">
-                                <p>Status: open</p>
-                                <p> Ordered date: {{ order.date_ordered|date:"N, d, Y" }}</p>
-                            </div>
-                            <!-- for small screen -->
-                            <div class="my-order-detail-text">
-                                <p>See order detail</p>
-                                <div class="order-price-mobile">
-                                    <p class="small-text">
-                                        <small class="small1">Status: open</small>
-                                        <small class="small2">Ordered date:<span>{{ order.date_ordered|date:"N, d, Y" }}</span></small>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- end of small screen -->
-                            <div class="order-quantity">
-                                <p>Quantity:
-                                    <span>{{ order.basket.quantity }}</span>
-                                </p>
-                            </div>
+                            <a  class="order-img-small" href="{% url 'store:product_detail' order.basket.product.pk %}">
+                                <img src="{{ order.basket.product.image.url}}" alt="">
+                            </a>
+                            <p class="order-product-name">{{ order.basket.product.product_name }}</p>
+                            <p class="order-price">${{ order.basket.product.price}}</p>
+                            <p class="my-order-detail">Status: open</p>
+                            <p class="my-order-date"> Ordered:
+                                <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
+                            </p>
+                            <p class="order-quantity">Quantity:
+                                <span>{{ order.basket.quantity }}</span>
+                            </p>
                         </div>
                     </div>
                 {% endfor %}
+            {% else %}
+                <h4 class="open-orders-title">Pending Order
+                    <small>0 item found</small>
+                </h4>
             {% endif %}
 
             {% if closed_orders %}
@@ -71,64 +56,68 @@
                 </h4>
                 {% for order in closed_orders %}
                     <div class="order-row" title="Click image for detail">
-                        <a href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
+                        <a class="order-img" href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
                             <img src="{{ order.basket.product.image.url}}" alt="">
                         </a>
                         <div class="order-text-wraper">
-                            <div class="order-product-name">
-                                <p>{{ order.basket.product.product_name }}</p>
-                            </div>
-                            <div class="order-price">
-                                <p>${{ order.basket.product.price}}</p>
-                            </div>
-                            <div class="my-order-detail">
-                                <p>Status: closed</p>
-                                <p>Payment received: {{ order.date_ordered|date:"N, d, Y" }}</p>
-                            </div>
-                            <!-- for small screen -->
-                            <div class="my-order-detail-text">
-                                <p>See order detail</p>
-                                <div class="order-price-mobile">
-                                    <p class="small-text">
-                                        <small class="small1">Staus: closed</small>
-                                        <small class="small2">Payment received:<span>{{ order.date_ordered|date:"N, d, Y" }}</span></small>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- end of small screen -->
-                            <div class="order-quantity">
-                                <p>Quantity:
+                            <a class="order-img-small" href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
+                                <img src="{{ order.basket.product.image.url}}" alt="">
+                            </a>
+                            <p class="order-product-name">{{ order.basket.product.product_name }}</p>
+                            <p class="order-price">${{ order.basket.product.price}}</p>
+                            <p class="my-order-detail">Status: closed</p>
+                            <p class="my-order-date">Finalized:
+                                <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
+                            </p>
+                            <p class="order-quantity-mobile">Quantity:
+                                <span>{{ order.basket.quantity }}</span>
+                            </p>
+                            <a class="my-order-review-mobile" href="{% url 'store:product_review'  order.basket.product.pk %}">
+                                Review this product
+                            </a>
+                            <div class="review-product-and-detail">
+                                <p class="order-quantity-closed">Quantity:
                                     <span>{{ order.basket.quantity }}</span>
                                 </p>
+                                <a class="my-order-review-this-product" href="{% url 'store:product_review'  order.basket.product.pk %}">
+                                    Review this product
+                                </a>
                             </div>
-                            <a class="my-order-review-this-product" href="{% url 'store:product_review'  order.basket.product.pk %}">Review this product</a>
                         </div>
                     </div>
                 {% endfor %}
+            {% else %}
+                <h4 class="closed-orders-title">Complete Order
+                    <small>0 item found</small>
+                </h4>
             {% endif %}
         </div>
         <div class="my-order-total">
-            {% if orders %}
-                <div class="order-total-wraper">
-                    <div class="order-total-text-container">
-                        <h3 class="order-total">Pending Payment</h3>
-                        <p class="order-total-items">
-                            Total Item:<span>{{ total_items }}</span>
-                        </p>
-                        <p class="order-amount-due">
-                            Amount Due:<span>${{ total_amount_due }}</span>
-                        </p>
+            <div class="order-total-wraper">
+                <h3 class="order-total">Pending Payment</h3>
+                <div class="order-total-text-container">
+                    <p class="order-total-items">
+                        Total Item:<span>{{ total_items }}</span>
+                    </p>
+                    <p class="order-amount-due">
+                        Amount Due:<span>${{ total_amount_due }}</span>
+                    </p>
+                    {% if orders %}
                         <div class="order-payment-button">
                             <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
                         </div>
-                    </div>
-                    <div class='order-pay-pal-img' title='click for more info about "no paypal account needed" '>
-                        <a href="https://www.paypal.com/us/webapps/mpp/account-optional">
-                            <img src="{% static 'store/images/paypal_button.png' %}" alt="">
-                        </a>
-                    </div>
+                    {% else %}
+                        <div class="order-payment-button">
+                            <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">No payment due</a>
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+                <div class='order-pay-pal-img' title='click for more info about "no paypal account needed" '>
+                    <a href="https://www.paypal.com/us/webapps/mpp/account-optional">
+                        <img src="{% static 'store/images/paypal_button.png' %}" alt="">
+                    </a>
+                </div>
+            </div>
             <div class="most-ordered-row">
                 <div class="most-ordered-title">
                     <h3>Most Ordered Items</h3>
@@ -181,37 +170,5 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-
-        // const mostOrderedRow = document.querySelector(".most-ordered-row")
-        // const children = [...mostOrderedRow.children]
-        // let itemList = []
-
-        // window.addEventListener("resize", function(){
-        //     if(window.innerWidth <= 930){
-        //         children.forEach(function(item){
-        //             if(item.classList.contains("most-ordered-container")){
-        //                 itemList.unshift(item)
-        //             }
-        //         })
-        //         itemList.forEach(function(card){
-        //             card.style.marginLeft = "8px"
-        //             card.style.marginRight = "8px"
-        //             card.style.background = "green"
-        //         })
-        //         itemList[0].style.marginLeft = "0px"
-        //         itemList[itemList.length-1].style.marginRight = "0px"
-        //         itemList = []
-        //     }
-        // })
-
-        // window.addEventListener("resize", function(){
-        //     if(window.innerWidth > 930){
-        //         children.forEach(function(item){
-        //             item.style.marginLeft = "0px"
-        //             item.style.marginRight = "0px"
-        //         })
-        //     }
-        // })
-    </script>
+   
 {% endblock content %}
