@@ -16,6 +16,7 @@ def update_basket(request):
             total_amount_due += basket.quantity * basket.product.price
             totalItems += basket.quantity
         user.customer.total_items = totalItems
+        print(user.customer.total_items)
         context = {
             "total_amount_due": total_amount_due,
         }

@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from store.models import Product, Basket, Customer, Address, Order, ProductReview
 from django.contrib.auth.models import User
 from store.forms import OrderAddressForm, ProductReviewForm
-from django.http import JsonResponse
+from django.contrib import messages
+# from django.http import JsonResponse
 
 
 def home(request):
@@ -261,33 +262,36 @@ def my_basket(request):
     products = []
     you_may_also_like = []
     new_products = []
+    if not baskets:
+        messages.info(request, f"Customer {customer}, your bakset is empty.")
+        return redirect("store:home")
+    else:
+        for basket in baskets:
+            products.append(basket.product.product_name)
+            item_category = basket.product.category
+            new_products += Product.objects.filter(category=item_category)
 
-    for basket in baskets:
-        products.append(basket.product.product_name)
-        item_category = basket.product.category
-        new_products += Product.objects.filter(category=item_category)
+        for product in new_products:
+            name = product.product_name
+            if name not in products:
+                you_may_also_like.append(product)
 
-    for product in new_products:
-        name = product.product_name
-        if name not in products:
-            you_may_also_like.append(product)
+        products.clear()
+        new_products.clear()
 
-    products.clear()
-    new_products.clear()
+        for product in you_may_also_like:
+            if product.product_name not in products:
+                products.append(product.product_name)
 
-    for product in you_may_also_like:
-        if product.product_name not in products:
-            products.append(product.product_name)
+        for product in products:
+            product_instance = Product.objects.get(product_name=product)
+            new_products.append(product_instance)
 
-    for product in products:
-        product_instance = Product.objects.get(product_name=product)
-        new_products.append(product_instance)
-
-    context = {
-        "new_products": new_products,
-        "baskets": baskets
-    }
-    return render(request, "store/my_basket.html", context)
+        context = {
+            "new_products": new_products,
+            "baskets": baskets
+        }
+        return render(request, "store/my_basket.html", context)
 
 
 @login_required
@@ -394,6 +398,7 @@ def my_orders(request):
     popular = []
 
     if not closed_orders and not orders:
+        messages.info(request, f"Customer {customer}, you do not have order history.")
         return redirect("store:home")
     else:
         for product in products:
@@ -433,6 +438,7 @@ def paypal_payment(request):
         }
         return render(request, "store/paypal_payment.html", context)
     else:
+        messages.info(request, f"Customer {customer}, you do not have payment due.")
         return redirect("store:home")
 
 

@@ -9,96 +9,51 @@
 
 {% block content %}
     <div class="basket-main-container">
-        
         <div class="my-basket">
-            <div class="my-basket-title">
-                <h3>{{ user.first_name }}'s Basket</h3>
-            </div>
-            <!-- coming from update_basket function 'context_processors' -->
-            {% if not baskets %}
-                <div class="basket-is-empty">
-                    <p>You do not have any items in the basket.</p>
-                    <p>Your order history is located under Accounts.</p>
-                </div>
-            {% else %}
-                {% for basket in baskets %}
-                    <div class="table-row" title="click image for detail">
-                        <div class="my-basket-img" >
-                            <a href="{% url 'store:product_detail' basket.product.pk %}">
-                                <img src="{{ basket.product.image.url}}" alt="">
-                            </a>
+            <h3 class="my-basket-title">MY Basket
+                {% if baskets.count > 1 %}
+                    <small>{{ baskets.count }} items found</small>
+                {% elif baskets.count == 1 %}
+                    <small>{{ baskets.count }} item found</small>
+                {% endif %}
+            </h3>
+            {% for basket in baskets %}
+                <div class="table-row" title="click image for detail">
+                    <a class="my-basket-img" href="{% url 'store:product_detail' basket.product.pk %}">
+                        <img src="{{ basket.product.image.url}}" alt="">
+                    </a>
+                    <div class="basket-text-wraper">
+                        <p class="basket-product-name">{{ basket.product.product_name }}</p>
+                        <p class="price">${{ basket.product.price }}</p>
+                        <p class="basket-product-description">{{ basket.product.description }}</p>
+                        <div class="basket-product-stock">
+                            {% if basket.product.on_stock %}
+                                <p class="in-stock">In stock</p>
+                            {% else %}
+                                <p class="in-stock">Out of stock</p>
+                            {% endif %}
                         </div>
-                        <div class="basket-text-wraper">
-                            <div class="basket-product-name">
-                                <p>{{ basket.product.product_name|truncatechars:20 }}</p>
-                            </div>
-                            <div class="price">
-                                <p>${{ basket.product.price }}</p>
-                            </div>
-                            <div class="basket-product-description">
-                                <small>{{ basket.product.description|truncatechars:50}}</small>
-                            </div>
-                            <div class="basket-product-stock">
-                                {% if basket.product.on_stock %}
-                                    <p class="in-stock">In stock</p>
-                                {% else %}
-                                    <p class="in-stock">Out of stock</p>
-                                {% endif %}
-                                <!-- mobile edit icon-->
-                                <div class="edit-icon">
-                                    <p><small>Edit</small><i class="fa fa-edit"></i></p>
-                                </div>
-                                <!-- end of  mobile edit icon-->
-
-                                <!-- mobile quantity add remove icons -->
-                                <div class="edit">
-                                    <div class="edit-quantity-buttons">
-                                        <div class="del-product-name">
-                                            <p>Edit Qty/Del item</p>
-                                        </div>
-                                        <div class="edit-basket-quantity">
-                                            <p class="edit-quantity">Qty:</p>
-                                            <p class="edit-qty">{{ basket.quantity }}</p>
-                                            <a class="edit-icon-plus" href="{% url 'store:add_item' basket.pk %}">
-                                                <i class="fas fa-plus"></i>
-                                            </a>
-                                            <a class="edit-icon-minus " href="{% url 'store:delete_item' basket.pk %}">
-                                                <i class="fas fa-minus"></i>
-                                            </a>
-                                        </div>
-                                        <a class="edit-trash" href="{% url 'store:delete_basket' basket.pk %}">
-                                            Del
-                                            <i class="fa fa-trash-alt"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- end of mobile quantity add remove icons -->
-
-                            </div>
-                            <div class="quantity">
-                                <div class="basket-quantity">
-                                    <div class="num-of-item-txt"><p>Qty:</p></div>
-                                    <div class="num-of-item"><p>{{ basket.quantity }}</p></div>
-                                </div>
-                                <div class="basket-quantity-buttons">
-                                    <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
-                                        <i class="fas fa-plus"></i>
-                                    </a>
-                                    <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
-                                        <i class="fas fa-minus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="delete-basket-item">
-                                <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
-                                    <i class="fa fa-trash-alt"></i>
-                                    <small class="basket-item-delete">Del</small>
+                        <div class="quantity">
+                            <p class="num-of-item-txt">Quantity:</p>
+                            <!-- <p class="num-of-item">{{ basket.quantity }}</p> -->
+                            <div class="basket-quantity-buttons">
+                                <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                                <p class="num-of-item">{{ basket.quantity }}</p>
+                                <a class="icon-minus icon" href="{% url 'store:delete_item' basket.pk %}">
+                                    <i class="fas fa-minus"></i>
                                 </a>
                             </div>
                         </div>
+                        <div class="delete-basket-item">
+                            <a class="icon-x" href="{% url 'store:delete_basket' basket.pk %}">
+                                Delete
+                            </a>
+                        </div>
                     </div>
-                {% endfor %}
-            {% endif %}
+                </div>
+            {% endfor %}
         </div>
         {% if baskets %}
             <div class="basket-total-wraper">
@@ -107,16 +62,15 @@
                         <h3 class="summary-title">
                             Order Summary
                         </h3>
-                        <div class="basket-summary-text">
-                            <p class="total-items">
-                                Total Items:
-                                <span>{{ user.customer.total_items }}</span>
-                            </p>
-                            <p class="amount-due">
-                                Amount Due:
-                                <span>${{ total_amount_due }}</span>
-                            </p>
-                        </div>
+                        <p class="total-items">
+                            Total Items:
+                            <span>{{ user.customer.total_items }}</span>
+                        </p>
+                        <p class="amount-due">
+                            Amount Due:
+                            <span>${{ total_amount_due }}</span>
+                            <!-- coming from context_processors.py -->
+                        </p>
                         <div class="basket-buttons-container">
                             <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
                                 Checkout
@@ -141,17 +95,47 @@
                         <div class="also-like-item-container">
                             <a class="also-like-item" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
                                 <img src="{{ product.image.url }}" alt="">
-                                <div class="also-like-text-container">
-                                    <p class="also-like-product-name">{{ product.product_name }}</p>
-                                    <p class="also-like-product-price">${{ product.price }}</p>
-                                </div>
                             </a>
+                            <div class="star-ratings-icons">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <p>
+                                    <small>( {{ product.productreview_set.count }} )</small>
+                                </p>
+                            </div>
+                            <div class="also-like-text-container">
+                                <p class="also-like-product-name">{{ product.product_name }}</p>
+                                <p class="also-like-product-price">${{ product.price }}</p>
+                                {% if product.productreview_set.count %}
+                                    <a  class="my-orders-read-review" href="{% url 'store:read_review' product.pk %}">Read review</a>
+                                {% else %}
+                                    <p class="my-orders-no-review">No review</p>
+                                {% endif %}
+                            </div>
                             <a class="also-like-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
                         </div>
+                        <script type="text/javascript">
+                            ratings()
+                            function ratings(){
+                                let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")
+                                let ratings = parseInt("{{ product.product_rating }}")
+                                if(ratings > 0){
+                                    starRatingsIcons.forEach(function(container){
+                                        let children = [...container.children]
+                                        let new_children = children.slice(0, ratings)
+                                        new_children.forEach(function(star){
+                                            star.style.color = "rgb(253, 122, 0)"
+                                        })
+                                    })
+                                }
+                            }
+                        </script>
                     {% endfor %}
                 </div>
             </div>
         {% endif %}
     </div>
-
 {% endblock content %}
