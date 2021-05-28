@@ -11,12 +11,6 @@
 
 {% block content %}
 <div class="paypal-payment-container">
-    <div class="paypal-button-container">
-        <h3 class="payment-options">Payment Options</h3>
-        <div id="paypal-button-container"></div>
-        <!-- div id  container from paypal -->
-    </div>
-    
     <div class="paypal-table-contents">
         <h3 class="payment-detail">Payment Detail</h3>
         <div class="paypal-table">
@@ -38,6 +32,11 @@
             <h4>Sub Total: <span>${{ total_amount_due }}</span></h4>
             <a class="pay-later-button" href="{% url 'store:home' %}" type="button">Pay Later</a>
         </div>
+    </div>
+    <div class="paypal-button-container">
+        <h3 class="payment-options">Payment Options</h3>
+        <div id="paypal-button-container"></div>
+        <!-- div id  container from paypal -->
     </div>
 </div>
 

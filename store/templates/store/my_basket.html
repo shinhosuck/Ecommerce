@@ -23,6 +23,9 @@
                         <img src="{{ basket.product.image.url}}" alt="">
                     </a>
                     <div class="basket-text-wraper">
+                        <a class="my-basket-img-mobile" href="{% url 'store:product_detail' basket.product.pk %}">
+                            <img src="{{ basket.product.image.url}}" alt="">
+                        </a>
                         <p class="basket-product-name">{{ basket.product.product_name }}</p>
                         <p class="price">${{ basket.product.price }}</p>
                         <p class="basket-product-description">{{ basket.product.description }}</p>
@@ -33,9 +36,9 @@
                                 <p class="in-stock">Out of stock</p>
                             {% endif %}
                         </div>
+                        <p class="my-basket-price-mobile">${{ basket.product.price }}</p>
                         <div class="quantity">
                             <p class="num-of-item-txt">Quantity:</p>
-                            <!-- <p class="num-of-item">{{ basket.quantity }}</p> -->
                             <div class="basket-quantity-buttons">
                                 <a class="icon-plus icon" href="{% url 'store:add_item' basket.pk %}">
                                     <i class="fas fa-plus"></i>
@@ -57,51 +60,28 @@
         </div>
         {% if baskets %}
             <div class="basket-total-wraper">
-                <div class="basket-total">
-                    <div class="basket-summary-text-container">
-                        <h3 class="summary-title">
-                            Order Summary
-                        </h3>
-                        <p class="total-items">
-                            Total Items:
-                            <span>{{ user.customer.total_items }}</span>
-                        </p>
-                        <p class="amount-due">
-                            Amount Due:
-                            <span>${{ total_amount_due }}</span>
+                <h3 class="summary-title">Order Summary</h3>
+                <div class="basket-summary-text-container">
+                    <div class="basket-summary-text">
+                        <p class="total-items">Total Items:<span>{{ user.customer.total_items }}</span></p>
+                        <p class="amount-due">Amount Due:<span>${{ total_amount_due }}</span></p>
                             <!-- coming from context_processors.py -->
-                        </p>
-                        <div class="basket-buttons-container">
-                            <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">
-                                Checkout
-                            </a>
-                            <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">
-                                Continue shopping
-                            </a>
-                        </div>
+                        <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">Checkout</a>
+                        <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">Continue shopping</a>
                     </div>
-                    <div class='pay-pal-img' title='click for more info about "no paypal account needed" '>
-                        <a href="https://www.paypal.com/us/webapps/mpp/account-optional">
-                            <img src="{% static 'store/images/paypal_button.png' %}" alt="">
-                        </a>
-                    </div>
+                    <a class='pay-pal-img' href="https://www.paypal.com/us/webapps/mpp/account-optional" title='click for more info about "no paypal account needed" '>
+                        <img src="{% static 'store/images/paypal_button.png' %}" alt="">
+                    </a>
                 </div>
+                <h3 class="also-like-title">You may also like</h3>
                 <div class="you-may-also-like">
-                    <div class="also-like-title">
-                        <h3>You may also like</h3>
-                    </div>
-                    <!-- coming from my_basket function -->
                     {% for product in new_products %}
                         <div class="also-like-item-container">
                             <a class="also-like-item" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
                                 <img src="{{ product.image.url }}" alt="">
                             </a>
-                            <div class="star-ratings-icons">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                            <div id="{{ product.product_rating }}" class="star-ratings-icons">
+                                <!-- <i fa fa-star><i> elements from js -->
                                 <p>
                                     <small>( {{ product.productreview_set.count }} )</small>
                                 </p>
@@ -117,25 +97,36 @@
                             </div>
                             <a class="also-like-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
                         </div>
-                        <script type="text/javascript">
-                            ratings()
-                            function ratings(){
-                                let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")
-                                let ratings = parseInt("{{ product.product_rating }}")
-                                if(ratings > 0){
-                                    starRatingsIcons.forEach(function(container){
-                                        let children = [...container.children]
-                                        let new_children = children.slice(0, ratings)
-                                        new_children.forEach(function(star){
-                                            star.style.color = "rgb(253, 122, 0)"
-                                        })
-                                    })
-                                }
-                            }
-                        </script>
                     {% endfor %}
                 </div>
             </div>
         {% endif %}
     </div>
+
+    <script type="text/javascript">
+        ratings()
+        function ratings(){
+            let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")
+            starRatingsIcons.forEach(function(div){
+                let ratings = parseInt(div.id)
+                const pTag = div.children[0]
+                if(ratings > 0){
+                    for(i=0; i < ratings; i++){
+                        const iElement = document.createElement("i")
+                        iElement.className = "fa fa-star"
+                        iElement.style.color = "rgb(253, 122, 0)"
+                        div.appendChild(iElement).before(pTag)
+                    }
+                }
+                else if( ratings == 0){
+                    for(i=0; i < 5; i++){
+                        const iElement = document.createElement("i")
+                        iElement.className = "fa fa-star"
+                        iElement.style.color = "rgb(220, 220, 220)"
+                        div.appendChild(iElement).before(pTag)
+                    }
+                }
+            })
+        }
+    </script>
 {% endblock content %}

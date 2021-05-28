@@ -128,12 +128,7 @@
                             <a  class="most-ordered-product-detail" href="{% url 'store:product_detail' product.pk %}">
                                 <img src="{{ product.image.url }}" alt="">
                             </a>
-                            <div class="star-ratings-icons">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
+                            <div id="{{ product.product_rating }}" class="star-ratings-icons">
                                 <p>
                                     <small>( {{ product.productreview_set.count }} )</small>
                                 </p>
@@ -150,25 +145,34 @@
                         </div>
                         <a class="most-ordered-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
                     </div>
-                    <script type="text/javascript">
-                        ratings()
-                        function ratings(){
-                            let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")
-                            let ratings = parseInt("{{ product.product_rating }}")
-                            if(ratings > 0){
-                                starRatingsIcons.forEach(function(container){
-                                    let children = [...container.children]
-                                    let new_children = children.slice(0, ratings)
-                                    new_children.forEach(function(star){
-                                        star.style.color = "rgb(253, 122, 0)"
-                                    })
-                                })
-                            }
-                        }
-                    </script>
                 {% endfor %}
             </div>
         </div>
     </div>
-   
+    <script type="text/javascript">
+        ratings()
+        function ratings(){
+            let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")
+            starRatingsIcons.forEach(function(div){
+                let ratings = parseInt(div.id)
+                const pTag = div.children[0]
+                if(ratings > 0){
+                    for(i=0; i < ratings; i++){
+                        const iElement = document.createElement("i")
+                        iElement.className = "fa fa-star"
+                        iElement.style.color = "rgb(253, 122, 0)"
+                        div.appendChild(iElement).before(pTag)
+                    }
+                }
+                else if( ratings == 0){
+                    for(i=0; i < 5; i++){
+                        const iElement = document.createElement("i")
+                        iElement.className = "fa fa-star"
+                        iElement.style.color = "rgb(220, 220, 220)"
+                        div.appendChild(iElement).before(pTag)
+                    }
+                }
+            })
+        }
+    </script>
 {% endblock content %}
