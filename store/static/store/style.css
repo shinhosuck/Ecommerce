@@ -4099,8 +4099,8 @@ paypal_payment.html
     /* border: 1px solid red; */
 }
 .paypal-table-contents {
-    flex: 0 0 59%;
-    width: 59%;
+    flex: 0 0 69%;
+    width: 69%;
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -4159,7 +4159,7 @@ paypal_payment.html
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    background: rgb(246, 246, 246);
+    background: rgb(235, 235, 235);
     padding: 0.2rem;
 }
 .paypal-product-name{
@@ -4170,7 +4170,8 @@ paypal_payment.html
     color: rgb(30, 30, 3); 
 }
 .paypal-product-quantity {
-    color: rgb(30, 30, 3); 
+    color: rgb(30, 30, 3);
+    margin-left: 0.5rem;
     flex: 1;
 }
 .paypal-product-price {
@@ -4195,6 +4196,7 @@ paypal_payment.html
     color: rgb(0, 118, 133);
     font-weight: bold;
     font-size: 1.1rem;
+    margin-left: 0.5rem;
 }
 .paypal-total-amount-due {
     flex: 1;
@@ -4219,8 +4221,8 @@ paypal_payment.html
 }
 /* paypal  */
 .paypal-button-container {
-    flex: 0 0 39%;
-    width: 39%;
+    flex: 0 0 29%;
+    width: 29%;
     background: rgb(255, 255, 255);
     margin-left: 0.5rem;
     padding: 1rem;
@@ -4237,12 +4239,12 @@ paypal_payment.html
 }
 /* end paypal */
 
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 1367px) {
     .paypal-payment-container {
         width: 1366px
     }
 }
-@media screen and (max-width: 1365px) {
+@media screen and (max-width: 1366px) {
     .paypal-payment-container {
         /* width: 80%; */
         width: 1160.25px;
@@ -4258,6 +4260,59 @@ paypal_payment.html
     .paypal-payment-container {
         /* width: 80%; */
         width: 768px;
+    }
+}
+@media screen and (max-width: 790px) {
+    .paypal-payment-container {
+        /* width: 80%; */
+        width: 632px;
+        justify-content: flex-end;
+    }
+    .paypal-table-contents {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .paypal-button-container {
+        flex: 0 0 50%;
+        width: 50%;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+@media screen and (max-width: 650px) {
+    .paypal-payment-container {
+        /* width: 90%; */
+        width: 585px;
+    }
+    .pay-later-button {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 600px) {
+    .paypal-payment-container {
+        width: 90%;
+        margin-top: 2rem;
+        /* width: 540px; */
+    }
+
+    .paypal-button-container {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .paypal-header-product,
+    .paypal-header-quantity,
+    .paypal-header-price,
+    .paypal-sub-total,
+    .paypal-total-items,
+    .paypal-total-amount-due {
+        font-size: 1rem;
+    }
+    .paypal-product-name,
+    .paypal-product-quantity,
+    .paypal-product-price {
+        font-size: 0.9rem;
     }
 }
 
@@ -5763,3 +5818,159 @@ read_review.html
 =======================
 end of read_review.html
 ======================= */
+
+/* 
+===================
+order_complete.html
+=================== */
+.order-complete-row {
+    margin: 0 auto;
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+.order-complete-col {
+    width: 30%;
+    flex: 0 0 30%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+}
+.order-complete-text {
+    flex: 0 0 100%;
+    width: 100%;
+}
+.order-complete-text p {
+    color: rgb(30, 30, 30);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05rem;
+}
+.order-complete-text p span {
+    color: rgb(0, 100, 100);
+    font-weight: bold;
+}
+.order-complete-buttons {
+    margin-top: 1rem;
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.order-complete-buttons a{
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+.order-complete-continue {
+    background: rgb(0, 100, 100);
+}
+.order-complete-continue:hover {
+    background: rgb(0, 61, 61);
+}
+.order-complete-logout {
+    background: rgb(100, 100, 100);
+    margin-top: 0.5rem;
+    
+}
+.order-complete-logout:hover {
+    background: rgb(44, 44, 44);
+}
+
+@media screen and (min-width: 1367px) {
+    .order-complete-row {
+        width: 1366px;
+    }
+}
+@media screen and (max-width: 1366px) {
+    .order-complete-row {
+        /* width: 80%; */
+        width: 1092px;
+    }
+    .order-complete-col {
+        width: 40%;
+        flex: 0 0 40%;
+    }
+}
+@media screen and (max-width: 1110px) {
+    .order-complete-row {
+        width: 80%;
+        width: 888px;
+    }
+    .order-complete-col {
+        width: 50%;
+        flex: 0 0 50%;
+    }
+}
+@media screen and (max-width: 910px) {
+    .order-complete-row {
+        /* width: 80%; */
+        width: 728px;
+    }
+    .order-complete-col {
+        width: 60%;
+        flex: 0 0 60%;
+    }
+}
+@media screen and (max-width: 750px) {
+    .order-complete-row {
+        /* width: 80%; */
+        width: 600px;
+    }
+    .order-complete-col {
+        width: 70%;
+        flex: 0 0 70%;
+    }
+}
+@media screen and (max-width: 620px) {
+    .order-complete-row {
+        /* width: 90%; */
+        width: 558px;
+    }
+    .order-complete-col {
+        width: 75%;
+        flex: 0 0 75%;
+    }
+}
+@media screen and (max-width: 680px) {
+    .order-complete-row {
+        /* width: 90%; */
+        width: 522px;
+    }
+    .order-complete-col {
+        width: 80%;
+        flex: 0 0 80%;
+    }
+}
+@media screen and (max-width: 540px) {
+    .order-complete-row {
+        width: 90%;
+        margin-top: 2rem;
+        /* width: 522px; */
+    }
+    .order-complete-col {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+    .order-complete-text{
+        line-height: 1.5rem;
+    }
+    .order-complete-text p {
+        margin-bottom: 0;
+    }
+}
+
+/* 
+==========================
+end of order_complete.html
+========================== */
