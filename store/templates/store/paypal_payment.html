@@ -15,23 +15,24 @@
         <h3 class="payment-detail">Payment Detail</h3>
         <div class="paypal-table">
           <ul class="table-header">
-              <li>Product</li>
-              <li>Quantity</li>
-              <li>Price</li>
+              <li class="paypal-header-product">Product</li>
+              <li class="paypal-header-quantity">Quantity</li>
+              <li class="paypal-header-price">Price</li>
           </ul>
           {% for order in orders %}
-          <ul class="table-data">
-              <li>{{ order.basket.product.product_name|truncatechars:40 }}</li>
-              <li>{{ order.basket.quantity }}</li>
-              <li>${{ order.basket.product.price }}</li>
-          </ul>
+          <a class="table-data" href="{% url 'store:product_detail' order.basket.product.pk %}"  title="click for detail">
+              <p class="paypal-product-name">{{ forloop.counter}}. {{ order.basket.product.product_name}}</p>
+              <p class="paypal-product-quantity">{{ order.basket.quantity }}</p>
+              <p class="paypal-product-price">${{ order.basket.product.price }}</p>
+          </a>
           {% endfor %}
+          <ul class="paypal-contents">
+            <li class="paypal-sub-total">Subtotal</li>
+            <li class="paypal-total-items">{{ total_items }}</li>
+            <li class="paypal-total-amount-due">${{ total_amount_due }}</li>
+          </ul>
         </div>
-        <div class="paypal-contents">
-            <h4>Total Items: <span>{{ total_items }}</span></h4>
-            <h4>Sub Total: <span>${{ total_amount_due }}</span></h4>
-            <a class="pay-later-button" href="{% url 'store:home' %}" type="button">Pay Later</a>
-        </div>
+        <a class="pay-later-button" href="{% url 'store:home' %}" type="button">Pay later</a>
     </div>
     <div class="paypal-button-container">
         <h3 class="payment-options">Payment Options</h3>
