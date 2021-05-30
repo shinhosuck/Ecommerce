@@ -26,23 +26,18 @@ base.html
 /* NAVBAR line 15-62*/
 
 /* brand logo and hamburger button line 15-21*/
-/* header {
-    position: relative;
-} */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
     background: rgb(0, 41, 41);
-    /* padding: 0.5rem 0; */
     position: relative;
 }
 .brand-name {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* padding: 0 1rem; */
     padding: 0.5rem 1rem;
 }
 .brand {
@@ -91,12 +86,8 @@ base.html
     cursor: pointer;
 }
 .item {
-    /* padding: 0.5rem 1rem; */
     color: white;
     font-size: 0.9rem;
-    /* border: 1px solid white; */
-
-    /* edit */
     padding: 0 1rem;
     height: 65px;
     display: flex;
@@ -152,7 +143,6 @@ base.html
     overflow: hidden;
     white-space: nowrap;
     transition: max-height .5s ease-in-out;
-    /* display: none; */
 }
 /* end of nav items  */
 
@@ -271,7 +261,6 @@ base.html
     height: 60px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
-    /* border: 1px solid rgb(0, 134, 116); */
 }
 /* end of search */
 
@@ -376,9 +365,7 @@ base.html
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    /* background: rgba(0, 51, 51, 0.7); */
     background: rgba(0, 51, 36, 0.7);
-    /* padding-bottom: 1rem; */
 }
 .times-button {
     font-size: 1rem !important;
@@ -415,15 +402,11 @@ base.html
     background: rgb(0, 80, 80);
 }
 .sub-category-container {
-    /* max-height: 0;
-    overflow: hidden;
-    white-space: nowrap; */
     flex: 0 0 100%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    /* transition: max-height .5s ease-in-out */
 }
 .sub-category-item {
     flex: 0 0 100%;
@@ -444,11 +427,6 @@ base.html
 .sub-category-item:hover {
     background: rgb(0, 80, 80);
 }
-/* .show-sub-category-container {
-    height: auto;
-    max-height: 1000px;
-    transition: max-height .5s ease-in-out
-} */
 /* end of side-categories */
 @media screen and (max-width: 835px){
     .navbar {
@@ -492,9 +470,7 @@ base.html
         text-align: end;
         padding-top: 0;
         padding-bottom: 0;
-        /* margin: 0.5rem 0.5rem 0.5rem 0; */
         margin: 0.5rem 0;
-        /* border: 1px solid green; */
     }
     .nav-times-button {
         font-size: 1rem !important;
@@ -527,16 +503,6 @@ base.html
         background: transparent;
         color: rgb(255, 255, 255);
     }
-    /* .accounts {
-        right: 0;
-        top: 0;
-    } */
-    /* .accounts a {
-        color: rgb(32, 32, 32);
-    }
-    .accounts a:hover {
-        color: rgb(255, 255, 255);
-    } */
     #accounts:hover .mobile-accounts {
         max-height: 500px;
         width: 100%;
