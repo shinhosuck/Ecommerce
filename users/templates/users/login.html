@@ -34,21 +34,22 @@
         }
         div label {
             margin-bottom: 0.1rem;
+            color: rgb(30, 30, 30);
         }
     </style>
 </head>
 <body id="login-body">
 
     <div class="login-row">
+        {% for message in messages %}
+            <p class="message-success">{{ message }}</p>
+        {% endfor %}
         <div class="login-col">
             <div class="login-text-container">
-                <h5>Welcome back!</h5>
+                <h4>Welcome back!</h4>
                 <p>Please login to access your account.</p>
             </div>
             <div class="login-container">
-                {% for message in messages %}
-                    <small class="message-success">{{ message }}</small>
-                {% endfor %}
                 <h4 class="login-title">Login</h4>
                 <form method="POST">
                     {% csrf_token %}
@@ -56,7 +57,7 @@
                     <button class="login-button">Login</button>
                     <a class="login-cancel" type="button" href="{% url 'store:home' %}">Cancel</a>
                 </form>
-                <small class="login-text">Not yet registered?</small>
+                <p class="login-text">Not yet registered?</p>
                 <a class="login-register-link" href="{% url 'users:register' %}">Register</a>
             </div>
         </div>
