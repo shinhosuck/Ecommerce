@@ -598,7 +598,7 @@ register.html
         top: -600px;
     }
     to {
-        top: 10px;
+        top: 50px;
     }
 }
 .register-col {
@@ -664,7 +664,7 @@ register.html
     color: rgb(30, 30, 30)
 }
 .register-button {
-    padding: 0.4rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     outline: none;
     border: none;
     background: rgb(0, 100, 100);
@@ -678,7 +678,7 @@ register.html
     background: rgb(0, 61, 61);
 }
 .register-cancel {
-    padding: 0.4rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     text-decoration: none;
     outline: none;
     border: none;
@@ -781,6 +781,14 @@ register.html
     .show-field-requirement {
         max-height: 500px;
         transition: max-height 0.25s linear;
+    }
+    @keyframes show-register-row {
+        from {
+            top: -600px;
+        }
+        to {
+            top: 10px;
+        }
     }
 }
 @media screen and (max-width: 690px){
@@ -967,8 +975,8 @@ login.html
 }
 @media screen and (max-width: 510px){
     .login-row {
-        /* width: 90%; */
-        width: 459px;
+        width: 90%;
+        /* width: 459px; */
     }
     .login-text-container {
         flex: 0 0 100%;
@@ -989,6 +997,14 @@ login.html
     }
     .login-text-container p {
         font-size: 1rem;
+    }
+    @keyframes login {
+        from {
+           top: -300px
+        }
+        to {
+            top: 50px
+        }
     }
 }
 /*
@@ -1087,44 +1103,57 @@ profile.html
 ============*/
 #profile-body {
     background: rgb(238, 238, 238);
-    min-height: 100vh;
 }
 .profile-row {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    top: -100%;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+   
     display: flex;
     justify-content: center;
     align-items: center;
-    animation-name:profile-row;
+
+    animation-name:profile;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-duration: 1s;
 }
-@keyframes profile-row {
-    0%{opacity: 0;}
-    100%{
-        transform: translateY(100%); opacity: 1;
+@keyframes profile {
+    from {
+        top: -550px;
+    }
+
+    to {
+        top: 100px;;
     }
 }
 .profile-col {
     display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
     justify-content: center;
-    width: 700px;
+    width: 100%;
 }
 .profile-text-container {
     background: rgba(0, 51, 44, 0.9);
     padding: 1rem;
     flex: 0 0 40%;
     width: 40%;
-    color: white;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
+.profile-text-container h4{
+    font-size: 1.35rem;
+    color: rgb(255, 255, 255);
+}
+.profile-text-container p {
+    color: rgb(220, 220, 220);
+}
 .profile-container {
-    width: 400px;
+    width: 60%;
+    flex: 0 0 60%;
     padding: 1rem;
     background: white;
     border-top-right-radius: 5px;
@@ -1153,82 +1182,105 @@ profile.html
     display: block;
 }
 .profile-button {
-    padding: 0.4rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     outline: none;
     border: none;
-    background: rgb(0, 134, 116);
+    background: rgb(0, 100, 100);
     color: rgb(255, 255, 255);
     margin-top: 1rem;
     font-size: 0.9rem;
+    border-radius: 5px;
     transition: background 0.2s ease-in-out;
 }
 .profile-button:hover {
-    background: rgb(0, 100, 87);
+    background: rgb(0, 61, 61);
 }
 .profile-cancel {
-    padding: 0.4rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     text-decoration: none;
     outline: none;
     border: none;
-    background: rgb(129, 129, 129);
+    background: rgb(100, 100, 100);
     color: rgb(255, 255, 255);
     margin-top: 1rem;
     font-size: 0.9rem;
+    border-radius: 5px;
     display: inline-block;
     transition: background 0.2s ease-in-out;
 }
 .profile-cancel:hover {
     color: rgb(255, 255, 255);
-    background: rgb(92, 92, 92);
+    background: rgb(61, 61, 61);
 }
-@media screen and (max-width: 750px) {
-    #profile-body {
-        min-height: 110vh;
-    }
+@media screen and (min-width: 1367px) {
     .profile-row {
-        height: 110%;
-        top: -110%;
+        width: 60%;
+        max-width: 683px;
     }
-    .profile-col {
-        flex-wrap: wrap;
-        justify-content: center;
-        background: transparent;
+}
+@media screen and (max-width: 1366px) {
+    .profile-row {
+        width: 683px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .profile-row {
+        /* width: 80%; */
+        width: 560px;
+    }
+}
+@media screen and (max-width: 580px) {
+    .profile-row {
+        /* width: 80%; */
+        width: 464px;
     }
     .profile-text-container {
-        background: rgba(0, 51, 44, 0.9);
+        width: 100%;
+        flex: 0 0 100%;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 0;
-        flex: 0 0 70%;
-        width: 70%;
+        padding-bottom: 0;
     }
     .profile-container {
+        flex: 0 0 100%;
+        width: 100%;
         border-top-right-radius: 0;
         border-bottom-left-radius: 5px;
-        width: 70%;
-        flex: 0 0 70%;
+        padding-top: 0;
+    }
+    .profile-contents {
+        margin-bottom: 0.5rem;
+    }
+
+    @keyframes profile {
+        from {
+            top: -550px;
+        }
+    
+        to {
+            top: 50px;;
+        }
     }
 }
-@media screen and (max-width: 500px) {
-    .profile-text-container {
-        flex: 0 0 80%;
-        width: 80%;
-    }
-    .profile-container {
-        width: 80%;
-        flex: 0 0 80%;
-    }
-}
-@media screen and (max-width: 400px) {
-    .profile-text-container {
-        flex: 0 0 90%;
+@media screen and (max-width: 480px) {
+    .profile-row {
         width: 90%;
     }
-    .profile-container {
-        width: 90%;
-        flex: 0 0 90%;
+    .profile-col {
+        margin-bottom: 1rem;
+    }
+    @keyframes profile {
+        from {
+            top: -550px;
+        }
+    
+        to {
+            top: 25px;;
+        }
     }
 }
+
 /*
 ===================
 end of profile.html
@@ -1635,6 +1687,7 @@ product_detail.html
     margin: 0 auto;
     width: 60%;
     margin-top: 3rem;
+    border: 1px solid green;
 }
 .product-detail-container {
     background: white;
@@ -1644,7 +1697,8 @@ product_detail.html
     flex-wrap: wrap;
     border-radius: 5px;
     padding: 1rem;
-    align-items: flex-end;
+    align-items: flex-start;
+    border: 1px solid red;
 }
 
 .product-detail-text {
@@ -1652,7 +1706,8 @@ product_detail.html
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    border: 1px solid orange;
+    align-items: flex-end;
 }
 .product-detail-img {
     width: 20%;
@@ -1661,19 +1716,21 @@ product_detail.html
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
+    border: 1px solid purple;
 }
 .product-detail-img img {
     width: 100%;
     height: auto;
 }
 .product-detail-content-container {
-    align-self: flex-end;
+    /* align-self: flex-end; */
     flex: 0 0 78.9%;
     width: 78.9%;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
     margin-left: 0.5rem;
+    border: 1px solid purple;
 }
 .product-detail-name-ratings {
     flex: 0 0 100%;
@@ -1685,7 +1742,7 @@ product_detail.html
 .product-detail-name {
     font-size: 1.1rem;
     letter-spacing: 0.05rem;
-    color: rgb(22, 22, 22);
+    color: rgb(30, 30, 30);
 }
 .product-detail-ratings {
     display: flex;
@@ -1784,7 +1841,18 @@ product_detail.html
 .continue-shopping:hover {
     background: rgb(59, 59, 59);
 }
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 1367px) {
+    .product-detail {
+        width: 60%;
+        max-width: 819.6px;
+    }
+}
+@media screen and (max-width: 1366px) {
+    .product-detail {
+        width: 819.6px;
+    }
+}
+/* @media screen and (max-width: 1000px) {
     .product-detail {
         padding-bottom: 2rem;
     }
@@ -1859,7 +1927,7 @@ product_detail.html
     .product-detail-text {
         width: 100%;
     }
-}
+} */
 /*
 ==========================
 end of product_detail.html
