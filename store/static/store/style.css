@@ -576,17 +576,17 @@ register.html
 =============*/
 #register-body {
     background: rgb(238, 238, 238);
-    min-height: 100vh;
 }
 .register-row {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    top: -100%;
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+
     animation-name: show-register-row;
     animation-timing-function: linear;
     animation-iteration-count: 1;
@@ -594,31 +594,65 @@ register.html
     animation-duration: 1s;
 }
 @keyframes show-register-row {
-    0%{opacity: 0;}
-    100%{
-        transform: translateY(100%); opacity: 1;
+    from {
+        top: -600px;
+    }
+    to {
+        top: 10px;
     }
 }
 .register-col {
-    width: 665px;
+    width: 100%;
+    flex: 0 0 100%;
     display: flex;
-    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
     border-radius: 5px;
 }
-
 .register-text-container {
     background: rgba(0, 51, 44, 0.9);
-    color: white;
-    width: 40%;
-    flex: 0 0 40%;
+    width: 50%;
+    flex: 0 0 50%;
     padding: 1rem;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
 }
+.register-text-container h4 {
+    color: rgb(255, 255, 255);
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05rem;
+}
+.register-text-container p {
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+}
+.register-text-container p strong {
+    color: rgb(255, 187, 0);
+}
+.register-text-container p span {
+    display: none;
+}
+.register-text-container ul {
+    display: flex; 
+    flex-direction: column; 
+    list-style-type:inherit;
+}
+.register-text-container ul li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+}
+.register-text-container ul li span{
+    color: rgb(180, 180, 180);
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
 .register-container {
-    width: 400px;
+    width: 50%;
+    flex: 0 0 50%;
     padding: 1rem;
-    color: rgb(41, 41, 41);
     font-size: 0.9rem;
     letter-spacing: 0.06rem;
     background: white;
@@ -627,76 +661,157 @@ register.html
 }
 .register-container h4 {
     letter-spacing: 0.05rem;
-    color: rgb(26, 26, 26)
+    color: rgb(30, 30, 30)
 }
 .register-button {
     padding: 0.4rem 0.5rem;
     outline: none;
     border: none;
-    background: rgb(0, 134, 116);
+    background: rgb(0, 100, 100);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
     font-size: 0.9rem;
+    border-radius: 5px;
     transition: background 0.2s ease-in-out;
 }
 .register-button:hover {
-    background: rgb(0, 100, 87);
+    background: rgb(0, 61, 61);
 }
 .register-cancel {
     padding: 0.4rem 0.5rem;
     text-decoration: none;
     outline: none;
     border: none;
-    background: rgb(129, 129, 129);
+    background: rgb(100, 100, 100);
     color: rgb(255, 255, 255);
     margin-top: 0.5rem;
     font-size: 0.9rem;
     display: inline-block;
+    border-radius: 5px;
     transition: background 0.2s ease-in-out;
 }
 .register-cancel:hover {
     color: rgb(255, 255, 255);
-    background: rgb(92, 92, 92);
+    background: rgb(58, 58, 58);
 }
 .register-text {
     display: inline-block;
     margin-top: 1rem;
     font-size: 0.9rem;
+    color: rgb(128, 128, 128)
 }
 .register-login-link {
     display: inline-block;
     text-decoration: none;
     font-size: 0.9rem;
-    color: rgb(0, 124, 124);
+    color: rgb(0, 100, 100);
 }
 .register-login-link:hover {
-    color: rgb(0, 44, 44);
+    color: rgb(0, 61, 61);
 }
-
-@media screen and (max-width: 700px){
+@media screen and (min-width: 1367px){
+    .register-row {
+        width: 80%;
+    }
     .register-col {
-        width: 100%;
+        flex: 0 0 80%;
+        width: 80%;
+        max-width: 875px
+    }
+}
+@media screen and (max-width: 1366px){
+    .register-row {
+        width: 819.6px;
+    }
+}
+@media screen and (max-width: 840px){
+    .register-row {
+        /* width: 80%; */
+        width: 672px;
+    }
+    .register-col {
+        align-items: flex-start;
+        border-radius: 0;
         justify-content: center;
-        flex-wrap: wrap;
-        padding: 2rem 0;
+        margin-bottom: 1rem;
     }
     .register-text-container {
-        width: 90%;
-        flex: 0 0 90%;
-        margin: 0;
-        padding: 1rem;
-        background:rgba(0, 51, 44, 0.9);
+        position: relative;
+        flex: 0 0 80%;
+        width: 80%;
         border-top-right-radius: 5px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding-bottom: 0;
+    }
+    .register-text-container ul li {
+        /* margin-bottom: 0; */
+        margin-top: 0.5rem;
+        /* list-style-type: none; */
     }
     .register-container {
-        width: 90%;
-        flex: 0 0 90%;
+        flex: 0 0 80%;
+        width: 80%;
+        padding-bottom: 0;
         border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
         border-top-right-radius: 0;
+        border-top-left-radius: 0;
+
+    }
+    .register-text-container p span {
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    .field-requirement {
+        position: absolute;
+        background: rgba(0, 51, 44, 0.9);
+        left: 0px;
+        top: 186px;
+        max-height: 0;
+        overflow: hidden;
+        /* white-space: nowrap; */
+        width: 100%;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        transition: max-height 0.25s linear;
+    }
+    .show-field-requirement {
+        max-height: 500px;
+        transition: max-height 0.25s linear;
     }
 }
+@media screen and (max-width: 690px){
+    .register-row {
+        /* width: 80%; */
+        width:552px;
+    }
+    .register-text-container {
+        flex: 0 0 90%;
+        width: 90%;
+    }
+    .register-container {
+        flex: 0 0 90%;
+        width: 90%;
+    }
+}
+@media screen and (max-width: 570px){
+    .register-row {
+        width: 90%;
+        /* width: 570px; */
+    }
+    .register-text-container {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .register-container {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+}
+
 /*
 ====================
 end of register.html
@@ -852,8 +967,8 @@ login.html
 }
 @media screen and (max-width: 510px){
     .login-row {
-        width: 90%;
-        /* width: 459px; */
+        /* width: 90%; */
+        width: 459px;
     }
     .login-text-container {
         flex: 0 0 100%;

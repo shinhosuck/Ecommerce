@@ -41,6 +41,7 @@
         }
         div label {
             margin-bottom: 0.1rem;
+            color: rgb(30, 30, 30)
         }
     </style>
 </head>
@@ -51,13 +52,17 @@
             <div class="register-text-container">
                 <h4>Welcome to AiAi.com!</h4>
                 <p>Please enter your information so that we can build your account.</p>
-                <p>Please be adviced that all boxes need to filled out.</p>
-                <ul style="display: flex; flex-direction: column; list-style-type:inherit;">
-                    <li>Username: can't contain space and can't have more than 150 characters.</li>
-                    <li>First name: can't have more than 150 characters.</li>
-                    <li>Last name: can't have more than 150 characters.</li>
-                    <li>Password:</li>
-                    <li>Repeat confirmation:</li>
+                <p>Please be adviced that all fields are <strong>required</strong>.<span id="requirements">See requirements</span></p>
+                <ul class="field-requirement">
+                    <li>Username:<span>150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></li>
+                    <li>First name:<span>150 characters or fewer.</span></li>
+                    <li>Last name:<span>150 characters or fewer.</span></li>
+                    <li>Email:<span>Must be in valid format.</span></li>
+                    <li>Password:<span>Your password can’t be too similar to your other personal information.
+                        Your password must contain at least 8 characters.
+                        Your password can’t be a commonly used password.
+                        Your password can’t be entirely numeric.</span></li>
+                    <li>Repeat confirmation:<span>Enter the same password as before, for verification.</span></li>
                 </ul>
             </div>
             <div class="register-container ">
@@ -68,12 +73,29 @@
                     <button class="register-button">Submit</button>
                     <a class="register-cancel" type="button" href="{% url 'store:home' %}">Cancel</a>
                 </form>
-                <small class="register-text">Already have an account?</small>
+                <p class="register-text">Already have an account?</p>
                 <a class="register-login-link" href="{% url 'users:login' %}">Login</a>
             </div>
         </div>
     </div>
 
+
+    <script type="text/javascript">
+
+        const requirements = document.querySelector("#requirements")
+        const fieldRequirement = document.querySelector(".field-requirement")
+
+        requirements.addEventListener("click", function(){
+            fieldRequirement.classList.toggle("show-field-requirement")
+        })
+
+        window.addEventListener("resize", function(){
+            if(window.innerWidth < 840){
+                fieldRequirement.classList.remove("show-field-requirement")
+            }
+        })
+
+    </script>
 </body>
 </html>
 
