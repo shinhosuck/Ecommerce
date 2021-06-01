@@ -17,6 +17,9 @@
                 </div>
                 <div class="product-detail-content-container">
                     <div class="product-detail-name-ratings">
+                        <div class="product-detail-img-mobile">
+                            <img src="{{ product.image.url }}" alt="">
+                        </div>
                         <p class="product-detail-name">{{ product.product_name}}</p>
                         <div class="product-detail-ratings">
                             {% if product.product_rating == 1 %}
