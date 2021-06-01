@@ -5850,7 +5850,6 @@ read_review.html
 ================ */
 .read-review-row {
     width: 80%;
-    /* width: 1104px; */
     margin: 0 auto;
     margin-top: 3rem;
 }
@@ -5859,15 +5858,16 @@ read_review.html
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    /* padding: 1rem; */
 }
 .img-title-container {
     width: 100%;
     flex: 0 0 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
     align-items: flex-end;
+    padding: 1rem;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
 }
 .review-img {
     width: 15%;
@@ -5916,41 +5916,58 @@ read_review.html
 }
 .read-review-product-price small {
     font-weight: normal;
-    color: rgb(100, 100, 100);
+    color: rgb(128, 128, 128);
     font-size: 0.9rem;
     margin-left: 0.5rem;
 }
 .read-review-product-description {
     flex: 0 0 100%;
     width: 100%;
-    margin-bottom: 1rem;
     letter-spacing: 0.05rem;
-    color: rgb(100, 100, 100);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: rgb(128, 128, 128);
 }
 .read-review-add-to-basket {
+    display: inline-block;
     padding: 0.5rem;
     color: white;
     background: rgb(0, 100, 100);
     font-size: 0.9rem;
+    border-radius: 5px;
     border: none;
     outline: none;
+    text-align: center;
+}
+.read-review-add-to-basket:hover {
+    background: rgb(0, 61, 61);
+}
+.read-review-continue-shopping {
+    display: inline-block;
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 5px;
+    background: rgb(99, 99, 99);
+    color: rgb(255, 255, 255); 
+    border: none;
+    outline: none;
+    transition: background 0.25s ease-in-out;
+}
+.read-review-continue-shopping:hover {
+    background: rgb(61, 61, 61);
 }
 .read-review-content-container {
     flex: 0 0 100%;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    margin-top: 2rem;
+    align-items: flex-end;
+    margin-top: 0.5rem;
     padding: 1rem;
     border-radius: 5px;
     background: rgb(255, 255, 255);
-}
-.review-mobile-img,
-.review-mobile-text,
-.review-title-mobile,
-.review-content-mobile {
-    display: none;
 }
 .read-review-user-img {
     width: 100px;
@@ -5998,9 +6015,9 @@ read_review.html
     flex: 0 0 100%;
     width: 100%;
     font-size: 1.1rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     letter-spacing: 0.05rem;
-    color: rgb(34, 34, 34);
+    color: rgb(30, 30, 30);
     text-transform: capitalize;
 }
 .review-content {
@@ -6011,150 +6028,260 @@ read_review.html
     font-size: 1.1rem;
     color: rgb(100, 100, 100);
 }
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1367px) {
     .read-review-row {
-        width: 1105px;
+        width: 80%;
+        max-width: 1102.4px;
     }
 }
-@media screen and (max-width: 1380px) {
+@media screen and (max-width: 1366px) {
     .read-review-row {
+        /* width: 80%; */
         width: 1102.4px;
     }
-    .review-text {
-        width: 89.9%;
-        flex: 0 0 89.9%;
-    }
 }
-@media screen and (max-width: 1130px) {
+@media screen and (max-width: 1120px) {
     .read-review-row {
-        width: 736px;
+        /* width: 80%; */
+        width: 816px;
     }
-    .review-text {
-        width: 84.5%;
-        flex: 0 0 84.5%;
-    }
-}
-@media screen and (max-width: 765px) {
-    .read-review-row {
-        width: 678.6px;
+    .review-img-text-content {
+        flex: 0 0 83.9%;
+        width: 83.9%;
     }
     .review-text {
-        width: 83.2%;
-        flex: 0 0 83.2%;
+        width: 86.2%;
+        flex: 0 0 86.2%;
     }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 840px) {
     .read-review-row {
-        width: 630px;
+        /* width: 80%; */
+        width: 690px;
+    }
+    .review-img-text-content {
+        flex: 0 0 83.7%;
+        width: 83.7%;
+    }
+    .review-text {
+        width: 83.1%;
+        flex: 0 0 83.1%;
+    }
+}
+@media screen and (max-width: 710px) {
+    .read-review-row {
+        /* width: 80%; */
+        width: 568px;
+    }
+    .review-img-text-content {
+        flex: 0 0 68.5%;
+        width: 68.5%;
+    }
+    .review-img {
+        width: 30%;
+        flex: 0 0 30%;
+    }
+    .review-text {
+        width: 79.8%;
+        flex: 0 0 79.8%;
+    }
+}
+@media screen and (max-width: 590px) {
+    .read-review-row {
+        /* width: 80%; */
+        width: 472px;
+    }
+    .review-img-text-content {
+        flex: 0 0 68.1%;
+        width: 68.1%;
+    }
+    .review-text {
+        width: 75.4%;
+        flex: 0 0 75.4%;
+    }
+}
+@media screen and (max-width: 490px) {
+    .read-review-row {
+        /* width: 90%; */
+        width: 441px;
+        margin-top: 2rem;
+    }
+    .review-text {
+        width: 73.5%;
+        flex: 0 0 73.5%;
+    }
+    .review-img {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+    .review-img-text-content {
+        width: 100%;
+        flex: 0 0 100%;
+        margin-left: 0;
+    }
+    .review-img-text-content {
+        margin-top: 0.5rem;
+    }
+    .read-review-add-to-basket {
+        width: 100%;
+        order: 4;
+        padding: 0.6rem 0;
+    }
+    .read-review-continue-shopping {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-left: 0;
+        padding: 0.6rem 0;
+        order: 4
+    }
+    .read-review-product-name {
+        order: 2;
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .read-review-rating-stars {
+        order: 1;
+        margin-left: 0;
+    }
+    .read-review-product-price {
+        order: 3
+    }
+    
+}
+@media screen and (max-width: 460px) {
+    .read-review-row {
+        width: 90%;
+        /* width: 441px; */
+    }
+    .review-text {
+        width: 70%;
+        flex: 0 0 70%;
+    }
+}
+@media screen and (max-width: 434px) {
+    .read-review-row {
+        /* width: 90%; */
+        width: 390.6px;
+    }
+    .review-text {
+        width: 69.8%;
+        flex: 0 0 69.8%;
+    }
+}
+@media screen and (max-width: 410px) {
+    .read-review-row {
+        /* width: 90%; */
+        width: 369px;
     }
     .read-review-user-img {
         width: 80px;
         height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .read-review-user-img img{
-        width: 80px;
-        height: 80px;
-    }
-    .review-text {
-        width: 85.2%;
-        flex: 0 0 85.2%;
-    }
-}
-@media screen and (max-width: 650px) {
-    .read-review-row {
-        width: 520px;
-    }
-    .read-review-user-img, .review-author,
-    .review-rating-i-icon, .review-date,
-    .review-title, .review-content{
-        display: none;
-    }
-    .review-text {
-        width: 100%;
-        flex: 0 0 100%;
-        margin-left: 0;
-        align-items: flex-start;
-    }
-    .review-mobile-img,
-    .review-title-mobile,
-    .review-content-mobile {
-        display: block;
-    }
-    .review-mobile-img {
-        width: 80px
-    }
-    .review-mobile-img img {
+    .read-review-user-img img {
         width: 80px;
         height: 80px;
         border-radius: 50%;
     }
-    .review-mobile-text {
-        align-self: center;
-        margin-left: 0.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+    .review-text {
+        width: 73.8%;
+        flex: 0 0 73.8%;
     }
-    .review-author-mobile {
-        color: rgb(34, 34, 34);
-        margin-bottom: 0.3rem;
-    }
-    .review-rating-mobile {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        margin-left: 0.3rem;
-        margin-bottom: 0.3rem;
-    }
-    .review-rating-mobile i {
-        font-size: 0.8rem;
-        color: rgb(255, 69, 0)
-    }
-    .review-date-mobile {
+    .review-text > 
+    .review-author,
+    .review-date {
         font-size: 0.9rem;
-        flex: 0 0 100%;
-        width: 100%;
-        margin-bottom: 0.3rem;
-        color: rgb(100, 100, 100);
     }
-    .review-title-mobile {
-        flex: 0 0 100%;
-        width: 100%;
-        margin-top: 0.5rem;
-        letter-spacing: 0.05rem;
-        color: rgb(34, 34, 34);
-        text-transform: capitalize;
+    .review-text > .review-rating-i-icon i {
+        font-size: 0.7rem
     }
-    .review-content-mobile {
-        flex: 0 0 100%;
-        width: 100%;
-        margin-top: 0.5rem;
-        letter-spacing: 0.05rem;
-        font-size: 1.1rem;
-        color: rgb(100, 100, 100);
+    .review-text > 
+    .review-title {
+        font-size: 1rem;
     }
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 390px) {
+    .read-review-row {
+        /* width: 90%; */
+        width: 351px;
+    }
+    .review-text {
+        width: 72.4%;
+        flex: 0 0 72.4%;
+    }
+}
+@media screen and (max-width: 370px) {
+    .read-review-row {
+        /* width: 90%; */
+        width: 331px;
+    }
+    .review-text {
+        width: 70%;
+        flex: 0 0 70%;
+    }
+    .review-img-text-content >
+    .read-review-product-name,
+    .read-review-product-price{
+        font-size: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .review-img-text-content >
+    .read-review-rating-stars i {
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width: 350px) {
+    .read-review-row {
+        /* width: 90%; */
+        width: 315px;
+    }
+    .review-text {
+        width: 68%;
+        flex: 0 0 68%;
+    }
+    .review-text > 
+    .review-author,
+    .review-date {
+        font-size: 0.8rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .review-text > 
+    .review-title {
+        font-size: 0.9rem;
+    }
+}
+@media screen and (max-width: 340px) {
+    .read-review-row {
+        /* width: 90%; */
+        width: 315px;
+    }
+    .review-text {
+        width: 70%;
+        flex: 0 0 70%;
+    }
+    .read-review-user-img {
+        width: 70px;
+        height: 70px;
+    }
+    .read-review-user-img img {
+        width: 70px;
+        height: 70px;
+    }
+}
+@media screen and (max-width: 320px) {
     .read-review-row {
         width: 90%;
+        /* width: 315px; */
     }
-    .review-mobile-text {
-        flex: 0 0 60%;
+    .review-text {
         width: 60%;
-    }
-}
-    @media screen and (max-width: 370px) {
-        .review-date-mobile {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-}
-@media screen and (max-width: 342px) {
-    .review-rating-mobile {
-        flex: 0 0 100%;
-        width: 100%;
-        margin-left: 0;
+        flex: 0 0 60%;
     }
 }
 /*

@@ -26,11 +26,10 @@
                             <small class="product-outofstock">Out of stock</small>
                         {% endif %}
                     </p>
-                    <p class="read-review-product-description">
-                        <small>{{ product.description }}</small>
-                    </p>
                     <a class="read-review-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
+                    <a class="read-review-continue-shopping" type="button" href="{% url 'store:home' %}">Continue shopping</a>
                 </div>
+                <p class="read-review-product-description">{{ product.description }}</p>
             </div>
             {% for review in reviews %}
                 <div class="read-review-content-container">
@@ -38,48 +37,6 @@
                         <img src="{{ review.author.name.profile.image.url }}" alt="">
                     </div>
                     <div class="review-text">
-                        <!-- on mobile -->
-                        <div class="review-mobile-img">
-                            <img src="{{ review.author.name.profile.image.url }}" alt="">
-                        </div>
-                        <div class="review-mobile-text">
-                            <p class="review-author-mobile">{{ review.author.name.username }}</p>
-                            {% if review.review_rating == 1 %}
-                                <div class="review-rating-mobile">
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            {% elif review.review_rating == 2 %}
-                                <div class="review-rating-mobile">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            {% elif review.review_rating == 3 %}
-                                <div class="review-rating-mobile">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            {% elif review.review_rating == 4 %}
-                                <div class="review-rating-mobile">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            {% elif review.review_rating == 5 %}
-                                <div class="review-rating-mobile">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            {% endif %}
-                            <p class="review-date-mobile">{{ review.date }}</p>
-                        </div>
-                        <p class="review-title-mobile">{{ review.review_title }}</p>
-                        <p class="review-content-mobile"><small>{{ review.content }}</small></p>
-                        <!-- end of on mobile -->
                         <p class="review-author">{{ review.author.name.username }}</p>
                         {% if review.review_rating == 1 %}
                             <div class="review-rating-i-icon">
@@ -114,8 +71,8 @@
                         {% endif %}
                         <p class="review-date">{{ review.date }}</p>
                         <p class="review-title">{{ review.review_title }}</p>
-                        <p class="review-content"><small>{{ review.content }}</small></p>
                     </div>
+                    <p class="review-content"><small>{{ review.content }}</small></p>
                 </div>
             {% endfor %}
         </div>
