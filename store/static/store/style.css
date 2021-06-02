@@ -1017,28 +1017,31 @@ end of login.html
 logout.html
 =========== */
 #logout-body {
-    min-height: 100vh;
     background: rgb(238, 238, 238);
 }
 .logout-row {
     position: absolute;
-    top: -100%;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+   
     animation-name: drop;
     animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 @keyframes drop {
-    0% {opacity: 0;}
+    from {
+       top: -150px;
+    }
 
-    100% {
-        transform: translateY(100%);opacity: 1
+    to {
+        top: 100px
     }
 }
 .logout-container {
@@ -1047,49 +1050,52 @@ logout.html
     background: white;
     border-radius: 5px;
 }
-.logout-container h4 {
-    color: rgb(39, 39, 39);
+.logout-container h3{
+    color: rgb(30, 30, 30);
     margin-bottom: 1.5rem;
     text-align: center;
+    letter-spacing: 0.05rem;
 }
 .logout-login {
     display: block;
-    padding: 0.5rem 0;
+    padding: 0.6rem 0;
     margin-top: 0.5rem;
     outline: none;
     border: none;
-    background: rgb(0, 134, 116);
+    background: rgb(0, 100, 100);
     color: rgb(255, 255, 255);
     text-align: center;
+    border-radius: 5px;
     transition: background 0.2s ease-in-out;
 }
 .logout-login:hover {
-    color: rgb(255, 255, 255);
-    background: rgb(0, 100, 87);
+    background: rgb(0, 61, 61);
 }
 .logout-cancel {
     display: block;
     margin-top: 0.5rem;
-    padding: 0.5rem 0;
+    padding: 0.6rem 0;
     text-decoration: none;
     outline: none;
     border: none;
-    background: rgb(129, 129, 129);
+    background: rgb(100, 100, 100);
     color: rgb(255, 255, 255);
     text-align: center;
+    border-radius: 5px;
     transition: background 0.2s ease-in-out;
 }
 .logout-cancel:hover {
-    color: rgb(255, 255, 255);
-    background: rgb(92, 92, 92);
+    /* color: rgb(255, 255, 255); */
+    background: rgb(59, 59, 59);
 }
 @media screen and (max-width: 440px){
     .logout-container {
-        flex: 0 0 90%;
-        width: 90%;
-        padding: 1rem;
-        background:rgba(0, 51, 44, 0.9);
-        border-radius: 10px;
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .logout-login, 
+    .logout-cancel {
+        padding: 0.5rem;
     }
 }
 /*
@@ -1126,7 +1132,7 @@ profile.html
     }
 
     to {
-        top: 100px;;
+        top: 50px;
     }
 }
 .profile-col {
