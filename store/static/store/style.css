@@ -635,8 +635,8 @@ register.html
     display: none;
 }
 .register-text-container ul {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     list-style-type:inherit;
 }
 .register-text-container ul li {
@@ -842,7 +842,7 @@ login.html
     align-items: flex-start;
     justify-content: center;
     width: 40%;
-    
+
     animation-name: login;
     animation-timing-function: linear;
     animation-iteration-count: 1;
@@ -1028,7 +1028,7 @@ logout.html
     display: flex;
     justify-content: center;
     align-items: center;
-   
+
     animation-name: drop;
     animation-timing-function: linear;
     animation-iteration-count: 1;
@@ -1093,7 +1093,7 @@ logout.html
         flex: 0 0 100%;
         width: 100%;
     }
-    .logout-login, 
+    .logout-login,
     .logout-cancel {
         padding: 0.5rem;
     }
@@ -1115,7 +1115,7 @@ profile.html
     width: 50%;
     left: 50%;
     transform: translateX(-50%);
-   
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1263,7 +1263,7 @@ profile.html
         from {
             top: -550px;
         }
-    
+
         to {
             top: 50px;;
         }
@@ -1280,7 +1280,7 @@ profile.html
         from {
             top: -550px;
         }
-    
+
         to {
             top: 25px;;
         }
@@ -1908,7 +1908,7 @@ product_detail.html
         width: 30%;
         flex: 0 0 30%;
     }
-    .product-detail-name, 
+    .product-detail-name,
     .product-detail-price{
         font-size: 1rem
     }
@@ -1962,7 +1962,7 @@ product_detail.html
     .product-detail-img-mobile img {
         width: 100%;
         height: auto;
-    } 
+    }
     .product-detail-ratings {
         margin-top: 0.5rem;
     }
@@ -1980,7 +1980,7 @@ product_detail.html
         padding: 0.6rem 0;
         font-size: 1rem;
     }
-    .product-detail-name, 
+    .product-detail-name,
     .product-detail-price{
         font-size: 1.1rem;
         overflow: hidden;
@@ -1996,7 +1996,7 @@ product_detail.html
     }
 }
 @media screen and (max-width: 300px) {
-    .product-detail-name, 
+    .product-detail-name,
     .product-detail-price{
         font-size: 1rem;
         flex: 0 0 100%;
@@ -2006,7 +2006,7 @@ product_detail.html
         margin-bottom: 0.5rem;
     }
     .product-detail-price-available >
-    .product-available, 
+    .product-available,
     .product-outofstock {
         margin-left: 0;
     }
@@ -2369,7 +2369,7 @@ my_basket.html
 .also-like-title {
     width: 100%;
     flex: 0 0 100%;
-    margin: 1.5rem 0; 
+    margin: 1.5rem 0;
     color: rgb(30, 30, 30);
     letter-spacing: 0.05rem;
     font-size: 1.35rem;
@@ -2462,7 +2462,7 @@ my_basket.html
     .basket-text-wraper {
         flex: 0 0 77.6%;
         width: 77.6%;
-        
+
     }
 }
 @media screen and (max-width: 1090px) {
@@ -2473,7 +2473,7 @@ my_basket.html
     .basket-text-wraper {
         flex: 0 0 77.1%;
         width: 77.1%;
-        
+
     }
 }
 @media screen and (max-width: 890px) {
@@ -2514,7 +2514,7 @@ my_basket.html
     .basket-text-wraper {
         flex: 0 0 77.1%;
         width: 77.1%;
-        
+
     }
     .also-like-title {
         margin-left: 0.25rem;
@@ -2556,7 +2556,7 @@ my_basket.html
         flex: 0 0 100%;
         width: 100%;
     }
-    .basket-product-name, 
+    .basket-product-name,
     .price {
         font-size: 1rem;
     }
@@ -2710,6 +2710,9 @@ my_basket.html
         width: 90%;
         margin-top: 2rem;
         /* width: 387px; */
+    }
+    .my-basket {
+        justify-content: center;
     }
     .table-row {
         flex: 0 0 100%;
@@ -4049,7 +4052,7 @@ my_orders.html
     color: rgb(0, 134, 78);
     font-weight: bold;
 }
-.my-orders-read-review, 
+.my-orders-read-review,
 .my-orders-no-review{
     color: rgb(0, 118, 133);
     margin-left: auto;
@@ -4095,7 +4098,7 @@ my_orders.html
     .star-ratings-icons i{
         font-size: 0.8rem;
     }
-    .my-orders-read-review, 
+    .my-orders-read-review,
     .my-orders-no-review{
         font-size: 0.9rem;
     }
@@ -4305,7 +4308,7 @@ my_orders.html
         color: rgb(30, 30, 30);
         font-size: 0.9rem;
         margin-left: auto;
-       
+
     }
     .order-quantity-mobile span {
         font-size: 0.9rem;
@@ -4516,7 +4519,7 @@ paypal_payment.html
     overflow: hidden;
     text-overflow: ellipsis;
     flex: 2;
-    color: rgb(30, 30, 3); 
+    color: rgb(30, 30, 3);
 }
 .paypal-product-quantity {
     color: rgb(30, 30, 3);
@@ -4524,7 +4527,7 @@ paypal_payment.html
     flex: 1;
 }
 .paypal-product-price {
-    color: rgb(30, 30, 3); 
+    color: rgb(30, 30, 3);
     flex: 1;
 }
 .paypal-contents {
@@ -5956,7 +5959,7 @@ read_review.html
     text-align: center;
     border-radius: 5px;
     background: rgb(99, 99, 99);
-    color: rgb(255, 255, 255); 
+    color: rgb(255, 255, 255);
     border: none;
     outline: none;
     transition: background 0.25s ease-in-out;
@@ -6152,7 +6155,7 @@ read_review.html
     .read-review-product-price {
         order: 3
     }
-    
+
 }
 @media screen and (max-width: 460px) {
     .read-review-row {
@@ -6195,7 +6198,7 @@ read_review.html
         width: 73.8%;
         flex: 0 0 73.8%;
     }
-    .review-text > 
+    .review-text >
     .review-author,
     .review-date {
         font-size: 0.9rem;
@@ -6203,7 +6206,7 @@ read_review.html
     .review-text > .review-rating-i-icon i {
         font-size: 0.7rem
     }
-    .review-text > 
+    .review-text >
     .review-title {
         font-size: 1rem;
     }
@@ -6249,7 +6252,7 @@ read_review.html
         width: 68%;
         flex: 0 0 68%;
     }
-    .review-text > 
+    .review-text >
     .review-author,
     .review-date {
         font-size: 0.8rem;
@@ -6257,7 +6260,7 @@ read_review.html
         white-space: nowrap;
         text-overflow: ellipsis;
     }
-    .review-text > 
+    .review-text >
     .review-title {
         font-size: 0.9rem;
     }
@@ -6295,7 +6298,7 @@ read_review.html
 end of read_review.html
 ======================= */
 
-/* 
+/*
 ===================
 order_complete.html
 =================== */
@@ -6378,7 +6381,7 @@ order_complete.html
 .order-complete-logout {
     background: rgb(100, 100, 100);
     margin-top: 0.5rem;
-    
+
 }
 .order-complete-logout:hover {
     background: rgb(44, 44, 44);
@@ -6467,7 +6470,7 @@ order_complete.html
     }
 }
 
-/* 
+/*
 ==========================
 end of order_complete.html
 ========================== */
