@@ -37,25 +37,25 @@
         </div>
         <div class="product-container1">
             {% for product in most_popular %}
-                <div class="product"> <!-- slick carousel container and class name "product" -->
-                    <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
+                <div class="product"  title="click image for detail"> <!-- slick carousel container and class name "product" -->
+                    <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
                         <img class="product-img" src="{{ product.image.url }}" alt="">
-                        <div class="product-text-container">
-                            <p class="product-name">{{ product.product_name|truncatechars:20 }}</p>
-                            <div class="reviews-price">
-                                <p class="product-price">${{ product.price }}</p>
-                                {% if product.productreview_set.all %}
-                                    <a class="read-review" href="{% url 'store:read_review' product.pk %}">
-                                        Read review
-                                    </a>
-                                {% else %}
-                                    <p class="no-review">
-                                        (0 review)
-                                    </p>
-                                {% endif %}
-                            </div>
-                        </div>
                     </a>
+                    <div class="product-text-container">
+                        <p class="product-name">{{ product.product_name }}</p>
+                        <div class="reviews-price">
+                            <p class="product-price">${{ product.price }}</p>
+                            {% if product.productreview_set.all %}
+                                <a class="read-review" href="{% url 'store:read_review' product.pk %}">
+                                    Read review
+                                </a>
+                            {% else %}
+                                <p class="no-review">
+                                    (0 review)
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
                     <div class="rating-button-container">
                         <div class="ratings">
                             {% if product.product_rating == 1 %}
@@ -183,25 +183,25 @@
         </div>
         <div class="product-container2">
             {% for product in  latest %}
-            <div class="product"> <!-- slick carousel container and class name "product" -->
-                <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
+            <div class="product" title="click image for detail" > <!-- slick carousel container and class name "product" -->
+                <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
                     <img class="product-img" src="{{ product.image.url }}" alt="">
-                    <div class="product-text-container">
-                        <p class="product-name">{{ product.product_name|truncatechars:20 }}</p>
-                        <div class="reviews-price">
-                            <p class="product-price">${{ product.price }}</p>
-                            {% if product.productreview_set.all %}
-                                <a class="read-review" href="{% url 'store:read_review' product.pk %}">
-                                    Read review
-                                </a>
-                            {% else %}
-                                <p class="no-review">
-                                    (0 review)
-                                </p>
-                            {% endif %}
-                        </div>
-                    </div>
                 </a>
+                <div class="product-text-container">
+                    <p class="product-name">{{ product.product_name }}</p>
+                    <div class="reviews-price">
+                        <p class="product-price">${{ product.price }}</p>
+                        {% if product.productreview_set.all %}
+                            <a class="read-review" href="{% url 'store:read_review' product.pk %}">
+                                Read review
+                            </a>
+                        {% else %}
+                            <p class="no-review">
+                                (0 review)
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
                 <div class="rating-button-container">
                     <div class="ratings">
                         {% if product.product_rating == 1 %}
@@ -331,25 +331,25 @@
                 </div>
                 <div class="product-container3">
                     {% for product in  just_for_you %}
-                    <div class="product"> <!-- slick carousel container and class name "product" -->
-                        <a class="product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
+                    <div class="product"  title="click image for detail"> <!-- slick carousel container and class name "product" -->
+                        <a class="product-content" href="{% url 'store:product_detail' product.pk %}">
                             <img class="product-img" src="{{ product.image.url }}" alt="">
-                            <div class="product-text-container">
-                                <p class="product-name">{{ product.product_name|truncatechars:20 }}</p>
-                                <div class="reviews-price">
-                                    <p class="product-price">${{ product.price }}</p>
-                                    {% if product.productreview_set.all %}
-                                        <a class="read-review" href="{% url 'store:read_review' product.pk %}">
-                                            Read review
-                                        </a>
-                                    {% else %}
-                                        <p class="no-review">
-                                            (0 review)
-                                        </p>
-                                    {% endif %}
-                                </div>
-                            </div>
                         </a>
+                        <div class="product-text-container">
+                            <p class="product-name">{{ product.product_name }}</p>
+                            <div class="reviews-price">
+                                <p class="product-price">${{ product.price }}</p>
+                                {% if product.productreview_set.all %}
+                                    <a class="read-review" href="{% url 'store:read_review' product.pk %}">
+                                        Read review
+                                    </a>
+                                {% else %}
+                                    <p class="no-review">
+                                        (0 review)
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
                         <div class="rating-button-container">
                             <div class="ratings">
                                 {% if product.product_rating == 1 %}
@@ -454,4 +454,8 @@
             </div>
         {% endif %}
     {% endif %} 
+
+    <script type="text/javascript">
+        
+    </script>
 {% endblock content %}

@@ -1,5 +1,4 @@
 
-document.addEventListener("touchstart", function () { }, true);
 
 // prevent windows scrolling to top on reload
 function storePagePosition() {
@@ -258,8 +257,7 @@ barsButton.addEventListener("click", function () {
 window.addEventListener("resize", function () {
   if (window.innerWidth > 835 || window.innerWidth < 835) {
     navItemContainer.classList.remove("show-navitem-container")
-    searchContainer.classList.remove("show-search-container")
-
+    // searchContainer.classList.remove("show-search-container")
   } 
 })
 

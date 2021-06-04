@@ -21,7 +21,7 @@ def register(request):
             new_user.last_name = form.instance.last_name
             new_user.email = form.instance.email
             new_user.save()
-        return redirect("users:login")
+            return redirect("users:login")
     else:
          form = UserRegisterForm()
     return render(request, "users/register.html", {"form": form})

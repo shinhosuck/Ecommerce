@@ -55,7 +55,7 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button class="login-button">Login</button>
-                    <a class="login-cancel" type="button" href="{% url 'store:home' %}">Cancel</a>
+                    <a class="login-cancel" href="{% url 'store:home' %}">Cancel</a>
                 </form>
                 <p class="login-text">Not yet registered?</p>
                 <a class="login-register-link" href="{% url 'users:register' %}">Register</a>

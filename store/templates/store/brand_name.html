@@ -31,22 +31,22 @@
                 <div class="brand-name-product">
                     <a class="brand-name-product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
                         <img class="brand-name-product-img" src="{{ product.image.url }}" alt="">
-                        <div class="brand-name-product-text-container">
-                            <p class="brand-name-product-name">{{ product.product_name|truncatechars:17 }}</p>
-                            <div class="brand-name-reviews-price">
-                                <p class="brand-name-product-price">${{ product.price }}</p>
-                                {% if product.productreview_set.all %}
-                                    <a class="brand-name-read-review" href="{% url 'store:read_review' product.pk %}">
-                                        Read review
-                                    </a>
-                                {% else %}
-                                    <p class="brand-name-no-review">
-                                        (0 review)
-                                    </p>
-                                {% endif %}
-                            </div>
-                        </div>
                     </a>
+                    <div class="brand-name-product-text-container">
+                        <p class="brand-name-product-name">{{ product.product_name }}</p>
+                        <div class="brand-name-reviews-price">
+                            <p class="brand-name-product-price">${{ product.price }}</p>
+                            {% if product.productreview_set.all %}
+                                <a class="brand-name-read-review" href="{% url 'store:read_review' product.pk %}">
+                                    Read review
+                                </a>
+                            {% else %}
+                                <p class="brand-name-no-review">
+                                    (0 review)
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
                     <div class="brand-name-rating-button-container">
                         <div class="brand-name-ratings">
                             {% if product.product_rating == 1 %}

@@ -23,42 +23,53 @@ def home(request):
     if user.is_authenticated:
         try:
             customer = Customer.objects.get(name=user)
+            baskets = customer.basket_set.filter(open_basket=True)
+            if baskets:
+                totalItems = 0
+                categories = []
+
+                for basket in baskets:
+                    totalItems += basket.quantity
+                    if basket.product.category not in categories:
+                        categories.append(basket.product.category)
+
+                for category in categories:
+                    category_items = Product.objects.filter(category=category)
+                    for item in category_items:
+                        just_for_you.append(item)
+
+                # customer.total_items = totalItems
+                customer.save()
+
+                context = {
+                        "most_popular_len": len(most_popular),
+                        "latest_len": len(latest),
+                        "just_for_you_len": len(just_for_you),
+                        "most_popular": most_popular,
+                        "latest": latest,
+                        "just_for_you": just_for_you,
+                    }
+                return render(request, "store/home.html", context)
+
+            else:
+                context = {
+                    "most_popular": most_popular,
+                    "most_popular_len": len(most_popular),
+                    "latest": latest,
+                    "latest_len": len(latest),
+                }
+                return render(request, "store/home.html", context)
+
         except Customer.DoesNotExist:
             Customer.objects.create(name=user, total_items=0)
             context = {
                 "most_popular": most_popular,
                 "most_popular_len": len(most_popular),
                 "latest": latest,
+                "latest_len": len(latest),
             }
             return render(request, "store/home.html", context)
-        else:
-            customer = get_object_or_404(Customer, name=user)
-            baskets = customer.basket_set.filter(open_basket=True)
-            totalItems = 0
-            categories = []
 
-            for basket in baskets:
-                totalItems += basket.quantity
-                if basket.product.category not in categories:
-                    categories.append(basket.product.category)
-
-            for category in categories:
-                category_items = Product.objects.filter(category=category)
-                for item in category_items:
-                    just_for_you.append(item)
-
-            customer.total_items = totalItems
-            customer.save()
-
-            context = {
-                    "most_popular_len": len(most_popular),
-                    "latest_len": len(latest),
-                    "just_for_you_len": len(just_for_you),
-                    "most_popular": most_popular,
-                    "latest": latest,
-                    "just_for_you": just_for_you,
-                }
-        return render(request, "store/home.html", context)
     else:
         context = {
                     "most_popular": most_popular,

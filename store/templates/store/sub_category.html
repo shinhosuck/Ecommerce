@@ -29,25 +29,25 @@
         </div>
         <div class="sub-category-products-col">
             {% for product in  products %}
-            <div class="sub-category-product">
-                <a class="sub-category-product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
+            <div class="sub-category-product" title="click image for detail">
+                <a class="sub-category-product-content" href="{% url 'store:product_detail' product.pk %}">
                     <img class="sub-category-product-img" src="{{ product.image.url }}" alt="">
-                    <div class="sub-category-product-text-container">
-                        <p class="sub-category-product-name">{{ product.product_name|truncatechars:20 }}</p>
-                        <div class="sub-category-reviews-price">
-                            <p class="sub-category-product-price">${{ product.price }}</p>
-                            {% if product.productreview_set.all %}
-                                <a class="sub-category-read-review" href="{% url 'store:read_review' product.pk %}">
-                                    Read review
-                                </a>
-                            {% else %}
-                                <p class="sub-category-no-review">
-                                    (0 review)
-                                </p>
-                            {% endif %}
-                        </div>
+                </a> 
+                <div class="sub-category-product-text-container">
+                    <p class="sub-category-product-name">{{ product.product_name }}</p>
+                    <div class="sub-category-reviews-price">
+                        <p class="sub-category-product-price">${{ product.price }}</p>
+                        {% if product.productreview_set.all %}
+                            <a class="sub-category-read-review" href="{% url 'store:read_review' product.pk %}">
+                                Read review
+                            </a>
+                        {% else %}
+                            <p class="sub-category-no-review">
+                                (0 review)
+                            </p>
+                        {% endif %}
                     </div>
-                </a>
+                </div>
                 <div class="sub-category-rating-button-container">
                     <div class="sub-category-ratings">
                         {% if product.product_rating == 1 %}

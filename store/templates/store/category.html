@@ -35,27 +35,27 @@
         </div>
         <div class="category-products-col">
             {% for product in  products %}
-                <div class="category-product">
-                    <a class="category-product-content" title="Click to see detail" href="{% url 'store:product_detail' product.pk %}">
+                <div class="category-product"  title="Click to see detail">
+                    <a class="category-product-content" href="{% url 'store:product_detail' product.pk %}">
                         <img class="category-product-img" src="{{ product.image.url }}" alt="">
-                        <div class="category-product-text-container">
-                            <div class="category-product-name">
-                                <p>{{ product.product_name|truncatechars:20 }}</p>
-                            </div>
-                            <div class="category-reviews-price">
-                                <p class="category-product-price">${{ product.price }}</p>
-                                {% if product.productreview_set.all %}
-                                    <a  class="category-read-review" href="{% url 'store:read_review' product.pk %}">
-                                        Read review
-                                    </a>
-                                {% else %}
-                                    <p class="category-no-review">
-                                        (0 review)
-                                    </p>
-                                {% endif %}
-                            </div>
-                        </div>
                     </a>
+                    <div class="category-product-text-container">
+                        <div class="category-product-name">
+                            <p>{{ product.product_name }}</p>
+                        </div>
+                        <div class="category-reviews-price">
+                            <p class="category-product-price">${{ product.price }}</p>
+                            {% if product.productreview_set.all %}
+                                <a  class="category-read-review" href="{% url 'store:read_review' product.pk %}">
+                                    Read review
+                                </a>
+                            {% else %}
+                                <p class="category-no-review">
+                                    (0 review)
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
                     <div class="category-rating-button-container">
                         <div class="category-ratings">
                             {% if product.product_rating == 1 %}

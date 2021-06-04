@@ -20,7 +20,7 @@
                 <a class="shop-by-brand-content" href="{% url 'store:brand_name' value.pk %}">
                     <img class="shop-by-brand-img" src="{{ value.brand_image.url }}" alt="">
                     <div class="shop-by-brand-text">
-                        <p class="shop-by-brand-name">{{ key|truncatechars:15 }}</p>
+                        <p class="shop-by-brand-name">{{ key }}</p>
                         {% for k, v in total_items.items %}
                             {% if k == key %}
                                 {% if v > 1 %}
