@@ -12,12 +12,7 @@
     <title>Shipping Address</title>
 
     <style>
-        .address-form {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
+        
         #div_id_first_name, #div_id_last_name,
         #div_id_email, #div_id_address, 
         #div_id_city, #div_id_state,
@@ -42,27 +37,48 @@
         }
         .requiredField {
             font-size: 0.9rem;
+            margin-bottom: 0.2rem;
         }
         input {
             width: 100%;
             height: 33px;
             font-size: 0.9rem !important;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
+            color: rgb(100, 100, 100) !important;
         }
         #id_country {
             width: 100%;
             height: 33px;
+            color: rgb(100, 100, 100);
         }
         select {
             font-size: 0.9rem !important;
         }
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 470px) {
             #div_id_first_name, #div_id_last_name,
             #div_id_email, #div_id_address, 
             #div_id_city, #div_id_state,
             #div_id_postal_code, #div_id_country {
                 flex: 0 0 100%;
                 width: 100%;
+            }
+        }
+        @media screen and (max-width: 420px) {
+            .requiredField {
+                font-size: 1rem;
+                margin-bottom: 0.2rem;
+            }
+            input {
+                width: 100%;
+                height: 35px;
+                font-size: 1rem !important;
+                margin-bottom: 0.3rem;
+            }
+            #id_country {
+                width: 100%;
+                height: 35px;
+                font-size: 1rem !important;
+
             }
         }
     </style>

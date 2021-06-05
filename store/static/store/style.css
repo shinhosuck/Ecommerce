@@ -581,7 +581,7 @@ register.html
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-   
+
 }
 .register-col {
     width: 100%;
@@ -643,7 +643,8 @@ register.html
 }
 .register-container h4 {
     letter-spacing: 0.05rem;
-    color: rgb(30, 30, 30)
+    color: rgb(30, 30, 30);
+    font-weight: normal;
 }
 .register-button {
     padding: 0.5rem 0.5rem;
@@ -680,7 +681,7 @@ register.html
     display: inline-block;
     margin-top: 1rem;
     font-size: 0.9rem;
-    color: rgb(128, 128, 128)
+    color: rgb(128, 128, 128);
 }
 .register-login-link {
     display: inline-block;
@@ -754,7 +755,6 @@ register.html
         top: 186px;
         max-height: 0;
         overflow: hidden;
-        /* white-space: nowrap; */
         width: 100%;
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px;
@@ -763,14 +763,6 @@ register.html
     .show-field-requirement {
         max-height: 500px;
         transition: max-height 0.25s linear;
-    }
-    @keyframes show-register-row {
-        from {
-            top: -600px;
-        }
-        to {
-            top: 10px;
-        }
     }
 }
 @media screen and (max-width: 690px){
@@ -801,7 +793,37 @@ register.html
         width: 100%;
     }
 }
-
+@media screen and (max-width: 420px) {
+    .register-container,
+    .register-login-link,
+    .register-text {
+        font-size: 1rem
+    }
+    .register-container h4 {
+        font-size: 1.35rem;
+    }
+    .register-button {
+        padding: 0.5rem 0.7rem;
+        font-size: 1rem;
+    }
+    .register-cancel {
+        padding: 0.5rem 0.6rem;
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 350px) {
+    .register-text {
+        display: block;
+        margin-bottom: 0.3rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .register-login-link {
+        display: block;
+        margin-bottom: 1rem;
+    }
+}
 /*
 ====================
 end of register.html
@@ -824,7 +846,7 @@ login.html
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-   
+
     animation-name: login;
     animation-timing-function: linear;
     animation-iteration-count: 1;
@@ -853,7 +875,7 @@ login.html
     width: 100%;
     flex:  0 0 100%;
     border-radius: 5px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 .login-text-container {
     background: rgba(0, 51, 44, 0.9);
@@ -863,6 +885,9 @@ login.html
     color: white;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
+}
+.login-text-container > h4, p {
+    letter-spacing: 0.05rem
 }
 .login-container {
     width: 60%;
@@ -961,6 +986,7 @@ login.html
         width: 90%;
         /* width: 459px; */
     }
+
     .login-text-container {
         flex: 0 0 100%;
         width: 100%;
@@ -974,6 +1000,7 @@ login.html
         width: 100%;
         border-bottom-left-radius: 5px;
         border-top-right-radius: 0;
+        padding-bottom: 0;
     }
     .login-button {
         font-size: 1rem;
@@ -989,14 +1016,18 @@ login.html
     .login-text-container p {
         font-size: 1rem;
     }
-    /* @keyframes login {
-        from {
-           top: -300px
-        }
-        to {
-            top: 50px
-        }
-    } */
+}
+@media screen and (max-width: 420px) {
+    .login-container {
+        font-size: 1rem;
+    }
+    .login-text,
+    .login-register-link {
+        font-size: 1rem;
+    }
+    .login-text-container h4 {
+        font-size: 1.35rem
+    }
 }
 /*
 =================
@@ -1589,7 +1620,7 @@ home.html
         font-size: 0.8rem;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 620px) {
     .product-number-of-items-found {
         order: 2;
         flex: 0 0 100%;
@@ -1624,10 +1655,11 @@ home.html
         font-size: 1.5rem;
     }
     .product-number-of-items-found {
-        margin-left: 0.5rem;
-        flex: 0 0 40%;
-        width: 40%;
+        margin-left: 0rem;
+        flex: 0 0 100%;
+        width: 100%;
         font-size: 1.1rem;
+        margin-top: 0.5rem;
     }
     .products-container{
         width: 80%;
@@ -1643,7 +1675,7 @@ home.html
         font-size: 1.1rem;
     }
     .ratings-count small,
-    .no-rating, .no-review, 
+    .no-rating, .no-review,
     .read-review{
         font-size: 1.1rem
     }
@@ -2723,6 +2755,14 @@ my_basket.html
         margin-left: 0;
         width: 100%;
         flex: 0 0 100%;
+        font-size: 1.5rem;
+    }
+    .summary-title,
+    .my-basket-title {
+        font-size: 1.5rem;
+    }
+    .my-basket-title small {
+        font-size: 1.1rem;
     }
     .basket-summary-text {
         flex: 0 0 100%;
@@ -2736,25 +2776,46 @@ my_basket.html
         margin-top: 1rem;
     }
     .basket-product-name,
-    .my-basket-price-mobile,
+    .my-basket-price-mobile {
+        font-size: 1.3rem;
+    }
     .basket-product-stock,
     .num-of-item-txt,
-    .delete-basket-item > .icon-x {
-        font-size: 1rem;
-    }
-    .basket-product-description {
-        font-size: 0.9rem
-    }
-    .star-ratings-icons i {
-        font-size: 0.9rem !important;
-    }
     .my-orders-read-review,
     .my-orders-no-review {
-        font-size: 0.9rem !important;
+        font-size: 1.1rem !important;
+    }
+    .delete-basket-item > .icon-x {
+        padding: 0.8rem 0;
+        font-size: 1.1rem;
+    }
+    .basket-product-description,
+    .star-ratings-icons i {
+        font-size: 1rem !important;
+        margin-top: 0.5rem;
+    }
+    .star-ratings-icons > p{
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+    }
+    .also-like-product-name,
+    .also-like-product-price {
+        font-size: 1.3rem;
     }
     .also-like-product-btn {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        padding: 0.8rem 0;
     }
+    .total-items,
+    .amount-due {
+        font-size: 1.3rem;
+    }
+    .checkout-button,
+    .continue-shopping-button {
+        font-size: 1.1rem;
+        padding: 0.8rem 0;
+    }
+
 }
 /*
 =====================
@@ -2767,8 +2828,10 @@ shipping_address.html
 =====================*/
 
 .address-row {
-    width: 667px;
-    margin: 3rem auto;
+    /* width: 667px; */
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 3rem;
 }
 .address-container {
     flex: 0 0 100%;
@@ -2780,7 +2843,15 @@ shipping_address.html
 .address-title {
     flex: 0 0 100%;
     width: 100%;
+    font-size: 1.35rem;
+    color: rgb(30, 30, 30);
     letter-spacing: 0.05rem;
+}
+.address-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 .buttons {
     flex: 0 0 100%;
@@ -2797,13 +2868,14 @@ shipping_address.html
     outline: none;
     border: none;
     box-shadow: none;
-    background: rgb(0, 134, 116);
+    background: rgb(0, 100, 100);
     color: rgb(255, 255, 255);
     font-size: 1rem;
+    border-radius: 5px;
     transition: background 0.2s ease-in-out;
 }
 .address-button:hover {
-    background: rgb(0, 88, 77);
+    background: rgb(0, 61, 61);
 }
 .address-cancel {
     flex: 0 0 49%;
@@ -2812,36 +2884,81 @@ shipping_address.html
     text-decoration: none;
     outline: none;
     box-shadow: none;
-    background: rgb(129, 129, 129);
+    background: rgb(100, 100, 100);
     color: rgb(255, 255, 255);
     font-size: 1rem;
+    border-radius: 5px;
     display: inline-block;
     transition: background 0.2s ease-in-out;
 }
 .address-cancel:hover {
     color: rgb(255, 255, 255);
-    background: rgb(92, 92, 92);
+    background: rgb(61, 61, 61);
 }
-@media screen and (max-width: 680px) {
+@media screen and (min-width: 1367px) {
+    .address-row {
+        width: 50%;
+        max-width: 683px;
+    }
+}
+@media screen and (max-width: 1366px) {
+    .address-row {
+        width: 683px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .address-row {
+        width: 630px;
+        /* width: 90%; */
+    }
+}
+@media screen and (max-width: 650px) {
+    .address-row {
+        width: 585px;
+        /* width: 90%; */
+    }
+}
+@media screen and (max-width: 610px) {
+    .address-row {
+        width: 549px;
+        /* width: 90%; */
+    }
+}
+@media screen and (max-width: 570px) {
+    .address-row {
+        width: 513px;
+        /* width: 90%; */
+    }
+}
+@media screen and (max-width: 530px) {
+    .address-row {
+        width: 477px;
+        /* width: 90%; */
+    }
+}
+@media screen and (max-width: 500px) {
+    .address-row {
+        width: 450px;
+        /* width: 90%; */
+    }
+}
+@media screen and (max-width: 470px) {
     .address-row {
         width: 90%;
-    }
-}
-@media screen and (max-width: 450px) {
-    .address-row {
-        width: 100%;
-        margin-top: 0rem;
-        margin-bottom: 0rem;
-        min-height: 100vh;
-        display: flex;
-        align-items: flex-start;
-        background: white;
-    }
-    .address-container {
-        margin-top: 1rem;
+        margin: 2rem auto;
     }
     .buttons {
         margin-top: 1rem;
+    }
+}
+@media screen and (max-width: 420px) {
+    .address-button, 
+    .address-cancel {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .address-cancel {
+        margin-top: 0.5rem;
     }
 }
 /*
@@ -3652,7 +3769,7 @@ sub_category.html
         padding: 0.8rem 0;
     }
     .sub-category-no-review,
-    .sub-category-read-review, 
+    .sub-category-read-review,
     .sub-category-no-rating,
     .sub-category-ratings-count small{
         font-size: 1.1rem;
@@ -5247,14 +5364,14 @@ brand_name.html
         padding: 0.8rem 0;
     }
     .brand-name-no-review,
-    .brand-name-read-review, 
+    .brand-name-read-review,
     .brand-name-no-rating,
     .brand-name-ratings-count small{
         font-size: 1rem;
     }
     .brand-name-rating-i-icon i {
         font-size: 0.9rem
-    } 
+    }
 }
 @media screen and (max-width: 360px) {
     .brand-name-title {
