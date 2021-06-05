@@ -4473,21 +4473,7 @@ my_orders.html
         width: 47.8%;
     }
 }
-@media screen and (max-width: 420px) {
-    .my-order-main-container {
-        /* width: 90%; */
-        width: 376.2px;
-    }
-    .order-row {
-        flex: 0 0 47.6%;
-        width: 47.6%;
-    }
-    .most-ordered-container {
-        flex: 0 0 47.6%;
-        width: 47.6%;
-    }
-}
-@media screen and (max-width: 396px) {
+@media screen and (max-width: 430px) {
     .my-order-main-container {
         width: 90%;
         /* width: 356.4px; */
@@ -4510,17 +4496,56 @@ my_orders.html
     }
     .most-ordered-product-name,
     .most-ordered-product-price{
-        font-size: 1rem;
+        font-size: 1.3rem;
     }
     .my-orders-read-review,
     .my-orders-no-review {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
     }
     .most-ordered-product-btn{
-        padding: 0.6rem;
+        padding: 0.8rem 0;
+        font-size: 1.1rem;
     }
     .star-ratings-icons i {
-        font-size: 0.9rem
+        font-size: 1rem
+    }
+    .order-total,
+    .my-order-header,
+    .most-ordered-title > h3 {
+        font-size: 1.5rem;
+    }
+    .closed-orders-title,
+    .open-orders-title {
+        font-size: 1.4rem;
+    }
+    .closed-orders-title > small,
+    .open-orders-title > small {
+        font-size: 1.1rem;
+        margin-left: 0;
+        margin-top: 0.5rem;
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .order-total-item,
+    .order-amount-due {
+        font-size: 1.3rem;
+    }
+    .order-product-name,
+    .order-price {
+        font-size: 1.3rem;
+    }
+    .my-order-detail,
+    .my-order-date,
+    .order-quantity-mobile,
+    .my-order-review-mobile {
+        font-size: 1.1rem;
+    }
+    .order-quantity-mobile span {
+        font-size: 1.1rem;
+    }
+    .make-payment-button {
+        padding: 0.8rem 0;
+        font-size: 1.1rem;
     }
 }
 /*
