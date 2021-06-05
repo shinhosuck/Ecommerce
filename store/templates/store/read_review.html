@@ -10,6 +10,15 @@
 {% block content %}
     <div class="read-review-row">
         <div class="read-review-col">
+            {% if product.productreview_set.count > 1 %}
+                <h3 class="read-review-header">Customer Reviews 
+                    <span>{{ product.productreview_set.count }} reviews found</span>
+                </h3>
+            {% else %}
+                <h3 class="read-review-header">Customer Review
+                    <span>{{ product.productreview_set.count }} review found</span>
+                </h3>
+            {% endif %}
             <div class="img-title-container">
                 <div class="review-img">
                     <img src="{{ product.image.url }}" alt="product image">
@@ -37,7 +46,6 @@
                         <img src="{{ review.author.name.profile.image.url }}" alt="">
                     </div>
                     <div class="review-text">
-                        <p class="review-author">{{ review.author.name.username }}</p>
                         {% if review.review_rating == 1 %}
                             <div class="review-rating-i-icon">
                                 <i class="fa fa-star"></i>
@@ -69,9 +77,11 @@
                                 <i class="fa fa-star"></i>
                             </div>
                         {% endif %}
-                        <p class="review-date">{{ review.date }}</p>
-                        <p class="review-title">{{ review.review_title }}</p>
+                        <p class="review-author">{{ review.author.name.username }}</p>
+                        <p class="review-date">{{ review.date|date:"F, d, Y" }}</p>
+                        <!-- <p class="review-title">{{ review.review_title }}</p> -->
                     </div>
+                    <p class="review-title">{{ review.review_title }}</p>
                     <p class="review-content"><small>{{ review.content }}</small></p>
                 </div>
             {% endfor %}
