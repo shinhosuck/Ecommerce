@@ -9,92 +9,67 @@
 
 {% block content %}
     <div class="my-order-main-container">
-        <h3 class="my-order-header">My Order History</h3>
+        <h3 class="my-order-header">My Order History 
+            <span>{{ orders.count }} pending, {{ closed_orders.count }} complete order(s) found</span>
+        </h3>
         <div class="my-orders">
-            {% if orders %}
-                <h4 class="open-orders-title">Pending Order
-                    {% if orders.count > 1 %}
-                    <small>{{ orders.count }} items found</small>
-                    {% elif orders.count == 1 %}
-                    <small>{{ orders.count }} item found</small>
-                    {% endif %}
-                </h4>
-                {% for order in orders %}
-                    <div class="order-row" title="Click image for detail">
-                        <a  class="order-img" href="{% url 'store:product_detail' order.basket.product.pk %}">
+            {% for order in orders %}
+                <div class="order-row" title="Click image for detail">
+                    <a  class="order-img" href="{% url 'store:product_detail' order.basket.product.pk %}">
+                        <img src="{{ order.basket.product.image.url}}" alt="">
+                    </a>
+                    <div class="order-text-wraper">
+                        <a  class="order-img-small" href="{% url 'store:product_detail' order.basket.product.pk %}">
                             <img src="{{ order.basket.product.image.url}}" alt="">
                         </a>
-                        <div class="order-text-wraper">
-                            <a  class="order-img-small" href="{% url 'store:product_detail' order.basket.product.pk %}">
-                                <img src="{{ order.basket.product.image.url}}" alt="">
-                            </a>
-                            <p class="order-product-name">{{ order.basket.product.product_name }}</p>
-                            <p class="order-price">${{ order.basket.product.price}}</p>
-                            <p class="my-order-detail">Status: open</p>
-                            <p class="my-order-date"> Ordered:
-                                <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
-                            </p>
-                            <p class="order-quantity">Quantity:
-                                <span>{{ order.basket.quantity }}</span>
-                            </p>
-                        </div>
+                        <p class="order-product-name">{{ order.basket.product.product_name }}</p>
+                        <p class="order-price">${{ order.basket.product.price}}</p>
+                        <p class="my-order-detail">Status: open</p>
+                        <p class="my-order-date"> Ordered on:
+                            <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
+                        </p>
+                        <p class="order-quantity">Quantity:
+                            <span>{{ order.basket.quantity }}</span>
+                        </p>
                     </div>
-                {% endfor %}
-            {% else %}
-                <h4 class="open-orders-title">Pending Order
-                    <small>0 item found</small>
-                </h4>
-            {% endif %}
-
-            {% if closed_orders %}
-                <h4 class="closed-orders-title">Complete Order 
-                    {% if closed_orders.count > 1 %}
-                    <small>{{ closed_orders.count }} items found</small>
-                    {% elif closed_orders.count == 1 %}
-                    <small>{{ closed_orders.count }} item found</small>
-                    {% endif %}
-                </h4>
-                {% for order in closed_orders %}
-                    <div class="order-row" title="Click image for detail">
-                        <a class="order-img" href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
+                </div>
+            {% endfor %}
+            {% for order in closed_orders %}
+                <div class="order-row" title="Click image for detail">
+                    <a class="order-img" href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
+                        <img src="{{ order.basket.product.image.url}}" alt="">
+                    </a>
+                    <div class="order-text-wraper">
+                        <a class="order-img-small" href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
                             <img src="{{ order.basket.product.image.url}}" alt="">
                         </a>
-                        <div class="order-text-wraper">
-                            <a class="order-img-small" href="{% url 'store:product_detail' order.basket.product.pk %}" class="order-img" >
-                                <img src="{{ order.basket.product.image.url}}" alt="">
-                            </a>
-                            <p class="order-product-name">{{ order.basket.product.product_name }}</p>
-                            <p class="order-price">${{ order.basket.product.price}}</p>
-                            <p class="my-order-detail">Status: closed</p>
-                            <p class="my-order-date">Finalized:
-                                <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
-                            </p>
-                            <p class="order-quantity-mobile">Quantity:
+                        <p class="order-product-name">{{ order.basket.product.product_name }}</p>
+                        <p class="order-price">${{ order.basket.product.price}}</p>
+                        <p class="my-order-detail">Status: closed</p>
+                        <p class="my-order-date">Finalized on:
+                            <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
+                        </p>
+                        <p class="order-quantity-mobile">Quantity:
+                            <span>{{ order.basket.quantity }}</span>
+                        </p>
+                        <a class="my-order-review-mobile" href="{% url 'store:product_review'  order.basket.product.pk %}">
+                            Review this product
+                        </a>
+                        <div class="review-product-and-detail">
+                            <p class="order-quantity-closed">Quantity:
                                 <span>{{ order.basket.quantity }}</span>
                             </p>
-                            <a class="my-order-review-mobile" href="{% url 'store:product_review'  order.basket.product.pk %}">
+                            <a class="my-order-review-this-product" href="{% url 'store:product_review'  order.basket.product.pk %}">
                                 Review this product
                             </a>
-                            <div class="review-product-and-detail">
-                                <p class="order-quantity-closed">Quantity:
-                                    <span>{{ order.basket.quantity }}</span>
-                                </p>
-                                <a class="my-order-review-this-product" href="{% url 'store:product_review'  order.basket.product.pk %}">
-                                    Review this product
-                                </a>
-                            </div>
                         </div>
                     </div>
-                {% endfor %}
-            {% else %}
-                <h4 class="closed-orders-title">Complete Order
-                    <small>0 item found</small>
-                </h4>
-            {% endif %}
+                </div>
+            {% endfor %}
         </div>
         <div class="my-order-total">
+            <h3 class="order-total">Pending Payment</h3>
             <div class="order-total-wraper">
-                <h3 class="order-total">Pending Payment</h3>
                 <div class="order-total-text-container">
                     <p class="order-total-items">
                         Total Item:<span>{{ total_items }}</span>
@@ -105,10 +80,12 @@
                     {% if orders %}
                         <div class="order-payment-button">
                             <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">Make payment</a>
+                            <a class="make-payment-cancel-button" href="{% url 'store:home' %}" type="button">Cancel</a>
                         </div>
                     {% else %}
                         <div class="order-payment-button">
                             <a class="make-payment-button" href="{% url 'store:paypal_payment' %}" type="button">No payment due</a>
+                            <a class="make-payment-cancel-button" href="{% url 'store:home' %}" type="button">Cancel</a>
                         </div>
                     {% endif %}
                 </div>
@@ -129,6 +106,7 @@
                                 <img src="{{ product.image.url }}" alt="">
                             </a>
                             <div id="{{ product.product_rating }}" class="star-ratings-icons">
+                                <!-- <i fa fa-star></i> from js -->
                                 <p>
                                     <small>( {{ product.productreview_set.count }} )</small>
                                 </p>
@@ -150,6 +128,7 @@
         </div>
     </div>
     <script type="text/javascript">
+        
         ratings()
         function ratings(){
             let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")

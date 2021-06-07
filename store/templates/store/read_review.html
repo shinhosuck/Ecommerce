@@ -19,10 +19,10 @@
                     <span>{{ product.productreview_set.count }} review found</span>
                 </h3>
             {% endif %}
-            <div class="img-title-container">
-                <div class="review-img">
+            <div class="img-title-container" title="click image for detail">
+                <a class="review-img" href="{% url 'store:product_detail' product.pk %}">
                     <img src="{{ product.image.url }}" alt="product image">
-                </div>
+                </a>
                 <div class="review-img-text-content">
                     <h3 class="read-review-product-name">{{ product.product_name }}</h3>
                     <div class="read-review-rating-stars">
@@ -38,7 +38,7 @@
                     <a class="read-review-add-to-basket" type="button" href="{% url 'store:add_to_basket' product.pk %}">Add to basket</a>
                     <a class="read-review-continue-shopping" type="button" href="{% url 'store:home' %}">Continue shopping</a>
                 </div>
-                <p class="read-review-product-description">{{ product.description }}</p>
+                <p class="read-review-product-description">{{ product.description|truncatechars:200 }}</p>
             </div>
             {% for review in reviews %}
                 <div class="read-review-content-container">

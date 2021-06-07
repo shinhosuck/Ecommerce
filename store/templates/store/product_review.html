@@ -29,20 +29,32 @@
             font-size: 0.95rem;
             color: rgb(71, 71, 71)
         }
+        @media screen and (max-width: 480px) {
+            input, textarea {
+                font-size: 1.1rem !important;
+            }
+            div label {
+                margin-bottom: 0.3rem;
+                margin-top: 0.3rem;
+                font-size: 1.3rem;
+                color: rgb(71, 71, 71)
+            }
+        }
     </style>
 </head>
 <body>
     <div class="product-review-row">
+        <h3 class="product-review-title-mobile">Customer Feedback</h3>
         <div class="product-review-img">
             <img src="{{ product.image.url}}" alt="">
             <div class="product-review-text">
                 <p class="product-review-name">{{ product.product_name|truncatechars:22}}</p>
                 <p class="product-review-price">${{ product.price}}</p>
-                <p class="product-review-description"><small>{{ product.description|truncatechars:150}}</small></p>
+                <p class="product-review-description">{{ product.description|truncatechars:150}}</p>
             </div>
         </div>
         <div class="product-review-container">
-            <h3 class="product-review-title">{{ product.product_name|truncatechars:20 }} Reivew</h3>
+            <h3 class="product-review-title">Customer Feedback</h3>
             <div class="product-review-form">
                 <form method="POST">
                     {% csrf_token %}
@@ -66,6 +78,7 @@
                 </form>
             </div>
         </div>
+        
     </div>
     <script type="text/javascript">
         const productStars = document.querySelector(".product-stars")

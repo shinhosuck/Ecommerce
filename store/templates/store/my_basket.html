@@ -9,14 +9,14 @@
 
 {% block content %}
     <div class="basket-main-container">
+        <h3 class="my-basket-title">MY Basket
+            {% if baskets.count > 1 %}
+                <small>{{ baskets.count }} items found</small>
+            {% elif baskets.count == 1 %}
+                <small>{{ baskets.count }} item found</small>
+            {% endif %}
+        </h3>
         <div class="my-basket">
-            <h3 class="my-basket-title">MY Basket
-                {% if baskets.count > 1 %}
-                    <small>{{ baskets.count }} items found</small>
-                {% elif baskets.count == 1 %}
-                    <small>{{ baskets.count }} item found</small>
-                {% endif %}
-            </h3>
             {% for basket in baskets %}
                 <div class="table-row" title="click image for detail">
                     <a class="my-basket-img" href="{% url 'store:product_detail' basket.product.pk %}">
@@ -28,7 +28,7 @@
                         </a>
                         <p class="basket-product-name">{{ basket.product.product_name }}</p>
                         <p class="price">${{ basket.product.price }}</p>
-                        <p class="basket-product-description">{{ basket.product.description }}</p>
+                        <p class="my-basket-price-mobile">${{ basket.product.price }}</p>
                         <div class="basket-product-stock">
                             {% if basket.product.on_stock %}
                                 <p class="in-stock">In stock</p>
@@ -36,7 +36,6 @@
                                 <p class="in-stock">Out of stock</p>
                             {% endif %}
                         </div>
-                        <p class="my-basket-price-mobile">${{ basket.product.price }}</p>
                         <div class="quantity">
                             <p class="num-of-item-txt">Quantity:</p>
                             <div class="basket-quantity-buttons">
@@ -63,8 +62,12 @@
                 <h3 class="summary-title">Order Summary</h3>
                 <div class="basket-summary-text-container">
                     <div class="basket-summary-text">
-                        <p class="total-items">Total Items:<span>{{ user.customer.total_items }}</span></p>
-                        <p class="amount-due">Amount Due:<span>${{ total_amount_due }}</span></p>
+                        <p class="total-items">Total Items:
+                            <span>{{ user.customer.total_items }}</span>
+                        </p>
+                        <p class="amount-due">Amount Due:
+                            <span>${{ total_amount_due }}</span>
+                        </p>
                             <!-- coming from context_processors.py -->
                         <a class="checkout-button" type="button" href="{% url 'store:shipping_address' %}">Checkout</a>
                         <a class="continue-shopping-button" type="button" href="{% url 'store:home' %}">Continue shopping</a>
@@ -80,7 +83,7 @@
                             <a class="also-like-item" href="{% url 'store:product_detail' product.pk %}" title="click for detail">
                                 <img src="{{ product.image.url }}" alt="">
                             </a>
-                            <div id="{{ product.product_rating }}" class="star-ratings-icons">
+                            <div id="{{ product.product_rating }}" class="basket-star-ratings-icons">
                                 <!-- <i fa fa-star><i> elements from js -->
                                 <p>
                                     <small>( {{ product.productreview_set.count }} )</small>
@@ -90,9 +93,9 @@
                                 <p class="also-like-product-name">{{ product.product_name }}</p>
                                 <p class="also-like-product-price">${{ product.price }}</p>
                                 {% if product.productreview_set.count %}
-                                    <a  class="my-orders-read-review" href="{% url 'store:read_review' product.pk %}">Read review</a>
+                                    <a  class="my-basket-read-review" href="{% url 'store:read_review' product.pk %}">Read review</a>
                                 {% else %}
-                                    <p class="my-orders-no-review">No review</p>
+                                    <p class="my-basket-no-review">No review</p>
                                 {% endif %}
                             </div>
                             <a class="also-like-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
@@ -106,7 +109,7 @@
     <script type="text/javascript">
         ratings()
         function ratings(){
-            let starRatingsIcons = document.querySelectorAll(".star-ratings-icons")
+            let starRatingsIcons = document.querySelectorAll(".basket-star-ratings-icons")
             starRatingsIcons.forEach(function(div){
                 let ratings = parseInt(div.id)
                 const pTag = div.children[0]
