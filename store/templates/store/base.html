@@ -15,7 +15,6 @@
 </head>
 <body>
     <header>
-
         <nav class="navbar">
             <div class="brand-name">
                 <a class="brand" href="{% url 'store:home' %}">
@@ -86,7 +85,7 @@
         </nav>
         <div class="categories-and-sub-category-row">
             <div class="categories-and-sub-category-col">
-                <i class="fa fa-times times-button"></i></li>
+                <i class="fa fa-times times-button"></i>
                 {% for key, value in categories.items %}
                     <div class="categories-and-sub-category-container">
                         <div class="category-container">

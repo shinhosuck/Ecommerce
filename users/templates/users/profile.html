@@ -34,7 +34,19 @@
             border: 1px solid rgb(221, 221, 221);
         }
         div label {
-            margin-bottom: 0.1rem;
+            margin-bottom: 0.2rem;
+        }
+        @media screen and (max-width: 480px) {
+            div label {
+                font-size: 1.1rem 
+            }
+            #id_username, #id_first_name, 
+            #id_last_name, #id_email {
+                font-size: 1rem !important;
+            }
+            #div_id_image div {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -42,7 +54,7 @@
     <div class="profile-row">
         <div class="profile-col">
             <div class="profile-text-container">
-                <h4>Profile</h4>
+                <h4>Profile Information</h4>
                 <p>If you need to change your personal information, please update your profile</p>
             </div>
             <div class="profile-container">
@@ -62,7 +74,7 @@
                     {{ user_form|crispy }}
                     {{ profile_form|crispy }}
                     <button class="profile-button">Update</button>
-                    <a class="profile-cancel" type="button" href="{% url 'store:home' %}">Cancel</a>
+                    <a class="profile-cancel" href="{% url 'store:home' %}">Cancel</a>
                 </form>
             </div>
         </div>
