@@ -48,7 +48,7 @@
         <div class="product-review-img">
             <img src="{{ product.image.url}}" alt="">
             <div class="product-review-text">
-                <p class="product-review-name">{{ product.product_name|truncatechars:22}}</p>
+                <p class="product-review-name">{{ product.product_name}}</p>
                 <p class="product-review-price">${{ product.price}}</p>
                 <p class="product-review-description">{{ product.description|truncatechars:150}}</p>
             </div>

@@ -128,9 +128,8 @@ $('.product-container3').slick({
 });
 
 // card slides prev and next buttons
-
-const nextAndPrevButtons = document.querySelectorAll(".slick-arrow")
-const productsContainer = document.querySelectorAll(".products-container")
+// const nextAndPrevButtons = document.querySelectorAll(".slick-arrow")
+// const productsContainer = document.querySelectorAll(".products-container")
 
 
 
