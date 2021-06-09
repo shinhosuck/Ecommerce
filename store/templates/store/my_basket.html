@@ -11,10 +11,11 @@
     <div class="basket-main-container">
         <h3 class="my-basket-title">MY Basket
             {% if baskets.count > 1 %}
-                <small>{{ baskets.count }} items found</small>
+                <small>{{ baskets.count }} items found,</small>
             {% elif baskets.count == 1 %}
-                <small>{{ baskets.count }} item found</small>
+                <small>{{ baskets.count }} item found,</small>
             {% endif %}
+            <span class="my-basket-click-image-for-detail">click image for product detail</span>
         </h3>
         <div class="my-basket">
             {% for basket in baskets %}
@@ -23,9 +24,6 @@
                         <img src="{{ basket.product.image.url}}" alt="">
                     </a>
                     <div class="basket-text-wraper">
-                        <a class="my-basket-img-mobile" href="{% url 'store:product_detail' basket.product.pk %}">
-                            <img src="{{ basket.product.image.url}}" alt="">
-                        </a>
                         <p class="basket-product-name">{{ basket.product.product_name }}</p>
                         <p class="price">${{ basket.product.price }}</p>
                         <p class="my-basket-price-mobile">${{ basket.product.price }}</p>
@@ -85,17 +83,21 @@
                             </a>
                             <div id="{{ product.product_rating }}" class="basket-star-ratings-icons">
                                 <!-- <i fa fa-star><i> elements from js -->
-                                <p>
-                                    <small>( {{ product.productreview_set.count }} )</small>
-                                </p>
+                                {% if product.productreview_set.count > 1 %}
+                                    <p class="basket-ratings-count">
+                                        <small>({{ product.productreview_set.count }} reviews)</small>
+                                    </p>
+                                {% else %}
+                                    <p class="basket-ratings-count">
+                                        <small>({{ product.productreview_set.count }} review)</small>
+                                    </p>
+                                {% endif %}
                             </div>
                             <div class="also-like-text-container">
                                 <p class="also-like-product-name">{{ product.product_name }}</p>
                                 <p class="also-like-product-price">${{ product.price }}</p>
                                 {% if product.productreview_set.count %}
                                     <a  class="my-basket-read-review" href="{% url 'store:read_review' product.pk %}">Read review</a>
-                                {% else %}
-                                    <p class="my-basket-no-review">No review</p>
                                 {% endif %}
                             </div>
                             <a class="also-like-product-btn" href="{% url 'store:add_to_basket' product.pk %}" type=button>Add to basket</a>
