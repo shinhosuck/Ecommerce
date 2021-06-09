@@ -1578,7 +1578,9 @@ home.html
 .product-add-to-basket:hover {
     background: rgb(0, 61, 61);
 }
-.prev-btn1, .next-btn1, .prev-btn2, .next-btn2, .prev-btn3, .next-btn3 {
+.prev-btn1, .next-btn1, 
+.prev-btn2, .next-btn2, 
+.prev-btn3, .next-btn3 {
     position: absolute;
     padding: 1rem 1.2rem;
     text-align: center;
@@ -1628,6 +1630,14 @@ home.html
     }
     .product-price {
         font-size: 1.1rem;
+    }
+}
+@media screen and (max-width: 835px) {
+    .product:hover {
+        transform: scale(1)
+    }
+    .slick-arrow {
+        visibility: visible;
     }
 }
 @media screen and (max-width: 830px) {
@@ -1707,6 +1717,12 @@ home.html
     }
     .rating-i-icon i {
         font-size: 1rem;
+    }
+    .prev-btn1, .next-btn1, 
+    .prev-btn2, .next-btn2, 
+    .prev-btn3, .next-btn3 {
+        /* padding: 1.5rem 1.7rem; */
+        font-size: 1.3rem;
     }
 }
 @media screen and (max-width: 395px) {
