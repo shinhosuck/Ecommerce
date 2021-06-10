@@ -24,7 +24,7 @@
                         </a>
                         <p class="order-product-name">{{ order.basket.product.product_name }}</p>
                         <p class="order-price">${{ order.basket.product.price}}</p>
-                        <p class="my-order-detail">Status: open</p>
+                        <p class="my-order-detail">Status: <span>Pending</span></p>
                         <p class="my-order-date"> Ordered on:
                             <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
                         </p>
@@ -32,6 +32,7 @@
                             <span>{{ order.basket.quantity }}</span>
                         </p>
                     </div>
+                    <p class="my-order-detail-mobile">Status: <span>Pending</span></p>
                 </div>
             {% endfor %}
             {% for order in closed_orders %}
@@ -45,7 +46,7 @@
                         </a>
                         <p class="order-product-name">{{ order.basket.product.product_name }}</p>
                         <p class="order-price">${{ order.basket.product.price}}</p>
-                        <p class="my-order-detail">Status: closed</p>
+                        <p class="my-order-detail">Status: Closed</p>
                         <p class="my-order-date">Finalized on:
                             <span>{{ order.date_ordered|date:"N, d, Y" }}</span>
                         </p>
@@ -107,17 +108,21 @@
                             </a>
                             <div id="{{ product.product_rating }}" class="star-ratings-icons">
                                 <!-- <i fa fa-star></i> from js -->
-                                <p>
-                                    <small>( {{ product.productreview_set.count }} )</small>
-                                </p>
+                                {% if product.productreview_set.count > 1 %}
+                                    <p class="my-order-ratings-count">
+                                        <small>({{ product.productreview_set.count }} reviews)</small>
+                                    </p>
+                                {% else %}
+                                    <p class="my-order-basket-ratings-count">
+                                        <small>({{ product.productreview_set.count }} review)</small>
+                                    </p>
+                                {% endif %}
                             </div>
                             <div class="most-ordered-text-container">
                                 <p class="most-ordered-product-name">{{ product.product_name }}</p>
                                 <p class="most-ordered-product-price">${{ product.price }}</p>
                                 {% if product.productreview_set.count %}
                                     <a  class="my-orders-read-review" href="{% url 'store:read_review' product.pk %}">Read review</a>
-                                {% else %}
-                                    <p class="my-orders-no-review">No review</p>
                                 {% endif %}
                             </div>
                         </div>
