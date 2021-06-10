@@ -96,6 +96,9 @@ base.html
     color: rgb(255, 255, 255);
     font-size: 0.9rem;
 }
+.item:hover, .item > a:hover {
+    color: rgb(128, 128, 128);
+}
 .basket {
     font-size: 1.2rem;
     position: relative;
@@ -437,6 +440,9 @@ base.html
     }
 }
 @media screen and (max-width: 835px){
+    .item:hover, .item > a:hover {
+        color: rgb(255, 255, 255);
+    }
     .navbar {
         align-items: flex-start;
         justify-content: flex-start;
@@ -520,8 +526,9 @@ base.html
     }
     .mobile-accounts a {
         display: block;
-        margin-top: 0.5rem;
-        font-size: 0.8rem;
+        margin-top: 0.7rem;
+        margin-left: 0.5rem;
+        font-size: 0.9rem;
         color: rgb(255, 255, 255);
     }
     .mobile-accounts a:hover {
