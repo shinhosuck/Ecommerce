@@ -103,10 +103,10 @@ base.html
 .basket small {
     position: absolute;
     font-family: sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: normal;
     top:-8px;
-    left: 15px
+    left: 18px
 }
 #accounts {
     position: relative;

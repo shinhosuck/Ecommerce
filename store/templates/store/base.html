@@ -43,7 +43,7 @@
                 <li class="item"><a href="{% url 'store:shop_by_brand' %}">Brand Names</a></li>
                 {% if user.is_authenticated %}
                 <li class="item my-basket-icon">
-                    <a href="{% url 'store:my_basket' %}">My
+                    <a href="{% url 'store:my_basket' %}">My Basket
                         <i class="fa fa-shopping-basket basket">
                             <small>{{ user.customer.total_items }}</small>
                         </i>
