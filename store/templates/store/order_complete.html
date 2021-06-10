@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="image/png" rel="icon" href="{% static 'store/favicon.ico' %}">
+    <link type="image/png" rel="icon" href="{% static 'store/favicon.ico' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'store/style.css' %}">
 
     <title>Transaction Complete</title>
@@ -15,10 +16,10 @@
         <div class="order-complete-col">
             <div class="order-complete-text">
                 <p>Transaction completed successfully.</p>
-                <p>Thank you for shopping at <span>AiAi.com</span>.</p>
+                <p>Thank you for shopping at <a href="{% url 'store:home' %}">AiAi.com</a>.</p>
             </div>
             <div class="order-complete-buttons">
-                <a class="order-complete-continue" href="{% url 'store:home' %}">Continue shopping</a>
+                <a class="order-complete-continue" href="{% url 'store:home' %}">Continue Shopping</a>
                 <a class="order-complete-logout"href="{% url 'store:my_orders' %}">My Orders</a>
             </div>
         </div>

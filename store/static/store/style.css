@@ -6331,7 +6331,7 @@ order_complete.html
     /* animation */
     animation-name: orderComplete;
     animation-timing-function: linear;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
 }
@@ -6340,7 +6340,7 @@ order_complete.html
         top: -100px;
     }
     to {
-        top: 200px;
+        top: 100px;
     }
 }
 .order-complete-col {
@@ -6361,10 +6361,15 @@ order_complete.html
     color: rgb(30, 30, 30);
     margin-bottom: 0.5rem;
     letter-spacing: 0.05rem;
+    text-align: center;
 }
-.order-complete-text p span {
+.order-complete-text > p > a {
     color: rgb(0, 100, 100);
-    font-weight: bold;
+    /* font-weight: bold; */
+    text-decoration: underline;
+}
+.order-complete-text > p > a:hover {
+    color: rgb(0, 61, 61);
 }
 .order-complete-buttons {
     margin-top: 1rem;
@@ -6479,7 +6484,23 @@ order_complete.html
         margin-bottom: 0;
     }
 }
-
+@media screen and (max-width: 440px) {
+    .order-complete-col {
+        padding: 0.7rem;
+    }
+    .order-complete-text > p {
+        font-size: 1.3rem;
+        text-align: center;
+        line-height: 1.8rem;
+    }
+    .order-complete-buttons {
+        margin-top: 1rem;
+    }
+    .order-complete-buttons > a {
+        padding: 0.8rem 0;
+        font-size: 1.1rem;
+    }
+}
 /*
 ==========================
 end of order_complete.html
