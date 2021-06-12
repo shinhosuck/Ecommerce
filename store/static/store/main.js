@@ -269,7 +269,7 @@ navTimesButton.addEventListener("click", function(){
 const category = document.querySelector(".category")
 const categories = document.querySelector(".categories-and-sub-category-row")
 const timesButton = document.querySelector(".times-button")
-const accounts = document.querySelector("#accounts")
+// const accounts = document.querySelector("#accounts")
 
 
 category.addEventListener("click", function () {
@@ -301,55 +301,96 @@ navbar.addEventListener("mouseenter", function () {
   categories.classList.remove("show-categories-and-sub-category-row")
  
 })
-
-accounts.addEventListener("mouseenter", function () {
-  categories.classList.remove("show-categories-and-sub-category-row")
-  searchContainer.classList.remove("show-search-container")
+// move to base.html js
+// accounts.addEventListener("mouseenter", function () {
+//   categories.classList.remove("show-categories-and-sub-category-row")
+//   searchContainer.classList.remove("show-search-container")
   
-})
+// })
+
+// footer category scroll
+// const shopByBrandName = document.querySelector(".shop_by_brand_name")
+// const footerUpButton = document.querySelector(".footer-up-button")
+// const footerDownButton = document.querySelector(".footer-down-button")
+// const newChildren = shopByBrandName.children
+// const items = [...newChildren]
+
+// counter = 0
+// footerDownButton.disabled = true;
+
+// footerUpButton.addEventListener("click", function(){
+//     counter ++
+//     if(counter >= items.length-1){
+//         footerUpButton.disabled = true;
+//         footerDownButton.disabled = false;
+//     }else if(counter < items.length-1){
+//         footerUpButton.disabled = false;
+//         footerDownButton.disabled = false;
+//     }
+//     category_scroll()
+// })
+// footerDownButton.addEventListener("click", function(){
+//   counter --
+//   if(counter <= 0){
+//       footerDownButton.disabled = true;
+//       footerUpButton.disabled = false;
+//   }else if(counter > 0){
+//       footerDownButton.disabled = false;
+//       footerUpButton.disabled = false;
+//   }
+//   category_scroll()
+// })
+
+// function category_scroll(){
+//   console.log(counter)
+//   items.forEach(function(item){
+//       item.style.transform = `translateY(-${counter*100}%)`
+//   })
+// }
 
 // my_basket.html show/hide basket edit
-const editIcon = document.querySelectorAll(".edit-icon")
-const editCloseBtn = document.querySelectorAll(".edit-close-btn")
-const tableRows = document.querySelectorAll(".table-row")
+// const editIcon = document.querySelectorAll(".edit-icon")
+// const editCloseBtn = document.querySelectorAll(".edit-close-btn")
+// const tableRows = document.querySelectorAll(".table-row")
 
-editIcon.forEach(function (icon) {
-  icon.nextElementSibling.classList.remove("show-edit")
-  icon.addEventListener("click", function () {
-    icon.nextElementSibling.classList.toggle("show-edit")
-    tableRows.forEach(function (row) {
-      row.addEventListener("mouseleave", function (event) {
-        const children = event.currentTarget.children[1]
-        const grandKids = children.children[3]
-        const grandGrandKids = grandKids.children
-        const newGrandGrandKids = [...grandGrandKids]
-        newGrandGrandKids.forEach(function (kid) {
-          if (kid.classList.contains("show-edit")) {
-            kid.classList.remove("show-edit")
-          }
-        })
-      })
-    })
-  })
-})
+// editIcon.forEach(function (icon) {
+//   icon.nextElementSibling.classList.remove("show-edit")
+//   icon.addEventListener("click", function () {
+//     icon.nextElementSibling.classList.toggle("show-edit")
+//     tableRows.forEach(function (row) {
+//       row.addEventListener("mouseleave", function (event) {
+//         const children = event.currentTarget.children[1]
+//         const grandKids = children.children[3]
+//         const grandGrandKids = grandKids.children
+//         const newGrandGrandKids = [...grandGrandKids]
+//         newGrandGrandKids.forEach(function (kid) {
+//           if (kid.classList.contains("show-edit")) {
+//             kid.classList.remove("show-edit")
+//           }
+//         })
+//       })
+//     })
+//   })
+// })
 
-editCloseBtn.forEach(function (icon) {
-  icon.addEventListener("click", function () {
-    icon.parentElement.classList.remove("show-edit")
-  })
-})
+// editCloseBtn.forEach(function (icon) {
+//   icon.addEventListener("click", function () {
+//     icon.parentElement.classList.remove("show-edit")
+//   })
+// })
 
 // my_orders.html show-order-detail-text
-const myOrderDetailText = document.querySelectorAll(".my-order-detail-text")
-const orderPriceMobile = document.querySelectorAll(".order-price-mobile")
+// const myOrderDetailText = document.querySelectorAll(".my-order-detail-text")
+// const orderPriceMobile = document.querySelectorAll(".order-price-mobile")
 
-myOrderDetailText.forEach(function (orderDetail) {
-  orderDetail.addEventListener("click", function () {
-    const secondChildren = orderDetail.children[1]
-    secondChildren.classList.toggle("show-order-price-mobile")
+// myOrderDetailText.forEach(function (orderDetail) {
+//   orderDetail.addEventListener("click", function () {
+//     const secondChildren = orderDetail.children[1]
+//     secondChildren.classList.toggle("show-order-price-mobile")
 
-    orderDetail.addEventListener("mouseleave", function () {
-      secondChildren.classList.remove("show-order-price-mobile")
-    })
-  })
-})
+//     orderDetail.addEventListener("mouseleave", function () {
+//       secondChildren.classList.remove("show-order-price-mobile")
+//     })
+//   })
+// })
+

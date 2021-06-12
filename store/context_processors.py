@@ -39,4 +39,15 @@ def side_categories(request):
     }
     return  context
 
-
+def shop_by_brand_name(request):
+    products = Product.objects.all()
+    brands = {}
+    total_items = {}
+    for product in products:
+        brands.setdefault(product.company, product)
+        total_items.setdefault(product.company, 0)
+        total_items[product.company] =  total_items[product.company]+1
+    context = {
+        "brands": brands,
+    }
+    return context

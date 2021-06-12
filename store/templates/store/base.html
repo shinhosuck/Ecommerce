@@ -108,7 +108,9 @@
     <main>
         
         <!-- for mobile devices -->
-        <div class="bg-image"></div>
+        <div class="bg-image">
+            <img src="{% static 'store/images/img1.jpg' %}" alt="">
+        </div>
         <!-- end of mobile devices -->
         
         <div class="slide-container">
@@ -145,12 +147,74 @@
     </main>
 
     <footer>
-
+        <div class="footer-row">
+            <div class="footer-shop-by-category">
+                <div>
+                    <p class="footer-item-title">Shop by Category</p>
+                </div>
+                {% for key, value in categories.items %}
+                    <a href="{% url 'store:category' value %}">{{ key }}</a>
+                {% endfor %}
+            </div>
+            <div class="footer-shop-by-brand">
+                <div>
+                    <p class="footer-item-title">Shop by Brand</p>
+                </div>
+                {% for key, value in brands.items %}
+                    <a href="{% url 'store:brand_name' value.pk %}">{{ key }}</a>
+                {% endfor %}
+            </div>
+            <div class="footer-contact-us">
+                <div>
+                    <p class="footer-item-title">Contact Us</p>
+                </div>
+                <p class="phone"><i class="fas fa-phone "></i>+63 123 456 7890</p>
+                <p class="email"><i class="fas fa-envelope"></i>samplemail@mail.com</p>
+                <p class="address"><i class="fas fa-address-book"></i>
+                    123 Some Street BC, PH. 2600
+                </p>
+            </div>
+            <div class="footer-connect-with-us">
+                <div>
+                    <p class="footer-item-title">Connect with Us</p>
+                </div>
+                <a href="https://www.youtube.com" target="_blank"> Youtube
+                    <i class="fab fa-youtube youtube"></i>
+                </a>
+                <a href="https://www.facebook.com" target="_blank">Facebook
+                    <i class="fab fa-facebook facebook"></i>
+                </a>
+                <a href="https://twitter.com/" target="_blank">Twitter
+                    <i class="fab fa-twitter twitter"></i>
+                </a>
+            </div>
+        </div>
+        <div class="footer-rights-reserved">
+            <p>All Rights Reserved 2021. Designed by AiAi.com</p>
+        </div>
     </footer>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
     <script type="text/javascript" src="{% static 'store/jquery-3.6.0.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'store/slick/slick.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'store/main.js' %}"></script>
+
+    <script type="text/javascript">
+
+        accounts_hover()
+        function accounts_hover(){
+            const accounts = document.querySelector("#accounts")
+            const categorySubcategory = document.querySelector(".categories-and-sub-category-row")
+            const searchBox = document.querySelector(".search-container")
+
+            accounts.addEventListener("mouseenter", function () {
+                categorySubcategory.classList.remove("show-categories-and-sub-category-row")
+                searchBox.classList.remove("show-search-container")
+            })
+        }
+
+
+        
+    </script>
 </body>
 </html>

@@ -72,6 +72,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 "store.context_processors.update_basket",
                 "store.context_processors.side_categories",
+                "store.context_processors.shop_by_brand_name",
             ],
         },
     },
