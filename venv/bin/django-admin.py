@@ -1,4 +1,4 @@
-#!/home/anderson/Desktop/E-Commerce/venv/bin/python3
+#!/home/anderson/Documents/Ecommerce/venv/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

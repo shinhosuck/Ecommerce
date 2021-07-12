@@ -1,4 +1,4 @@
-#!/home/anderson/Desktop/E-Commerce/venv/bin/python3
+#!/home/anderson/Documents/Ecommerce/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
